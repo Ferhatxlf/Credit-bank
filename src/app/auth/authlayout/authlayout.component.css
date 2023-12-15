@@ -1,0 +1,113 @@
+.login-container {
+  height: 100vh;
+  width: 100%;
+}
+.login-container img {
+  height: 100%;
+  width: 100%;
+  box-shadow: 4px 0px 5px 3px rgba(173, 158, 158, 0.84);
+}
+.input-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: none;
+}
+.header-container {
+  width: 100%;
+  text-align: center;
+  height: 10%;
+}
+.img-header {
+  width: 50% !important;
+  box-shadow: none !important;
+}
+.body-container {
+  width: 95%;
+  height: 67%;
+  margin: auto;
+  border-radius: 15px;
+}
+.title {
+  text-align: center;
+  color: #742484;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  font-size: 50px;
+  font-weight: bolder;
+  margin-bottom: 1%;
+  letter-spacing: 1px;
+}
+
+.body-container p {
+  text-align: center !important;
+  text-shadow: 0 0 2px #74248494;
+  letter-spacing: 1px;
+  width: 100%;
+}
+.body-container input {
+  border-radius: 12px;
+  padding: 10px;
+}
+.forgot-password-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.forgot-password {
+  margin-left: auto;
+  width: 30%;
+  text-align: end;
+  color: #742484;
+  font-weight: 400;
+  cursor: pointer;
+}
+.button-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.button-container button {
+  width: 40%;
+  background-color: #742484;
+  color: white;
+  border-radius: 15px;
+}
+.button-container button:hover {
+  color: #f0c22b !important;
+}
+.signUp-container {
+  height: 10%;
+  width: 100%;
+  display: flex;
+  justify-content: end;
+}
+.signUp-container span {
+  margin-left: 3%;
+  letter-spacing: 1px;
+  cursor: pointer;
+  color: #742484;
+  font-weight: 700;
+}
+/* pour la responsivité  */
+@media screen and (max-width: 600px) {
+  .forgot-password {
+    min-width: 100%;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .forgot-password {
+    min-width: 50%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .cover-image {
+    display: none !important;
+  }
+}

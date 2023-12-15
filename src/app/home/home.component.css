@@ -1,0 +1,151 @@
+/* Dans votre-composant.css */
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+.container-fluid {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative; /* Ajout de position:relative pour gérer le positionnement absolu de l'image */
+}
+
+.img-bg-home {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+  filter: blur(5px);
+}
+.bg-fond-black {
+  background: linear-gradient(
+    335deg,
+    rgba(254, 182, 0, 1) 50%,
+    rgba(114, 33, 130, 1) 51%
+  );
+  opacity: 0.6;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+.card-container {
+  margin: auto;
+  width: 90%; /* Ajustement de la largeur pour une meilleure adaptation */
+  max-width: 800px; /* Ajout d'une largeur maximale pour éviter que le conteneur devienne trop large */
+  height: 80%;
+  background-color: rgba(255, 255, 255, 0.884);
+  box-shadow: 0 0 15px 1px rgba(43, 41, 41, 0.479);
+  overflow: hidden; /* Ajout de overflow: hidden pour gérer le débordement des enfants */
+  border-top-left-radius: 35px;
+  border-bottom-right-radius: 35px;
+}
+
+.logo-container {
+  width: 30%; /* Ajustement de la largeur à 100% pour une meilleure adaptation */
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 2%;
+}
+
+.title-container {
+  display: flex;
+  flex-direction: column;
+  width: 80%; /* Ajustement de la largeur pour une meilleure adaptation */
+  margin: 0 auto;
+  max-width: 100%;
+  text-align: center;
+  font-size: 30px;
+  color: #feb600;
+  letter-spacing: 2px;
+  font-weight: 900;
+}
+
+.sous-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: rgb(0, 0, 0);
+  letter-spacing: 3px;
+  margin: 5% 0 10% 0;
+}
+
+.cards {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap; /* Permet aux cartes de passer à la ligne en cas de manque d'espace */
+  justify-content: space-around;
+  align-items: center;
+}
+
+.card {
+  flex: 1;
+  margin: 2%; /* Ajustement de la marge pour une meilleure adaptation */
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  max-width: 200px; /* Ajout d'une largeur maximale pour les cartes */
+  box-shadow: 0 0 5px 1px #6666664d;
+  background-color: #742484;
+  color: white;
+  border: none;
+  border-top-left-radius: 35px;
+  border-bottom-right-radius: 35px;
+}
+
+.card:hover {
+  background-color: #feb600;
+  box-shadow: 0 0 10px 1px rgba(247, 184, 13, 0.733);
+  color: #722182;
+  cursor: pointer;
+}
+
+.material-icons {
+  font-size: 80px !important;
+  margin: 1% 0 8% 0; /* Ajustement des marges */
+}
+
+.card p {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+/* pour la responsivité  */
+@media screen and (max-width: 600px) {
+  .card-container {
+    width: 100%;
+    height: 80%;
+  }
+  .title-container {
+    font-size: 16px;
+    width: 98%;
+  }
+  .sous-title {
+    font-size: 18px;
+  }
+  .cards {
+    display: flex;
+    flex-direction: column;
+    width: 100% !important;
+    margin-top: 5%;
+  }
+  .card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    min-width: 80%;
+  }
+  .card p {
+    margin: auto;
+  }
+  .material-icons {
+    font-size: 50px !important;
+    margin: auto;
+  }
+}
