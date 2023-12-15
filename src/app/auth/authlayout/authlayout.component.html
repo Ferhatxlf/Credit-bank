@@ -9,7 +9,10 @@
   </div>
   <div class="col-12 col-sm-12 col-md-5 input-container">
     <div class="header-container">
-      <img class="img-header" src="../../assets/bankLogo.png" alt="logo" />
+      <div class="back-container">
+        <span class="material-icons" (click)="goBack()">arrow_back</span>
+        <img class="img-header" src="../../assets/bankLogo.png" alt="logo" />
+      </div>
       <hr style="border-bottom: 1px solid #742484" />
     </div>
     <div class="body-container">
@@ -43,10 +46,38 @@
 
       <div class="signUp-container">
         Vous êtes nouveau ?
-        <span>Inscription</span>
+        <span (click)="toggleModale()">Inscription</span>
       </div>
     </div>
   </div>
+</div>
+<!-- Modale -->
+<div class="modal-container" *ngIf="showModale">
+  <div class="modale">
+    <div class="modale-header">
+      <h1>Infos</h1>
+    </div>
+    <div class="modale-body">
+      <p style="font-size: 18px; letter-spacing: 0.5px; color: #2c2c2c">
+        Avant de procéder à votre première inscription, veuillez effectuer une
+        simulation de crédit pour vérifier votre éligibilité à nos
+        services.Merci pour votre compréhension..
+      </p>
+    </div>
+    <div class="modale-footer">
+      <button class="btn btn-secondary" (click)="toggleModale()">
+        Annuler
+      </button>
+      <button
+        class="btn"
+        style="background-color: #742484; color: white"
+        [routerLink]="['/']"
+      >
+        Continuer
+      </button>
+    </div>
+  </div>
+  <div class="opacity-bg" (click)="toggleModale()"></div>
 </div>
 
 <!-- <div class="row" style="height: 100vh; width: 100%">
