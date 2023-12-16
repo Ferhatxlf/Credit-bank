@@ -1,0 +1,185 @@
+/* scale-in.animation.css */
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.7);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.scale-in {
+  animation: scaleIn 0.5s ease;
+}
+
+@keyframes translate {
+  from {
+    transform: translate(-20px, -50px);
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.translate {
+  animation: translate 1s ease;
+}
+
+.container-fluid {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative; /* Ajout de position:relative pour gérer le positionnement absolu de l'image */
+}
+
+.bg-fond {
+  background: linear-gradient(
+    335deg,
+    rgba(254, 182, 0, 1) 50%,
+    rgba(114, 33, 130, 1) 51%
+  );
+  opacity: 0.6;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+.card-container {
+  margin: auto;
+  width: 90%; /* Ajustement de la largeur pour une meilleure adaptation */
+  max-width: 1000px; /* Ajout d'une largeur maximale pour éviter que le conteneur devienne trop large */
+  height: 90%;
+  background-color: rgba(255, 255, 255, 0.884);
+  box-shadow: 0 0 15px 1px rgba(43, 41, 41, 0.479);
+  overflow: hidden; /* Ajout de overflow: hidden pour gérer le débordement des enfants */
+  border-top-left-radius: 35px;
+  border-bottom-right-radius: 35px;
+}
+.logo-container {
+  margin: 0 auto;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo-container img {
+  width: 22%;
+  margin-top: 2%;
+  cursor: pointer;
+}
+.icons-header {
+  color: rgb(75, 77, 77);
+  font-size: 30px !important;
+  transition: 0.2s ease;
+  cursor: pointer;
+}
+.icons-header:hover {
+  color: rgba(114, 33, 130, 1);
+  transform: scale(1.4);
+}
+.progress-container {
+  height: 5vh;
+  width: 70%;
+  margin: 0 auto;
+  position: relative;
+}
+.progressBar {
+  height: 5%;
+  width: 100%;
+  background-color: #feb600;
+  z-index: 0;
+}
+.progressBar-trans {
+  width: 10%;
+  background-color: #722182;
+  transition: 0.3s ease;
+}
+.icons-container {
+  position: absolute;
+  top: -35.5%;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  z-index: 1;
+}
+.progressBar-icons {
+  font-size: 1.5vw;
+  background-color: rgba(114, 33, 130, 1);
+  color: white;
+  border-radius: 50%;
+  padding: 1vw;
+}
+@media screen and (min-width: 1501px) {
+  .progress-container {
+    height: 10vh;
+  }
+  .progressBar-icons {
+    font-size: 2vw;
+  }
+}
+
+@media screen and (max-width: 1500px) {
+  .progress-container {
+    height: 8vh;
+  }
+  .progressBar-icons {
+    font-size: 2vw;
+  }
+}
+@media screen and (max-width: 1400px) {
+  .progress-container {
+    height: 8vh;
+  }
+  .progressBar-icons {
+    font-size: 1.8vw;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .progress-container {
+    height: 7vh;
+  }
+  .progressBar-icons {
+    font-size: 2vw;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .progress-container {
+    height: 7vh;
+  }
+  .progressBar-icons {
+    font-size: 2.5vw;
+  }
+}
+@media screen and (max-width: 800px) {
+  .progress-container {
+    height: 5vh;
+  }
+  .progressBar-icons {
+    font-size: 3vw;
+  }
+}
+@media screen and (max-width: 600px) {
+  .progress-container {
+    height: 4vh;
+  }
+  .progressBar-icons {
+    font-size: 3vw;
+  }
+}
+@media screen and (max-width: 400px) {
+  .progress-container {
+    height: 3vh;
+  }
+  .progressBar-icons {
+    font-size: 4vw;
+  }
+}

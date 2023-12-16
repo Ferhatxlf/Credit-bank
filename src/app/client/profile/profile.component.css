@@ -1,13 +1,12 @@
 .container-fluid {
   background-color: #f6f5f4;
-  margin-left: 4%;
+  margin: auto;
   width: 96%;
   height: 100%;
   display: flex;
   flex-direction: column;
   position: relative;
 }
-/* profile.component.css */
 .profile {
   margin-top: 50px;
   background-color: rgb(235, 230, 230);

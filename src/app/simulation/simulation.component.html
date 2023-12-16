@@ -1,0 +1,33 @@
+<div class="container-fluid">
+  <div class="bg-fond"></div>
+
+  <div class="card-container scale-in">
+    <div class="logo-container">
+      <span class="material-icons icons-header" (click)="goBack()"
+        >arrow_back</span
+      >
+      <img src="../../assets/bankLogo.png" />
+    </div>
+    <div class="progress-container mt-3">
+      <div
+        class="progress mx-auto progressBar"
+        role="progressbar"
+        aria-label="Example with label"
+        aria-valuenow="25"
+        aria-valuemin="0"
+        aria-valuemax="100"
+      >
+        <div class="progress-bar progressBar-trans"></div>
+      </div>
+
+      <div class="icons-container">
+        <span class="material-icons progressBar-icons">article</span>
+        <span class="material-icons progressBar-icons">article</span>
+        <span class="material-icons progressBar-icons">article</span>
+        <span class="material-icons progressBar-icons">article</span>
+      </div>
+    </div>
+
+    <router-outlet></router-outlet>
+  </div>
+</div>

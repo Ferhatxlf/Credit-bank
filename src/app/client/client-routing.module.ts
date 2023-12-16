@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { ClientlayoutComponent } from './clientlayout/clientlayout.component';
 import { DashbordComponent } from './dashbord/dashbord.component';
 import { ProfileComponent } from './profile/profile.component';
+import { MesdossierComponent } from './mesdossier/mesdossier.component';
+import { NouveaucreditComponent } from './nouveaucredit/nouveaucredit.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashbord', pathMatch: 'full' },
@@ -10,8 +12,16 @@ const routes: Routes = [
     path: '',
     component: ClientlayoutComponent,
     children: [
-      { path: 'profile', component: ProfileComponent },
-      { path: 'dashbord', component: DashbordComponent },
+      {
+        path: 'profile',
+        component: ProfileComponent,
+      },
+      {
+        path: 'dashbord',
+        component: DashbordComponent,
+      },
+      { path: 'dossier', component: MesdossierComponent },
+      { path: 'nouveau-credit', component: NouveaucreditComponent },
     ],
   },
 ];

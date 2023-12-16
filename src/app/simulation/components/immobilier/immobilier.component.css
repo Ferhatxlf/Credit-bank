@@ -1,0 +1,65 @@
+@keyframes translate {
+  from {
+    transform: translateX(200px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.translate {
+  animation: translate 0.5s ease;
+}
+
+.header {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.title {
+  font-size: 30px;
+  margin-top: 2%;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: rgb(43, 43, 43);
+}
+.cards {
+  margin: 0 auto;
+  height: 70%;
+  overflow-y: auto;
+  width: 90%;
+  padding: 2%;
+}
+
+.card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 1%;
+  padding: 8px 4px;
+  border-bottom-right-radius: 15px;
+  border-top-left-radius: 15px;
+  height: 80px;
+  cursor: pointer;
+  text-align: start;
+  transition: 0.3s ease;
+  border: none;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 0 5px 1px rgba(126, 125, 125, 0.24);
+}
+.card:hover .material-icons {
+  color: rgba(254, 182, 0, 1);
+}
+
+.card:hover {
+  transform: scale(1.1);
+}
+
+.card p:hover {
+  color: rgb(2, 2, 2);
+}

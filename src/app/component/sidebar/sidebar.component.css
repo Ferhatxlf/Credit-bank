@@ -79,15 +79,6 @@ a:hover {
 
 /* Media Query for Responsive Design */
 @media only screen and (max-width: 770px) {
-  .logo {
-    width: 50px;
-    height: 50px;
-    background-image: url("../../../assets/bdl.jpg");
-  }
-  .logo img {
-    width: 0px;
-    height: 0px;
-  }
   nav {
     max-width: 40px;
     min-width: 40px;
