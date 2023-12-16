@@ -16,10 +16,12 @@
     </div>
     <div class="cards">
       <div class="card">
-        <span class="material-icons"> business </span>
+        <span class="material-icons" [routerLink]="['/simulation']">
+          business
+        </span>
         <p>Je suis une entreprise</p>
       </div>
-      <div class="card">
+      <div class="card" [routerLink]="['/simulation']">
         <span class="material-icons"> person </span>
         <p>Je suis un particulier</p>
       </div>
