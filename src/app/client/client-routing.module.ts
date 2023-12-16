@@ -5,6 +5,7 @@ import { DashbordComponent } from './dashbord/dashbord.component';
 import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: 'dashbord', pathMatch: 'full' },
   {
     path: '',
     component: ClientlayoutComponent,

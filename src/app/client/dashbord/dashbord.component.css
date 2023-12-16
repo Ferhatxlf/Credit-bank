@@ -1,0 +1,118 @@
+/* Dans votre-composant.css */
+
+.container-fluid {
+  background-color: #f6f5f4;
+  margin: auto;
+  width: 96%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.card-container {
+  margin: auto;
+  width: 100%;
+  max-width: 900px;
+  height: 80%;
+  background-color: #f6f5f4;
+}
+
+.title-container {
+  display: flex;
+  flex-direction: column;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-size: 24px; /* Ajustez la taille de la police selon vos préférences */
+  font-weight: bold; /* Utilisez 'normal' si vous préférez une épaisseur normale */
+  color: #333; /* Couleur du texte, remplacez par la couleur de votre choix */
+  padding: 10px;
+}
+
+.sous-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: rgb(0, 0, 0);
+  letter-spacing: 3px;
+  margin: 5% 0 10% 0;
+}
+
+.cards {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap; /* Permet aux cartes de passer à la ligne en cas de manque d'espace */
+  justify-content: space-around;
+  align-items: center;
+}
+
+.card {
+  flex: 1;
+  margin: 2%; /* Ajustement de la marge pour une meilleure adaptation */
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  max-width: 200px; /* Ajout d'une largeur maximale pour les cartes */
+  box-shadow: 0 0 5px 1px #6666664d;
+  background-color: #742484;
+  color: white;
+  border: none;
+  border-top-left-radius: 35px;
+  border-bottom-right-radius: 35px;
+}
+
+.card:hover {
+  background-color: #feb600;
+  box-shadow: 0 0 10px 1px rgba(247, 184, 13, 0.733);
+  color: #722182;
+  cursor: pointer;
+}
+
+.material-icons {
+  font-size: 80px !important;
+  margin: 1% 0 8% 0; /* Ajustement des marges */
+}
+
+.card p {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+/* pour la responsivité  */
+@media screen and (max-width: 700px) {
+  .container-fluid {
+    width: 100%;
+    left: auto;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .card-container {
+    width: 100%;
+    height: 80%;
+  }
+  .title-container {
+    font-size: 16px;
+    width: 98%;
+  }
+
+  .cards {
+    display: flex;
+    flex-direction: column;
+    width: 100% !important;
+    margin-top: 5%;
+  }
+  .card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    min-width: 80%;
+  }
+  .card p {
+    margin: auto;
+  }
+  .material-icons {
+    font-size: 50px !important;
+    margin: auto;
+  }
+}

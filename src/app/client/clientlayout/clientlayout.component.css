@@ -1,0 +1,24 @@
+.container-fluid {
+  width: 100vw;
+  display: flex;
+  height: 100vh;
+}
+
+.sidebarr {
+  width: 200px;
+}
+
+.content {
+  flex-grow: 1;
+}
+@media screen and (max-width: 770px) {
+  .container {
+    width: 98%;
+    left: auto;
+  }
+
+  .sidebarr {
+    width: 40px;
+    min-width: 40px; /* La sidebar prend la largeur totale sur des écrans plus petits */
+  }
+}
