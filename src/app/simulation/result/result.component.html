@@ -1,1 +1,49 @@
-<p>result works!</p>
+<div class="header d-flex justify-content-center w-100 translate">
+  <div class="title">Votre résultat de simulation</div>
+</div>
+<div class="row cards translate">
+  <div class="row class1-container">
+    <div class="col-sm-12 col-md-4 col-lg-4">
+      <div class="card" [routerLink]="['/simulation/form']">
+        <p>Montant de financement</p>
+        <span>596 762,60 DZD</span>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-4 col-lg-4">
+      <div class="card" [routerLink]="['/simulation/form']">
+        <p>Durée de financement</p>
+        <span> 4 Années</span>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-4 col-lg-4">
+      <div class="card" [routerLink]="['/simulation/form']">
+        <p>Taux d'intérêt</p>
+        <span>1,00 %</span>
+      </div>
+    </div>
+  </div>
+  <div class="row class2-container">
+    <div class="col">
+      <div class="card special-card" [routerLink]="['/simulation/form']">
+        <p>Apport initial</p>
+        <span>1 403 000,00 DZD</span>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card special-card" [routerLink]="['/simulation/form']">
+        <p>Mensualités</p>
+        <span>50 000,00 DZD</span>
+      </div>
+    </div>
+  </div>
+  <p style="font-size: 1.3vw">
+    Les résultats de cette simulation sont fournis à titre informatif et ne sont
+    pas contraignants.
+  </p>
+  <div class="button-container">
+    <button class="btn btn1">Télécharger une copie de la simulation</button>
+    <button class="btn btn2">
+      Je souhaite faire une demande de financement
+    </button>
+  </div>
+</div>

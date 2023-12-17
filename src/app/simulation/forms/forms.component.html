@@ -50,7 +50,7 @@
       readonly
     />
   </div>
-  <label for="">Etes vous client de la BDL ?</label>
+  <label for="">Avez vous un patrimoine immobilier ?</label>
   <div class="input-container">
     <div class="form-group">
       <span class="form-control"> Oui</span>
@@ -70,6 +70,8 @@
   </div>
 
   <div class="d-flex justify-content-center mt-3">
-    <button class="btn btn-primary">Lancer la simulation</button>
+    <button class="btn btn-primary" [routerLink]="['/simulation/result']">
+      Lancer la simulation
+    </button>
   </div>
 </div>
