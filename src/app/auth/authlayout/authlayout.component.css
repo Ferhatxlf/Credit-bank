@@ -134,6 +134,8 @@
   border-radius: 8px;
   position: relative;
   transition: 1s ease;
+  border-top-right-radius: 25px;
+  border-bottom-left-radius: 25px;
 }
 
 .opacity-bg {
