@@ -41,9 +41,64 @@
     pas contraignants.
   </p>
   <div class="button-container">
-    <button class="btn btn1">Télécharger une copie de la simulation</button>
+    <button class="btn btn1" (click)="generatePDF()">
+      Télécharger une copie de la simulation
+    </button>
     <button class="btn btn2">
       Je souhaite faire une demande de financement
     </button>
+  </div>
+</div>
+<div class="pdf">
+  <div class="header d-flex header-pdf">
+    <div class="img-logo-container">
+      <img src="../../assets/bankLogo.png" style="width: 60%" />
+      <hr style="width: 60%" />
+    </div>
+    <div class="title">Votre résultat de simulation</div>
+    <h2>Aménagement</h2>
+  </div>
+  <table class="table">
+    <h4>Vos données</h4>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Montant de financement</td>
+        <td>2 000 000,00 DZD</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Revenu du demandeur</td>
+        <td>100 000,00 DZD</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Age du demandeur</td>
+        <td>27 ans</td>
+      </tr>
+      <tr>
+        <th scope="row">4</th>
+        <td>Durée du financement</td>
+        <td>3 années</td>
+      </tr>
+      <tr>
+        <th scope="row">5</th>
+        <td>Possession d'un patrimoine immobilier</td>
+        <td>Non</td>
+      </tr>
+      <tr>
+        <th scope="row">6</th>
+        <td>Financement(s) en cours</td>
+        <td>Non</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="footer-result">
+    <h4>Votre résultat :</h4>
+    <p class="p-footer">
+      En utilisant les informations que vous avez fournies, vous avez la
+      possibilité d'emprunter 1 800 000,00 DZD sur une période de 4 ans, avec
+      des paiements mensuels de 42 273,05 DZD et un taux d'intérêt de 6 %.
+    </p>
   </div>
 </div>

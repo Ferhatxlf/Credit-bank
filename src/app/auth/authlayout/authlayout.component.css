@@ -67,6 +67,7 @@
 .body-container input {
   border-radius: 12px;
   padding: 10px;
+  box-shadow: 0 0 5px 1px rgba(126, 125, 125, 0.24);
 }
 .forgot-password-container {
   width: 100%;
