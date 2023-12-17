@@ -2,35 +2,38 @@
   <app-navbar></app-navbar>
 
   <div class="title-container">bien venu mr Khelf Ferhat</div>
-  <div class="card-container">
-    <div class="row cards translate">
-      <div class="col-sm-6 col-md-6 col-lg-6">
-        <div class="card">
-          <span class="material-icons">folder</span>
-          <p>Mes dossier</p>
+  <div class="row cards translate">
+    <div class="row class1-container">
+      <div class="col-sm-12 col-md-4 col-lg-4">
+        <div class="card" [routerLink]="['/simulation/form']">
+          <div class="material-icons">folder</div>
+          <span class="txt">Mes dossier</span>
         </div>
       </div>
-
-      <div class="col-sm-6 col-md-6 col-lg-6">
-        <div class="card">
-          <span class="material-icons"> person </span>
-
-          <p>Mon profile</p>
+      <div class="col-sm-12 col-md-4 col-lg-4">
+        <div class="card" [routerLink]="['/simulation/form']">
+          <div class="material-icons">assessment</div>
+          <span class="txt">Nouveau crédit</span>
         </div>
       </div>
-
-      <div class="col-sm-6 col-md-6 col-lg-6">
-        <div class="card">
-          <span class="material-icons"> assessment </span>
-
-          <p>Crédit</p>
+      <div class="col-sm-12 col-md-4 col-lg-4">
+        <div class="card" [routerLink]="['/simulation/form']">
+          <div class="material-icons">person</div>
+          <span class="txt">Mon profile</span>
         </div>
       </div>
-      <div class="col-sm-6 col-md-6 col-lg-6">
-        <div class="card">
-          <span class="material-icons"> exit_to_app</span>
-
-          <p>Deconnexion</p>
+    </div>
+    <div class="row class2-container">
+      <div class="col">
+        <div class="card special-card" [routerLink]="['/simulation/form']">
+          <div class="material-icons">exit_to_app</div>
+          <span class="txt">Déconnexion</span>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card special-card" [routerLink]="['/simulation/form']">
+          <div class="material-icons">schedule</div>
+          <span class="txt">Historique</span>
         </div>
       </div>
     </div>
