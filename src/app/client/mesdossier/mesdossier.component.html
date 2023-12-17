@@ -18,4 +18,20 @@
       </tr>
     </table>
   </div>
+  <table class="table table-striped">
+    <tr>
+      <th>nom du dossier</th>
+      <th>Courtier</th>
+      <th>Montant du prêt</th>
+      <th>catégorie</th>
+      <th>completer</th>
+    </tr>
+    <tr *ngFor="let d of Folders">
+      <td>{{ d.nom }}</td>
+      <td>{{ d.courtier }}</td>
+      <td>{{ d.montantDuPret }}</td>
+      <td>{{ d.categorie }}</td>
+      <td>{{ d.completer }}</td>
+    </tr>
+  </table>
 </div>

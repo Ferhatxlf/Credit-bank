@@ -7,10 +7,12 @@
   flex-direction: column;
   position: relative;
 }
+
 .table-container {
   margin-top: 50px;
   width: 100%;
 }
+
 table {
   width: 100%;
   border-collapse: collapse;
