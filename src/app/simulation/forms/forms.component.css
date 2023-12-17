@@ -14,7 +14,7 @@
 }
 
 .container {
-  width: 65%;
+  width: 80%;
   padding: 1%;
   margin: 0 auto;
   max-height: 70%;
@@ -27,6 +27,10 @@
   font-weight: 700;
   letter-spacing: 1px;
   text-align: center; /* Centrer le texte horizontalement */
+}
+.forms {
+  width: 80%;
+  margin: 0 auto;
 }
 
 .container input {
@@ -59,6 +63,7 @@ label {
   border-radius: 15px;
   background-color: rgba(114, 33, 130, 1);
   border: none;
+  padding: 8px 18px;
 }
 .btn:hover {
   background-color: rgb(102, 32, 116);
@@ -68,4 +73,8 @@ span {
   cursor: pointer;
   border-radius: 12px;
   padding: 10px;
+  transition: 0.6s ease;
+}
+span:hover {
+  transform: scale(1.05);
 }
