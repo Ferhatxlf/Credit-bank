@@ -19,12 +19,12 @@
           [ngClass]="{
             pregress1:
               url === '/simulation/result' ||
+              url === '/simulation/notice' ||
               url === '/simulation/upload' ||
               url === '/simulation/inscription'
           }"
           [ngClass]="{
-            pregress2:
-              url === '/simulation/upload' || url === '/simulation/inscription'
+            pregress2: url === '/simulation/upload'
           }"
           [ngClass]="{
             pregress3: url === '/simulation/inscription'
@@ -44,7 +44,8 @@
               url === '/simulation/form' ||
               url === '/simulation/result' ||
               url === '/simulation/upload' ||
-              url === '/simulation/inscription'
+              url === '/simulation/register' ||
+              url === '/simulation/notice'
           }"
           >list</span
         >
@@ -54,15 +55,15 @@
             'progressBar-done':
               url === '/simulation/result' ||
               url === '/simulation/upload' ||
-              url === '/simulation/inscription'
+              url === '/simulation/register' ||
+              url === '/simulation/notice'
           }"
           >calculate</span
         >
         <span
           class="material-icons progressBar-icons"
           [ngClass]="{
-            'progressBar-done':
-              url === '/simulation/upload' || url === '/simulation/inscription'
+            'progressBar-done': url === '/simulation/upload'
           }"
           >upload_file</span
         >

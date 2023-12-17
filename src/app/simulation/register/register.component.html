@@ -1,0 +1,126 @@
+<div class="container translate">
+  <div class="header d-flex justify-content-center w-100">
+    <div class="title">Inscription</div>
+  </div>
+  <div class="forms">
+    <div class="input-container">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Nom *" required />
+      </div>
+      <div class="form-group" style="margin-left: 8px">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Prénom *"
+          required
+        />
+      </div>
+      <div class="form-group" style="margin-left: 8px">
+        <select class="form-select" aria-label="Default select example">
+          <option selected>Cévilité</option>
+          <option value="1">Madame</option>
+          <option value="2">Monsieur</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <input
+        type="email"
+        class="form-control"
+        placeholder="Adresse email *"
+        required
+      />
+    </div>
+    <div class="input-container">
+      <div class="form-group">
+        <input
+          type="number"
+          class="form-control"
+          placeholder="Numéro de téléphone *"
+          required
+        />
+      </div>
+
+      <div class="form-group" style="margin-left: 8px">
+        <input
+          type="number"
+          class="form-control"
+          placeholder="Code postal *"
+          required
+        />
+      </div>
+      <div class="form-group" style="margin-left: 8px">
+        <select class="form-select" aria-label="Default select example">
+          <option selected>Etat civile</option>
+          <option value="1">Marié(e)</option>
+          <option value="2">Célébataire</option>
+          <option value="1">Dévorcé(e)</option>
+          <option value="2">Veuf(ve)</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Nationalité *"
+        required
+      />
+    </div>
+    <div class="input-container">
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Adresse  *"
+          required
+        />
+      </div>
+      <div class="form-group" style="margin-left: 8px">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Ville *"
+          required
+        />
+      </div>
+    </div>
+    <div class="form-group">
+      <select class="form-select" aria-label="Default select example">
+        <option selected>Vous résidez actuellement en Algérie ?</option>
+        <option value="1">Oui</option>
+        <option value="2">Non</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <input
+        type="number"
+        class="form-control"
+        placeholder="Votre âge *"
+        required
+      />
+    </div>
+    <div class="form-check form-switch">
+      <input
+        class="form-check-input mt-0 mr-1"
+        type="checkbox"
+        role="switch"
+        id="flexSwitchCheckDefault"
+        style="width: 8%"
+      />
+      <label class="form-check-label" for="flexSwitchCheckDefault"
+        >J'accépte</label
+      >
+      <span class="condition">les conditions générale d'utilisation</span>
+    </div>
+
+    <div class="button-container">
+      <button class="btn btn1" [routerLink]="['/auth']">
+        J'ai déja un compte
+      </button>
+      <button class="btn btn2" [routerLink]="['/simulation/upload']">
+        Incription
+      </button>
+    </div>
+  </div>
+</div>
