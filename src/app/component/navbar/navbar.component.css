@@ -43,11 +43,12 @@
 .material-icons {
   color: #333;
   font-size: 1.5em;
-  cursor: pointer; /* Ajout de la marge entre les icônes */
+  cursor: pointer;
 }
 
 .material-icons:hover {
-  color: #ddd;
+  font-size: 1.7em;
+  color: rgba(254, 182, 0, 1);
 }
 .icons {
   width: 100px;
