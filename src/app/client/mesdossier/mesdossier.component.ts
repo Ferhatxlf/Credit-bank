@@ -9,7 +9,7 @@ import '../../../../node_modules/bootstrap/dist/js/bootstrap.bundle.js';
 export class MesdossierComponent {
   public Folders: Array<any> = [
     {
-      nom: 'Voici comment vous pouvez',
+      nom: 'Dossier1',
       courtier: 'Courtier1',
       montantDuPret: 100000,
       categorie: 'Catégorie1',
