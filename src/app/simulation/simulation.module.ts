@@ -13,6 +13,7 @@ import { TypeComponent } from './type/type.component';
 import { ImmobilierComponent } from './components/immobilier/immobilier.component';
 import { PresSurGageComponent } from './components/pres-sur-gage/pres-sur-gage.component';
 import { ConsomationComponent } from './components/consomation/consomation.component';
+import { SharedService } from './shared.service';
 
 @NgModule({
   declarations: [
@@ -25,5 +26,6 @@ import { ConsomationComponent } from './components/consomation/consomation.compo
     SimulationComponent,
   ],
   imports: [CommonModule, SimulationRoutingModule],
+  providers: [SharedService],
 })
 export class SimulationModule {}
