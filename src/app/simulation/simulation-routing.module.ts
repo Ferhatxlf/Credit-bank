@@ -10,6 +10,9 @@ import { TypeComponent } from './type/type.component';
 import { ConsomationComponent } from './components/consomation/consomation.component';
 import { ImmobilierComponent } from './components/immobilier/immobilier.component';
 import { PresSurGageComponent } from './components/pres-sur-gage/pres-sur-gage.component';
+import { NoticeForRegisterComponent } from './components/notice-for-register/notice-for-register.component';
+import { RegisterComponent } from './register/register.component';
+import { UploadComponent } from './components/upload/upload.component';
 
 const simulationRoutes: Routes = [
   {
@@ -20,9 +23,12 @@ const simulationRoutes: Routes = [
       { path: 'form', component: FormsComponent },
       { path: 'result', component: ResultComponent },
       { path: 'type', component: TypeComponent },
+      { path: 'notice', component: NoticeForRegisterComponent },
       { path: 'consomation', component: ConsomationComponent },
       { path: 'immobilier', component: ImmobilierComponent },
       { path: 'presurgage', component: PresSurGageComponent },
+      { path: 'upload', component: UploadComponent },
+      { path: 'register', component: RegisterComponent },
     ],
   },
 ];

@@ -16,3 +16,9 @@ input {
 input:focus {
   transform: scale(1.05);
 }
+select {
+  transition: 0.6s ease !important;
+}
+select:focus {
+  transform: scale(1.05);
+}

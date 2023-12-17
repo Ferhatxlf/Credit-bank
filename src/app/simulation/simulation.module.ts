@@ -14,6 +14,9 @@ import { ImmobilierComponent } from './components/immobilier/immobilier.componen
 import { PresSurGageComponent } from './components/pres-sur-gage/pres-sur-gage.component';
 import { ConsomationComponent } from './components/consomation/consomation.component';
 import { SharedService } from './shared.service';
+import { NoticeForRegisterComponent } from './components/notice-for-register/notice-for-register.component';
+import { RegisterComponent } from './register/register.component';
+import { UploadComponent } from './components/upload/upload.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +27,9 @@ import { SharedService } from './shared.service';
     PresSurGageComponent,
     ConsomationComponent,
     SimulationComponent,
+    NoticeForRegisterComponent,
+    RegisterComponent,
+    UploadComponent,
   ],
   imports: [CommonModule, SimulationRoutingModule],
   providers: [SharedService],

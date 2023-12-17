@@ -1,0 +1,105 @@
+@keyframes translate {
+  from {
+    transform: translateX(200px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.translate {
+  animation: translate 0.5s ease;
+}
+
+.container {
+  width: 80%;
+  padding: 1%;
+  margin: 0 auto;
+  max-height: 70%;
+  overflow-y: auto;
+}
+
+.title {
+  font-size: 25px;
+  color: rgb(110, 112, 112);
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-align: center; /* Centrer le texte horizontalement */
+}
+.forms {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.container input {
+  margin-top: 2%;
+  box-shadow: 0 0 5px 1px rgba(126, 125, 125, 0.24);
+  width: 100%; /* Utiliser la largeur complète du conteneur parent */
+  padding: 10px;
+  border-radius: 12px;
+}
+select {
+  margin-top: 2%;
+  box-shadow: 0 0 5px 1px rgba(126, 125, 125, 0.24);
+  width: 100%; /* Utiliser la largeur complète du conteneur parent */
+  padding: 10px;
+  border-radius: 12px;
+}
+
+.input-container {
+  width: 100%;
+  margin-top: 1%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.input-container .form-group {
+  flex: 1; /* Distribuer l'espace également entre les éléments enfants */
+  margin-left: 8px; /* Ajouter une marge entre les éléments */
+  margin: auto;
+}
+label {
+  font-size: 1.2vw;
+  color: rgb(109, 109, 109);
+  font-weight: 500;
+  margin-left: 1%;
+}
+.form-check {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 1%;
+  width: 100%;
+}
+.condition {
+  color: #722182;
+  font-size: 1.2vw;
+  cursor: pointer;
+  margin-left: 1%;
+  font-weight: 600;
+}
+.button-container {
+  width: 70%;
+  margin: 4% auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.btn {
+  width: 100%;
+}
+.btn1 {
+  border: 1px solid #722182;
+  border-radius: 20px;
+  font-size: large;
+}
+.btn2 {
+  background-color: #722182;
+  color: white;
+  border-radius: 20px;
+  margin-top: 2%;
+  font-size: large;
+}
