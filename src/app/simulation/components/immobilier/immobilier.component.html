@@ -3,7 +3,11 @@
 </div>
 <div class="row cards translate">
   <div class="col-sm-6 col-md-4 col-lg-4">
-    <div class="card" [routerLink]="['/simulation/form']">
+    <div
+      class="card"
+      (click)="envoyerInfo('progressBar-done')"
+      [routerLink]="['/simulation/form']"
+    >
       <p>Achat d'un logement auprès d'un particulier</p>
       <span class="material-icons">arrow_forward</span>
     </div>

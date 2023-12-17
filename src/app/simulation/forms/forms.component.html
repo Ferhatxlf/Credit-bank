@@ -2,74 +2,78 @@
   <div class="header d-flex justify-content-center w-100">
     <div class="title">Veuillez introduire vos paramètres de calcul</div>
   </div>
-  <div class="form-group">
-    <input
-      type="number"
-      class="form-control"
-      placeholder="Montant de l'habitation *"
-      required
-      readonly
-    />
-  </div>
-  <div class="input-container">
+  <div class="forms">
     <div class="form-group">
       <input
         type="number"
         class="form-control"
-        placeholder="Revenus de l'emprunteur *"
+        placeholder="Montant de l'habitation *"
         required
         readonly
       />
     </div>
-    <div class="form-group" style="margin-left: 8px">
+    <div class="input-container">
+      <div class="form-group">
+        <input
+          type="number"
+          class="form-control"
+          placeholder="Revenus de l'emprunteur *"
+          required
+          readonly
+        />
+      </div>
+      <div class="form-group" style="margin-left: 8px">
+        <input
+          type="number"
+          class="form-control"
+          placeholder="Revenus de co-emprunteur *"
+          required
+          readonly
+        />
+      </div>
+    </div>
+
+    <div class="form-group">
       <input
         type="number"
         class="form-control"
-        placeholder="Revenus de co-emprunteur *"
+        placeholder="Votre age *"
         required
         readonly
       />
     </div>
-  </div>
-
-  <div class="form-group">
-    <input
-      type="number"
-      class="form-control"
-      placeholder="Votre age *"
-      required
-      readonly
-    />
-  </div>
-  <div class="form-group">
-    <input
-      type="number"
-      class="form-control"
-      placeholder="La durée de financement *"
-      required
-      readonly
-    />
-  </div>
-  <label for="">Etes vous client de la BDL ?</label>
-  <div class="input-container">
     <div class="form-group">
-      <span class="form-control"> Oui</span>
+      <input
+        type="number"
+        class="form-control"
+        placeholder="La durée de financement *"
+        required
+        readonly
+      />
     </div>
-    <div class="form-group" style="margin-left: 8px">
-      <span class="form-control">Non</span>
+    <label for="">Avez vous un patrimoine immobilier ?</label>
+    <div class="input-container">
+      <div class="form-group">
+        <span class="form-control"> Oui</span>
+      </div>
+      <div class="form-group" style="margin-left: 8px">
+        <span class="form-control">Non</span>
+      </div>
     </div>
-  </div>
-  <label for="">Avez vous un autre financement en cours ?</label>
-  <div class="input-container">
-    <div class="form-group">
-      <span class="form-control"> Oui</span>
+    <label for="">Avez vous un autre financement en cours ?</label>
+    <div class="input-container">
+      <div class="form-group">
+        <span class="form-control"> Oui</span>
+      </div>
+      <div class="form-group" style="margin-left: 8px">
+        <span class="form-control">Non</span>
+      </div>
     </div>
-    <div class="form-group" style="margin-left: 8px">
-      <span class="form-control">Non</span>
-    </div>
-  </div>
 
-  <div class="d-flex justify-content-center mt-3">
-    <button class="btn btn-primary">Lancer la simulation</button>
+    <div class="d-flex justify-content-center mt-3">
+      <button class="btn btn-primary" [routerLink]="['/simulation/result']">
+        Lancer la simulation
+      </button>
+    </div>
   </div>
 </div>

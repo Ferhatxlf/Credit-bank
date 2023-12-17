@@ -13,21 +13,66 @@
         class="progress mx-auto progressBar"
         role="progressbar"
         aria-label="Example with label"
-        aria-valuenow="25"
-        aria-valuemin="0"
-        aria-valuemax="100"
       >
-        <div class="progress-bar progressBar-trans"></div>
+        <div
+          class="progress-bar progressBar-trans"
+          [ngClass]="{
+            pregress1:
+              url === '/simulation/result' ||
+              url === '/simulation/upload' ||
+              url === '/simulation/inscription'
+          }"
+          [ngClass]="{
+            pregress2:
+              url === '/simulation/upload' || url === '/simulation/inscription'
+          }"
+          [ngClass]="{
+            pregress3: url === '/simulation/inscription'
+          }"
+        ></div>
       </div>
 
       <div class="icons-container">
-        <span class="material-icons progressBar-icons">article</span>
-        <span class="material-icons progressBar-icons">article</span>
-        <span class="material-icons progressBar-icons">article</span>
-        <span class="material-icons progressBar-icons">article</span>
+        <span
+          class="material-icons progressBar-icons"
+          [ngClass]="{
+            'progressBar-done':
+              url === '/simulation/type' ||
+              url === '/simulation/immobilier' ||
+              url === '/simulation/consomation' ||
+              url === '/simulation/presurgage' ||
+              url === '/simulation/form' ||
+              url === '/simulation/result' ||
+              url === '/simulation/upload' ||
+              url === '/simulation/inscription'
+          }"
+          >list</span
+        >
+        <span
+          class="material-icons progressBar-icons"
+          [ngClass]="{
+            'progressBar-done':
+              url === '/simulation/result' ||
+              url === '/simulation/upload' ||
+              url === '/simulation/inscription'
+          }"
+          >calculate</span
+        >
+        <span
+          class="material-icons progressBar-icons"
+          [ngClass]="{
+            'progressBar-done':
+              url === '/simulation/upload' || url === '/simulation/inscription'
+          }"
+          >upload_file</span
+        >
+        <span
+          class="material-icons progressBar-icons"
+          [ngClass]="{ 'progressBar-done': url === '/simulation/inscription' }"
+          >check</span
+        >
       </div>
     </div>
-
     <router-outlet></router-outlet>
   </div>
 </div>
