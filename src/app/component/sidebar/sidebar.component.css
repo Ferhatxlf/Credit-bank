@@ -20,6 +20,7 @@ nav {
   box-shadow: 0 0 15px 1px rgba(43, 41, 41, 0.479);
   overflow: hidden;
   transition: width 0.2s linear;
+  border-bottom-right-radius: 15px;
 }
 
 .logo {

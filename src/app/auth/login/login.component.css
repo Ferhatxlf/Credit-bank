@@ -20,6 +20,22 @@
   text-align: center;
   height: 10%;
 }
+.back-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 2% 3% 0 0;
+}
+.material-icons {
+  font-size: 35px;
+  margin: auto 0;
+  cursor: pointer;
+  color: #742484;
+}
+.material-icons:hover {
+  color: #f0c22b;
+}
 .img-header {
   width: 50% !important;
   box-shadow: none !important;
@@ -51,6 +67,7 @@
 .body-container input {
   border-radius: 12px;
   padding: 10px;
+  box-shadow: 0 0 5px 1px rgba(126, 125, 125, 0.24);
 }
 .forgot-password-container {
   width: 100%;
@@ -93,6 +110,87 @@
   cursor: pointer;
   color: #742484;
   font-weight: 700;
+}
+
+/* la modale */
+/* la modale */
+.modal-container {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modale {
+  width: 80%; /* Adjust the width for larger screens */
+  box-shadow: 0 0 13px 2px rgba(0, 0, 0, 0.418);
+  height: auto; /* Make the height dynamic based on content */
+  background-color: white;
+  padding: 10px;
+  border-radius: 8px;
+  position: relative;
+  transition: 1s ease;
+  border-top-right-radius: 25px;
+  border-bottom-left-radius: 25px;
+}
+
+.opacity-bg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.486);
+  z-index: -1;
+}
+
+.modale-header,
+.modale-footer {
+  padding: 2px;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+}
+
+.modale-footer {
+  margin-top: 10%;
+  justify-content: flex-end;
+}
+
+/* Styles for the buttons (adjust according to your preferred style) */
+.btn {
+  padding: 4px 8px;
+  margin-left: 8px;
+}
+
+/* Responsive adjustments */
+@media (min-width: 576px) {
+  .modale {
+    width: 60%;
+  }
+
+  @media (min-width: 768px) {
+    .modale {
+      width: 50%;
+    }
+  }
+
+  @media (min-width: 992px) {
+    .modale {
+      width: 40%;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .modale {
+      width: 30%;
+    }
+  }
 }
 /* pour la responsivité  */
 @media screen and (max-width: 600px) {
