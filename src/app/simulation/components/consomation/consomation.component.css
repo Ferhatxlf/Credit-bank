@@ -57,6 +57,7 @@
   border: none;
   background-color: rgb(255, 255, 255);
   width: 70%;
+  box-shadow: 0 0 5px 1px rgba(126, 125, 125, 0.24);
 }
 .card:hover .material-icons {
   color: rgba(254, 182, 0, 1);
