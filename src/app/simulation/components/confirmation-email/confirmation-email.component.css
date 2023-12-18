@@ -37,33 +37,36 @@
   font-weight: bold;
   color: rgb(136, 139, 139);
 }
-.file {
-  width: 70%;
+.logo-container {
+  width: 50%;
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.form-group {
-  flex: 1; /* Distribuer l'espace également entre les éléments enfants */
-  margin-left: 8px; /* Ajouter une marge entre les éléments */
-  margin: auto;
+img {
+  width: 40%;
 }
 
-input {
-  padding: 20px 40px;
-  height: 20%;
-  border-radius: 12px;
-  box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.089);
-}
-.btn-container {
-  width: 50%;
-  margin: 1% auto;
+.button-container {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
 }
 .btn {
-  padding: 10px 20px;
-  width: 100%;
-  background-color: rgba(114, 33, 130, 1);
+  width: 60%;
+}
+.btn1 {
+  border: 1px solid #722182;
+  border-radius: 20px;
+  font-size: large;
+}
+.btn2 {
+  background-color: #722182;
   color: white;
   border-radius: 20px;
+  margin-top: 1%;
+  font-size: large;
 }
