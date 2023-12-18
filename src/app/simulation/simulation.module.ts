@@ -17,6 +17,8 @@ import { SharedService } from './shared.service';
 import { NoticeForRegisterComponent } from './components/notice-for-register/notice-for-register.component';
 import { RegisterComponent } from './register/register.component';
 import { UploadComponent } from './components/upload/upload.component';
+import { ConfirmationEmailComponent } from './components/confirmation-email/confirmation-email.component';
+import { SuccessComponent } from './components/success/success.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { UploadComponent } from './components/upload/upload.component';
     NoticeForRegisterComponent,
     RegisterComponent,
     UploadComponent,
+    ConfirmationEmailComponent,
+    SuccessComponent,
   ],
   imports: [CommonModule, SimulationRoutingModule],
   providers: [SharedService],
