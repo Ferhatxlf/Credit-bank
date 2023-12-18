@@ -1,0 +1,75 @@
+/* translate.animation.css */
+
+@keyframes translate {
+  from {
+    transform: translateX(200px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.translate {
+  animation: translate 0.5s ease;
+}
+
+.header {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 2vw;
+
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: rgb(110, 112, 112);
+}
+.subtitle {
+  font-size: 1.2vw;
+  text-align: center;
+  font-weight: bold;
+  color: rgb(136, 139, 139);
+}
+.logo-container {
+  width: 70%;
+  margin: 0 auto;
+  height: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.material-icons {
+  font-size: 13vw;
+  color: #feb600;
+  opacity: 0.7;
+}
+
+.button-container {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+}
+.btn {
+  width: 60%;
+}
+.btn1 {
+  border: 1px solid #722182;
+  border-radius: 20px;
+  font-size: large;
+}
+.btn2 {
+  background-color: #722182;
+  color: white;
+  border-radius: 20px;
+  margin-top: 1%;
+  font-size: large;
+}
