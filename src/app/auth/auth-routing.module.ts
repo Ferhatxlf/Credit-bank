@@ -8,6 +8,11 @@ import { AuthlayoutComponent } from './authlayout/authlayout.component';
 const routes: Routes = [
   {
     path: '',
+    redirectTo: 'login',
+    pathMatch: 'full',
+  },
+  {
+    path: '',
     component: AuthlayoutComponent,
     children: [
       { path: 'login', component: LoginComponent },

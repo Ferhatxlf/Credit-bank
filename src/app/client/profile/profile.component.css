@@ -1,0 +1,33 @@
+.container-fluid {
+  background-color: #f6f5f4;
+  margin: auto;
+  width: 96%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.profile {
+  margin-top: 50px;
+  background-color: rgb(235, 230, 230);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px 1px rgba(43, 41, 41, 0.479);
+}
+
+h2 {
+  color: #333;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+strong {
+  font-weight: bold;
+}

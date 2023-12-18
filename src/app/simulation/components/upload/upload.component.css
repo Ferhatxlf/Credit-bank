@@ -1,0 +1,63 @@
+/* translate.animation.css */
+
+@keyframes translate {
+  from {
+    transform: translateX(200px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.translate {
+  animation: translate 0.5s ease;
+}
+
+.header {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 2vw;
+
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: rgb(110, 112, 112);
+}
+.file {
+  width: 70%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.form-group {
+  flex: 1; /* Distribuer l'espace également entre les éléments enfants */
+  margin-left: 8px; /* Ajouter une marge entre les éléments */
+  margin: auto;
+}
+
+input {
+  padding: 20px 40px;
+  height: 20%;
+  border-radius: 12px;
+  box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.089);
+}
+.btn-container {
+  width: 50%;
+  margin: 1% auto;
+}
+.btn {
+  padding: 10px 20px;
+  width: 100%;
+  background-color: rgba(114, 33, 130, 1);
+  color: white;
+  border-radius: 20px;
+}

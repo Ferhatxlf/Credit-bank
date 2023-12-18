@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrl: './dashbord.component.css'
 })
 export class DashbordComponent {
+  public client_name : string = "KHELF Ferhat"
 
 }
