@@ -24,7 +24,7 @@
 }
 
 .title {
-  font-size: 30px;
+  font-size: 1.7rem;
   margin-top: 2%;
   font-weight: bold;
   letter-spacing: 1px;
@@ -50,12 +50,14 @@
   padding: 8px 4px;
   border-bottom-right-radius: 15px;
   border-top-left-radius: 15px;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 0;
   height: 80px;
   cursor: pointer;
   text-align: start;
   transition: 0.3s ease;
   border: none;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(243, 250, 255);
   width: 70%;
   box-shadow: 0 0 5px 1px rgba(126, 125, 125, 0.24);
 }
@@ -73,6 +75,8 @@
 }
 
 .card p {
-  font-size: 25px;
+  font-size: 16px;
   font-weight: 500;
+  margin: 0 auto;
+  margin-left: 5%;
 }
