@@ -1,0 +1,41 @@
+<div class="container-fluid">
+  <app-navbar></app-navbar>
+
+  <div class="title-container">bien venu mr {{ client_name }}</div>
+  <div class="row cards translate">
+    <div class="row class1-container">
+      <div class="col-sm-12 col-md-4 col-lg-4">
+        <div class="card" [routerLink]="['/client/dossier']">
+          <div class="material-icons">folder</div>
+          <span class="txt">Mes dossier</span>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-4 col-lg-4">
+        <div class="card" [routerLink]="['/client/nouveau-credit']">
+          <div class="material-icons">assessment</div>
+          <span class="txt">Nouveau crédit</span>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-4 col-lg-4">
+        <div class="card" [routerLink]="['/client/profile']">
+          <div class="material-icons">person</div>
+          <span class="txt">Mon profile</span>
+        </div>
+      </div>
+    </div>
+    <div class="row class2-container">
+      <div class="col">
+        <div class="card special-card">
+          <div class="material-icons">exit_to_app</div>
+          <span class="txt">Déconnexion</span>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card special-card">
+          <div class="material-icons">schedule</div>
+          <span class="txt">Historique</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

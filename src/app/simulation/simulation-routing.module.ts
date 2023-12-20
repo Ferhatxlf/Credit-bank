@@ -2,8 +2,6 @@
 
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
- 
-
 
 import { SimulationComponent } from './simulation.component';
 import { FormsComponent } from './forms/forms.component';

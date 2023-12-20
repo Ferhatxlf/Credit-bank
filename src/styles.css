@@ -1,0 +1,24 @@
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
+@import "../node_modules/material-icons/iconFont/material-icons.css";
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+body {
+  background-color: #f6f5f4;
+}
+
+* {
+  font-family: "Franklin Gothic small", "Arial Narrow", Arial, sans-serif;
+}
+input {
+  transition: 0.6s ease !important;
+}
+input:focus {
+  transform: scale(1.05);
+}
+select {
+  transition: 0.6s ease !important;
+}
+select:focus {
+  transform: scale(1.05);
+}
