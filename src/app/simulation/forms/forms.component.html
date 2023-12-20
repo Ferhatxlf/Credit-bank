@@ -3,114 +3,78 @@
     <div class="title">Veuillez introduire vos paramètres de calcul</div>
   </div>
   <div class="forms">
-    <div class="form-group">
+    <div class="form-floating">
       <input
         type="number"
         class="form-control"
-        placeholder="Montant de l'habitation *"
-        required
-        readonly
+        id="floatingInputGrid"
+        placeholder="name@example.com"
+        value="mdo@example.com"
       />
+      <label for="floatingInputGrid">Montant de l'habitation *</label>
     </div>
     <div class="input-container">
-      <div class="form-group">
+      <div class="form-floating">
         <input
           type="number"
           class="form-control"
-          placeholder="Revenus de l'emprunteur *"
-          required
-          readonly
+          id="floatingInputGrid"
+          placeholder="name@example.com"
+          value="mdo@example.com"
         />
+        <label for="floatingInputGrid">Revenue de l'emprunteur *</label>
+      </div>
+      <div class="form-floating" style="margin-left: 10px">
+        <input
+          type="number"
+          class="form-control"
+          id="floatingInputGrid"
+          placeholder=""
+          value=""
+        />
+        <label for="floatingInputGrid">Revenue de co-emprunteur *</label>
+      </div>
+    </div>
+
+    <div class="form-floating">
+      <input
+        type="number"
+        class="form-control"
+        id="floatingInputGrid"
+        placeholder=""
+        value=""
+      />
+      <label for="floatingInputGrid">Votre age *</label>
+    </div>
+    <div class="form-floating">
+      <input
+        type="number"
+        class="form-control"
+        id="floatingInputGrid"
+        placeholder=""
+        value=""
+      />
+      <label for="floatingInputGrid">La durée de financement *</label>
+    </div>
+    <label class="questions" for="">Avez vous un patrimoine immobilier ?</label>
+    <div class="input-container">
+      <div class="form-group">
+        <span class="form-control"> Oui</span>
       </div>
       <div class="form-group" style="margin-left: 8px">
-        <input
-          type="number"
-          class="form-control"
-          placeholder="Age de l'emprunteur *"
-          required
-          readonly
-        />
+        <span class="form-control">Non</span>
       </div>
     </div>
-    <div class="form-group">
-      <input
-        type="number"
-        class="form-control"
-        placeholder="La durée de financement *"
-        required
-        readonly
-      />
-    </div>
-    <div class="radio-container">
-      <label>Avez-vous un co-emprunteur ?</label>
-
-      <div (click)="hasCoEmprunter()">
-        <label>Oui</label>
-      </div>
-      <div (click)="dontHasCoEmprunter()">
-        <label>Non</label>
-      </div>
-    </div>
-
-    <div class="input-container" *ngIf="co_emprunteur">
+    <label for="">Avez vous un autre financement en cours ?</label>
+    <div class="input-container">
       <div class="form-group">
-        <input
-          type="number"
-          class="form-control"
-          placeholder="Revenus de co-emprunteur *"
-          required
-          readonly
-        />
+        <span class="form-control"> Oui</span>
       </div>
       <div class="form-group" style="margin-left: 8px">
-        <input
-          type="number"
-          class="form-control"
-          placeholder="Age de co-emprunteur *"
-          required
-          readonly
-        />
+        <span class="form-control">Non</span>
       </div>
     </div>
-    <div class="radio-container">
-      <label>Avez vous un patrimoine immobilier ?</label>
 
-      <div (click)="haspatrimoine()">
-        <label>Oui</label>
-      </div>
-      <div (click)="dontHaspatrimoine()">
-        <label>Non</label>
-      </div>
-    </div>
-    <div class="form-group" *ngIf="patrimoine">
-      <input
-        type="number"
-        class="form-control"
-        placeholder="Valeur du patrimoine *"
-        required
-        readonly
-      />
-    </div>
-    <div class="radio-container">
-      <label>Avez-vous un autre financement en cours ?</label>
-
-      <div (click)="hasOtherF()">
-        <label>Oui</label>
-      </div>
-
-      <div (click)="dontHasOtherF()">
-        <label>Non</label>
-      </div>
-    </div>
-    <div class="form-group" *ngIf="otherFinancement">
-      <input
-        type="number"
-        class="form-control"
-        placeholder="Total des montants de financement *"
-        required
-        readonly
-      />
-    </div>
     <div class="d-flex justify-content-center mt-3">
       <button class="btn btn-primary" [routerLink]="['/simulation/result']">
         Lancer la simulation

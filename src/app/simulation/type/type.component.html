@@ -1,19 +1,22 @@
 <div class="header d-flex justify-content-center w-100">
-  <div class="title">Choisissez votre type de crédit</div>
+  <div class="title">Type de financement</div>
 </div>
 <div class="row cards">
   <div class="col">
     <div class="card" [routerLink]="['/simulation/consomation']">
+      <span class="material-icons">add_shopping_cart</span>
       <p>Credit a la consomation</p>
-      <span class="material-icons">arrow_forward</span>
+      <span class="material-icons">arrow_forward_ios</span>
     </div>
     <div class="card" [routerLink]="['/simulation/immobilier']">
+      <span class="material-icons">roofing</span>
       <p>Credit immobilier</p>
-      <span class="material-icons">arrow_forward</span>
+      <span class="material-icons">arrow_forward_ios</span>
     </div>
     <div class="card" [routerLink]="['/simulation/presurgage']">
-      <p>Pré sur gage</p>
-      <span class="material-icons">arrow_forward</span>
+      <span class="material-icons">assured_workload</span>
+      <p>Prêt sur gage</p>
+      <span class="material-icons">arrow_forward_ios</span>
     </div>
   </div>
 </div>
