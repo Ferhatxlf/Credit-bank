@@ -13,6 +13,8 @@ import { PresSurGageComponent } from './components/pres-sur-gage/pres-sur-gage.c
 import { NoticeForRegisterComponent } from './components/notice-for-register/notice-for-register.component';
 import { RegisterComponent } from './register/register.component';
 import { UploadComponent } from './components/upload/upload.component';
+import { ConfirmationEmailComponent } from './components/confirmation-email/confirmation-email.component';
+import { SuccessComponent } from './components/success/success.component';
 
 const simulationRoutes: Routes = [
   {
@@ -29,6 +31,8 @@ const simulationRoutes: Routes = [
       { path: 'presurgage', component: PresSurGageComponent },
       { path: 'upload', component: UploadComponent },
       { path: 'register', component: RegisterComponent },
+      { path: 'confirmation', component: ConfirmationEmailComponent },
+      { path: 'success', component: SuccessComponent },
     ],
   },
 ];

@@ -21,13 +21,16 @@
               url === '/simulation/result' ||
               url === '/simulation/notice' ||
               url === '/simulation/upload' ||
-              url === '/simulation/inscription'
+              url === '/simulation/register' ||
+              url === '/simulation/confirmation' ||
+              url === '/simulation/success'
           }"
           [ngClass]="{
-            pregress2: url === '/simulation/upload'
+            pregress2:
+              url === '/simulation/upload ' || url === '/simulation/success'
           }"
           [ngClass]="{
-            pregress3: url === '/simulation/inscription'
+            pregress3: url === '/simulation/success'
           }"
         ></div>
       </div>
@@ -45,7 +48,9 @@
               url === '/simulation/result' ||
               url === '/simulation/upload' ||
               url === '/simulation/register' ||
-              url === '/simulation/notice'
+              url === '/simulation/notice' ||
+              url === '/simulation/confirmation' ||
+              url === '/simulation/success'
           }"
           >list</span
         >
@@ -56,20 +61,23 @@
               url === '/simulation/result' ||
               url === '/simulation/upload' ||
               url === '/simulation/register' ||
-              url === '/simulation/notice'
+              url === '/simulation/notice' ||
+              url === '/simulation/confirmation' ||
+              url === '/simulation/success'
           }"
           >calculate</span
         >
         <span
           class="material-icons progressBar-icons"
           [ngClass]="{
-            'progressBar-done': url === '/simulation/upload'
+            'progressBar-done':
+              url === '/simulation/upload' || url === '/simulation/success'
           }"
           >upload_file</span
         >
         <span
           class="material-icons progressBar-icons"
-          [ngClass]="{ 'progressBar-done': url === '/simulation/inscription' }"
+          [ngClass]="{ 'progressBar-done': url === '/simulation/success' }"
           >check</span
         >
       </div>

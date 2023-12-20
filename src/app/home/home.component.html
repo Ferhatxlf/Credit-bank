@@ -25,10 +25,13 @@
         <span class="material-icons"> person </span>
         <p>Je suis un particulier</p>
       </div>
-      <div class="card">
-        <span class="material-icons" (click)="goToConnexion()"> forward </span>
-        <p>Connexion</p>
+      <div class="card" [routerLink]="['/simulation']">
+        <span class="material-icons"> business_center </span>
+        <p>Je suis un professionnel</p>
       </div>
+    </div>
+    <div class="connexion" [routerLink]="['/auth/login']">
+      <p>vous avez déja un compte?</p>
     </div>
   </div>
 </div>

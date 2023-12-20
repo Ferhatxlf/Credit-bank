@@ -1,10 +1,8 @@
 <div class="header d-flex justify-content-center translate mb-5">
   <div class="title">Importez vos fichiers PDF</div>
-  <span>
-    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque fugiat quia
-    quas natus, veniam explicabo. Reprehenderit beatae est ab quibusdam pariatur
-    optio provident neque atque temporibus iure? Excepturi perferendis odit
-    similique, beatae ducimus consectetur porro modi.
+  <span class="subtitle">
+    Il ne vous reste qu'une étape ! Soumettez vos documents en format PDF pour
+    finaliser le processus et accéder à tous les avantages de votre compte
   </span>
 </div>
 <div class="file">
@@ -13,5 +11,5 @@
   </div>
 </div>
 <div class="btn-container">
-  <button class="btn">Envoyez</button>
+  <button class="btn" [routerLink]="['/simulation/success']">Envoyez</button>
 </div>

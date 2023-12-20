@@ -72,7 +72,7 @@
   font-weight: 600;
   color: rgb(0, 0, 0);
   letter-spacing: 3px;
-  margin: 5% 0 10% 0;
+  margin: 5% 0 5% 0;
 }
 
 .cards {
@@ -113,6 +113,20 @@
 .card p {
   font-size: 18px;
   font-weight: 400;
+}
+.connexion {
+  margin-top: 10px;
+  width: 93%;
+  display: flex;
+  justify-content: flex-end;
+}
+.connexion p {
+  font-size: 19px;
+  color: #722182;
+  font-weight: 600;
+}
+.connexion:hover {
+  cursor: pointer;
 }
 
 /* pour la responsivité  */
