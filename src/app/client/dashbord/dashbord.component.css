@@ -39,24 +39,27 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 0 15px 1px rgba(43, 41, 41, 0.479);
+  box-shadow: 0 0 15px 1px rgba(133, 129, 129, 0.479);
   height: 150px;
   background-color: rgba(255, 255, 255, 0.884);
 
-  border: 1px solid #ddd;
+  border: 1px solid #ddddddb2;
   border-radius: 5px;
 }
 
 .special-card {
-  box-shadow: 0 0 15px 1px rgba(43, 41, 41, 0.479);
+  box-shadow: 0 0 15px 1px rgba(85, 82, 82, 0.479);
 
   background-color: rgba(114, 33, 130, 1);
   color: #fff;
 }
-
+.special-card .material-icons {
+  color: #fff;
+}
 .material-icons {
   font-size: 40px;
   margin-bottom: 10px;
+  color: #666565;
 }
 
 .txt {
