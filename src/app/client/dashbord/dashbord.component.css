@@ -1,139 +1,62 @@
-@keyframes translate {
-  from {
-    transform: translateX(200px);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
 .container-fluid {
-  background-color: #f6f5f4;
-  margin: auto;
-  width: 96%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  position: relative;
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 20px;
 }
 
-.translate {
-  animation: translate 0.5s ease;
-}
-
+/* Style the title container */
 .title-container {
   display: flex;
-  flex-direction: column;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+
+  justify-content: center;
+
+  margin-top: 50px;
   font-size: 24px;
-  font-weight: bold;
-  color: #333;
-  padding: 10px;
-  margin-top: 2%;
-}
-.cards {
-  width: 90%;
-  height: 75%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  overflow-y: auto;
-  max-width: 75%;
 }
 
-.class2-container {
-  width: 70%;
-  margin: 1% auto;
+.cards {
+  display: flex;
+  justify-content: center;
   align-items: center;
-  margin-top: 2%;
-}
-.class1-container {
-  margin-top: 2%;
+  height: 65%;
 }
 
 .card {
   display: flex;
-  flex-direction: column;
-  justify-content: space-around; /* Centre les éléments verticalement */
-  align-items: center; /* Centre les éléments horizontalement */
-
-  padding: 17px;
-  margin-top: 2%;
-  box-shadow: 0 0 5px 1px rgba(126, 125, 125, 0.24);
-  border-bottom-right-radius: 15px;
-  border-top-left-radius: 15px;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 15px 1px rgba(43, 41, 41, 0.479);
   height: 150px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }
 
 .special-card {
-  border: 1px solid rgba(48, 46, 46, 0.438);
+  box-shadow: 0 0 15px 1px rgba(43, 41, 41, 0.479);
+  background-color: #a1188f;
+  color: #fff;
 }
 
-span {
-  font-size: 1.4vw;
-  color: black;
-  font-weight: bold;
-}
+/* Style icons */
 .material-icons {
-  color: rgba(75, 73, 73, 0.658);
   font-size: 40px;
+  margin-bottom: 10px;
 }
 
-.card:hover .material-icons {
-  color: rgba(254, 182, 0, 1);
+/* Style text inside cards */
+.txt {
+  display: block;
+  font-size: 16px;
 }
 
+/* Style the logout and history columns */
+.class2-container .col {
+  margin-bottom: 15px;
+}
+
+/* Add a hover effect to cards */
 .card:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 12px 1px rgba(138, 136, 136, 0.5);
-  cursor: pointer;
-  transition: background-color 1s; /* Prolonge la durée de transition à 1 seconde */
-}
-
-.card:hover .txt {
-  color: rgba(254, 182, 0, 1);
-}
-
-@media screen and (max-width: 767px) {
-  .container-fluid {
-    width: 100%;
-    left: auto;
-  }
-  .card {
-    height: max-content;
-  }
-  .special-card {
-    height: max-content;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .card-container {
-    width: 100%;
-    height: 80%;
-  }
-  .title-container {
-    font-size: 16px;
-    width: 98%;
-  }
-
-  .card {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    min-width: 60%;
-    height: 70px;
-  }
-  .special-card {
-    min-width: 10%;
-  }
-
-  .material-icons {
-    font-size: 40px !important;
-    margin: auto;
-  }
+  background-color: #f9f9f9;
 }

@@ -1,6 +1,31 @@
 <div class="container-fluid">
-  <app-sidebar class="sidebarr"></app-sidebar>
-  <div class="content">
-    <router-outlet> </router-outlet>
+  <!-- <div class="bg-fond"></div> -->
+  <div class="sidebar">
+    <div class="sidebar-logo-container">
+      <img src="../../assets/bankLogo.png" />
+    </div>
+    <div class="container-text" [routerLink]="['/client/dashbord']">
+      <span class="material-icons sidebar-icons">arrow_forward_ios</span>
+      <span class="sidebar-text"> Dashboard</span>
+    </div>
+    <div class="container-text" [routerLink]="['/client/nouveau-credit']">
+      <span class="material-icons sidebar-icons"> arrow_forward_ios </span>
+
+      <span class="sidebar-text">Nouveau crédit</span>
+    </div>
+    <div class="container-text" [routerLink]="['/client/dossier']">
+      <span class="material-icons sidebar-icons"> arrow_forward_ios </span>
+
+      <span class="sidebar-text">Mes dossier</span>
+    </div>
+    <div class="container-text" [routerLink]="['/client/profile']">
+      <span class="material-icons sidebar-icons"> arrow_forward_ios </span>
+
+      <span class="sidebar-text">Mon profile</span>
+    </div>
+  </div>
+
+  <div class="card-container scale-in">
+    <router-outlet></router-outlet>
   </div>
 </div>
