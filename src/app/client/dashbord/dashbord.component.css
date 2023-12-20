@@ -1,3 +1,17 @@
+@keyframes translate {
+  from {
+    transform: translateX(200px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.translate {
+  animation: translate 0.5s ease;
+}
 .container-fluid {
   height: 100%;
   margin: 0 auto;
@@ -5,7 +19,6 @@
   padding: 20px;
 }
 
-/* Style the title container */
 .title-container {
   display: flex;
 
@@ -28,35 +41,40 @@
   align-items: center;
   box-shadow: 0 0 15px 1px rgba(43, 41, 41, 0.479);
   height: 150px;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.884);
+
   border: 1px solid #ddd;
   border-radius: 5px;
 }
 
 .special-card {
   box-shadow: 0 0 15px 1px rgba(43, 41, 41, 0.479);
-  background-color: #a1188f;
+
+  background-color: rgba(114, 33, 130, 1);
   color: #fff;
 }
 
-/* Style icons */
 .material-icons {
   font-size: 40px;
   margin-bottom: 10px;
 }
 
-/* Style text inside cards */
 .txt {
-  display: block;
   font-size: 16px;
 }
 
-/* Style the logout and history columns */
 .class2-container .col {
   margin-bottom: 15px;
 }
 
-/* Add a hover effect to cards */
+.card:hover .material-icons {
+  color: rgba(254, 182, 0, 1);
+}
+
 .card:hover {
-  background-color: #f9f9f9;
+  transform: scale(1.05);
+}
+
+.card p:hover {
+  color: rgb(2, 2, 2);
 }
