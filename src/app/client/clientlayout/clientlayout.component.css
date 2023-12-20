@@ -1,5 +1,3 @@
-/* scale-in.animation.css */
-
 @keyframes scaleIn {
   from {
     transform: scale(0.7);
@@ -373,7 +371,7 @@ body {
     opacity: 0.3;
   }
 }
-/* fin test */
+
 @keyframes scale-in-icons {
   0% {
     transform: scale(1);
@@ -452,4 +450,17 @@ body {
   .progressBar-icons {
     font-size: 4vw;
   }
+}
+
+.container-text span:hover {
+  font-size: 16px;
+  font-weight: bolder;
+  cursor: pointer;
+  color: #722182;
+}
+.special-class {
+  font-size: 16px;
+  font-weight: bolder;
+  cursor: pointer;
+  color: #722182;
 }
