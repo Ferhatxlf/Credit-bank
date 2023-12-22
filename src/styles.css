@@ -14,16 +14,19 @@ body {
 }
 input {
   transition: 0.6s ease !important;
+  background-color: #f5f1f1 !important;
+  outline: none;
 }
 input:focus {
   transform: scale(1.03);
 }
 select {
+  background-color: #f5f1f1 !important;
   transition: 0.6s ease !important;
 }
 select:focus {
   transform: scale(1.03);
 }
 label {
-  color: rgb(243, 250, 255) !important;
+  color: #f5f1f1 !important;
 }

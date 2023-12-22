@@ -29,10 +29,10 @@
   color: rgb(110, 112, 112);
 }
 .container {
-  width: 70%;
+  width: 95%;
   display: flex;
   flex-direction: column;
-  margin: 1% auto;
+  margin: 3% auto;
 }
 
 .subtitle {
@@ -42,12 +42,12 @@
   color: rgb(45, 48, 48);
 }
 .document-container {
-  width: 60%;
-  margin-left: 5%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 3%;
 }
 .document {
   width: 100%;

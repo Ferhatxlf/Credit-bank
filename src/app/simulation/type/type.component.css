@@ -15,8 +15,6 @@
 }
 .cards {
   width: 60%;
-
-  margin-top: 1%;
   height: 70%;
   overflow-y: auto;
   margin: 0 auto;
@@ -31,7 +29,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin: 5% auto;
+  margin: 2% auto;
   padding: 10px 25px;
   border-bottom-right-radius: 15px;
   border-top-left-radius: 15px;
