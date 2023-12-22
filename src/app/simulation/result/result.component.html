@@ -1,5 +1,7 @@
 <div class="header d-flex justify-content-center w-100 translate">
   <div class="title">Votre résultat de simulation</div>
+  <div class="title" style="color: rgb(24, 218, 18)">Eligible</div>
+  <!-- <div class="title" style="color: rgb(212, 42, 20)">Non éligible</div> -->
 </div>
 <div class="row cards translate">
   <div class="row class1-container">
@@ -40,6 +42,7 @@
     Les résultats de cette simulation sont fournis à titre informatif et ne sont
     pas contraignants.
   </p>
+  <!-- quand le client est eligible -->
   <div class="button-container">
     <button class="btn btn1" (click)="generatePDF()">
       Télécharger une copie de la simulation
@@ -48,8 +51,27 @@
       Je souhaite faire une demande de financement
     </button>
   </div>
+  <!-- quand le client est non eligible  -->
+  <!-- <div class="button-container">
+    <div
+      class="raison de non eligibilité"
+      style="
+        border: 1px slid red;
+        border-radius: 12px;
+        background-color: rgba(255, 0, 0, 0.397);
+        font-size: 12px;
+        padding: 3%;
+      "
+    >
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam, ullam ut
+      numquam voluptatem maiores dolores rerum fugit? Tempore doloremque eum,
+    </div>
+    <button class="btn btn2" [routerLink]="['/simulation/notice']">
+      Réessayer
+    </button>
+  </div> -->
 </div>
-<div class="pdf">
+<div class="pdf mt-5">
   <div class="header d-flex header-pdf">
     <div class="img-logo-container">
       <img src="../../assets/bankLogo.png" style="width: 60%" />

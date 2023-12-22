@@ -1,87 +1,258 @@
 <div class="container-fluid">
-  <div class="bg-fond"></div>
-
-  <div class="card-container scale-in">
-    <div class="logo-container">
-      <span class="material-icons icons-header" (click)="goBack()"
-        >arrow_back</span
-      >
+  <!-- <div class="bg-fond"></div> -->
+  <div class="sidebar">
+    <div class="sidebar-logo-container">
       <img src="../../assets/bankLogo.png" />
     </div>
-    <div class="progress-container mt-3">
-      <div
-        class="progress mx-auto progressBar"
-        role="progressbar"
-        aria-label="Example with label"
+    <div class="container-text">
+      <span class="material-icons sidebar-icons">{{
+        url === "/simulation/immobilier" ||
+        url === "/simulation/form" ||
+        url === "/simulation/result" ||
+        url === "/simulation/notice" ||
+        url === "/simulation/register" ||
+        url === "/simulation/confirmation" ||
+        url === "/simulation/success"
+          ? "check"
+          : "arrow_forward_ios"
+      }}</span>
+      <span
+        class="sidebar-text"
+        [ngClass]="{
+          sidebarScal:
+            url === '/simulation/type' ||
+            url === '/simulation/immobilier' ||
+            url === '/simulation/form' ||
+            url === '/simulation/result' ||
+            url === '/simulation/notice' ||
+            url === '/simulation/register' ||
+            url === '/simulation/confirmation' ||
+            url === '/simulation/upload' ||
+            url === '/simulation/success'
+        }"
+        >Type de financement</span
       >
-        <div
-          class="progress-bar progressBar-trans"
-          [ngClass]="{
-            pregress1:
-              url === '/simulation/result' ||
-              url === '/simulation/notice' ||
-              url === '/simulation/upload' ||
-              url === '/simulation/register' ||
-              url === '/simulation/confirmation' ||
-              url === '/simulation/success'
-          }"
-          [ngClass]="{
-            pregress2:
-              url === '/simulation/upload ' || url === '/simulation/success'
-          }"
-          [ngClass]="{
-            pregress3: url === '/simulation/success'
-          }"
-        ></div>
-      </div>
+    </div>
+    <div class="container-text">
+      <span class="material-icons sidebar-icons">
+        {{
+          url === "/simulation/form" ||
+          url === "/simulation/result" ||
+          url === "/simulation/notice" ||
+          url === "/simulation/register" ||
+          url === "/simulation/confirmation" ||
+          url === "/simulation/success"
+            ? "check"
+            : "arrow_forward_ios"
+        }}
+      </span>
+      <span
+        class="sidebar-text"
+        [ngClass]="{
+          sidebarScal:
+            url === '/simulation/immobilier' ||
+            url === '/simulation/form' ||
+            url === '/simulation/result' ||
+            url === '/simulation/notice' ||
+            url === '/simulation/register' ||
+            url === '/simulation/confirmation' ||
+            url === '/simulation/upload' ||
+            url === '/simulation/success'
+        }"
+        >Projet à financer</span
+      >
+    </div>
+    <div class="container-text">
+      <span class="material-icons sidebar-icons">
+        {{
+          url === "/simulation/result" ||
+          url === "/simulation/notice" ||
+          url === "/simulation/register" ||
+          url === "/simulation/confirmation" ||
+          url === "/simulation/upload" ||
+          url === "/simulation/success"
+            ? "check"
+            : "arrow_forward_ios"
+        }}
+      </span>
+      <span
+        class="sidebar-text"
+        [ngClass]="{
+          sidebarScal:
+            url === '/simulation/form' ||
+            url === '/simulation/result' ||
+            url === '/simulation/notice' ||
+            url === '/simulation/register' ||
+            url === '/simulation/confirmation' ||
+            url === '/simulation/upload' ||
+            url === '/simulation/success'
+        }"
+        >Simuler votre credit</span
+      >
+    </div>
+    <div class="container-text">
+      <span class="material-icons sidebar-icons">
+        {{
+          url === "/simulation/notice" ||
+          url === "/simulation/register" ||
+          url === "/simulation/confirmation" ||
+          url === "/simulation/upload" ||
+          url === "/simulation/success"
+            ? "check"
+            : "arrow_forward_ios"
+        }}
+      </span>
+      <span
+        class="sidebar-text"
+        [ngClass]="{
+          sidebarScal:
+            url === '/simulation/result' ||
+            url === '/simulation/notice' ||
+            url === '/simulation/register' ||
+            url === '/simulation/confirmation' ||
+            url === '/simulation/upload' ||
+            url === '/simulation/success'
+        }"
+        >Résultat de la simulation</span
+      >
+    </div>
+    <hr
+      class="mt-5 mb-5"
+      style="
+        width: 70%;
+        margin: 0 auto;
+        color: rgb(163, 159, 159);
+        border: 1px solid;
+      "
+    />
+    <div class="container-text mt-5">
+      <span class="material-icons sidebar-icons">
+        {{
+          url === "/simulation/confirmation" ||
+          url === "/simulation/upload" ||
+          url === "/simulation/success"
+            ? "check"
+            : "arrow_forward_ios"
+        }}
+      </span>
+      <span
+        class="sidebar-text"
+        [ngClass]="{
+          sidebarScal:
+            url === '/simulation/register' ||
+            url === '/simulation/confirmation' ||
+            url === '/simulation/upload' ||
+            url === '/simulation/success'
+        }"
+        >Inscriptions</span
+      >
+    </div>
 
-      <div class="icons-container">
-        <span
-          class="material-icons progressBar-icons"
-          [ngClass]="{
-            'progressBar-done':
-              url === '/simulation/type' ||
-              url === '/simulation/immobilier' ||
-              url === '/simulation/consomation' ||
-              url === '/simulation/presurgage' ||
-              url === '/simulation/form' ||
-              url === '/simulation/result' ||
-              url === '/simulation/upload' ||
-              url === '/simulation/register' ||
-              url === '/simulation/notice' ||
-              url === '/simulation/confirmation' ||
-              url === '/simulation/success'
-          }"
-          >list</span
-        >
-        <span
-          class="material-icons progressBar-icons"
-          [ngClass]="{
-            'progressBar-done':
-              url === '/simulation/result' ||
-              url === '/simulation/upload' ||
-              url === '/simulation/register' ||
-              url === '/simulation/notice' ||
-              url === '/simulation/confirmation' ||
-              url === '/simulation/success'
-          }"
-          >calculate</span
-        >
-        <span
-          class="material-icons progressBar-icons"
-          [ngClass]="{
-            'progressBar-done':
-              url === '/simulation/upload' || url === '/simulation/success'
-          }"
-          >upload_file</span
-        >
-        <span
-          class="material-icons progressBar-icons"
-          [ngClass]="{ 'progressBar-done': url === '/simulation/success' }"
-          >check</span
-        >
+    <div class="container-text">
+      <span class="material-icons sidebar-icons">
+        {{
+          url === "/simulation/upload" || url === "/simulation/success"
+            ? "check"
+            : "arrow_forward_ios"
+        }}
+      </span>
+      <span
+        class="sidebar-text"
+        [ngClass]="{
+          sidebarScal:
+            url === '/simulation/confirmation' ||
+            url === '/simulation/upload' ||
+            url === '/simulation/success'
+        }"
+        >Confirmation email</span
+      >
+    </div>
+    <div class="container-text">
+      <span class="material-icons sidebar-icons">
+        {{ url === "/simulation/success" ? "check" : "arrow_forward_ios" }}
+      </span>
+      <span
+        class="sidebar-text"
+        [ngClass]="{
+          sidebarScal:
+            url === '/simulation/upload' || url === '/simulation/success'
+        }"
+        >Chargement des documents</span
+      >
+    </div>
+  </div>
+  <div class="card-container scale-in">
+    <div class="logo-container mb-2">
+      <span class="material-icons icons-header" (click)="goBack()"
+        >arrow_back_ios</span
+      >
+      <div class="bar">
+        <input
+          class="bar-input"
+          type="radio"
+          name="input"
+          id="input_0"
+          [checked]="url === '/simulation/success'"
+          disabled
+        />
+        <div class="bar-view">
+          <label class="bar-button" for="input_0"></label>
+        </div>
+        <input
+          class="bar-input"
+          type="radio"
+          name="input"
+          id="input_1"
+          [checked]="url === '/simulation/upload'"
+          disabled
+        />
+        <div class="bar-view">
+          <label class="bar-button" for="input_1"></label>
+        </div>
+        <input
+          class="bar-input"
+          type="radio"
+          name="input"
+          id="input_2"
+          [checked]="
+            url === '/simulation/register' || url === '/simulation/confirmation'
+          "
+          disabled
+        />
+        <div class="bar-view">
+          <label class="bar-button" for="input_2"> </label>
+        </div>
+        <input
+          class="bar-input"
+          type="radio"
+          name="input"
+          id="input_3"
+          [checked]="
+            url === '/simulation/result' || url === '/simulation/notice'
+          "
+          disabled
+        />
+        <div class="bar-view">
+          <label class="bar-button" for="input_3"></label>
+        </div>
+        <input
+          class="bar-input"
+          type="radio"
+          name="input"
+          id="input_4"
+          [checked]="
+            url === '/simulation/type' ||
+            url === '/simulation/immobilier' ||
+            url === '/simulation/form'
+          "
+          disabled
+        />
+        <div class="bar-view">
+          <label class="bar-button" for="input_4"></label>
+        </div>
       </div>
     </div>
+
     <router-outlet></router-outlet>
   </div>
 </div>

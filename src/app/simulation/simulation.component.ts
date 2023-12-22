@@ -19,6 +19,7 @@ export class SimulationComponent implements OnInit {
     });
   }
   url: string = '';
+
   ngOnInit() {}
 
   goBack(): void {

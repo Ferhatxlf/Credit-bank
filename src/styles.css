@@ -1,6 +1,6 @@
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
-@import "../node_modules/material-icons/iconFont/material-icons.css";
+/* @import "../node_modules/material-icons/iconFont/material-icons.css"; */
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
 body {
@@ -8,17 +8,22 @@ body {
 }
 
 * {
-  font-family: "Franklin Gothic small", "Arial Narrow", Arial, sans-serif;
+  /* font-family: "Franklin Gothic small", "Arial Narrow", Arial, sans-serif; */
+  font-family: basier_circle_regular, Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 input {
   transition: 0.6s ease !important;
 }
 input:focus {
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
 select {
   transition: 0.6s ease !important;
 }
 select:focus {
-  transform: scale(1.05);
+  transform: scale(1.03);
+}
+label {
+  color: rgb(243, 250, 255) !important;
 }
