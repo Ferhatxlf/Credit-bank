@@ -15,7 +15,7 @@
 }
 .cards {
   width: 60%;
-  height: 70%;
+  height: 80%;
   overflow-y: auto;
   margin: 0 auto;
   display: flex;
@@ -43,6 +43,25 @@
   width: 70%;
   box-shadow: 0 0 5px 1px rgba(126, 125, 125, 0.24);
 }
+.islamique {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto 8%;
+  padding: 10px 25px;
+  border-bottom-right-radius: 15px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 0;
+  height: 80px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  border: none;
+  background-color: white !important;
+  width: 70%;
+  box-shadow: 0 0 5px 1px rgba(126, 125, 125, 0.24);
+}
 .card:hover .material-icons {
   color: rgba(254, 182, 0, 1);
 }
@@ -50,6 +69,10 @@
 .card:hover {
   transform: scale(1.1);
   box-shadow: 0 0 12px 1px rgba(138, 136, 136, 0.5);
+}
+.islamique:hover {
+  transform: none !important;
+  box-shadow: 0 0 5px 1px rgba(126, 125, 125, 0.24) !important;
 }
 
 .card p:hover {
@@ -61,4 +84,8 @@
   font-weight: 500;
   margin: 0 auto;
   margin-left: 5%;
+}
+.selected {
+  border: 1px solid rgba(0, 0, 0, 0.623);
+  background-color: aliceblue !important;
 }

@@ -13,20 +13,21 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 input {
-  transition: 0.6s ease !important;
-  background-color: #f5f1f1 !important;
-  outline: none;
+  transition: 0.3s ease !important;
+  /* background-color: #f5f1f1 !important; */
 }
 input:focus {
   transform: scale(1.03);
 }
 select {
-  background-color: #f5f1f1 !important;
-  transition: 0.6s ease !important;
+  transition: 0.3s ease !important;
 }
 select:focus {
   transform: scale(1.03);
 }
-label {
-  color: #f5f1f1 !important;
+/* Masque les flèches d'incrémentation */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

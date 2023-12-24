@@ -41,8 +41,7 @@
   width: 70%;
   margin: 0 auto;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
 }
 .form-group {
   flex: 1; /* Distribuer l'espace également entre les éléments enfants */
@@ -51,10 +50,13 @@
 }
 
 input {
-  padding: 20px 40px;
-  height: 20%;
-  border-radius: 12px;
+  border-radius: 5px;
   box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.089);
+}
+
+span {
+  font-size: small;
+  font-weight: 600;
 }
 .btn-container {
   width: 50%;
@@ -66,4 +68,5 @@ input {
   background-color: rgba(114, 33, 130, 1);
   color: white;
   border-radius: 20px;
+  box-shadow: 0px -12px 16px 8px rgba(0, 0, 0, 0.25) inset;
 }

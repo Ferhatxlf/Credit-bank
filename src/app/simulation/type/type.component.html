@@ -3,6 +3,24 @@
 </div>
 <div class="row cards">
   <div class="col">
+    <div
+      class="card islamique"
+      (click)="setIslamiqueCheck()"
+      [class.selected]="islamique"
+    >
+      <span class="material-icons">mosque</span>
+      <p>Finance islamique</p>
+      <!-- <div class="form-check form-switch">
+        <input
+          style="box-shadow: none; font-size: 22px"
+          class="form-check-input"
+          type="checkbox"
+          role="switch"
+          id="flexSwitchCheckDefault"
+        />
+      </div> -->
+    </div>
+
     <div class="card" [routerLink]="['/simulation/consomation']">
       <span class="material-icons">add_shopping_cart</span>
       <p>Credit a la consomation</p>
@@ -16,11 +34,6 @@
     <div class="card" [routerLink]="['/simulation/presurgage']">
       <span class="material-icons">assured_workload</span>
       <p>Prêt sur gage</p>
-      <span class="material-icons">arrow_forward_ios</span>
-    </div>
-    <div class="card" [routerLink]="['/simulation/presurgage']">
-      <span class="material-icons">mosque</span>
-      <p>Finance islamique</p>
       <span class="material-icons">arrow_forward_ios</span>
     </div>
   </div>

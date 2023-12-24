@@ -5,4 +5,10 @@ import { Component } from '@angular/core';
   templateUrl: './type.component.html',
   styleUrl: './type.component.css',
 })
-export class TypeComponent {}
+export class TypeComponent {
+  islamique: boolean = false;
+  setIslamiqueCheck() {
+    this.islamique = !this.islamique;
+    console.log("l'element est ", this.islamique);
+  }
+}
