@@ -1,5 +1,4 @@
-// Dans votre fichier de composant TypeScript
-import { Component } from '@angular/core';
+import { Component, ViewChildren, QueryList, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-confirmation-email',
@@ -11,10 +10,19 @@ export class ConfirmationEmailComponent {
   inputValues = Array(6).fill(null);
   currentInput = 0;
 
+  @ViewChildren('input') inputElements!: QueryList<ElementRef>;
+
   onKeyup(i: number) {
     if (i === this.currentInput) {
       this.currentInput++;
+      this.focusInput(this.currentInput);
     }
+  }
+
+  focusInput(index: number): void {
+    setTimeout(() => {
+      this.inputElements.toArray()[index].nativeElement.focus();
+    }, 0);
   }
 
   submit() {

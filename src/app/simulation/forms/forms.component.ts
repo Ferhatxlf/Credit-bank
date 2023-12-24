@@ -20,4 +20,8 @@ export class FormsComponent {
   setOtherFinancing(value: boolean) {
     this.otherFinancing = value;
   }
+  depot: boolean = false;
+  setDepot(value: boolean) {
+    this.depot = value;
+  }
 }
