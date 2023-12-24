@@ -12,14 +12,16 @@
   <div class="digit-container">
     <div *ngFor="let input of inputs; let i = index">
       <input
+        #input
         [(ngModel)]="inputValues[i]"
         [disabled]="i !== currentInput"
         [class.selected]="i == currentInput"
         (keyup)="onKeyup(i)"
-        type="number"
+        type="text"
         class="form-control digit"
         maxlength="1"
         placeholder="*"
+        [autofocus]="i === currentInput"
       />
     </div>
   </div>

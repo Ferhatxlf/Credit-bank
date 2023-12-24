@@ -96,5 +96,5 @@ span:hover {
   transform: scale(1.03);
 }
 .selected {
-  border-color: rgb(32, 76, 172);
+  border-color: rgba(114, 33, 130, 1);
 }
