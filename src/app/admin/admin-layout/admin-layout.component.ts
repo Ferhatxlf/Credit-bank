@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
   styleUrl: './admin-layout.component.css',
 })
 export class AdminLayoutComponent {
-  public selected: boolean = true;
+  public selected: boolean = false;
   public cselected: boolean = false;
   public dselected: boolean = false;
   public pselected: boolean = false;

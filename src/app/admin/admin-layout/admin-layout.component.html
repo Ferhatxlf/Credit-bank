@@ -22,7 +22,7 @@
       <span class="material-icons sidebar-icons"> arrow_forward_ios </span>
 
       <span class="sidebar-text" [ngClass]="{ 'special-class': cselected }"
-        >Nouveau crédit</span
+        >Gestion des courtiers</span
       >
     </div>
     <div
@@ -33,12 +33,12 @@
       <span class="material-icons sidebar-icons"> arrow_forward_ios </span>
 
       <span class="sidebar-text" [ngClass]="{ 'special-class': dselected }"
-        >Mes dossier</span
+        >Gestion des directeus</span
       >
     </div>
     <div
       class="container-text"
-      [routerLink]="['/client/profile']"
+      [routerLink]="['/admin/profile']"
       (click)="profileSelected()"
     >
       <span class="material-icons sidebar-icons"> arrow_forward_ios </span>

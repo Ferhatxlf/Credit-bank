@@ -7,7 +7,7 @@ import { Location } from '@angular/common';
   styleUrl: './clientlayout.component.css',
 })
 export class ClientlayoutComponent {
-  public selected: boolean = true;
+  public selected: boolean = false;
   public cselected: boolean = false;
   public dselected: boolean = false;
   public pselected: boolean = false;

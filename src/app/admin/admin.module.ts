@@ -8,9 +8,16 @@ import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
 import { CourtierComponent } from './courtier/courtier.component';
 import { DirecteurComponent } from './directeur/directeur.component';
 import { InformationComponent } from './information/information.component';
+import { ComponentModule } from '../component/component.module';
 
 @NgModule({
-  declarations: [DashbordAdminComponent, AdminLayoutComponent, CourtierComponent, DirecteurComponent, InformationComponent],
-  imports: [CommonModule, AdminRoutingModule],
+  declarations: [
+    DashbordAdminComponent,
+    AdminLayoutComponent,
+    CourtierComponent,
+    DirecteurComponent,
+    InformationComponent,
+  ],
+  imports: [CommonModule, AdminRoutingModule, ComponentModule],
 })
 export class AdminModule {}
