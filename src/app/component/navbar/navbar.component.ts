@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { ROUTES } from '../sidebar/sidebar.component';
+import { ROUTES } from '../../app.component';
 
 @Component({
   selector: 'app-navbar',
