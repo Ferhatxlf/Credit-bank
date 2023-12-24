@@ -37,8 +37,8 @@
   margin-top: 2%;
   box-shadow: 0 0 5px 1px rgba(126, 125, 125, 0.24);
   width: 100%; /* Utiliser la largeur complète du conteneur parent */
-
   border-radius: 12px;
+  padding: 10px 20px !important;
 }
 
 label {
@@ -46,34 +46,47 @@ label {
 }
 .input-container {
   width: 100%;
-  margin-top: 1%;
+  margin-top: 5%;
+  display: flex;
+  flex-direction: column;
+}
+.suppositions-container {
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
-.input-container .form-floating {
-  flex: 1; /* Distribuer l'espace également entre les éléments enfants */
-  /* Ajouter une marge entre les éléments */
-  margin: auto;
+.supposition {
+  border: 1px solid rgba(0, 0, 0, 0.226);
+  border-radius: 12px;
+  padding: 10px;
+  width: 42%;
 }
+
 .input-container .form-group {
   flex: 1; /* Distribuer l'espace également entre les éléments enfants */
   /* Ajouter une marge entre les éléments */
   margin: auto;
+  width: 100%;
 }
 
 .btn {
   border-radius: 15px;
   background-color: rgba(114, 33, 130, 1);
   border: none;
-  padding: 8px 18px;
+  padding: 10px 22px;
+  font-size: 16px;
+  box-shadow: 0px -12px 16px 8px rgba(0, 0, 0, 0.25) inset;
 }
 .btn:hover {
   background-color: rgb(102, 32, 116);
 }
+.questions {
+  font-size: small;
+  font-weight: 600;
+}
 span {
-  color: rgb(109, 109, 109);
   cursor: pointer;
   border-radius: 12px;
   padding: 10px;
@@ -81,4 +94,7 @@ span {
 }
 span:hover {
   transform: scale(1.03);
+}
+.selected {
+  border-color: rgb(32, 76, 172);
 }

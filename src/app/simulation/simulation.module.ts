@@ -19,7 +19,7 @@ import { RegisterComponent } from './register/register.component';
 import { UploadComponent } from './components/upload/upload.component';
 import { ConfirmationEmailComponent } from './components/confirmation-email/confirmation-email.component';
 import { SuccessComponent } from './components/success/success.component';
-
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     FormsComponent,
@@ -35,7 +35,7 @@ import { SuccessComponent } from './components/success/success.component';
     ConfirmationEmailComponent,
     SuccessComponent,
   ],
-  imports: [CommonModule, SimulationRoutingModule],
+  imports: [CommonModule, SimulationRoutingModule, FormsModule],
   providers: [SharedService],
 })
 export class SimulationModule {}

@@ -3,75 +3,170 @@
     <div class="title">Veuillez introduire vos paramètres de calcul</div>
   </div>
   <div class="forms">
-    <div class="form-floating">
-      <input
-        type="number"
-        class="form-control"
-        id="floatingInputGrid"
-        placeholder="name@example.com"
-        value="mdo@example.com"
-      />
-      <label for="floatingInputGrid">Montant de l'habitation *</label>
-    </div>
-    <div class="input-container">
-      <div class="form-floating">
+    <div
+      style="
+        border: 0.6px solid rgba(0, 0, 0, 0.164);
+        border-radius: 15px;
+        padding: 15px;
+      "
+    >
+      <div class="form-group">
         <input
           type="number"
           class="form-control"
           id="floatingInputGrid"
-          placeholder="name@example.com"
-          value="mdo@example.com"
-        />
-        <label for="floatingInputGrid">Revenue de l'emprunteur *</label>
-      </div>
-      <div class="form-floating" style="margin-left: 10px">
-        <input
-          type="number"
-          class="form-control"
-          id="floatingInputGrid"
-          placeholder=""
+          placeholder="Montant de l'habitation *"
           value=""
         />
-        <label for="floatingInputGrid">Revenue de co-emprunteur *</label>
       </div>
-    </div>
+      <div class="form-group">
+        <input
+          type="number"
+          class="form-control"
+          id="floatingInputGrid"
+          placeholder="Revenue de co-emprunteur *"
+          value=""
+        />
+      </div>
 
-    <div class="form-floating">
-      <input
-        type="number"
-        class="form-control"
-        id="floatingInputGrid"
-        placeholder=""
-        value=""
-      />
-      <label for="floatingInputGrid">Votre age *</label>
-    </div>
-    <div class="form-floating">
-      <input
-        type="number"
-        class="form-control"
-        id="floatingInputGrid"
-        placeholder=""
-        value=""
-      />
-      <label for="floatingInputGrid">La durée de financement *</label>
-    </div>
-    <label class="questions" for="">Avez vous un patrimoine immobilier ?</label>
-    <div class="input-container">
       <div class="form-group">
-        <span class="form-control"> Oui</span>
+        <input
+          type="number"
+          class="form-control"
+          id="floatingInputGrid"
+          placeholder="Votre age *"
+          value=""
+        />
       </div>
-      <div class="form-group" style="margin-left: 8px">
-        <span class="form-control">Non</span>
+      <div class="form-group">
+        <input
+          type="number"
+          class="form-control"
+          id="floatingInputGrid"
+          placeholder="Le crédit *"
+          value=""
+        />
+      </div>
+      <div class="form-group">
+        <input
+          type="number"
+          class="form-control"
+          id="floatingInputGrid"
+          placeholder="La durée de financement *"
+          value=""
+        />
       </div>
     </div>
-    <label for="">Avez vous un autre financement en cours ?</label>
-    <div class="input-container">
-      <div class="form-group">
-        <span class="form-control"> Oui</span>
+    <div
+      class="input-container"
+      style="
+        border: 0.6px solid rgba(0, 0, 0, 0.164);
+        border-radius: 15px;
+        padding: 15px;
+      "
+    >
+      <p class="questions">Avez vous un co-emprunteur ?</p>
+      <div class="suppositions-container">
+        <span
+          class="supposition"
+          (click)="setCoBorrower(true)"
+          [class.selected]="coBorrower"
+          >Oui</span
+        >
+        <span
+          class="supposition"
+          (click)="setCoBorrower(false)"
+          [class.selected]="!coBorrower"
+          >Non</span
+        >
       </div>
-      <div class="form-group" style="margin-left: 8px">
-        <span class="form-control">Non</span>
+      <div class="form-group">
+        <input
+          type="number"
+          class="form-control"
+          id="floatingInputGrid"
+          placeholder="Revenue de co-emprunteur *"
+          value=""
+          [disabled]="!coBorrower"
+        />
+      </div>
+      <div class="form-group">
+        <input
+          type="number"
+          class="form-control"
+          id="floatingInputGrid"
+          placeholder="L'âge de co-emprunteur *"
+          value=""
+          [disabled]="!coBorrower"
+        />
+      </div>
+    </div>
+    <div
+      class="input-container"
+      style="
+        border: 0.6px solid rgba(0, 0, 0, 0.164);
+        border-radius: 15px;
+        padding: 15px;
+      "
+    >
+      <p class="questions">Avez-vous un patrimoine immobilier ?</p>
+      <div class="suppositions-container">
+        <span
+          class="supposition"
+          (click)="setPatrimoine(true)"
+          [class.selected]="patrimoine"
+          >Oui</span
+        >
+        <span
+          class="supposition"
+          (click)="setPatrimoine(false)"
+          [class.selected]="!patrimoine"
+          >Non</span
+        >
+      </div>
+      <div class="form-group">
+        <input
+          type="number"
+          class="form-control"
+          id="floatingInputGrid"
+          placeholder="Mentionnez ce montant *"
+          value=""
+          [disabled]="!patrimoine"
+        />
+      </div>
+    </div>
+    <div
+      class="input-container"
+      style="
+        border: 0.6px solid rgba(0, 0, 0, 0.164);
+        border-radius: 15px;
+        padding: 15px;
+      "
+    >
+      <p class="questions">Avez vous un autre financement en cours ?</p>
+      <div class="suppositions-container">
+        <span
+          class="supposition"
+          (click)="setOtherFinancing(true)"
+          [class.selected]="otherFinancing"
+          >Oui</span
+        >
+        <span
+          class="supposition"
+          (click)="setOtherFinancing(false)"
+          [class.selected]="!otherFinancing"
+          >Non</span
+        >
+      </div>
+      <div class="form-group">
+        <input
+          type="number"
+          class="form-control"
+          id="floatingInputGrid"
+          placeholder="Mentionnez ce montant *"
+          value=""
+          [disabled]="!otherFinancing"
+        />
       </div>
     </div>
 
