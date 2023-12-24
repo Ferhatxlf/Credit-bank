@@ -1,0 +1,35 @@
+<div class="container-fluid">
+  <!-- <app-navbar></app-navbar> -->
+  <div class="title-container">
+    <p>Bienvenue, Monsieur</p>
+  </div>
+
+  <div class="row cards translate">
+    <div class="row class1-container">
+      <div class="col-sm-12 col-md-4 col-lg-4">
+        <div class="card" [routerLink]="['/courtier']">
+          <span class="txt">Gestion des courtier</span>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-4 col-lg-4">
+        <div class="card" [routerLink]="['/directeur']">
+          <span class="txt">Gestion des directeur</span>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-4 col-lg-4">
+        <div class="card" [routerLink]="['/information']">
+          <div class="material-icons">person</div>
+          <span class="txt">Mon profile</span>
+        </div>
+      </div>
+    </div>
+    <div class="row class2-container">
+      <div class="col">
+        <div class="card special-card">
+          <div class="material-icons">exit_to_app</div>
+          <span class="txt">Déconnexion</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

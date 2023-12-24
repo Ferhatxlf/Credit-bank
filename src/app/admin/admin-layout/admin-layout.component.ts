@@ -1,12 +1,12 @@
-import { Component } from '@angular/core';
 import { Location } from '@angular/common';
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-clientlayout',
-  templateUrl: './clientlayout.component.html',
-  styleUrl: './clientlayout.component.css',
+  selector: 'app-admin-layout',
+  templateUrl: './admin-layout.component.html',
+  styleUrl: './admin-layout.component.css',
 })
-export class ClientlayoutComponent {
+export class AdminLayoutComponent {
   public selected: boolean = true;
   public cselected: boolean = false;
   public dselected: boolean = false;
