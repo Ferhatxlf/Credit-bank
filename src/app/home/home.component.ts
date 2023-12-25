@@ -8,6 +8,10 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent {
   constructor(private router: Router) {}
+  toggleHomeLogin: boolean = true;
+  setToggleHomeLogin() {
+    this.toggleHomeLogin = !this.toggleHomeLogin;
+  }
   goToConnexion() {
     this.router.navigate(['/auth']);
   }
