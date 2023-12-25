@@ -54,7 +54,7 @@
 .card-container {
   transition: 0.6s ease;
 
-  width: 85%; /* Ajustement de la largeur pour une meilleure adaptation */
+  width: 75%; /* Ajustement de la largeur pour une meilleure adaptation */
 
   height: 90%;
   background-color: rgba(255, 255, 255, 0.884);
