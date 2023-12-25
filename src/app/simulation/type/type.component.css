@@ -61,6 +61,7 @@
   background-color: white !important;
   width: 70%;
   box-shadow: 0 0 5px 1px rgba(126, 125, 125, 0.24);
+  transition: 0.3s ease !important  ;
 }
 .card:hover .material-icons {
   color: rgba(254, 182, 0, 1);
@@ -86,6 +87,15 @@
   margin-left: 5%;
 }
 .selected {
-  border: 1px solid rgba(0, 0, 0, 0.623);
-  background-color: aliceblue !important;
+  border: 2px solid rgba(114, 33, 130, 1);
+  padding: 5px;
+}
+
+.selected::after {
+  content: "sélectionné";
+  text-align: start;
+  margin-right: 10%;
+  color: rgba(114, 33, 130, 1);
+  font-size: small;
+  font-weight: 600;
 }
