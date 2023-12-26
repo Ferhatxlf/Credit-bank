@@ -1,3 +1,20 @@
+/* translate.animation.css */
+
+@keyframes translate {
+  from {
+    transform: translateX(200px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.translate {
+  animation: translate 0.5s ease;
+}
+
 .header {
   width: 90%;
   display: flex;
@@ -98,4 +115,37 @@
   color: rgba(114, 33, 130, 1);
   font-size: small;
   font-weight: 600;
+}
+
+@media screen and (max-width: 1000px) {
+  .title {
+    font-size: 2.5rem;
+  }
+  .cards {
+    width: 80vw;
+  }
+}
+@media screen and (max-width: 800px) {
+  .title {
+    font-size: 2rem;
+  }
+  .cards {
+    width: 90vw;
+  }
+}
+@media screen and (max-width: 600px) {
+  .title {
+    font-size: 1.5rem;
+  }
+  .cards {
+    width: 100vw;
+  }
+}
+@media screen and (max-width: 400px) {
+  .title {
+    font-size: 1.3rem;
+  }
+  .card {
+    width: 90%;
+  }
 }

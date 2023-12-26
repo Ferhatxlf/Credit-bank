@@ -20,6 +20,7 @@ import { UploadComponent } from './components/upload/upload.component';
 import { ConfirmationEmailComponent } from './components/confirmation-email/confirmation-email.component';
 import { SuccessComponent } from './components/success/success.component';
 import { FormsModule } from '@angular/forms';
+import { IslamiqueComponent } from './components/islamique/islamique.component';
 @NgModule({
   declarations: [
     FormsComponent,
@@ -34,6 +35,7 @@ import { FormsModule } from '@angular/forms';
     UploadComponent,
     ConfirmationEmailComponent,
     SuccessComponent,
+    IslamiqueComponent,
   ],
   imports: [CommonModule, SimulationRoutingModule, FormsModule],
   providers: [SharedService],

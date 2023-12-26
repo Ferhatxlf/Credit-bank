@@ -1,4 +1,12 @@
 <div class="container-fluid">
+  <div class="navbar">
+    <span class="material-icons navbar-icons-header" (click)="goBack()"
+      >arrow_back_ios</span
+    >
+    <div class="navbar-logo-container">
+      <img src="../../assets/bankLogo.png" />
+    </div>
+  </div>
   <!-- <div class="bg-fond"></div> -->
   <div class="sidebar">
     <div class="sidebar-logo-container">
@@ -181,6 +189,120 @@
       >
     </div>
   </div>
+  <nav
+    style="
+      --bs-breadcrumb-divider: url(
+        &#34;data:image/svg + xml,
+        %3Csvgxmlns='http://www.w3.org/2000/svg'width='8'height='8'%3E%3Cpathd='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z'fill='%236c757d'/%3E%3C/svg%3E&#34;
+      );
+      width: 100%;
+    "
+    aria-label="breadcrumb"
+  >
+    <ol class="breadcrumb">
+      <li
+        class="breadcrumb-item"
+        aria-current="page"
+        [ngClass]="{
+          currentNav:
+            url === '/simulation/immobilier' ||
+            url === '/simulation/type' ||
+            url === '/simulation/form' ||
+            url === '/simulation/result' ||
+            url === '/simulation/notice' ||
+            url === '/simulation/register' ||
+            url === '/simulation/confirmation' ||
+            url === '/simulation/upload' ||
+            url === '/simulation/success'
+        }"
+      >
+        Type de financement
+      </li>
+      <li
+        class="breadcrumb-item"
+        aria-current="page"
+        [ngClass]="{
+          currentNav:
+            url === '/simulation/immobilier' ||
+            url === '/simulation/form' ||
+            url === '/simulation/result' ||
+            url === '/simulation/notice' ||
+            url === '/simulation/register' ||
+            url === '/simulation/confirmation' ||
+            url === '/simulation/upload' ||
+            url === '/simulation/success'
+        }"
+      >
+        Projet à financer
+      </li>
+      <li
+        class="breadcrumb-item"
+        aria-current="page"
+        [ngClass]="{
+          currentNav:
+            url === '/simulation/form' ||
+            url === '/simulation/result' ||
+            url === '/simulation/notice' ||
+            url === '/simulation/register' ||
+            url === '/simulation/confirmation' ||
+            url === '/simulation/upload' ||
+            url === '/simulation/success'
+        }"
+      >
+        Simuler votre credit
+      </li>
+      <li
+        class="breadcrumb-item"
+        aria-current="page"
+        [ngClass]="{
+          currentNav:
+            url === '/simulation/result' ||
+            url === '/simulation/notice' ||
+            url === '/simulation/register' ||
+            url === '/simulation/confirmation' ||
+            url === '/simulation/upload' ||
+            url === '/simulation/success'
+        }"
+      >
+        Résultat de la simulation
+      </li>
+      <li
+        class="breadcrumb-item"
+        aria-current="page"
+        [ngClass]="{
+          currentNav:
+            url === '/simulation/register' ||
+            url === '/simulation/confirmation' ||
+            url === '/simulation/upload' ||
+            url === '/simulation/success'
+        }"
+      >
+        Inscriptions
+      </li>
+      <li
+        class="breadcrumb-item"
+        aria-current="page"
+        [ngClass]="{
+          currentNav:
+            url === '/simulation/confirmation' ||
+            url === '/simulation/upload' ||
+            url === '/simulation/success'
+        }"
+      >
+        Confirmation email
+      </li>
+      <li
+        class="breadcrumb-item"
+        aria-current="page"
+        [ngClass]="{
+          currentNav:
+            url === '/simulation/upload' || url === '/simulation/success'
+        }"
+      >
+        Chargement des documents
+      </li>
+    </ol>
+  </nav>
   <div class="card-container scale-in">
     <div class="logo-container mb-2">
       <span class="material-icons icons-header" (click)="goBack()"

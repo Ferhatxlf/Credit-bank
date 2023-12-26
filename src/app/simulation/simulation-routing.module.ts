@@ -15,6 +15,7 @@ import { RegisterComponent } from './register/register.component';
 import { UploadComponent } from './components/upload/upload.component';
 import { ConfirmationEmailComponent } from './components/confirmation-email/confirmation-email.component';
 import { SuccessComponent } from './components/success/success.component';
+import { IslamiqueComponent } from './components/islamique/islamique.component';
 
 const simulationRoutes: Routes = [
   {
@@ -33,6 +34,7 @@ const simulationRoutes: Routes = [
       { path: 'register', component: RegisterComponent },
       { path: 'confirmation', component: ConfirmationEmailComponent },
       { path: 'success', component: SuccessComponent },
+      { path: 'islamique', component: IslamiqueComponent },
     ],
   },
 ];
