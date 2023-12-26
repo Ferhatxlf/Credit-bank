@@ -1,0 +1,114 @@
+
+CREATE TABLE [dbo].[action](
+	[id] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	[user_id] [int] NOT NULL references users(id),
+	[demande_id] [int] NOT NULL references demande(id),
+	[type] [varchar](20) NOT NULL,
+)
+
+CREATE TABLE [dbo].[agence](
+	[id] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	[region_id] [int] NOT NULL references region(id),
+	[adressHQ] [varchar](50) NOT NULL,
+	[name] [varchar](20) NOT NULL,
+)
+CREATE TABLE [dbo].[agencePermission](
+	[agence_id] [int] NOT NULL references [agence](id),
+	[user_id] [int] NOT NULL references [users](id),
+	[role_id] [int] NOT NULL references [role](id),
+    PRIMARY KEY(agence_id, user_id, role_id)
+) 
+CREATE TABLE [dbo].[clientType](
+	[id] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	[designation] [varchar](100) NOT NULL,
+	[description] [varchar](500) NOT NULL,
+)
+CREATE TABLE [dbo].[creditCategory](
+	[id] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	[designation] [varchar](100) NOT NULL,
+	[description] [varchar](500) NOT NULL,
+)
+CREATE TABLE [dbo].[creditType](
+	[id] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	[designation] [varchar](100) NOT NULL,
+	[credit_category_id] [int] NOT NULL,
+)
+CREATE TABLE [dbo].[demande](
+	[id] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	[user_id] [int] NOT NULL references users(id),
+	[state] [int] NULL,
+	[creation] [date] NULL,
+	[credit_type_id] [int] NOT NULL,
+	[finacing_method_id] [int] NOT NULL,
+)
+CREATE TABLE [dbo].[FILE](
+	[id] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	[type_id] [int] NOT NULL references FILETYPE(id),
+	[demande_id] [int] NOT NULL references demande(id),
+	[path] [varchar](100) NOT NULL,
+)
+CREATE TABLE [dbo].[FILETYPE](
+	[id] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	[name] [varchar](20) NOT NULL,
+)
+CREATE TABLE [dbo].[financingMethod](
+	[id] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	[designation] [varchar](100) NOT NULL,
+	[description] [varchar](500) NOT NULL,
+)
+CREATE TABLE [dbo].[handlePermission](
+	[demande_id] [int] NOT NULL references demande(id),
+	[user_id] [int] NOT NULL references users(id),
+	[role_id] [int] NOT NULL references role(id),
+	[level] [int] NOT NULL
+) 
+CREATE TABLE [dbo].[income](
+	[id] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	[demande_id] [int] NOT NULL references demande(id),
+	[amount] [int] NOT NULL,
+	[proof_id] [int] NULL,
+)
+CREATE TABLE [dbo].[REGION](
+	[id] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	[adressHQ] [varchar](50) NOT NULL,
+	[name] [varchar](20) NOT NULL,
+)
+CREATE TABLE [dbo].[REGIONPermission](
+	[region_id] [int] NOT NULL references region(id),
+	[user_id] [int] NOT NULL references users(id),
+	[role_id] [int] NOT NULL references role(id),
+    PRIMARY KEY(region_id, user_id, role_id)
+)
+CREATE TABLE [dbo].[RequiredFIles](
+	[file_type_id] [int] NOT NULL references FILETYPE(id),
+	[credit_type_id] [int] NOT NULL references creditType(id),
+    PRIMARY KEY(file_type_id, credit_type_id)
+)
+CREATE TABLE [dbo].[ROLE](
+	[id] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	[designation] [varchar](50) NOT NULL,
+)
+CREATE TABLE [dbo].[ROLEUSER](
+	[user_id] [int] NOT NULL references users(id),
+	[role_id] [int] NOT NULL references role(id),
+    PRIMARY KEY(user_id, role_id)
+)
+CREATE TABLE [dbo].[simulation](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[user_id] [int] NOT NULL references users(id),
+	[credit_type_id] [int] NOT NULL references creditType(id),
+	[creation_date] [date] NOT NULL ,
+	[creation_time] [time](7) NOT NULL,
+	[amount] [int] NOT NULL,
+	[ulterior_debt] [int] NOT NULL,
+	[ulterior_debt_periodic_payment] [int] NOT NULL,
+	[accumulated_income] [int] NOT NULL,
+	[evaluation] [bit] NOT NULL,
+	[financing_method_id] [int] NOT NULL references financingMethod(id),
+)
+
+CREATE TABLE [dbo].[USERS](
+	[id] [int] IDENTITY(1,1) NOT NULL primary key,
+	[username] [varchar](50) NOT NULL,
+	[password] [varchar](100) NOT NULL,
+)
