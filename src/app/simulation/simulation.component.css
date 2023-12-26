@@ -32,7 +32,6 @@
   height: 100vh;
   display: flex;
   flex-direction: row;
-
   align-items: center;
 }
 
@@ -50,6 +49,37 @@
   left: 0;
   z-index: -1;
 }
+/* *****navabar ***** */
+.navbar {
+  display: none;
+  width: 100vw;
+  margin-bottom: 3%;
+  background-color: white;
+  box-shadow: 0px 5px 5px 1px rgba(0, 0, 0, 0.233);
+}
+.navbar-logo-container {
+  width: 40%;
+  margin-right: 2%;
+  display: flex;
+  justify-content: end;
+}
+.navbar-logo-container img {
+  width: 60%;
+}
+.navbar-icons-header {
+  margin-left: 3%;
+  font-size: 40px !important;
+}
+/* ****fin navbar */
+/*** nav */
+nav {
+  display: none;
+}
+.currentNav {
+  color: #722182 !important;
+  font-weight: 600;
+}
+/* **fin nav */
 
 .card-container {
   transition: 0.6s ease;
@@ -422,27 +452,60 @@ body {
 }
 
 @media screen and (max-width: 1000px) {
-  .progress-container {
-    height: 7vh;
+  .container-fluid {
+    display: flex;
+    flex-direction: column;
   }
-  .progressBar-icons {
-    font-size: 2.5vw;
+  .navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .sidebar {
+    display: none;
+  }
+  .card-container {
+    width: 95%;
+  }
+  .icons-header {
+    display: none;
+  }
+  .bar {
+    margin-top: 3%;
+    width: 100%;
+  }
+  nav {
+    display: flex;
   }
 }
 @media screen and (max-width: 800px) {
-  .progress-container {
-    height: 5vh;
+  .bar {
+    margin-top: 3%;
+    width: 100%;
   }
-  .progressBar-icons {
-    font-size: 3vw;
+  nav {
+    display: flex;
+  }
+  .card-container {
+    width: 100vw;
+
+    border-radius: 0px;
+  }
+  .card-container:hover {
+    transform: none;
   }
 }
 @media screen and (max-width: 600px) {
-  .progress-container {
-    height: 4vh;
+  .icons-header {
+    display: none;
   }
-  .progressBar-icons {
-    font-size: 3vw;
+  .bar {
+    margin-top: 3%;
+    width: 100%;
+  }
+  nav {
+    display: flex;
   }
 }
 @media screen and (max-width: 400px) {
