@@ -4,7 +4,7 @@
   <div class="container translate">
     <div class="accordion mt-5 accordion-flush" id="accordionFlushExample">
       <div class="forms">
-        <form [formGroup]="searchForm">
+        <form [formGroup]="searchForm" (ngSubmit)="search()">
           <div class="input-container">
             <div class="form-group" style="margin-left: 8px">
               <input
@@ -28,17 +28,31 @@
                 aria-label="Statut"
                 formControlName="statut"
               >
-                <option selected>Statut</option>
-                <option value="1">Complet</option>
-                <option value="2">a Completer</option>
+                <option selected value="complet">complet</option>
+                <option value="a completer">a completer</option>
               </select>
             </div>
 
-            <div class="button-container" style="margin-left: 8px">
+            <div
+              class="button-container"
+              style="margin-left: 8px"
+              *ngIf="!searchActivate"
+            >
               <input
                 type="submit"
                 class="btn-control material-icons"
                 value="search"
+              />
+            </div>
+            <div
+              class="button-container"
+              style="margin-left: 8px"
+              *ngIf="searchActivate"
+            >
+              <input
+                type="submit"
+                class="btn-control material-icons"
+                value="close"
               />
             </div>
           </div>

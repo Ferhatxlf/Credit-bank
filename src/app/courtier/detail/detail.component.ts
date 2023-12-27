@@ -9,6 +9,7 @@ import { SharedDataService } from '../shared-data.service';
 })
 export class DetailComponent implements OnInit {
   folderValue: any;
+  haveCourtier: boolean = false;
   constructor(
     private location: Location,
     private sharedDataService: SharedDataService
@@ -24,7 +25,10 @@ export class DetailComponent implements OnInit {
 
   ngOnInit() {
     this.folderValue = this.sharedDataService.getFolderData();
-
-    console.log(this.folderValue.numero);
+    if (this.folderValue.courtier === '') {
+      this.haveCourtier = false;
+    } else {
+      this.haveCourtier = true;
+    }
   }
 }

@@ -33,11 +33,7 @@
         >Mes dossier</span
       >
     </div>
-    <div
-      class="container-text"
-      [routerLink]="['/client/profile']"
-      (click)="profileSelected()"
-    >
+    <div class="container-text" (click)="profileSelected()">
       <span class="material-icons sidebar-icons"> arrow_forward_ios </span>
 
       <span class="sidebar-text" [ngClass]="{ 'special-class': pselected }"
