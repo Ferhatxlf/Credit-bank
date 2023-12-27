@@ -26,6 +26,12 @@ export const ROUTES: any = [
     icon: 'person',
     class: '',
   },
+  {
+    path: '/courtier/dossier',
+    title: 'Liste des dossiers',
+    icon: 'person',
+    class: '',
+  },
   { path: '/admin/profile', title: 'Mon Profile', icon: 'person', class: '' },
 ];
 @Component({
