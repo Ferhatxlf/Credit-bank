@@ -1,5 +1,8 @@
 package com.bank.credit.credit_bank_server.entity.user;
 
+import com.bank.credit.credit_bank_server.entity.permission.AgencePermission;
+import com.bank.credit.credit_bank_server.entity.permission.HandlePermission;
+import com.bank.credit.credit_bank_server.entity.permission.RegionPermission;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,4 +22,13 @@ public class Role {
 
   @OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
   private List<RoleUser> userRoles;
+
+  @OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
+  private List<RegionPermission> regionPermissions;
+
+  @OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
+  private List<HandlePermission> handlePermissions;
+
+  @OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
+  private List<AgencePermission> agencePermissions;
 }

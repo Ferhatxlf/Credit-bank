@@ -1,5 +1,6 @@
 package com.bank.credit.credit_bank_server.entity.simulation;
 
+import com.bank.credit.credit_bank_server.entity.credit.CreditType;
 import com.bank.credit.credit_bank_server.entity.credit.FinancingMethod;
 import com.bank.credit.credit_bank_server.entity.user.User;
 import jakarta.persistence.*;
@@ -17,6 +18,7 @@ public class Simulation {
   private Long id;
   private Long financingMethodId;
   private Long userId;
+  private Long creditTypeId;
 
   @ManyToOne
   @MapsId("financingMethodId")
@@ -27,4 +29,9 @@ public class Simulation {
   @MapsId("userId")
   @JoinColumn(name="userId")
   private User user;
+
+  @ManyToOne
+  @MapsId("creditTypeId")
+  @JoinColumn(name="creditTypeId")
+  private CreditType type;
 }
