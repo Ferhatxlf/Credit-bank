@@ -20,6 +20,11 @@ const routes: Routes = [
       import('./admin/admin.module').then((m) => m.AdminModule),
   },
   {
+    path: 'courtier',
+    loadChildren: () =>
+      import('./courtier/courtier.module').then((m) => m.CourtierModule),
+  },
+  {
     path: 'simulation',
     loadChildren: () =>
       import('./simulation/simulation.module').then((m) => m.SimulationModule),

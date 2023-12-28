@@ -1,0 +1,62 @@
+<div class="logo-container mb-2">
+  <span class="material-icons icons-header" (click)="goBack()"
+    >arrow_back_ios</span
+  >
+  <div class="header d-flex justify-content-center w-100">
+    <div class="title">Détail du dossier</div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="details-column">
+    <div>
+      <div>
+        <h2>Dossier N° {{ folderValue.numero }}</h2>
+        <ul>
+          <li><strong>Nom :</strong> {{ folderValue.name }}</li>
+          <li><strong>Montant :</strong>{{ folderValue.montant }}</li>
+          <li><strong>Crédit demandé :</strong>{{ folderValue.credit }}</li>
+          <li><strong>Courtier :</strong>{{ folderValue.courtier }}</li>
+          <li>
+            <strong>Durée du financement :</strong>{{ folderValue.duree }}
+          </li>
+
+          <li>
+            <strong>type du financement :</strong
+            >{{ folderValue.type_financement }}
+          </li>
+
+          <li>
+            <strong>Autre financement en cours :</strong
+            >{{ folderValue.autre_financement }}
+          </li>
+          <li><strong>Statut :</strong>{{ folderValue.statut }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="details-column">
+    <div>
+      <h2>Détails du client</h2>
+      <ul>
+        <li><strong>Nom :</strong> {{ folderValue.emprunteur.name }}</li>
+        <li><strong>Age :</strong>{{ folderValue.emprunteur.age }}</li>
+        <li><strong>Tel :</strong>{{ folderValue.emprunteur.num }}</li>
+        <li><strong>Email :</strong>{{ folderValue.emprunteur.email }}</li>
+        <li><strong>Adresse :</strong>{{ folderValue.emprunteur.adresse }}</li>
+        <li><strong>Revenu :</strong>{{ folderValue.emprunteur.revenu }}</li>
+        <li>
+          <strong>Revenu du co-emprunteur :</strong
+          >{{ folderValue.emprunteur.revenu_coemprunteur }}
+        </li>
+        <li>
+          <strong>Type du client :</strong
+          >{{ folderValue.emprunteur.type_client }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="btn_cont" *ngIf="!haveCourtier">
+  <button class="btn btn2">Prendre en charge</button>
+</div>
