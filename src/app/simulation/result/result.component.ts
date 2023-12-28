@@ -11,4 +11,7 @@ export class ResultComponent {
     const element = document.querySelector('.pdf');
     html2pdf(element);
   }
+  receiveDataFromChild(childData: string) {
+    console.log(childData);
+  }
 }

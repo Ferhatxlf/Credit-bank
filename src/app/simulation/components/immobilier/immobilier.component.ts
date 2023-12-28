@@ -1,6 +1,6 @@
 // ImmobilierComponent.ts
 import { Component } from '@angular/core';
-import { SharedService } from '../../shared.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-immobilier',
@@ -8,9 +8,10 @@ import { SharedService } from '../../shared.service';
   styleUrls: ['./immobilier.component.css'],
 })
 export class ImmobilierComponent {
-  constructor(private sharedService: SharedService) {}
-
-  envoyerInfo(msg: any) {
-    this.sharedService.sendInfo(msg);
+  constructor(private router: Router) {}
+  immobilierType(typeName): void {
+    // Enregistrez la variable dans localStorage
+    localStorage.setItem('immobilierType', typeName);
+    this.router.navigate(['/simulation/form']);
   }
 }
