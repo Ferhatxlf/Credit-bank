@@ -19,8 +19,9 @@ import { RegisterComponent } from './register/register.component';
 import { UploadComponent } from './components/upload/upload.component';
 import { ConfirmationEmailComponent } from './components/confirmation-email/confirmation-email.component';
 import { SuccessComponent } from './components/success/success.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IslamiqueComponent } from './components/islamique/islamique.component';
+import { FormatInputDirective } from './forms/formatInput.directive';
 @NgModule({
   declarations: [
     FormsComponent,
@@ -36,8 +37,14 @@ import { IslamiqueComponent } from './components/islamique/islamique.component';
     ConfirmationEmailComponent,
     SuccessComponent,
     IslamiqueComponent,
+    FormatInputDirective,
   ],
-  imports: [CommonModule, SimulationRoutingModule, FormsModule],
+  imports: [
+    CommonModule,
+    SimulationRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
   providers: [SharedService],
 })
 export class SimulationModule {}

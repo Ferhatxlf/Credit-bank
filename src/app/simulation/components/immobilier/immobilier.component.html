@@ -3,62 +3,86 @@
 </div>
 <div class="row cards translate">
   <div class="col-sm-6 col-md-4 col-lg-4">
-    <div class="card" [routerLink]="['/simulation/form']">
+    <div class="card" (click)="immobilierType('achat logement partirculer')">
       <p>Achat d'un logement auprès d'un particulier</p>
       <span class="material-icons">arrow_forward_ios</span>
     </div>
   </div>
 
-  <div class="col-sm-6 col-md-4 col-lg-4">
+  <div
+    class="col-sm-6 col-md-4 col-lg-4"
+    (click)="immobilierType('achat logement promoteur')"
+  >
     <div class="card">
       <p>Achat d'un logement auprès d'un promoteur</p>
       <span class="material-icons">arrow_forward_ios</span>
     </div>
   </div>
 
-  <div class="col-sm-6 col-md-4 col-lg-4">
+  <div
+    class="col-sm-6 col-md-4 col-lg-4"
+    (click)="immobilierType('achat logement vente sur plan')"
+  >
     <div class="card">
       <p>Achat d'un logement formule "Vente Sur Plan"</p>
       <span class="material-icons">arrow_forward_ios</span>
     </div>
   </div>
 
-  <div class="col-sm-6 col-md-4 col-lg-4">
+  <div
+    class="col-sm-6 col-md-4 col-lg-4"
+    (click)="immobilierType('acquisition local commercial')"
+  >
     <div class="card">
       <p>Acquisition d'un local commercial en "VSP"</p>
       <span class="material-icons">arrow_forward_ios</span>
     </div>
   </div>
 
-  <div class="col-sm-6 col-md-4 col-lg-4">
+  <div
+    class="col-sm-6 col-md-4 col-lg-4"
+    (click)="immobilierType('cooperative')"
+  >
     <div class="card">
       <p>Coopérative immobilière</p>
       <span class="material-icons">arrow_forward_ios</span>
     </div>
   </div>
 
-  <div class="col-sm-6 col-md-4 col-lg-4">
+  <div
+    class="col-sm-6 col-md-4 col-lg-4"
+    (click)="immobilierType('aménagement')"
+  >
     <div class="card">
       <p>Aménagement</p>
       <span class="material-icons">arrow_forward_ios</span>
     </div>
   </div>
 
-  <div class="col-sm-6 col-md-4 col-lg-4">
+  <div
+    class="col-sm-6 col-md-4 col-lg-4"
+    (click)="immobilierType(' Construction individuelle')"
+  >
     <div class="card">
       <p>Construction d'une habitation individuelle</p>
       <span class="material-icons">arrow_forward_ios</span>
     </div>
   </div>
 
-  <div class="col-sm-6 col-md-4 col-lg-4">
+  <div
+    class="col-sm-6 col-md-4 col-lg-4"
+    (click)="immobilierType('zone rurale')"
+  >
     <div class="card">
       <p>Construction zone rurale</p>
       <span class="material-icons">arrow_forward_ios</span>
     </div>
   </div>
 
-  <div class="col-sm-6 col-md-4 col-lg-4">
+  <div
+    class="col-sm-6 col-md-4 col-lg-4"
+    (click)="immobilierType('extension logement partirculer')"
+  >
     <div class="card">
       <p>Extension d'une habitation individuelle</p>
       <span class="material-icons">arrow_forward_ios</span>

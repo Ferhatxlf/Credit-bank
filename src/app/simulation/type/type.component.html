@@ -3,23 +3,39 @@
 </div>
 <div class="row cards translate">
   <div class="col">
-    <div class="card mb-4" [routerLink]="['/simulation/islamique']">
+    <div
+      class="card mb-4"
+      [routerLink]="['/simulation/islamique']"
+      (click)="onClickType('islamique')"
+    >
       <span class="material-icons">mosque</span>
       <p>Finance islamique</p>
       <span class="material-icons">arrow_forward_ios</span>
     </div>
 
-    <div class="card" [routerLink]="['/simulation/consomation']">
+    <div
+      class="card"
+      [routerLink]="['/simulation/consomation']"
+      (click)="onClickType('consomation')"
+    >
       <span class="material-icons">add_shopping_cart</span>
       <p>Credit a la consomation</p>
       <span class="material-icons">arrow_forward_ios</span>
     </div>
-    <div class="card" [routerLink]="['/simulation/immobilier']">
+    <div
+      class="card"
+      [routerLink]="['/simulation/immobilier']"
+      (click)="onClickType('immobilier')"
+    >
       <span class="material-icons">roofing</span>
       <p>Credit immobilier</p>
       <span class="material-icons">arrow_forward_ios</span>
     </div>
-    <div class="card" [routerLink]="['/simulation/presurgage']">
+    <div
+      class="card"
+      [routerLink]="['/simulation/presurgage']"
+      (click)="onClickType('presurgage')"
+    >
       <span class="material-icons">assured_workload</span>
       <p>Prêt sur gage</p>
       <span class="material-icons">arrow_forward_ios</span>

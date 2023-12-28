@@ -60,8 +60,9 @@ label {
 .supposition {
   border: 1px solid rgba(0, 0, 0, 0.226);
   border-radius: 12px;
-  padding: 10px;
+  padding: 6px;
   width: 42%;
+  color: rgb(145, 142, 142);
 }
 
 .input-container .form-group {
@@ -97,6 +98,18 @@ span:hover {
 }
 .selected {
   border-color: rgba(114, 33, 130, 1);
+  color: rgba(114, 33, 130, 1);
+}
+.errForm {
+  border: 0.6px solid red;
+}
+.errForm::placeholder {
+  color: red;
+}
+.with-icon {
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="24" width="40" viewBox="0 0 24 24"><text x="0" y="15" font-size="14" font-family="Arial" fill="%23000">DZD</text></svg>')
+    no-repeat right 10px center;
+  padding-right: 60px; /* Ajustez la valeur selon vos besoins */
 }
 @media screen and (max-width: 1000px) {
   .title {
