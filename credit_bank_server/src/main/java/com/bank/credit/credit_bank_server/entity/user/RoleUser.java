@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @Entity
 @NoArgsConstructor
@@ -12,6 +14,8 @@ import lombok.NoArgsConstructor;
 public class RoleUser {
   @EmbeddedId
   private RoleUserId id;
+  private Date  creation;
+  private boolean enabled;
 
   @ManyToOne
   @MapsId("userId")

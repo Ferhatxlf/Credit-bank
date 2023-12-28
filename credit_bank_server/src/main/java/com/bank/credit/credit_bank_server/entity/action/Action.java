@@ -2,7 +2,9 @@ package com.bank.credit.credit_bank_server.entity.action;
 
 
 
+import com.bank.credit.credit_bank_server.entity.demande.Demande;
 import com.bank.credit.credit_bank_server.entity.user.User;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,6 +22,7 @@ public class Action {
 
   private int userId;
 
+  @Nullable
   private int demandeId;
   //@Enumerated(EnumType.STRING) for text
   @Enumerated(EnumType.ORDINAL) //for number
@@ -30,4 +33,8 @@ public class Action {
   @JoinColumn(name="userId")
   private User user;
 
+  @ManyToOne
+  @MapsId("demandeId")
+  @JoinColumn(name="demandeId")
+  private Demande demande;
 }

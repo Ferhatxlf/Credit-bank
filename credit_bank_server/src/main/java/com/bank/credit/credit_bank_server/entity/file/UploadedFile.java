@@ -13,7 +13,7 @@ import java.util.Date;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class UplodedFile {
+public class UploadedFile {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;

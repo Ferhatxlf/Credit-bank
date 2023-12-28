@@ -21,8 +21,10 @@ public class RegionPermission {
 
   private boolean enabled;
   private Date creation;
+  /*
   private Long regionId;
   private Long userId;
+  private Long roleId;*/
 
   @ManyToOne
   @MapsId("regionId")
@@ -35,6 +37,7 @@ public class RegionPermission {
   private User user;
 
   @ManyToOne
-  @JoinColumn(name = "id")
+  @MapsId("roleId")
+  @JoinColumn(name = "roleId")
   private Role role;
 }
