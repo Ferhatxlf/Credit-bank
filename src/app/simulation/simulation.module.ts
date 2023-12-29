@@ -22,6 +22,7 @@ import { SuccessComponent } from './components/success/success.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IslamiqueComponent } from './components/islamique/islamique.component';
 import { FormatInputDirective } from './forms/formatInput.directive';
+
 @NgModule({
   declarations: [
     FormsComponent,

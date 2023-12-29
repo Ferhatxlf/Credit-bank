@@ -31,6 +31,18 @@
           appFormatInput
           required
         />
+        <p
+          class="err-msg"
+          *ngIf="
+            (applyForm.get('habitation')?.touched &&
+              !applyForm.get('habitation')?.dirty) ||
+            (applyForm.get('habitation')?.invalid &&
+              applyForm.get('habitation')?.dirty) ||
+            (submitted && applyForm.get('habitation')?.invalid)
+          "
+        >
+          Champs obligatoire
+        </p>
       </div>
       <div class="form-group">
         <input
@@ -53,6 +65,18 @@
           appFormatInput
           required
         />
+        <p
+          class="err-msg"
+          *ngIf="
+            (applyForm.get('revenue')?.touched &&
+              !applyForm.get('revenue')?.dirty) ||
+            (applyForm.get('revenue')?.invalid &&
+              applyForm.get('revenue')?.dirty) ||
+            (submitted && applyForm.get('revenue')?.invalid)
+          "
+        >
+          Champs obligatoire
+        </p>
       </div>
 
       <div class="form-group">
@@ -70,6 +94,16 @@
           formControlName="age"
           required
         />
+        <p
+          class="err-msg"
+          *ngIf="
+            (applyForm.get('age')?.touched && !applyForm.get('age')?.dirty) ||
+            (applyForm.get('age')?.invalid && applyForm.get('age')?.dirty) ||
+            (submitted && applyForm.get('age')?.invalid)
+          "
+        >
+          Champs obligatoire entre 18ans et 75ans
+        </p>
       </div>
       <div class="form-group">
         <input
@@ -92,6 +126,19 @@
           appFormatInput
           required
         />
+        <p
+          class="err-msg"
+          *ngIf="
+            (applyForm.get('credit')?.touched &&
+              !applyForm.get('credit')?.dirty) ||
+            (applyForm.get('credit')?.invalid &&
+              applyForm.get('credit')?.dirty) ||
+            (submitted && applyForm.get('credit')?.invalid)
+          "
+        >
+          Ce champs est obligatoire est ne depasse pas 90% du financement de
+          l'habitation
+        </p>
       </div>
       <div class="form-group">
         <input
@@ -110,6 +157,18 @@
           formControlName="durer"
           required
         />
+        <p
+          class="err-msg"
+          *ngIf="
+            (applyForm.get('durer')?.touched &&
+              !applyForm.get('durer')?.dirty) ||
+            (applyForm.get('durer')?.invalid &&
+              applyForm.get('durer')?.dirty) ||
+            (submitted && applyForm.get('durer')?.invalid)
+          "
+        >
+          Champs obligatoire la duree maximale est de {{ dureeMax }} ans
+        </p>
       </div>
     </div>
     <div

@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  AbstractControl,
+} from '@angular/forms';
+import { Router } from '@angular/router';
+import { ValidatorFn } from '@angular/forms';
 
 @Component({
   selector: 'app-forms',
@@ -11,28 +18,104 @@ export class FormsComponent implements OnInit {
   coBorrower: boolean = false;
   otherFinancing: boolean = false;
   depot: boolean = false;
+  dureeMax1: number = 30;
+  dureeMax2: number = 30;
+
   applyForm: FormGroup;
 
   ngOnInit(): void {
     this.setOtherFinancing(false);
     this.setCoBorrower(false);
     this.setPatrimoine(false);
+    this.applyForm.get('age')?.valueChanges.subscribe((age: number) => {
+      if (isNaN(age) || age > 45) {
+        this.dureeMax1 = 75 - Number(age);
+
+        // Déclenchez manuellement la validation de la durée
+        this.applyForm.get('durer')?.updateValueAndValidity();
+      } else if (isNaN(age) || age < 45) {
+        this.dureeMax1 = 30;
+
+        // Déclenchez manuellement la validation de la durée
+        this.applyForm.get('durer')?.updateValueAndValidity();
+      }
+    });
+    this.applyForm.get('ageCo')?.valueChanges.subscribe((age: number) => {
+      if (isNaN(age) || age > 45) {
+        this.dureeMax2 = 75 - Number(age);
+
+        // Déclenchez manuellement la validation de la durée
+        this.applyForm.get('durer')?.updateValueAndValidity();
+      } else if (isNaN(age) || age < 45) {
+        this.dureeMax2 = 30;
+
+        // Déclenchez manuellement la validation de la durée
+        this.applyForm.get('durer')?.updateValueAndValidity();
+      }
+    });
+  }
+  get dureeMax(): number {
+    return Math.min(this.dureeMax1, this.dureeMax2);
   }
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private router: Router) {
     this.applyForm = this.fb.group({
       habitation: ['', Validators.required],
       revenue: ['', Validators.required],
-      age: ['', Validators.required],
-      credit: ['', Validators.required],
-      durer: ['', Validators.required],
+      age: ['', [Validators.required, this.ageValidator]],
+      credit: ['', [Validators.required, this.creditValidatorFactory()]],
+      durer: ['', [Validators.required, this.durerValidatorFactory()]],
       revenueCo: ['', Validators.required],
-      ageCo: ['', Validators.required],
+      ageCo: ['', [Validators.required, this.ageValidator]],
       patrimoine: ['', Validators.required],
       otherFinancing: ['', Validators.required],
     });
   }
+  // Fonction de validation personnalisée pour l'âge
+  ageValidator(control: AbstractControl): { [key: string]: boolean } | null {
+    const age = Number(control.value);
 
+    if (isNaN(age) || age < 18 || age > 75) {
+      return { invalidAge: true };
+    }
+
+    return null; // La validation a réussi
+  }
+
+  durerValidatorFactory(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: boolean } | null => {
+      const durer = Number(control.value);
+      const age = Number(this.applyForm?.get('age')?.value);
+      const ageCo = Number(this.applyForm?.get('ageCo')?.value);
+
+      if (isNaN(durer) || durer < 0 || durer > 30) {
+        return { invalidDurer: true };
+      }
+
+      // Vérifier si l'âge et la durée dépassent 75 ans
+      if (age + durer > 75 || ageCo + durer > 75) {
+        return { ageDurerExceeds75: true };
+      }
+
+      return null; // La validation a réussi
+    };
+  }
+  // validation pour credit 90%
+  creditValidatorFactory(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: boolean } | null => {
+      const credit = control.value.replace(/\s+/g, '');
+      const habitation = this.applyForm
+        ?.get('habitation')
+        ?.value.replace(/\s+/g, '');
+      console.log(credit, habitation);
+      // Vérifier si le crédit dépasse 90% du montant de l'habitation
+      if (credit > 0.9 * habitation) {
+        return { invalidCredit: true };
+      }
+
+      return null; // La validation a réussi
+    };
+  }
   setPatrimoine(value: boolean) {
     this.patrimoine = value;
     if (!value) {
@@ -72,7 +155,7 @@ export class FormsComponent implements OnInit {
 
   submitForm() {
     if (this.applyForm.valid) {
-      const formData = {
+      const formImmobilierData = {
         habitation: this.applyForm.value.habitation
           ? this.applyForm.value.habitation.replace(/\s+/g, '')
           : '',
@@ -96,11 +179,15 @@ export class FormsComponent implements OnInit {
         durer: this.applyForm.value.durer,
       };
 
-      const formDataJson = JSON.stringify(formData);
+      const formDataJson = JSON.stringify(formImmobilierData);
 
-      localStorage.setItem('formData', formDataJson);
+      localStorage.setItem('formImmobilierData', formDataJson);
 
-      console.log('Formulaire soumis avec les valeurs suivantes:', formData);
+      console.log(
+        'Formulaire soumis avec les valeurs suivantes:',
+        formImmobilierData
+      );
+      this.router.navigate(['/simulation/result']);
     } else {
       this.submitted = true;
       console.log('Le formulaire est invalide. Veuillez corriger les erreurs.');
