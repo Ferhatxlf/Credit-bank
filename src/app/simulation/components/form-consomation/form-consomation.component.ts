@@ -9,11 +9,11 @@ import { Router } from '@angular/router';
 import { ValidatorFn } from '@angular/forms';
 
 @Component({
-  selector: 'app-forms',
-  templateUrl: './forms.component.html',
-  styleUrls: ['./forms.component.css'],
+  selector: 'app-form-consomation',
+  templateUrl: './form-consomation.component.html',
+  styleUrls: ['./form-consomation.component.css'],
 })
-export class FormsComponent implements OnInit {
+export class FormConsomationComponent implements OnInit {
   patrimoine: boolean = false;
   coBorrower: boolean = false;
   otherFinancing: boolean = false;
@@ -60,7 +60,7 @@ export class FormsComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private router: Router) {
     this.applyForm = this.fb.group({
-      habitation: ['', Validators.required],
+      consommation: ['', Validators.required],
       revenue: ['', Validators.required],
       age: ['', [Validators.required, this.ageValidator]],
       credit: ['', [Validators.required, this.creditValidatorFactory()]],
@@ -105,7 +105,7 @@ export class FormsComponent implements OnInit {
     return (control: AbstractControl): { [key: string]: boolean } | null => {
       const credit = control.value.replace(/\s+/g, '');
       const habitation = this.applyForm
-        ?.get('habitation')
+        ?.get('consommation')
         ?.value.replace(/\s+/g, '');
       console.log(credit, habitation);
       // Vérifier si le crédit dépasse 90% du montant de l'habitation
@@ -165,8 +165,8 @@ export class FormsComponent implements OnInit {
         ? Number(revenue) + Number(revenueCo)
         : Number(revenue);
       const formImmobilierData = {
-        habitation: this.applyForm.value.habitation
-          ? this.applyForm.value.habitation.replace(/\s+/g, '')
+        consommation: this.applyForm.value.consommation
+          ? this.applyForm.value.consommation.replace(/\s+/g, '')
           : '',
         credit: this.applyForm.value.credit
           ? this.applyForm.value.credit.replace(/\s+/g, '')

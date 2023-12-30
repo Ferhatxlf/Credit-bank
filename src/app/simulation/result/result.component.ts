@@ -28,7 +28,7 @@ export class ResultComponent implements OnInit {
 
       this.financement = formData.credit;
       this.durer = formData.durer;
-      this.revenue = formData.revenue;
+      this.revenue = formData.revenueCumule;
       this.habitation = formData.habitation;
       this.apportInitial =
         parseFloat(formData.habitation) - parseFloat(formData.credit);
