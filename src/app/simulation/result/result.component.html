@@ -1,28 +1,41 @@
 <div class="header d-flex justify-content-center w-100 translate">
   <div class="title">Votre résultat de simulation</div>
-  <div class="subTitle mt-1 mb-3">
+  <div class="subTitle mt-1 mb-3" *ngIf="eligible">
     Félicitation vous êtes éligible au financement
   </div>
-  <!-- <div class="title" style="color: rgb(212, 42, 20)">Non éligible</div> -->
+  <div
+    class="subTitle"
+    style="
+      color: rgb(212, 42, 20);
+      font-size: 16px;
+      width: 70%;
+      margin: 1% auto;
+      font-weight: 600;
+    "
+    *ngIf="!eligible"
+  >
+    Vous n’êtes pas éligible au financement demandé. Cependant, en tenant compte
+    de vos revenus, la banque est en mesure de vous accorder ce montant.
+  </div>
 </div>
 <div class="row cards translate">
   <div class="row class1-container">
     <div class="col-sm-12 col-md-4 col-lg-4">
       <div class="card mt-1">
         <p>Montant de financement</p>
-        <span>596 762,60 DZD</span>
+        <span> {{ financement | currency : "DZD" : "" }} DZD</span>
       </div>
     </div>
     <div class="col-sm-12 col-md-4 col-lg-4">
       <div class="card mt-1">
         <p>Durée de financement</p>
-        <span> 4 Années</span>
+        <span> {{ durer }} Années</span>
       </div>
     </div>
     <div class="col-sm-12 col-md-4 col-lg-4">
       <div class="card mt-1">
         <p>Taux d'intérêt</p>
-        <span>1,00 %</span>
+        <span>6.5 %</span>
       </div>
     </div>
   </div>
@@ -30,17 +43,20 @@
     <div class="col mt-1">
       <div class="card special-card">
         <p>Apport initial</p>
-        <span>1 403 000,00 DZD</span>
+        <span> {{ apportInitial | currency : "DZD" : "" }} DZD</span>
       </div>
     </div>
     <div class="col mt-1">
       <div class="card special-card">
         <p>Mensualités</p>
-        <span>50 000,00 DZD</span>
+        <span>{{ mensualite | currency : "DZD" : "" }} DZD</span>
       </div>
     </div>
   </div>
-  <p class="text-explications" style="font-size: large; font-weight: 600">
+  <p
+    class="text-explications"
+    style="font-size: medium; font-weight: 500; color: black"
+  >
     Les résultats de cette simulation sont fournis à titre informatif et ne sont
     pas contraignants.
   </p>

@@ -1,0 +1,51 @@
+<div class="container-fluid">
+  <!-- <div class="bg-fond"></div> -->
+  <div class="sidebar">
+    <div class="sidebar-logo-container">
+      <img src="../../assets/bankLogo.png" />
+    </div>
+    <div
+      class="container-text"
+      [routerLink]="['/courtier/dashboard']"
+      (click)="dashboardSelected()"
+    >
+      <span class="material-icons sidebar-icons">arrow_forward_ios</span>
+      <span class="sidebar-text" [ngClass]="{ 'special-class': selected }">
+        Dashboard</span
+      >
+    </div>
+    <div
+      class="container-text"
+      [routerLink]="['/courtier/dossier']"
+      (click)="creditSelected()"
+    >
+      <span class="material-icons sidebar-icons"> arrow_forward_ios </span>
+
+      <span class="sidebar-text" [ngClass]="{ 'special-class': cselected }"
+        >Liste des dossiers</span
+      >
+    </div>
+
+    <div class="container-text" (click)="dossierSelected()">
+      <span class="material-icons sidebar-icons"> arrow_forward_ios </span>
+
+      <span
+        class="sidebar-text"
+        [ngClass]="{ 'special-class': dselected }"
+        [routerLink]="['/courtier/mes-dossier']"
+        >Mes dossier</span
+      >
+    </div>
+    <div class="container-text" (click)="profileSelected()">
+      <span class="material-icons sidebar-icons"> arrow_forward_ios </span>
+
+      <span class="sidebar-text" [ngClass]="{ 'special-class': pselected }"
+        >Mon profile</span
+      >
+    </div>
+  </div>
+
+  <div class="card-container scale-in">
+    <router-outlet></router-outlet>
+  </div>
+</div>

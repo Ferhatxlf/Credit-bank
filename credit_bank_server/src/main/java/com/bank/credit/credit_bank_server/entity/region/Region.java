@@ -1,6 +1,7 @@
 package com.bank.credit.credit_bank_server.entity.region;
 
 import com.bank.credit.credit_bank_server.entity.agence.Agence;
+import com.bank.credit.credit_bank_server.entity.permission.RegionPermission;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,4 +20,7 @@ public class Region {
 
   @OneToMany(mappedBy = "region", cascade = CascadeType.ALL)
   private List<Agence> agences;
+
+  @OneToMany(mappedBy = "region", cascade = CascadeType.ALL)
+  private List<RegionPermission> regionPermissions;
 }

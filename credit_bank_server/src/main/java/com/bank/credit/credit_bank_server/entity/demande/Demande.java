@@ -1,8 +1,9 @@
 package com.bank.credit.credit_bank_server.entity.demande;
 
+import com.bank.credit.credit_bank_server.entity.action.Action;
 import com.bank.credit.credit_bank_server.entity.credit.CreditType;
 import com.bank.credit.credit_bank_server.entity.credit.FinancingMethod;
-import com.bank.credit.credit_bank_server.entity.file.UplodedFile;
+import com.bank.credit.credit_bank_server.entity.file.UploadedFile;
 import com.bank.credit.credit_bank_server.entity.user.RoleUser;
 import com.bank.credit.credit_bank_server.entity.user.User;
 import jakarta.persistence.*;
@@ -21,17 +22,24 @@ public class Demande {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   private Long financingMethodId;
+  private Long userId;
+  private Long creditTypeId;
 
   @ManyToOne
-  @JoinColumn(name = "userid")
+  @MapsId("userId")
+  @JoinColumn(name = "userId")
   private User user;
 
   @OneToMany(mappedBy = "demande", cascade = CascadeType.ALL)
-  private List<UplodedFile> files;
+  private List<UploadedFile> files;
 
-  @OneToOne
+  @OneToMany(mappedBy = "demande", cascade = CascadeType.ALL)
+  private List<Action> actions;
+
+  @ManyToOne
+  @MapsId("creditTypeId")
   @JoinColumn(name="creditTypeId")
-  private CreditType creditType;
+  private CreditType type;
 
   @ManyToOne
   @MapsId("financingMethodId")

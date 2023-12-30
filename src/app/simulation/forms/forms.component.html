@@ -2,7 +2,7 @@
   <div class="header d-flex justify-content-center w-100">
     <div class="title">Veuillez introduire vos paramètres de calcul</div>
   </div>
-  <div class="forms">
+  <form class="forms" [formGroup]="applyForm" (ngSubmit)="submitForm()">
     <div
       style="
         border: 0.6px solid rgba(0, 0, 0, 0.164);
@@ -12,40 +12,163 @@
     >
       <div class="form-group">
         <input
-          type="number"
-          class="form-control"
+          [ngClass]="{
+            errForm:
+              (applyForm.get('habitation')?.touched &&
+                !applyForm.get('habitation')?.dirty) ||
+              (applyForm.get('habitation')?.invalid &&
+                applyForm.get('habitation')?.dirty) ||
+              (submitted && applyForm.get('habitation')?.invalid),
+            'with-icon':
+              applyForm.get('habitation')?.dirty &&
+              !applyForm.get('habitation')?.invalid
+          }"
+          type="text"
+          class="form-control with-icon"
           id="floatingInputGrid"
           placeholder="Montant de l'habitation *"
-          value=""
+          formControlName="habitation"
+          appFormatInput
+          required
         />
+        <p
+          class="err-msg"
+          *ngIf="
+            (applyForm.get('habitation')?.touched &&
+              !applyForm.get('habitation')?.dirty) ||
+            (applyForm.get('habitation')?.invalid &&
+              applyForm.get('habitation')?.dirty) ||
+            (submitted && applyForm.get('habitation')?.invalid)
+          "
+        >
+          Champs obligatoire
+        </p>
+      </div>
+      <div class="form-group">
+        <input
+          [ngClass]="{
+            errForm:
+              (applyForm.get('revenue')?.touched &&
+                !applyForm.get('revenue')?.dirty) ||
+              (applyForm.get('revenue')?.invalid &&
+                applyForm.get('revenue')?.dirty) ||
+              (submitted && applyForm.get('revenue')?.invalid),
+            'with-icon':
+              applyForm.get('revenue')?.dirty &&
+              !applyForm.get('revenue')?.invalid
+          }"
+          type="text"
+          class="form-control"
+          id="floatingInputGrid"
+          placeholder="Revenue de l'emprunteur *"
+          formControlName="revenue"
+          appFormatInput
+          required
+        />
+        <p
+          class="err-msg"
+          *ngIf="
+            (applyForm.get('revenue')?.touched &&
+              !applyForm.get('revenue')?.dirty) ||
+            (applyForm.get('revenue')?.invalid &&
+              applyForm.get('revenue')?.dirty) ||
+            (submitted && applyForm.get('revenue')?.invalid)
+          "
+        >
+          Champs obligatoire
+        </p>
       </div>
 
       <div class="form-group">
         <input
+          [ngClass]="{
+            errForm:
+              (applyForm.get('age')?.touched && !applyForm.get('age')?.dirty) ||
+              (applyForm.get('age')?.invalid && applyForm.get('age')?.dirty) ||
+              (submitted && applyForm.get('age')?.invalid)
+          }"
           type="number"
           class="form-control"
           id="floatingInputGrid"
-          placeholder="Votre age *"
-          value=""
+          placeholder="l'âge de l'emprunteur *"
+          formControlName="age"
+          required
         />
+        <p
+          class="err-msg"
+          *ngIf="
+            (applyForm.get('age')?.touched && !applyForm.get('age')?.dirty) ||
+            (applyForm.get('age')?.invalid && applyForm.get('age')?.dirty) ||
+            (submitted && applyForm.get('age')?.invalid)
+          "
+        >
+          Champs obligatoire entre 18ans et 75ans
+        </p>
       </div>
       <div class="form-group">
         <input
-          type="number"
+          [ngClass]="{
+            errForm:
+              (applyForm.get('credit')?.touched &&
+                !applyForm.get('credit')?.dirty) ||
+              (applyForm.get('credit')?.invalid &&
+                applyForm.get('credit')?.dirty) ||
+              (submitted && applyForm.get('credit')?.invalid),
+            'with-icon':
+              applyForm.get('credit')?.dirty &&
+              !applyForm.get('credit')?.invalid
+          }"
+          type="text"
           class="form-control"
           id="floatingInputGrid"
           placeholder="Le crédit souhaité *"
-          value=""
+          formControlName="credit"
+          appFormatInput
+          required
         />
+        <p
+          class="err-msg"
+          *ngIf="
+            (applyForm.get('credit')?.touched &&
+              !applyForm.get('credit')?.dirty) ||
+            (applyForm.get('credit')?.invalid &&
+              applyForm.get('credit')?.dirty) ||
+            (submitted && applyForm.get('credit')?.invalid)
+          "
+        >
+          Ce champs est obligatoire est ne depasse pas 90% du financement de
+          l'habitation
+        </p>
       </div>
       <div class="form-group">
         <input
+          [ngClass]="{
+            errForm:
+              (applyForm.get('durer')?.touched &&
+                !applyForm.get('durer')?.dirty) ||
+              (applyForm.get('durer')?.invalid &&
+                applyForm.get('durer')?.dirty) ||
+              (submitted && applyForm.get('durer')?.invalid)
+          }"
           type="number"
           class="form-control"
           id="floatingInputGrid"
           placeholder="La durée de financement *"
-          value=""
+          formControlName="durer"
+          required
         />
+        <p
+          class="err-msg"
+          *ngIf="
+            (applyForm.get('durer')?.touched &&
+              !applyForm.get('durer')?.dirty) ||
+            (applyForm.get('durer')?.invalid &&
+              applyForm.get('durer')?.dirty) ||
+            (submitted && applyForm.get('durer')?.invalid)
+          "
+        >
+          Champs obligatoire la duree maximale est de {{ dureeMax }} ans
+        </p>
       </div>
     </div>
     <div
@@ -73,22 +196,46 @@
       </div>
       <div class="form-group">
         <input
-          type="number"
+          [ngClass]="{
+            errForm:
+              coBorrower &&
+              ((applyForm.get('revenueCo')?.touched &&
+                !applyForm.get('revenueCo')?.dirty) ||
+                (applyForm.get('revenueCo')?.invalid &&
+                  applyForm.get('revenueCo')?.dirty) ||
+                (submitted && applyForm.get('revenueCo')?.invalid)),
+            'with-icon':
+              applyForm.get('revenueCo')?.dirty &&
+              !applyForm.get('revenueCo')?.invalid
+          }"
+          type="text"
           class="form-control"
           id="floatingInputGrid"
           placeholder="Revenue de co-emprunteur *"
-          value=""
+          formControlName="revenueCo"
           [disabled]="!coBorrower"
+          required
+          appFormatInput
         />
       </div>
       <div class="form-group">
         <input
+          [ngClass]="{
+            errForm:
+              coBorrower &&
+              ((applyForm.get('ageCo')?.touched &&
+                !applyForm.get('ageCo')?.dirty) ||
+                (applyForm.get('ageCo')?.invalid &&
+                  applyForm.get('ageCo')?.dirty) ||
+                (submitted && applyForm.get('ageCo')?.invalid))
+          }"
           type="number"
           class="form-control"
           id="floatingInputGrid"
           placeholder="L'âge de co-emprunteur *"
-          value=""
+          formControlName="ageCo"
           [disabled]="!coBorrower"
+          required
         />
       </div>
     </div>
@@ -117,12 +264,25 @@
       </div>
       <div class="form-group">
         <input
-          type="number"
+          [ngClass]="{
+            errForm:
+              patrimoine &&
+              ((applyForm.get('patrimoine')?.touched &&
+                !applyForm.get('patrimoine')?.dirty) ||
+                (applyForm.get('patrimoine')?.invalid &&
+                  applyForm.get('patrimoine')?.dirty) ||
+                (submitted && applyForm.get('patrimoine')?.invalid)),
+            'with-icon':
+              applyForm.get('patrimoine')?.dirty &&
+              !applyForm.get('patrimoine')?.invalid
+          }"
+          type="text"
           class="form-control"
           id="floatingInputGrid"
           placeholder="Mentionnez ce montant *"
-          value=""
+          formControlName="patrimoine"
           [disabled]="!patrimoine"
+          appFormatInput
         />
       </div>
     </div>
@@ -151,54 +311,32 @@
       </div>
       <div class="form-group">
         <input
-          type="number"
+          [ngClass]="{
+            errForm:
+              otherFinancing &&
+              ((applyForm.get('otherFinancing')?.touched &&
+                !applyForm.get('otherFinancing')?.dirty) ||
+                (applyForm.get('otherFinancing')?.invalid &&
+                  applyForm.get('otherFinancing')?.dirty) ||
+                (submitted && applyForm.get('otherFinancing')?.invalid)),
+            'with-icon':
+              applyForm.get('otherFinancing')?.dirty &&
+              !applyForm.get('otherFinancing')?.invalid
+          }"
+          type="text"
           class="form-control"
           id="floatingInputGrid"
           placeholder="Mentionnez ce montant *"
-          value=""
+          formControlName="otherFinancing"
           [disabled]="!otherFinancing"
+          appFormatInput
+          required
         />
       </div>
     </div>
-    <!-- <div
-      class="input-container"
-      style="
-        border: 0.6px solid rgba(0, 0, 0, 0.164);
-        border-radius: 15px;
-        padding: 15px;
-      "
-    >
-      <p class="questions">Avez vous des dépôts ?</p>
-      <div class="suppositions-container">
-        <span
-          class="supposition"
-          (click)="setDepot(true)"
-          [class.selected]="depot"
-          >Oui</span
-        >
-        <span
-          class="supposition"
-          (click)="setDepot(false)"
-          [class.selected]="!depot"
-          >Non</span
-        >
-      </div>
-      <div class="form-group">
-        <input
-          type="number"
-          class="form-control"
-          id="floatingInputGrid"
-          placeholder="Mentionnez ce montant *"
-          value=""
-          [disabled]="!depot"
-        />
-      </div>
-    </div> -->
 
     <div class="d-flex justify-content-center mt-3">
-      <button class="btn btn-primary" [routerLink]="['/simulation/result']">
-        Lancer la simulation
-      </button>
+      <button class="btn btn-primary">Lancer la simulation</button>
     </div>
-  </div>
+  </form>
 </div>

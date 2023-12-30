@@ -1,0 +1,96 @@
+<div class="container-fluid">
+  <app-navbar></app-navbar>
+
+  <div class="container translate">
+    <div class="accordion mt-5 accordion-flush" id="accordionFlushExample">
+      <div class="forms">
+        <form [formGroup]="searchForm" (ngSubmit)="search()">
+          <div class="input-container">
+            <div class="form-group" style="margin-left: 8px">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="N° du projet"
+                formControlName="numero_dossier"
+              />
+            </div>
+            <div class="form-group" style="margin-left: 8px">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Nom du projet"
+                formControlName="nom_projet"
+              />
+            </div>
+            <div class="form-group" style="margin-left: 8px">
+              <select
+                class="form-select"
+                aria-label="Statut"
+                formControlName="statut"
+              >
+                <option selected value="complet">complet</option>
+                <option value="a completer">a completer</option>
+              </select>
+            </div>
+
+            <div
+              class="button-container"
+              style="margin-left: 8px"
+              *ngIf="!searchActivate"
+            >
+              <input
+                type="submit"
+                class="btn-control material-icons"
+                value="search"
+              />
+            </div>
+            <div
+              class="button-container"
+              style="margin-left: 8px"
+              *ngIf="searchActivate"
+            >
+              <input
+                type="submit"
+                class="btn-control material-icons"
+                value="close"
+              />
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="accordion-item">
+        <div class="accordion-body">
+          <table class="table table-striped table-hover">
+            <tbody>
+              <tr>
+                <th>N°</th>
+                <th>Nom du dossier</th>
+                <th>Emprunteur</th>
+                <th>Courtier</th>
+                <th>Type du client</th>
+                <th>Type du financement</th>
+                <th>Montant du prêt</th>
+                <th>Statut</th>
+              </tr>
+
+              <tr
+                (click)="folderClicked(folder)"
+                *ngFor="let folder of Folders; let i = index"
+              >
+                <td>{{ folder.numero }}</td>
+                <td>{{ folder.name }}</td>
+                <td>{{ folder.emprunteur.name }}</td>
+                <td>{{ folder.courtier }}</td>
+                <td>{{ folder.emprunteur.type_client }}</td>
+                <td>{{ folder.type_financement }}</td>
+                <td>{{ folder.montant }} DA</td>
+                <td>{{ folder.statut }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

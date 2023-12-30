@@ -11,4 +11,8 @@ export class TypeComponent {
     this.islamique = !this.islamique;
     console.log("l'element est ", this.islamique);
   }
+  onClickType(typeName): void {
+    // Enregistrez la variable dans localStorage
+    localStorage.setItem('financementType', typeName);
+  }
 }
