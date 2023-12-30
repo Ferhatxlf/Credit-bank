@@ -60,7 +60,10 @@ export class FormsComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private router: Router) {
     this.applyForm = this.fb.group({
-      habitation: ['', Validators.required],
+      habitation: [
+        '',
+        [Validators.required, this.habitationValidatorFactory()],
+      ],
       revenue: ['', Validators.required],
       age: ['', [Validators.required, this.ageValidator]],
       credit: ['', [Validators.required, this.creditValidatorFactory()]],
@@ -111,6 +114,19 @@ export class FormsComponent implements OnInit {
       // Vérifier si le crédit dépasse 90% du montant de l'habitation
       if (credit > 0.9 * habitation) {
         return { invalidCredit: true };
+      }
+
+      return null; // La validation a réussi
+    };
+  }
+  // interdiction de depasser 12000000
+  habitationValidatorFactory(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: boolean } | null => {
+      const habitation = control.value.replace(/\s+/g, '');
+
+      // Vérifier si le crédit dépasse 90% du montant de l'habitation
+      if (habitation > 12000000) {
+        return { invalidHabitation: true };
       }
 
       return null; // La validation a réussi
