@@ -19,6 +19,7 @@ export class IslamiqueFormComponent implements OnInit {
   submitted: boolean = false;
   dureeMax1: number = 5;
   dureeMax2: number = 5;
+  prixVehicule: number = 0;
 
   applyForm: FormGroup;
 
@@ -50,6 +51,10 @@ export class IslamiqueFormComponent implements OnInit {
         this.applyForm.get('durer')?.updateValueAndValidity();
       }
     });
+    const prix = localStorage.getItem('prix');
+    if (prix) {
+      this.prixVehicule = parseFloat(prix);
+    }
   }
   get dureeMax(): number {
     return Math.min(this.dureeMax1, this.dureeMax2);
@@ -63,8 +68,6 @@ export class IslamiqueFormComponent implements OnInit {
       durer: ['', [Validators.required, this.durerValidatorFactory()]],
       revenueCo: ['', Validators.required],
       ageCo: ['', [Validators.required, this.ageValidator]],
-      patrimoine: ['', Validators.required],
-      otherFinancing: ['', Validators.required],
     });
   }
   // Fonction de validation personnalisée pour l'âge
@@ -100,12 +103,9 @@ export class IslamiqueFormComponent implements OnInit {
   creditValidatorFactory(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: boolean } | null => {
       const credit = control.value.replace(/\s+/g, '');
-      const habitation = this.applyForm
-        ?.get('habitation')
-        ?.value.replace(/\s+/g, '');
 
       // Vérifier si le crédit dépasse 90% du montant de l'habitation
-      if (credit > 0.9 * habitation) {
+      if (credit > 0.8 * this.prixVehicule) {
         return { invalidCredit: true };
       }
 
@@ -137,7 +137,7 @@ export class IslamiqueFormComponent implements OnInit {
       let revenueCumule = revenueCo
         ? Number(revenue) + Number(revenueCo)
         : Number(revenue);
-      const formImmobilierData = {
+      const formislamiqueData = {
         credit: this.applyForm.value.credit
           ? this.applyForm.value.credit.replace(/\s+/g, '')
           : '',
@@ -147,25 +147,20 @@ export class IslamiqueFormComponent implements OnInit {
         revenueCo: this.applyForm.value.revenueCo
           ? this.applyForm.value.revenueCo.replace(/\s+/g, '')
           : '',
-        patrimoine: this.applyForm.value.patrimoine
-          ? this.applyForm.value.patrimoine.replace(/\s+/g, '')
-          : '',
-        otherFinancing: this.applyForm.value.otherFinancing
-          ? this.applyForm.value.otherFinancing.replace(/\s+/g, '')
-          : '',
         age: this.applyForm.value.age,
         ageCo: this.applyForm.value.ageCo,
         durer: this.applyForm.value.durer,
         revenueCumule: revenueCumule,
+        prixVehicule: this.prixVehicule,
       };
 
-      const formDataJson = JSON.stringify(formImmobilierData);
+      const formDataJson = JSON.stringify(formislamiqueData);
 
-      localStorage.setItem('formImmobilierData', formDataJson);
+      localStorage.setItem('formislamiqueData', formDataJson);
 
       console.log(
         'Formulaire soumis avec les valeurs suivantes:',
-        formImmobilierData
+        formislamiqueData
       );
       this.router.navigate(['/simulation/result']);
     } else {
