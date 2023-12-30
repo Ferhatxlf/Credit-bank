@@ -11,6 +11,6 @@ export class ConsomationComponent {
   consomationType(typeName): void {
     // Enregistrez la variable dans localStorage
     localStorage.setItem('consomationType', typeName);
-    this.router.navigate(['/simulation/form']);
+    this.router.navigate(['/simulation/formConsomation']);
   }
 }
