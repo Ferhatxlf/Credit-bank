@@ -1,3 +1,5 @@
+/* translate.animation.css */
+
 @keyframes translate {
   from {
     transform: translateX(200px);
