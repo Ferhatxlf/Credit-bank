@@ -29,7 +29,10 @@
     <div class="container-text" (click)="dossierSelected()">
       <span class="material-icons sidebar-icons"> arrow_forward_ios </span>
 
-      <span class="sidebar-text" [ngClass]="{ 'special-class': dselected }"
+      <span
+        class="sidebar-text"
+        [ngClass]="{ 'special-class': dselected }"
+        [routerLink]="['/courtier/mes-dossier']"
         >Mes dossier</span
       >
     </div>
