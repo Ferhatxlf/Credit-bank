@@ -16,7 +16,8 @@ export class ResultComponent implements OnInit {
   revenue: string = '';
   prixVehicule: number = 0;
   consomation: boolean = false;
-  eligible: boolean = false; // Variable pour vérifier l'éligibilité
+  eligible: boolean = false;
+  islamique: boolean = false;
 
   ngOnInit(): void {
     const type = localStorage.getItem('financementType');
@@ -60,7 +61,7 @@ export class ResultComponent implements OnInit {
         this.verifierEligibiliteConsomation();
       }
     } else if (type === 'islamique') {
-      this.consomation = true;
+      this.islamique = true;
       if (formislamiqueData) {
         // Convertissez la chaîne JSON en objet JavaScript
         const formData = JSON.parse(formislamiqueData);
