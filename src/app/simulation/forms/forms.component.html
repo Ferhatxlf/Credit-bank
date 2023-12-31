@@ -247,18 +247,18 @@
         padding: 15px;
       "
     >
-      <p class="questions">Avez-vous un patrimoine immobilier ?</p>
+      <p class="questions">Avez-vous un revenue immobilier ?</p>
       <div class="suppositions-container">
         <span
           class="supposition"
-          (click)="setPatrimoine(true)"
-          [class.selected]="patrimoine"
+          (click)="setRevenueImmobilier(true)"
+          [class.selected]="revenueImmobilier"
           >Oui</span
         >
         <span
           class="supposition"
-          (click)="setPatrimoine(false)"
-          [class.selected]="!patrimoine"
+          (click)="setRevenueImmobilier(false)"
+          [class.selected]="!revenueImmobilier"
           >Non</span
         >
       </div>
@@ -266,23 +266,71 @@
         <input
           [ngClass]="{
             errForm:
-              patrimoine &&
-              ((applyForm.get('patrimoine')?.touched &&
-                !applyForm.get('patrimoine')?.dirty) ||
-                (applyForm.get('patrimoine')?.invalid &&
-                  applyForm.get('patrimoine')?.dirty) ||
-                (submitted && applyForm.get('patrimoine')?.invalid)),
+              revenueImmobilier &&
+              ((applyForm.get('revenueImmobilier')?.touched &&
+                !applyForm.get('revenueImmobilier')?.dirty) ||
+                (applyForm.get('revenueImmobilier')?.invalid &&
+                  applyForm.get('revenueImmobilier')?.dirty) ||
+                (submitted && applyForm.get('revenueImmobilier')?.invalid)),
             'with-icon':
-              applyForm.get('patrimoine')?.dirty &&
-              !applyForm.get('patrimoine')?.invalid
+              applyForm.get('revenueImmobilier')?.dirty &&
+              !applyForm.get('revenueImmobilier')?.invalid
           }"
           type="text"
           class="form-control"
           id="floatingInputGrid"
           placeholder="Mentionnez ce montant *"
-          formControlName="patrimoine"
-          [disabled]="!patrimoine"
+          formControlName="revenueImmobilier"
+          [disabled]="!revenueImmobilier"
           appFormatInput
+        />
+      </div>
+    </div>
+    <div
+      class="input-container"
+      style="
+        border: 0.6px solid rgba(0, 0, 0, 0.164);
+        border-radius: 15px;
+        padding: 15px;
+      "
+    >
+      <p class="questions">Autre revenue ?</p>
+      <div class="suppositions-container">
+        <span
+          class="supposition"
+          (click)="setOtherRevenue(true)"
+          [class.selected]="otherRevenue"
+          >Oui</span
+        >
+        <span
+          class="supposition"
+          (click)="setOtherRevenue(false)"
+          [class.selected]="!otherRevenue"
+          >Non</span
+        >
+      </div>
+      <div class="form-group">
+        <input
+          [ngClass]="{
+            errForm:
+              otherFinancing &&
+              ((applyForm.get('otherRevenue')?.touched &&
+                !applyForm.get('otherRevenue')?.dirty) ||
+                (applyForm.get('otherRevenue')?.invalid &&
+                  applyForm.get('otherRevenue')?.dirty) ||
+                (submitted && applyForm.get('otherRevenue')?.invalid)),
+            'with-icon':
+              applyForm.get('otherRevenue')?.dirty &&
+              !applyForm.get('otherRevenue')?.invalid
+          }"
+          type="text"
+          class="form-control"
+          id="floatingInputGrid"
+          placeholder="Mentionnez ce montant *"
+          formControlName="otherRevenue"
+          [disabled]="!otherRevenue"
+          appFormatInput
+          required
         />
       </div>
     </div>
