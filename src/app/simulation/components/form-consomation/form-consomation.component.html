@@ -10,38 +10,72 @@
         padding: 15px;
       "
     >
-      <div class="form-group">
+      <div class="form-group" *ngIf="!vehicule">
         <input
           [ngClass]="{
             errForm:
-              (applyForm.get('habitation')?.touched &&
-                !applyForm.get('habitation')?.dirty) ||
-              (applyForm.get('habitation')?.invalid &&
-                applyForm.get('habitation')?.dirty) ||
-              (submitted && applyForm.get('habitation')?.invalid),
+              (applyForm.get('consommation')?.touched &&
+                !applyForm.get('consommation')?.dirty) ||
+              (applyForm.get('consommation')?.invalid &&
+                applyForm.get('consommation')?.dirty) ||
+              (submitted && applyForm.get('consommation')?.invalid),
             'with-icon':
-              applyForm.get('habitation')?.dirty &&
-              !applyForm.get('habitation')?.invalid
+              applyForm.get('consommation')?.dirty &&
+              !applyForm.get('consommation')?.invalid
           }"
           type="text"
           class="form-control with-icon"
           id="floatingInputGrid"
-          placeholder="Montant de l'habitation *"
-          formControlName="habitation"
+          placeholder="Montant de crédit *"
+          formControlName="consommation"
           appFormatInput
           required
         />
         <p
           class="err-msg"
           *ngIf="
-            (applyForm.get('habitation')?.touched &&
-              !applyForm.get('habitation')?.dirty) ||
-            (applyForm.get('habitation')?.invalid &&
-              applyForm.get('habitation')?.dirty) ||
-            (submitted && applyForm.get('habitation')?.invalid)
+            (applyForm.get('consommation')?.touched &&
+              !applyForm.get('consommation')?.dirty) ||
+            (applyForm.get('consommation')?.invalid &&
+              applyForm.get('consommation')?.dirty) ||
+            (submitted && applyForm.get('consommation')?.invalid)
           "
         >
-          Champs obligatoire et le montant ne dépasse pas 12 000 000 DZD
+          Champs obligatoire et le montant entre 500 000 DZD et 3 500 000 DZD
+        </p>
+      </div>
+      <div class="form-group" *ngIf="vehicule">
+        <input
+          [ngClass]="{
+            errForm:
+              (applyForm.get('consommation')?.touched &&
+                !applyForm.get('consommation')?.dirty) ||
+              (applyForm.get('consommation')?.invalid &&
+                applyForm.get('consommation')?.dirty) ||
+              (submitted && applyForm.get('consommation')?.invalid),
+            'with-icon':
+              applyForm.get('consommation')?.dirty &&
+              !applyForm.get('consommation')?.invalid
+          }"
+          type="text"
+          class="form-control with-icon"
+          id="floatingInputGrid"
+          placeholder="Montant de véhicule *"
+          formControlName="consommation"
+          appFormatInput
+          required
+        />
+        <p
+          class="err-msg"
+          *ngIf="
+            (applyForm.get('consommation')?.touched &&
+              !applyForm.get('consommation')?.dirty) ||
+            (applyForm.get('consommation')?.invalid &&
+              applyForm.get('consommation')?.dirty) ||
+            (submitted && applyForm.get('consommation')?.invalid)
+          "
+        >
+          Champs obligatoire et le montant entre 500 000 DZD et 3 500 000 DZD
         </p>
       </div>
       <div class="form-group">
@@ -102,7 +136,7 @@
             (submitted && applyForm.get('age')?.invalid)
           "
         >
-          Champs obligatoire entre 18ans et 75ans
+          Champs obligatoire entre 19ans et 70ans
         </p>
       </div>
       <div class="form-group">
@@ -126,6 +160,7 @@
           appFormatInput
           required
         />
+
         <p
           class="err-msg"
           *ngIf="
@@ -136,8 +171,8 @@
             (submitted && applyForm.get('credit')?.invalid)
           "
         >
-          Ce champs est obligatoire est ne depasse pas 90% du financement de
-          l'habitation
+          Ce champs est obligatoire est ne depasse pas 70% du montant de
+          {{ vehicule ? "véhicule" : "crédit" }}
         </p>
       </div>
       <div class="form-group">
@@ -239,53 +274,7 @@
         />
       </div>
     </div>
-    <div
-      class="input-container"
-      style="
-        border: 0.6px solid rgba(0, 0, 0, 0.164);
-        border-radius: 15px;
-        padding: 15px;
-      "
-    >
-      <p class="questions">Avez-vous un patrimoine immobilier ?</p>
-      <div class="suppositions-container">
-        <span
-          class="supposition"
-          (click)="setPatrimoine(true)"
-          [class.selected]="patrimoine"
-          >Oui</span
-        >
-        <span
-          class="supposition"
-          (click)="setPatrimoine(false)"
-          [class.selected]="!patrimoine"
-          >Non</span
-        >
-      </div>
-      <div class="form-group">
-        <input
-          [ngClass]="{
-            errForm:
-              patrimoine &&
-              ((applyForm.get('patrimoine')?.touched &&
-                !applyForm.get('patrimoine')?.dirty) ||
-                (applyForm.get('patrimoine')?.invalid &&
-                  applyForm.get('patrimoine')?.dirty) ||
-                (submitted && applyForm.get('patrimoine')?.invalid)),
-            'with-icon':
-              applyForm.get('patrimoine')?.dirty &&
-              !applyForm.get('patrimoine')?.invalid
-          }"
-          type="text"
-          class="form-control"
-          id="floatingInputGrid"
-          placeholder="Mentionnez ce montant *"
-          formControlName="patrimoine"
-          [disabled]="!patrimoine"
-          appFormatInput
-        />
-      </div>
-    </div>
+
     <div
       class="input-container"
       style="

@@ -15,12 +15,14 @@
     <div class="container-text">
       <span class="material-icons sidebar-icons">{{
         url === "/simulation/immobilier" ||
+        url === "/simulation/consomation" ||
         url === "/simulation/form" ||
         url === "/simulation/result" ||
         url === "/simulation/notice" ||
         url === "/simulation/register" ||
         url === "/simulation/confirmation" ||
-        url === "/simulation/success"
+        url === "/simulation/success" ||
+        url === "/simulation/formConsomation"
           ? "check"
           : "arrow_forward_ios"
       }}</span>
@@ -30,13 +32,15 @@
           sidebarScal:
             url === '/simulation/type' ||
             url === '/simulation/immobilier' ||
+            url === '/simulation/consomation' ||
             url === '/simulation/form' ||
             url === '/simulation/result' ||
             url === '/simulation/notice' ||
             url === '/simulation/register' ||
             url === '/simulation/confirmation' ||
             url === '/simulation/upload' ||
-            url === '/simulation/success'
+            url === '/simulation/success' ||
+            url === '/simulation/formConsomation'
         }"
         >Type de financement</span
       >
@@ -49,7 +53,8 @@
           url === "/simulation/notice" ||
           url === "/simulation/register" ||
           url === "/simulation/confirmation" ||
-          url === "/simulation/success"
+          url === "/simulation/success" ||
+          url === "/simulation/formConsomation"
             ? "check"
             : "arrow_forward_ios"
         }}
@@ -59,13 +64,15 @@
         [ngClass]="{
           sidebarScal:
             url === '/simulation/immobilier' ||
+            url === '/simulation/consomation' ||
             url === '/simulation/form' ||
             url === '/simulation/result' ||
             url === '/simulation/notice' ||
             url === '/simulation/register' ||
             url === '/simulation/confirmation' ||
             url === '/simulation/upload' ||
-            url === '/simulation/success'
+            url === '/simulation/success' ||
+            url === '/simulation/formConsomation'
         }"
         >Projet à financer</span
       >
@@ -93,7 +100,8 @@
             url === '/simulation/register' ||
             url === '/simulation/confirmation' ||
             url === '/simulation/upload' ||
-            url === '/simulation/success'
+            url === '/simulation/success' ||
+            url === '/simulation/formConsomation'
         }"
         >Simuler votre credit</span
       >
@@ -206,6 +214,7 @@
         [ngClass]="{
           currentNav:
             url === '/simulation/immobilier' ||
+            url === '/simulation/consomation' ||
             url === '/simulation/type' ||
             url === '/simulation/form' ||
             url === '/simulation/result' ||
@@ -213,7 +222,8 @@
             url === '/simulation/register' ||
             url === '/simulation/confirmation' ||
             url === '/simulation/upload' ||
-            url === '/simulation/success'
+            url === '/simulation/success' ||
+            url === '/simulation/formConsomation'
         }"
       >
         Type de financement
@@ -224,13 +234,15 @@
         [ngClass]="{
           currentNav:
             url === '/simulation/immobilier' ||
+            url === '/simulation/consomation' ||
             url === '/simulation/form' ||
             url === '/simulation/result' ||
             url === '/simulation/notice' ||
             url === '/simulation/register' ||
             url === '/simulation/confirmation' ||
             url === '/simulation/upload' ||
-            url === '/simulation/success'
+            url === '/simulation/success' ||
+            url === '/simulation/formConsomation'
         }"
       >
         Projet à financer
@@ -246,7 +258,8 @@
             url === '/simulation/register' ||
             url === '/simulation/confirmation' ||
             url === '/simulation/upload' ||
-            url === '/simulation/success'
+            url === '/simulation/success' ||
+            url === '/simulation/formConsomation'
         }"
       >
         Simuler votre credit
@@ -365,7 +378,9 @@
           [checked]="
             url === '/simulation/type' ||
             url === '/simulation/immobilier' ||
-            url === '/simulation/form'
+            url === '/simulation/consomation' ||
+            url === '/simulation/form' ||
+            url === '/simulation/formConsomation'
           "
           disabled
         />

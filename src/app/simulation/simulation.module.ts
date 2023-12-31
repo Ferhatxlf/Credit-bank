@@ -22,6 +22,9 @@ import { SuccessComponent } from './components/success/success.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IslamiqueComponent } from './components/islamique/islamique.component';
 import { FormatInputDirective } from './forms/formatInput.directive';
+import { FormConsomationComponent } from './components/form-consomation/form-consomation.component';
+import { IslamiqueVehiculeComponent } from './components/islamique-vehicule/islamique-vehicule.component';
+import { IslamiqueFormComponent } from './components/islamique-form/islamique-form.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +42,9 @@ import { FormatInputDirective } from './forms/formatInput.directive';
     SuccessComponent,
     IslamiqueComponent,
     FormatInputDirective,
+    FormConsomationComponent,
+    IslamiqueVehiculeComponent,
+    IslamiqueFormComponent,
   ],
   imports: [
     CommonModule,

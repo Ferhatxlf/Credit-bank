@@ -16,6 +16,9 @@ import { UploadComponent } from './components/upload/upload.component';
 import { ConfirmationEmailComponent } from './components/confirmation-email/confirmation-email.component';
 import { SuccessComponent } from './components/success/success.component';
 import { IslamiqueComponent } from './components/islamique/islamique.component';
+import { FormConsomationComponent } from './components/form-consomation/form-consomation.component';
+import { IslamiqueVehiculeComponent } from './components/islamique-vehicule/islamique-vehicule.component';
+import { IslamiqueFormComponent } from './components/islamique-form/islamique-form.component';
 
 const simulationRoutes: Routes = [
   {
@@ -35,6 +38,9 @@ const simulationRoutes: Routes = [
       { path: 'confirmation', component: ConfirmationEmailComponent },
       { path: 'success', component: SuccessComponent },
       { path: 'islamique', component: IslamiqueComponent },
+      { path: 'formConsomation', component: FormConsomationComponent },
+      { path: 'islamique-vehicule', component: IslamiqueVehiculeComponent },
+      { path: 'islamique-form', component: IslamiqueFormComponent },
     ],
   },
 ];

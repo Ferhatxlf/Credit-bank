@@ -9,18 +9,18 @@ import { Router } from '@angular/router';
 import { ValidatorFn } from '@angular/forms';
 
 @Component({
-  selector: 'app-forms',
-  templateUrl: './forms.component.html',
-  styleUrls: ['./forms.component.css'],
+  selector: 'app-form-consomation',
+  templateUrl: './form-consomation.component.html',
+  styleUrls: ['./form-consomation.component.css'],
 })
-export class FormsComponent implements OnInit {
+export class FormConsomationComponent implements OnInit {
   patrimoine: boolean = false;
   coBorrower: boolean = false;
   otherFinancing: boolean = false;
   depot: boolean = false;
-  dureeMax1: number = 30;
-  dureeMax2: number = 30;
-
+  dureeMax1: number = 5;
+  dureeMax2: number = 5;
+  vehicule: boolean = false;
   applyForm: FormGroup;
 
   ngOnInit(): void {
@@ -28,31 +28,37 @@ export class FormsComponent implements OnInit {
     this.setCoBorrower(false);
     this.setPatrimoine(false);
     this.applyForm.get('age')?.valueChanges.subscribe((age: number) => {
-      if (isNaN(age) || age > 45) {
-        this.dureeMax1 = 75 - Number(age);
+      if (isNaN(age) || age > 65) {
+        this.dureeMax1 = 70 - Number(age);
 
         // Déclenchez manuellement la validation de la durée
         this.applyForm.get('durer')?.updateValueAndValidity();
-      } else if (isNaN(age) || age < 45) {
-        this.dureeMax1 = 30;
+      } else if (isNaN(age) || age < 65) {
+        this.dureeMax1 = 5;
 
         // Déclenchez manuellement la validation de la durée
         this.applyForm.get('durer')?.updateValueAndValidity();
       }
     });
     this.applyForm.get('ageCo')?.valueChanges.subscribe((age: number) => {
-      if (isNaN(age) || age > 45) {
-        this.dureeMax2 = 75 - Number(age);
+      if (isNaN(age) || age > 65) {
+        this.dureeMax2 = 70 - Number(age);
 
         // Déclenchez manuellement la validation de la durée
         this.applyForm.get('durer')?.updateValueAndValidity();
-      } else if (isNaN(age) || age < 45) {
-        this.dureeMax2 = 30;
+      } else if (isNaN(age) || age < 65) {
+        this.dureeMax2 = 5;
 
         // Déclenchez manuellement la validation de la durée
         this.applyForm.get('durer')?.updateValueAndValidity();
       }
     });
+    const Consomationtype = localStorage.getItem('consomationType');
+    if (Consomationtype) {
+      if (Consomationtype === 'véhicule a usage touristique') {
+        this.vehicule = true;
+      }
+    }
   }
   get dureeMax(): number {
     return Math.min(this.dureeMax1, this.dureeMax2);
@@ -60,9 +66,9 @@ export class FormsComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private router: Router) {
     this.applyForm = this.fb.group({
-      habitation: [
+      consommation: [
         '',
-        [Validators.required, this.habitationValidatorFactory()],
+        [Validators.required, this.consomationValidatorFactory()],
       ],
       revenue: ['', Validators.required],
       age: ['', [Validators.required, this.ageValidator]],
@@ -78,25 +84,26 @@ export class FormsComponent implements OnInit {
   ageValidator(control: AbstractControl): { [key: string]: boolean } | null {
     const age = Number(control.value);
 
-    if (isNaN(age) || age < 18 || age > 75) {
+    if (isNaN(age) || age < 19 || age > 70) {
       return { invalidAge: true };
     }
 
     return null; // La validation a réussi
   }
 
+  // validation pour la duree a 5ans
   durerValidatorFactory(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: boolean } | null => {
       const durer = Number(control.value);
       const age = Number(this.applyForm?.get('age')?.value);
       const ageCo = Number(this.applyForm?.get('ageCo')?.value);
 
-      if (isNaN(durer) || durer < 0 || durer > 30) {
+      if (isNaN(durer) || durer < 0 || durer > 5) {
         return { invalidDurer: true };
       }
 
       // Vérifier si l'âge et la durée dépassent 75 ans
-      if (age + durer > 75 || ageCo + durer > 75) {
+      if (age + durer > 70 || ageCo + durer > 70) {
         return { ageDurerExceeds75: true };
       }
 
@@ -107,26 +114,26 @@ export class FormsComponent implements OnInit {
   creditValidatorFactory(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: boolean } | null => {
       const credit = control.value.replace(/\s+/g, '');
-      const habitation = this.applyForm
-        ?.get('habitation')
+      const consommation = this.applyForm
+        ?.get('consommation')
         ?.value.replace(/\s+/g, '');
-      console.log(credit, habitation);
+
       // Vérifier si le crédit dépasse 90% du montant de l'habitation
-      if (credit > 0.9 * habitation) {
+      if (credit > 0.7 * consommation) {
         return { invalidCredit: true };
       }
 
       return null; // La validation a réussi
     };
   }
-  // interdiction de depasser 12000000
-  habitationValidatorFactory(): ValidatorFn {
+  // validation pour consomation
+  consomationValidatorFactory(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: boolean } | null => {
-      const habitation = control.value.replace(/\s+/g, '');
+      const consomation = control.value.replace(/\s+/g, '');
 
       // Vérifier si le crédit dépasse 90% du montant de l'habitation
-      if (habitation > 12000000) {
-        return { invalidHabitation: true };
+      if (consomation < 500000 || consomation > 3500000) {
+        return { invalidConsomation: true };
       }
 
       return null; // La validation a réussi
@@ -180,9 +187,9 @@ export class FormsComponent implements OnInit {
       let revenueCumule = revenueCo
         ? Number(revenue) + Number(revenueCo)
         : Number(revenue);
-      const formImmobilierData = {
-        habitation: this.applyForm.value.habitation
-          ? this.applyForm.value.habitation.replace(/\s+/g, '')
+      const formConsomationData = {
+        consommation: this.applyForm.value.consommation
+          ? this.applyForm.value.consommation.replace(/\s+/g, '')
           : '',
         credit: this.applyForm.value.credit
           ? this.applyForm.value.credit.replace(/\s+/g, '')
@@ -205,13 +212,13 @@ export class FormsComponent implements OnInit {
         revenueCumule: revenueCumule,
       };
 
-      const formDataJson = JSON.stringify(formImmobilierData);
+      const formDataJson = JSON.stringify(formConsomationData);
 
-      localStorage.setItem('formImmobilierData', formDataJson);
+      localStorage.setItem('formConsomationData', formDataJson);
 
       console.log(
         'Formulaire soumis avec les valeurs suivantes:',
-        formImmobilierData
+        formConsomationData
       );
       this.router.navigate(['/simulation/result']);
     } else {
