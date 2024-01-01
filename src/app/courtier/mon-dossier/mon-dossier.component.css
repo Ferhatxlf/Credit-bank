@@ -10,7 +10,6 @@
 }
 .title {
   margin-top: 15px;
-
   color: #666565;
   font-size: 1.8em;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
@@ -26,7 +25,7 @@
 }
 .logo-containerr {
   height: 50px;
-  margin: 20px auto;
+  margin: 10px auto;
   width: 96%;
   display: flex;
   justify-content: flex-start;
