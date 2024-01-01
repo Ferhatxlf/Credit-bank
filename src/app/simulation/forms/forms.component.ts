@@ -14,9 +14,11 @@ import { ValidatorFn } from '@angular/forms';
   styleUrls: ['./forms.component.css'],
 })
 export class FormsComponent implements OnInit {
-  patrimoine: boolean = false;
+  revenueImmobilier: boolean = false;
   coBorrower: boolean = false;
+  otherRevenue: boolean = false;
   otherFinancing: boolean = false;
+
   depot: boolean = false;
   dureeMax1: number = 30;
   dureeMax2: number = 30;
@@ -26,7 +28,8 @@ export class FormsComponent implements OnInit {
   ngOnInit(): void {
     this.setOtherFinancing(false);
     this.setCoBorrower(false);
-    this.setPatrimoine(false);
+    this.setRevenueImmobilier(false);
+    this.setOtherRevenue(false);
     this.applyForm.get('age')?.valueChanges.subscribe((age: number) => {
       if (isNaN(age) || age > 45) {
         this.dureeMax1 = 75 - Number(age);
@@ -70,7 +73,8 @@ export class FormsComponent implements OnInit {
       durer: ['', [Validators.required, this.durerValidatorFactory()]],
       revenueCo: ['', Validators.required],
       ageCo: ['', [Validators.required, this.ageValidator]],
-      patrimoine: ['', Validators.required],
+      revenueImmobilier: ['', Validators.required],
+      otherRevenue: ['', Validators.required],
       otherFinancing: ['', Validators.required],
     });
   }
@@ -132,13 +136,13 @@ export class FormsComponent implements OnInit {
       return null; // La validation a réussi
     };
   }
-  setPatrimoine(value: boolean) {
-    this.patrimoine = value;
+  setRevenueImmobilier(value: boolean) {
+    this.revenueImmobilier = value;
     if (!value) {
-      this.applyForm.get('patrimoine')?.reset();
-      this.applyForm.get('patrimoine')?.disable();
+      this.applyForm.get('revenueImmobilier')?.reset();
+      this.applyForm.get('revenueImmobilier')?.disable();
     } else {
-      this.applyForm.get('patrimoine')?.enable();
+      this.applyForm.get('revenueImmobilier')?.enable();
     }
   }
 
@@ -152,6 +156,15 @@ export class FormsComponent implements OnInit {
     } else {
       this.applyForm.get('revenueCo')?.enable();
       this.applyForm.get('ageCo')?.enable();
+    }
+  }
+  setOtherRevenue(value: boolean) {
+    this.otherRevenue = value;
+    if (!value) {
+      this.applyForm.get('otherRevenue')?.reset();
+      this.applyForm.get('otherRevenue')?.disable();
+    } else {
+      this.applyForm.get('otherRevenue')?.enable();
     }
   }
   setOtherFinancing(value: boolean) {
@@ -173,13 +186,22 @@ export class FormsComponent implements OnInit {
     if (this.applyForm.valid) {
       let revenue = this.applyForm.value.revenue
         ? this.applyForm.value.revenue.replace(/\s+/g, '')
-        : '';
+        : '0';
       let revenueCo = this.applyForm.value.revenueCo
         ? this.applyForm.value.revenueCo.replace(/\s+/g, '')
-        : '';
-      let revenueCumule = revenueCo
-        ? Number(revenue) + Number(revenueCo)
-        : Number(revenue);
+        : '0';
+      let OtherRevenue = this.applyForm.value.otherRevenue
+        ? this.applyForm.value.otherRevenue.replace(/\s+/g, '')
+        : '0';
+      let revenueImmobilier = this.applyForm.value.revenueImmobilier
+        ? this.applyForm.value.revenueImmobilier.replace(/\s+/g, '')
+        : '0';
+      let revenueCumule =
+        Number(revenue) +
+        Number(revenueCo) +
+        Number(OtherRevenue) +
+        Number(revenueImmobilier);
+
       const formImmobilierData = {
         habitation: this.applyForm.value.habitation
           ? this.applyForm.value.habitation.replace(/\s+/g, '')
@@ -193,8 +215,8 @@ export class FormsComponent implements OnInit {
         revenueCo: this.applyForm.value.revenueCo
           ? this.applyForm.value.revenueCo.replace(/\s+/g, '')
           : '',
-        patrimoine: this.applyForm.value.patrimoine
-          ? this.applyForm.value.patrimoine.replace(/\s+/g, '')
+        revenueImmobilier: this.applyForm.value.revenueImmobilier
+          ? this.applyForm.value.revenueImmobilier.replace(/\s+/g, '')
           : '',
         otherFinancing: this.applyForm.value.otherFinancing
           ? this.applyForm.value.otherFinancing.replace(/\s+/g, '')
@@ -204,7 +226,7 @@ export class FormsComponent implements OnInit {
         durer: this.applyForm.value.durer,
         revenueCumule: revenueCumule,
       };
-
+      console.log('revenue cumulé ', revenueCumule);
       const formDataJson = JSON.stringify(formImmobilierData);
 
       localStorage.setItem('formImmobilierData', formDataJson);
