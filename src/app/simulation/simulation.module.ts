@@ -25,6 +25,12 @@ import { FormatInputDirective } from './forms/formatInput.directive';
 import { FormConsomationComponent } from './components/form-consomation/form-consomation.component';
 import { IslamiqueVehiculeComponent } from './components/islamique-vehicule/islamique-vehicule.component';
 import { IslamiqueFormComponent } from './components/islamique-form/islamique-form.component';
+import {
+  FormatInputCallNumber,
+  FormatInputName,
+  FormatInputNin,
+  FormatInputPostal,
+} from './register/formatInput.directive';
 
 @NgModule({
   declarations: [
@@ -42,6 +48,10 @@ import { IslamiqueFormComponent } from './components/islamique-form/islamique-fo
     SuccessComponent,
     IslamiqueComponent,
     FormatInputDirective,
+    FormatInputCallNumber,
+    FormatInputNin,
+    FormatInputPostal,
+    FormatInputName,
     FormConsomationComponent,
     IslamiqueVehiculeComponent,
     IslamiqueFormComponent,

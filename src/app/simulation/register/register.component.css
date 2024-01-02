@@ -14,7 +14,7 @@
 }
 
 .container {
-  width: 80%;
+  width: 85%;
   padding: 1%;
   margin: 0 auto;
   max-height: 90%;
@@ -75,19 +75,90 @@ label {
   margin-top: 1%;
   width: 100%;
 }
-.condition {
-  color: #722182;
-  font-size: 1.2vw;
-  cursor: pointer;
-  margin-left: 1%;
+.question-container {
+  width: 100%;
+  margin-top: 5%;
+  display: flex;
+  flex-direction: column;
+  transition: 0.3s ease;
+}
+.suppositions-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.supposition {
+  border: 1px solid rgba(0, 0, 0, 0.226);
+  border-radius: 12px;
+  padding: 6px;
+  width: 42%;
+  color: rgb(145, 142, 142);
+}
+
+.question {
+  font-size: small;
   font-weight: 600;
 }
+span {
+  cursor: pointer;
+  border-radius: 12px;
+  padding: 10px;
+  transition: 0.6s ease;
+}
+span:hover {
+  transform: scale(1.03);
+}
+.selected {
+  border-color: rgba(114, 33, 130, 1);
+  color: rgba(114, 33, 130, 1);
+}
+.notice {
+  border: 0.6px solid rgba(255, 0, 0, 0.596);
+  background-color: rgba(255, 0, 0, 0.075);
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 2%;
+  text-align: justify;
+}
+.text-notice {
+  font-size: small;
+  font-weight: 600;
+  color: rgb(214, 3, 3);
+}
+.terms {
+  width: 60%;
+  margin: 0 auto;
+  font-size: small;
+  font-weight: 400;
+  text-align: center;
+}
+.condition {
+  color: #722182;
+  font-size: small;
+  cursor: pointer;
+  font-weight: 600;
+}
+
 .button-container {
   width: 70%;
   margin: 4% auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.errForm {
+  border: 0.6px solid red;
+  color: red;
+}
+.errForm::placeholder {
+  color: red;
+}
+.err-msg {
+  color: red;
+  font-size: small;
+  font-weight: 600;
 }
 .btn {
   width: 100%;
@@ -105,3 +176,90 @@ label {
   margin-top: 2%;
   font-size: large;
 }
+
+/* pour la connexion */
+.body-container {
+  width: 100%;
+  height: 67%;
+  margin: auto;
+  border-radius: 15px;
+}
+.connexion-title {
+  text-align: center;
+  color: rgb(110, 112, 112);
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  font-size: 40px;
+  font-weight: bolder;
+  margin-bottom: 1%;
+  letter-spacing: 1px;
+}
+.body-container p {
+  text-align: center !important;
+  text-shadow: 0 0 2px #74248494;
+  letter-spacing: 1px;
+  width: 100%;
+}
+.body-container input {
+  border-radius: 12px;
+  padding: 10px;
+  box-shadow: 0 0 5px 1px rgba(126, 125, 125, 0.24);
+}
+.forgot-password-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  text-align: end;
+  justify-content: end;
+}
+
+.forgot-password {
+  width: 35%;
+  text-align: end;
+  color: #742484;
+  font-weight: 400;
+  cursor: pointer;
+  font-size: small;
+}
+.connexion-button-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.connexion-button-container button {
+  width: 50%;
+  background-color: #722182;
+  box-shadow: 0px -12px 16px 8px rgba(0, 0, 0, 0.25) inset;
+  color: white;
+  border-radius: 20px;
+  margin-top: 2%;
+  font-size: large;
+}
+.connexion-button-container button:hover {
+  box-shadow: 0px -12px 16px 8px rgba(0, 0, 0, 0.158) inset;
+  background-color: #642072;
+}
+.inscription-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+.inscription {
+  width: 35%;
+  text-align: center;
+  color: #742484;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: small;
+}
+.inscription:hover {
+  transform: none;
+  text-decoration: underline;
+}
+/* fin connexion */

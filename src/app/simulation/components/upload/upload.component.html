@@ -1,24 +1,93 @@
-<div class="header d-flex justify-content-center translate mb-5">
-  <div class="title">Importez vos fichiers PDF</div>
-  <span class="subtitle">
-    Il ne vous reste qu'une étape ! Soumettez vos documents en format PDF pour
-    finaliser le processus et accéder à tous les avantages de votre compte
-  </span>
+<!-- upload.component.html -->
+<!-- notice.component.html -->
+
+<div class="notice-container translate" *ngIf="!toggleNoticeUploader">
+  <h2>Préparation de vos documents</h2>
+  <p>
+    Préparez vos documents PDF nécessaires pour finaliser votre dossier.
+    <br />
+    <strong style="color: black"> Pièce d'identité</strong> /
+    <strong style="color: black"> Première fiche de paie</strong> /
+    <strong style="color: black"> Deuxième fiche de paie</strong> / <br />
+    <strong style="color: black"> Troisième fiche de paie</strong> /
+    <strong style="color: black"> Fichier de résidence</strong>
+  </p>
+
+  <p>
+    Vous pouvez les importer ultérieurement, mais dans ce cas, un délai est
+    accordé.
+  </p>
+  <p>Si vous dépassez le délai, votre compte sera supprimé automatiquement.</p>
+
+  <div class="button-container">
+    <button class="btn1">Télécharger Ultérieurement</button>
+    <button class="btn btn2" (click)="setToggleNoticeUploader()">
+      Continuer
+    </button>
+  </div>
 </div>
-<div class="file">
-  <span>1- Pièce d'identité</span>
-  <div class="input-group p-3">
-    <input type="file" class="form-control" id="inputGroupFile01" />
+
+<div class="container translate" *ngIf="toggleNoticeUploader">
+  <div class="header">
+    <div class="title">Importez vos fichiers PDF</div>
+    <div class="subtitle">
+      Il ne vous reste qu'une étape ! Soumettez vos documents en format PDF pour
+      finaliser le processus et accéder à tous les avantages de votre compte
+    </div>
   </div>
-  <span>2- Fiche de paie</span>
-  <div class="input-group p-3">
-    <input type="file" class="form-control" id="inputGroupFile01" />
+
+  <div class="file-upload-section">
+    <div class="fileTypeContainer" *ngIf="isButtonDisabled()">
+      <span class="fileTypeText"
+        >Suivez la liste ci-dessous et téléchargez vos documents en fonction du
+        fichier indiqué</span
+      >
+      <div class="fileType">
+        <span class="material-icons file-icon">topic</span>
+        {{ currentFileType }}
+      </div>
+    </div>
+
+    <div class="wrapper">
+      <form
+        (click)="openFileInput()"
+        [class.hidden]="isButtonDisabled() === false"
+      >
+        <input
+          #fileInput
+          class="file-input"
+          type="file"
+          name="file"
+          hidden
+          (change)="onFileSelected($event)"
+        />
+        <i class="material-icons upload-icon" (click)="openFileInput()"
+          >cloud_upload</i
+        >
+        <p>Parcourir pour téléverser</p>
+      </form>
+
+      <div class="selected-files">
+        <ul class="file-list">
+          <li
+            *ngFor="let file of files"
+            style="display: flex; flex-direction: row; align-items: center"
+          >
+            <span class="material-icons selected-file-icon">check_circle</span>
+            <span> {{ file?.name }} </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="btn-container">
+      <button
+        class="btn"
+        (click)="sendAllFiles()"
+        [disabled]="isButtonDisabled()"
+      >
+        Envoyer
+      </button>
+    </div>
   </div>
-  <span>3- L'acte de propriété ou la décision d'affectation</span>
-  <div class="input-group p-3">
-    <input type="file" class="form-control" id="inputGroupFile01" />
-  </div>
-</div>
-<div class="btn-container">
-  <button class="btn" [routerLink]="['/simulation/success']">Envoyez</button>
 </div>
