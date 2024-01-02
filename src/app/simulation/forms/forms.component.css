@@ -104,7 +104,7 @@ span:hover {
   border: 0.6px solid red;
 }
 .errForm::placeholder {
-  color: red;
+  color: red !important;
 }
 .err-msg {
   color: red;

@@ -1,127 +1,345 @@
-<div class="container translate">
+<div class="container translate" *ngIf="toggleRegisterLogin">
   <div class="header d-flex justify-content-center w-100">
     <div class="title">Inscription</div>
   </div>
-  <div class="forms">
-    <div class="input-container">
-      <div class="form-group">
-        <select class="form-select" aria-label="Default select example">
-          <option selected>Cévilité</option>
-          <option value="1">Madame</option>
-          <option value="2">Monsieur</option>
-        </select>
-      </div>
+  <form [formGroup]="applyForm" (ngSubmit)="submitForm()">
+    <div
+      style="
+        border: 0.6px solid rgba(0, 0, 0, 0.164);
+        border-radius: 15px;
+        padding: 15px;
+      "
+    >
+      <div class="input-container mt-1">
+        <div class="form-group">
+          <select
+            class="form-select"
+            formControlName="civility"
+            [(ngModel)]="defaultCivility"
+            [ngClass]="{
+    errForm:
+      (applyForm.get('civility')?.touched &&
+        !applyForm.get('civility')?.dirty) ||
+      (applyForm.get('civility')?.invalid &&
+        applyForm.get('civility')?.dirty) ||
+      (submitted && applyForm.get('civility')?.invalid),
+  }"
+          >
+            <option
+              [value]="'default'"
+              [disabled]="true"
+              [selected]="defaultCivility === 'default'"
+            >
+              Civilité
+            </option>
+            <option value="1">Madame</option>
+            <option value="2">Monsieur</option>
+          </select>
+        </div>
 
-      <div class="form-group" style="margin-left: 8px">
-        <input type="text" class="form-control" placeholder="Nom *" required />
+        <div class="form-group" style="margin-left: 8px">
+          <input
+            [ngClass]="{
+            errForm:
+              (applyForm.get('name')?.touched &&
+                !applyForm.get('name')?.dirty) ||
+              (applyForm.get('name')?.invalid &&
+                applyForm.get('name')?.dirty) ||
+              (submitted && applyForm.get('name')?.invalid),
+          
+          }"
+            type="text"
+            class="form-control"
+            placeholder="Nom *"
+            formControlName="name"
+            appFormatInputName
+          />
+        </div>
+        <div class="form-group" style="margin-left: 8px">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Prénom *"
+            formControlName="firstName"
+            appFormatInputName
+            [ngClass]="{
+            errForm:
+              (applyForm.get('firstName')?.touched &&
+                !applyForm.get('firstName')?.dirty) ||
+              (applyForm.get('firstName')?.invalid &&
+                applyForm.get('firstName')?.dirty) ||
+              (submitted && applyForm.get('firstName')?.invalid),
+          
+          }"
+          />
+        </div>
       </div>
-      <div class="form-group" style="margin-left: 8px">
+      <div class="form-group mt-1">
         <input
-          type="text"
+          type="email"
           class="form-control"
-          placeholder="Prénom *"
-          required
+          placeholder="Adresse email *"
+          formControlName="email"
+          [ngClass]="{
+            errForm:
+              (applyForm.get('email')?.touched &&
+                !applyForm.get('email')?.dirty) ||
+              (applyForm.get('email')?.invalid &&
+                applyForm.get('email')?.dirty) ||
+              (submitted && applyForm.get('email')?.invalid),
+          
+          }"
         />
       </div>
-    </div>
-    <div class="form-group">
-      <input
-        type="email"
-        class="form-control"
-        placeholder="Adresse email *"
-        required
-      />
-    </div>
-    <div class="input-container">
-      <div class="form-group">
-        <input
-          type="number"
-          class="form-control"
-          placeholder="Numéro de téléphone *"
-          required
-        />
-      </div>
+      <div class="input-container mt-2">
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Numéro de téléphone *"
+            formControlName="callNumber"
+            appFormatInputCallNumber
+            [ngClass]="{
+            errForm:
+              (applyForm.get('callNumber')?.touched &&
+                !applyForm.get('callNumber')?.dirty) ||
+              (applyForm.get('callNumber')?.invalid &&
+                applyForm.get('callNumber')?.dirty) ||
+              (submitted && applyForm.get('callNumber')?.invalid),
+          
+          }"
+          />
+        </div>
 
-      <div class="form-group" style="margin-left: 8px">
-        <select class="form-select" aria-label="Default select example">
-          <option selected>Etat civil</option>
-          <option value="1">Marié(e)</option>
-          <option value="2">Célébataire</option>
-          <option value="1">Dévorcé(e)</option>
-          <option value="2">Veuf(ve)</option>
-        </select>
+        <div class="form-group" style="margin-left: 8px">
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            [(ngModel)]="defaultMaritalStatus"
+            formControlName="maritalStatus"
+            [ngClass]="{
+            errForm:
+              (applyForm.get('maritalStatus')?.touched &&
+                !applyForm.get('maritalStatus')?.dirty) ||
+              (applyForm.get('maritalStatus')?.invalid &&
+                applyForm.get('maritalStatus')?.dirty) ||
+              (submitted && applyForm.get('maritalStatus')?.invalid),
+          
+          }"
+          >
+            <option
+              [value]="'default'"
+              [disabled]="true"
+              [selected]="defaultMaritalStatus === 'default'"
+            >
+              Etat civil
+            </option>
+            <option value="1">Marié(e)</option>
+            <option value="2">Célébataire</option>
+            <option value="1">Dévorcé(e)</option>
+            <option value="2">Veuf(ve)</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group mt-1">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Vote numéro d'identification national (NIN) *"
+          formControlName="nin"
+          appFormatInputNin
+          [ngClass]="{
+            errForm:
+              (applyForm.get('nin')?.touched &&
+                !applyForm.get('nin')?.dirty) ||
+              (applyForm.get('nin')?.invalid &&
+                applyForm.get('nin')?.dirty) ||
+              (submitted && applyForm.get('nin')?.invalid),
+          
+          }"
+        />
+      </div>
+      <div class="input-container mt-2">
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Adresse  *"
+            formControlName="address"
+            [ngClass]="{
+            errForm:
+              (applyForm.get('address')?.touched &&
+                !applyForm.get('address')?.dirty) ||
+              (applyForm.get('address')?.invalid &&
+                applyForm.get('address')?.dirty) ||
+              (submitted && applyForm.get('address')?.invalid),
+          
+          }"
+          />
+        </div>
+        <div class="form-group" style="margin-left: 8px">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Ville *"
+            formControlName="city"
+            appFormatInputName
+            [ngClass]="{
+            errForm:
+              (applyForm.get('city')?.touched &&
+                !applyForm.get('city')?.dirty) ||
+              (applyForm.get('city')?.invalid &&
+                applyForm.get('city')?.dirty) ||
+              (submitted && applyForm.get('city')?.invalid),
+          
+          }"
+          />
+        </div>
+        <div class="form-group" style="margin-left: 8px">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Code postal *"
+            formControlName="postCode"
+            appFormatInputPostal
+            [ngClass]="{
+            errForm:
+              (applyForm.get('postCode')?.touched &&
+                !applyForm.get('postCode')?.dirty) ||
+              (applyForm.get('postCode')?.invalid &&
+                applyForm.get('postCode')?.dirty) ||
+              (submitted && applyForm.get('postCode')?.invalid),
+          
+          }"
+          />
+        </div>
       </div>
     </div>
-    <div class="form-group">
-      <input
-        type="text"
-        class="form-control"
-        placeholder="Nationalité *"
-        required
-      />
+
+    <div
+      class="question-container"
+      style="
+        border: 0.6px solid rgba(0, 0, 0, 0.164);
+        border-radius: 15px;
+        padding: 15px;
+      "
+    >
+      <p class="question">Résidez vous en Algérie ?</p>
+      <div class="suppositions-container">
+        <span
+          class="supposition"
+          (click)="setPays(true)"
+          [class.selected]="pays"
+          >Oui</span
+        >
+        <span
+          class="supposition"
+          (click)="setPays(false)"
+          [class.selected]="!pays"
+          >Non</span
+        >
+      </div>
+      <div class="notice" *ngIf="!pays">
+        <p class="text-notice">
+          Veuillez noter que notre banque n’est pas en mesure d’offrir des
+          services de crédit aux personnes non résidentes en Algérie.
+        </p>
+      </div>
     </div>
-    <div class="input-container">
+
+    <div
+      class="question-container"
+      style="
+        border: 0.6px solid rgba(0, 0, 0, 0.164);
+        border-radius: 15px;
+        padding: 15px;
+      "
+    >
+      <p class="question">Êtes-vous d'une nationnalité algérienne ?</p>
+      <div class="suppositions-container">
+        <span
+          class="supposition"
+          (click)="setNationnalite(true)"
+          [class.selected]="nationnalitee"
+          >Oui</span
+        >
+        <span
+          class="supposition"
+          (click)="setNationnalite(false)"
+          [class.selected]="!nationnalitee"
+          >Non</span
+        >
+      </div>
       <div class="form-group">
         <input
           type="text"
           class="form-control"
-          placeholder="Adresse  *"
-          required
+          id="floatingInputGrid"
+          placeholder="Votre nationnalité *"
+          formControlName="nationality"
+          appFormatInputName
+          [ngClass]="{
+            errForm:
+              (applyForm.get('nationality')?.touched &&
+                !applyForm.get('nationality')?.dirty) ||
+              (applyForm.get('nationality')?.invalid &&
+                applyForm.get('nationality')?.dirty) ||
+              (submitted && applyForm.get('nationality')?.invalid),
+          
+          }"
         />
       </div>
-      <div class="form-group" style="margin-left: 8px">
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Ville *"
-          required
-        />
-      </div>
-      <div class="form-group" style="margin-left: 8px">
-        <input
-          type="number"
-          class="form-control"
-          placeholder="Code postal *"
-          required
-        />
-      </div>
-    </div>
-    <div class="form-group">
-      <select class="form-select" aria-label="Default select example">
-        <option selected>Vous résidez en Algérie ?</option>
-        <option value="1">Oui</option>
-        <option value="2">Non</option>
-      </select>
-    </div>
-    <!-- <div class="form-group">
-      <input
-        type="number"
-        class="form-control"
-        placeholder="Votre âge *"
-        required
-      />
-    </div> -->
-    <div class="form-check form-switch mt-4">
-      <input
-        class="form-check-input mt-0 mr-1"
-        type="checkbox"
-        role="switch"
-        id="flexSwitchCheckDefault"
-        style="width: 8%"
-      />
-      <label class="form-check-label" for="flexSwitchCheckDefault"
-        >J'accépte</label
-      >
-      <span class="condition">les conditions générale d'utilisation</span>
     </div>
 
     <div class="button-container">
-      <button class="btn btn1" [routerLink]="['/auth']">
+      <button class="btn btn1" (click)="setToggleRegisterLogin()">
         J'ai déja un compte
       </button>
-      <button class="btn btn2" [routerLink]="['/simulation/confirmation']">
-        Inscription
-      </button>
+      <button class="btn btn2" type="submit" *ngIf="pays">S'inscrire</button>
+      <button class="btn btn2" *ngIf="!pays">Accueil</button>
+    </div>
+    <div class="terms" *ngIf="pays">
+      En cliquant sur "s'inscrire", vous acceptez
+      <span class="condition"> les conditions de service</span> et
+      <span class="condition"> la politique de confidentialité </span>.
+    </div>
+  </form>
+</div>
+<div class="container translate connexion w-50" *ngIf="!toggleRegisterLogin">
+  <div class="body-container">
+    <span class="connexion-title">Connexion</span>
+
+    <div class="mb-1 mt-5">
+      <input
+        type="email"
+        class="form-control mb-3"
+        id="email"
+        placeholder="Adresse email"
+      />
+    </div>
+    <div class="">
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        placeholder="Mot de passe"
+      />
+      <div class="forgot-password-container">
+        <span class="forgot-password"> Mot de passe oublié ?</span>
+      </div>
+    </div>
+    <div class="connexion-button-container mt-1 mb-1">
+      <button class="connexion-btn">Connexion</button>
+    </div>
+
+    <div
+      class="inscription-container mt-5"
+      style="font-size: small; width: 100%"
+    >
+      Vous êtes nouveau sur la plateform ?
+      <span class="inscription" (click)="setToggleRegisterLogin()"
+        >s'inscrire
+      </span>
     </div>
   </div>
 </div>

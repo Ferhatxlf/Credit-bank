@@ -25,19 +25,21 @@
 }
 
 .title {
-  font-size: 2vw;
+  font-size: 22px;
   font-weight: bold;
   letter-spacing: 1px;
   color: rgb(110, 112, 112);
 }
 .subtitle {
-  font-size: 1.2vw;
+  width: 60%;
+  margin: 2% auto;
+  font-size: 14px;
+  font-weight: 500;
   text-align: center;
-  font-weight: bold;
-  color: rgb(136, 139, 139);
+  opacity: 0.8;
 }
 .logo-container {
-  width: 50%;
+  width: 80%;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -45,6 +47,19 @@
 }
 img {
   width: 40%;
+}
+.material-icons {
+  font-size: 240px;
+  opacity: 0.6;
+  color: var(--var2);
+}
+.explication {
+  width: 60%;
+  margin: 2% auto;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  opacity: 0.8;
 }
 .form-group {
   width: 60%;
@@ -76,7 +91,7 @@ img {
   flex-direction: row;
   align-items: center;
   margin: 0 auto;
-  justify-content: space-between;
+  justify-content: center;
 }
 .btn {
   width: 45%;
@@ -84,12 +99,12 @@ img {
 .btn1 {
   border: 1px solid #722182;
   border-radius: 20px;
-  font-size: large;
+  font-size: medium;
 }
 .btn2 {
   background-color: #722182;
   color: white;
   border-radius: 20px;
-  font-size: large;
+  font-size: medium;
   box-shadow: 0px -12px 16px 8px rgba(0, 0, 0, 0.25) inset;
 }
