@@ -23,29 +23,32 @@
       <div class="connexion w-50">
         <div class="body-container">
           <span class="title">Connexion</span>
-
-          <div class="mb-1 mt-5">
-            <input
-              type="email"
-              class="form-control mb-3"
-              id="email"
-              placeholder="Adresse email"
-            />
-          </div>
-          <div class="mb-3">
-            <input
-              type="password"
-              class="form-control"
-              id="password"
-              placeholder="Mot de passe"
-            />
-          </div>
-          <div class="button-container">
-            <button class="btn mb-5">Connexion</button>
-          </div>
-          <div class="forgot-password-container">
-            <span class="forgot-password"> Mot de passe oublié ?</span>
-          </div>
+          <form [formGroup]="loginForm" (ngSubmit)="handleLogin()">
+            <div class="mb-1 mt-5">
+              <input
+                type="email"
+                class="form-control mb-3"
+                formControlName="email"
+                id="email"
+                placeholder="Adresse email"
+              />
+            </div>
+            <div class="mb-3">
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                formControlName="password"
+                placeholder="Mot de passe"
+              />
+            </div>
+            <div class="button-container">
+              <button class="btn mb-5">Connexion</button>
+            </div>
+            <div class="forgot-password-container">
+              <span class="forgot-password"> Mot de passe oublié ?</span>
+            </div>
+          </form>
         </div>
       </div>
     </div>

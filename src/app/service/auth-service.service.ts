@@ -18,6 +18,7 @@ export class AuthServiceService {
 
   // Connexion ....
   login(client: any) {
+    console.log('client', client);
     return this.http.post(`${this.apiUrl}/clients/login`, client);
   }
 }
