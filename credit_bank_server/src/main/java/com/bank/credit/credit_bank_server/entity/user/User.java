@@ -39,11 +39,16 @@ public class User implements UserDetails {
   private Boolean enabled;
   private Boolean expired;
   private Boolean locked;
-  private Boolean credentialsExired;
+  private Boolean credentialsExpired;
+
+  @Enumerated(value=EnumType.STRING)
+  private Genders gender;
 
   @Enumerated(value = EnumType.STRING)
   @Nullable
   private ClientType type;
+
+
 
   @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
   private List<RoleUser> userRoles;
@@ -90,7 +95,7 @@ public class User implements UserDetails {
 
   @Override
   public boolean isCredentialsNonExpired() {
-    return !credentialsExired;
+    return !credentialsExpired;
   }
 
   @Override
