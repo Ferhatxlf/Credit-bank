@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -17,8 +18,16 @@ export class AuthServiceService {
   }
 
   // Connexion ....
-  login(client: any) {
+  login(client: any): Observable<any> {
     console.log('client', client);
     return this.http.post(`${this.apiUrl}/clients/login`, client);
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem('token');
+  }
+
+  setToken(token: string): void {
+    localStorage.setItem('token', token);
   }
 }
