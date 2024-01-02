@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="img-container">
-    <img class="img-bg-home" src="../../assets/bg.jpg" alt="" />
+    <img class="img-bg-home" src="../../assets/backgroud.jpg" alt="" />
     <div class="bg-fond-black"></div>
   </div>
   <div class="card-container">
@@ -44,37 +44,9 @@
           <p>Je suis un professionnel</p>
         </div>
       </div>
-      <div class="connexion translateIcons" (click)="setToggleHomeLogin()">
+      <div class="connexion translateIcons" [routerLink]="['/auth/login']">
         <p class="connexion-title">Connexion</p>
         <span class="material-icons connexion-icons"> arrow_forward_ios </span>
-      </div>
-    </div>
-    <div class="connexion w-50" *ngIf="!toggleHomeLogin">
-      <div class="body-container">
-        <span class="title">Connexion</span>
-
-        <div class="mb-1 mt-5">
-          <input
-            type="email"
-            class="form-control mb-3"
-            id="email"
-            placeholder="Adresse email"
-          />
-        </div>
-        <div class="mb-3">
-          <input
-            type="password"
-            class="form-control"
-            id="password"
-            placeholder="Mot de passe"
-          />
-        </div>
-        <div class="button-container">
-          <button class="btn mb-5">Connexion</button>
-        </div>
-        <div class="forgot-password-container">
-          <span class="forgot-password"> Mot de passe oublié ?</span>
-        </div>
       </div>
     </div>
   </div>
