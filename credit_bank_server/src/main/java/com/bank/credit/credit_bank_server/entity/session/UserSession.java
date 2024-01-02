@@ -17,7 +17,6 @@ public class UserSession {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-
   private Long userId;
   private Date creation;
   private Date expiration;

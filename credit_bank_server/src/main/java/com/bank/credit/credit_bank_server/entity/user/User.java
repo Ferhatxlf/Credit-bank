@@ -45,6 +45,8 @@ public class User implements UserDetails {
   @Nullable
   private ClientType type;
 
+
+
   @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
   private List<RoleUser> userRoles;
 
