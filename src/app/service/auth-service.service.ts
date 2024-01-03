@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -10,10 +10,17 @@ export class AuthServiceService {
   constructor(public http: HttpClient) {}
 
   // inscription ...
+
   register(client: any) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    };
     return this.http.post(
       `${this.apiUrl}/clients/subscribe/particulier`,
-      client
+      client,
+      httpOptions
     );
   }
 
