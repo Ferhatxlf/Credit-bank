@@ -22,11 +22,7 @@
 }
 
 .title {
-  font-size: 1.7rem;
-  color: rgb(110, 112, 112);
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-align: center; /* Centrer le texte horizontalement */
+  text-align: center;
 }
 .forms {
   width: 80%;

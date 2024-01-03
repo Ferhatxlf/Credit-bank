@@ -1,6 +1,6 @@
 <div class="container translate" *ngIf="toggleRegisterLogin">
   <div class="header d-flex justify-content-center w-100">
-    <div class="title">Inscription</div>
+    <h2 class="title">Inscription</h2>
   </div>
   <form [formGroup]="applyForm" (ngSubmit)="submitForm()">
     <div
@@ -255,7 +255,7 @@
         padding: 15px;
       "
     >
-      <p class="question">Êtes-vous d'une nationnalité algérienne ?</p>
+      <p class="question">Êtes-vous de nationnalité algérienne ?</p>
       <div class="suppositions-container">
         <span
           class="supposition"
@@ -307,7 +307,7 @@
 </div>
 <div class="container translate connexion w-50" *ngIf="!toggleRegisterLogin">
   <div class="body-container">
-    <span class="connexion-title">Connexion</span>
+    <h2 class="title">Connexion</h2>
 
     <div class="mb-1 mt-5">
       <input
