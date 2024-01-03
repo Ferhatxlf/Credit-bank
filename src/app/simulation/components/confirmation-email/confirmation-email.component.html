@@ -1,14 +1,11 @@
 <div class="header d-flex justify-content-center translate">
   <div class="title">Confirmez votre email</div>
-  <span class="subtitle">
-    Rendez-vous dans votre boîte e-mail pour récupérer le code de confirmation à
-    6 chiffres.
-  </span>
 </div>
-<div class="logo-container">
-  <img src="../../../../assets/emailConfirm.png" alt="" />
+<div class="logo-container translate">
+  <!-- <img src="../../../../assets/emailConfirm.png" alt="" /> -->
+  <span class="material-icons">mark_email_read</span>
 </div>
-<div class="form-group">
+<!-- <div class="form-group">
   <div class="digit-container">
     <div *ngFor="let input of inputs; let i = index">
       <input
@@ -25,15 +22,22 @@
       />
     </div>
   </div>
+</div> -->
+<div class="subtitle translate mt-3">
+  Rendez-vous dans votre boîte e-mail. Un lien de confirmation vous y attend. Un
+  simple clic sur ce lien et votre compte sera confirmé.
 </div>
-
-<div class="button-container">
-  <button class="btn btn1">Renvoyez l'email de confirmation</button>
-  <button
+<div class="explication translate">
+  Lorsque vous cliquerez sur le lien de confirmation dans votre boîte e-mail,
+  vous serez automatiquement redirigé vers votre tableau de bord personnel.
+</div>
+<div class="button-container translate">
+  <button class="btn btn2">Renvoyez l'email de confirmation</button>
+  <!-- <button
     class="btn btn2"
     (click)="submit()"
     [routerLink]="['/simulation/upload']"
   >
     Confirmer
-  </button>
+  </button> -->
 </div>
