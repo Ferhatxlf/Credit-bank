@@ -1,6 +1,6 @@
 <div class="container translate" *ngIf="toggleRegisterLogin">
   <div class="header d-flex justify-content-center w-100">
-    <div class="title">Inscription</div>
+    <h2 class="title">Inscription</h2>
   </div>
   <form [formGroup]="applyForm" (ngSubmit)="submitForm()">
     <div
@@ -307,7 +307,7 @@
 </div>
 <div class="container translate connexion w-50" *ngIf="!toggleRegisterLogin">
   <div class="body-container">
-    <span class="connexion-title">Connexion</span>
+    <h2 class="title">Connexion</h2>
 
     <div class="mb-1 mt-5">
       <input

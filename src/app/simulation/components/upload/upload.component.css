@@ -32,13 +32,6 @@
   margin: 0 auto;
 }
 
-.title {
-  font-size: 22px;
-
-  font-weight: bold;
-  letter-spacing: 1px;
-  color: rgb(110, 112, 112);
-}
 .subtitle {
   font-size: 14px;
   text-align: center;

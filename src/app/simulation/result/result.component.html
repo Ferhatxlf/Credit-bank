@@ -1,6 +1,6 @@
 <div class="header d-flex justify-content-center w-100 translate">
-  <div class="title">Votre résultat de simulation</div>
-  <div class="subTitle mt-1 mb-3" *ngIf="eligible">
+  <h2 class="title">Votre résultat de simulation</h2>
+  <div class="subTitle mt-1 mb-1" *ngIf="eligible">
     Félicitation vous êtes éligible au financement
   </div>
   <div class="subTitle" *ngIf="!eligible">
@@ -8,27 +8,27 @@
       style="
         color: rgb(212, 42, 20);
         font-size: 16px;
-        width: 70%;
+        width: 80%;
         margin: 1% auto;
         font-weight: 600;
       "
       *ngIf="!islamique"
     >
       Vous n’êtes pas éligible au financement demandé. Cependant, en tenant
-      compte de vos revenus, la banque est en mesure de vous accorder ce
-      montant.
+      compte de vos revenus, la banque est en mesure de vous accorder un
+      financement selon les caractéristiques suivantes :
     </p>
     <p
       style="
         color: rgb(212, 42, 20);
         font-size: 16px;
-        width: 70%;
+        width: 80%;
         margin: 1% auto;
         font-weight: 600;
       "
       *ngIf="islamique"
     >
-      Vous n’êtes pas éligible au financement demandé.
+      Selon les informations saisies, vous n'êtes pas éligible au financement.
     </p>
   </div>
 </div>
