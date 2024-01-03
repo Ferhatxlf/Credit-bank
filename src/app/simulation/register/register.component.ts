@@ -6,6 +6,7 @@ import {
   AbstractControl,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthServiceService } from '../../service/auth-service.service';
 
 @Component({
   selector: 'app-register',
@@ -33,7 +34,11 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     this.setNationnalite(true);
   }
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private authService: AuthServiceService
+  ) {
     this.applyForm = this.fb.group({
       name: ['', [Validators.required, this.nameValidator]],
       firstName: ['', [Validators.required, this.nameValidator]],
@@ -97,25 +102,26 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   submitForm() {
     if (this.applyForm.valid) {
       const formRegisterData = {
-        name: this.applyForm.value.name,
-        firstName: this.applyForm.value.firstName,
+        nom: this.applyForm.value.name,
+        prenom: this.applyForm.value.firstName,
         email: this.applyForm.value.email,
-        callNumber: this.applyForm.value.callNumber
+        telephone: this.applyForm.value.callNumber
           ? this.applyForm.value.callNumber.replace(/\s+/g, '')
           : '',
         nin: this.applyForm.value.nin
           ? this.applyForm.value.nin.replace(/\s+/g, '')
           : '',
-        postCode: this.applyForm.value.postCode
+        codePostal: this.applyForm.value.postCode
           ? this.applyForm.value.postCode.replace(/\s+/g, '')
           : '',
-        address: this.applyForm.value.address,
-        city: this.applyForm.value.city,
-        nationality: this.applyForm.value.nationality,
-        civility: this.applyForm.value.civility,
+        adresse: this.applyForm.value.address,
+        ville: this.applyForm.value.city,
+        nationalite: this.applyForm.value.nationality
+          ? this.applyForm.value.nationality
+          : 'Algerienne',
+        civilite: this.applyForm.value.civility,
         maritalStatus: this.applyForm.value.maritalStatus,
       };
-      console.log('revenue cumulé ');
       const formDataJson = JSON.stringify(formRegisterData);
 
       localStorage.setItem('formRegisterData', formDataJson);
@@ -124,7 +130,15 @@ export class RegisterComponent implements OnInit, AfterViewInit {
         'Formulaire d inscription soumis avec les valeurs suivantes:',
         formRegisterData
       );
-      this.router.navigate(['/simulation/confirmation']);
+
+      this.authService.register(formDataJson).subscribe(
+        (responce) => {
+          this.router.navigate(['/simulation/confirmation']);
+        },
+        (error) => {
+          console.error('Erreur de connexion:', error);
+        }
+      );
     } else {
       this.submitted = true;
       console.log('Le formulaire est invalide. Veuillez corriger les erreurs.');
