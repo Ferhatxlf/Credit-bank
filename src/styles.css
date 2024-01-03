@@ -39,3 +39,6 @@ input[type="number"]::-webkit-outer-spin-button {
   --var1: rgba(114, 33, 130, 1);
   --var2: rgba(254, 182, 0, 1);
 }
+.title {
+  color: #333 !important;
+}
