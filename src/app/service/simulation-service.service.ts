@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class SimulationServiceService {
-  private apiUrl = 'http://localhost:8080';
+  private apiUrl = 'http://localhost:8000';
   constructor(public http: HttpClient) {}
 
   addDossier(dossier: any) {

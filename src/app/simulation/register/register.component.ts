@@ -138,24 +138,29 @@ export class RegisterComponent implements OnInit, AfterViewInit {
           const simulationData = localStorage.getItem('formImmobilierData');
           const dossier = {
             client_id: rs['id'],
-            type_credit: localStorage.getItem('creditType'),
-            type_financement: localStorage.getItem('financementType'),
-            montant: simulationData ? simulationData['habitaion'] : '',
-            credit: simulationData ? simulationData['credit'] : '',
-            revenu: simulationData ? simulationData['revenue'] : '',
-            revenuCo: simulationData ? simulationData['revenueCo'] : '',
-            autrefinancement: simulationData
+            typeCredit: localStorage.getItem('creditType'),
+            /*  typeFinancement: localStorage.getItem('financementType'),
+            montantHabitation: simulationData
+              ? simulationData['habitaion']
+              : '',
+            creditSouhaite: simulationData ? simulationData['credit'] : '',
+            revenueEmprunteur: simulationData ? simulationData['revenue'] : '',
+            revenueCoEmprunteur: simulationData
+              ? simulationData['revenueCo']
+              : '',
+            montantAutreFinancementEnCours: simulationData
               ? simulationData['autherFinancing']
               : '',
-            revenuimobilier: simulationData
+            montantRevenueImmobilier: simulationData
               ? simulationData['revenuImobilier']
               : '',
-            age: simulationData ? simulationData['age'] : null,
-            ageCo: simulationData ? simulationData['ageCo'] : null,
-            duree: simulationData ? simulationData['duree'] : '',
+            ageEmprunteur: simulationData ? simulationData['age'] : null,
+            ageCoEmprunteur: simulationData ? simulationData['ageCo'] : null,
+            dureeFinancement: simulationData ? simulationData['duree'] : '',
+            montantAutreRevenue: 0, */
           };
           const d = JSON.stringify(dossier);
-
+          console.log('-----------------d', d);
           this.simulationService.addDossier(d).subscribe(
             (rs) => {
               console.log('dossier cree');
