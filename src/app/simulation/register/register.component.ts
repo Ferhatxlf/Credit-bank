@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthServiceService } from '../../service/auth-service.service';
+import { SimulationServiceService } from '../../service/simulation-service.service';
 
 @Component({
   selector: 'app-register',
@@ -37,7 +38,8 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private authService: AuthServiceService
+    private authService: AuthServiceService,
+    private simulationService: SimulationServiceService
   ) {
     this.applyForm = this.fb.group({
       name: ['', [Validators.required, this.nameValidator]],
@@ -132,8 +134,38 @@ export class RegisterComponent implements OnInit, AfterViewInit {
       );
 
       this.authService.register(formDataJson).subscribe(
-        (responce) => {
-          this.router.navigate(['/simulation/confirmation']);
+        (rs) => {
+          const simulationData = localStorage.getItem('formImmobilierData');
+          const dossier = {
+            client_id: rs['id'],
+            type_credit: localStorage.getItem('creditType'),
+            type_financement: localStorage.getItem('financementType'),
+            montant: simulationData ? simulationData['habitaion'] : '',
+            credit: simulationData ? simulationData['credit'] : '',
+            revenu: simulationData ? simulationData['revenue'] : '',
+            revenuCo: simulationData ? simulationData['revenueCo'] : '',
+            autrefinancement: simulationData
+              ? simulationData['autherFinancing']
+              : '',
+            revenuimobilier: simulationData
+              ? simulationData['revenuImobilier']
+              : '',
+            age: simulationData ? simulationData['age'] : null,
+            ageCo: simulationData ? simulationData['ageCo'] : null,
+            duree: simulationData ? simulationData['duree'] : '',
+          };
+          const d = JSON.stringify(dossier);
+
+          this.simulationService.addDossier(d).subscribe(
+            (rs) => {
+              console.log('dossier cree');
+            },
+            (error) => {
+              console.error('Erreur de connexion:', error);
+            }
+          );
+
+          console.log(simulationData);
         },
         (error) => {
           console.error('Erreur de connexion:', error);

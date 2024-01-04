@@ -17,6 +17,7 @@
       class="card"
       [routerLink]="['/simulation/consomation']"
       (click)="onClickType('consomation')"
+      (click)="onClickTypeCredit('consomation')"
     >
       <span class="material-icons">add_shopping_cart</span>
       <p>Credit a la consomation</p>
@@ -26,6 +27,7 @@
       class="card"
       [routerLink]="['/simulation/immobilier']"
       (click)="onClickType('immobilier')"
+      (click)="onClickTypeCredit('immobilier')"
     >
       <span class="material-icons">roofing</span>
       <p>Credit immobilier</p>
@@ -35,6 +37,7 @@
       class="card"
       [routerLink]="['/simulation/presurgage']"
       (click)="onClickType('presurgage')"
+      (click)="onClickTypeCredit('presurgage')"
     >
       <span class="material-icons">assured_workload</span>
       <p>Prêt sur gage</p>
