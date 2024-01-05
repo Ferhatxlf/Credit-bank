@@ -18,13 +18,27 @@ export class ResultComponent implements OnInit {
   consomation: boolean = false;
   eligible: boolean = false;
   islamique: boolean = false;
+  bonifie: boolean = false;
 
   ngOnInit(): void {
     const type = localStorage.getItem('financementType');
+    const immobilierType = localStorage.getItem('immobilierType');
     const formImmobilierDataJson = localStorage.getItem('formImmobilierData');
     const formConsomationData = localStorage.getItem('formConsomationData');
     const formislamiqueData = localStorage.getItem('formislamiqueData');
-    console.log(formImmobilierDataJson);
+
+    // immobilier bonifie
+    if (
+      immobilierType ===
+        "Achat d'un logement promotionnel achevé ou vendu sur plans (Bonifié)" ||
+      immobilierType === "Construction d'un logement rural (Bonifié)" ||
+      immobilierType === "Achat d'un logement LPP (Bonifié)"
+    ) {
+      this.bonifie = true;
+    } else {
+      this.bonifie = false;
+    }
+
     if (type === 'immobilier') {
       if (formImmobilierDataJson) {
         // Convertissez la chaîne JSON en objet JavaScript
@@ -91,8 +105,10 @@ export class ResultComponent implements OnInit {
     // Convertissez les chaînes en nombres
     const financement = parseFloat(this.financement);
     const durer = parseFloat(this.durer);
-    const interet = 0.065 / 12;
-
+    // const interet = 0.065 / 12;
+    const interet = this.bonifie ? 0.01 / 12 : 0.065 / 12;
+    this.interet = this.bonifie ? '1 %' : '6.5 %';
+    console.log('test interet', interet);
     // Vérifiez si les valeurs sont valides
     if (!isNaN(financement) && !isNaN(durer) && !isNaN(interet)) {
       // Calcul de n (nombre de paiements)
