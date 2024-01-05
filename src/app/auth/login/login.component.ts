@@ -10,7 +10,10 @@ import { Router } from '@angular/router';
   styleUrl: './login.component.css',
 })
 export class LoginComponent implements OnInit {
+  client: boolean = true;
+  banquier: boolean = false;
   loginForm!: FormGroup;
+  banquierForm!: FormGroup;
   constructor(
     private router: Router,
     private location: Location,
@@ -22,14 +25,32 @@ export class LoginComponent implements OnInit {
       email: this.fb.control(''),
       password: this.fb.control(''),
     });
+
+    this.banquierForm = this.fb.group({
+      username: this.fb.control(''),
+      password: this.fb.control(''),
+    });
   }
 
   goBack(): void {
     this.location.back();
   }
 
-  handleLogin() {
-    this.authService.login(this.loginForm.value).subscribe(
+  clientLogin() {
+    this.authService.login(this.banquierForm.value).subscribe(
+      (rs) => {
+        this.authService.setToken(rs.token);
+        console.log(rs.token);
+        this.router.navigate(['/courtier']);
+      },
+      (error) => {
+        console.error('Erreur de connexion:', error);
+      }
+    );
+  }
+
+  banquierLogin() {
+    this.authService.banquierLogin(this.loginForm.value).subscribe(
       (rs) => {
         this.authService.setToken(rs.token);
         console.log(rs.token);
@@ -39,5 +60,14 @@ export class LoginComponent implements OnInit {
         console.error('Erreur de connexion:', error);
       }
     );
+  }
+  onChangeConnexion() {
+    if (this.client) {
+      this.client = false;
+      this.banquier = true;
+    } else {
+      this.client = true;
+      this.banquier = false;
+    }
   }
 }
