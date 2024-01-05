@@ -223,11 +223,57 @@ p {
 
 /* fin notice */
 /* pour la responsivité  */
+@media screen and (max-width: 1200px) {
+  .notice-container {
+    width: 85%;
+  }
+}
 @media screen and (max-width: 1000px) {
+  .button-container {
+    width: 90%;
+  }
+  .btn1 {
+    width: 55%;
+  }
 }
-@media screen and (max-width: 800px) {
-}
+
 @media screen and (max-width: 600px) {
+  .notice-container {
+    width: 95%;
+  }
+  .button-container {
+    width: 100%;
+  }
+  .btn1 {
+    width: 68%;
+  }
+  .btn2 {
+    width: 30%;
+  }
+  .file-upload-section {
+    width: 90%;
+  }
 }
 @media screen and (max-width: 400px) {
+  .btn1 {
+    width: 68%;
+    font-size: small;
+  }
+  .btn2 {
+    width: 30%;
+    font-size: small;
+  }
+  .file-upload-section {
+    width: 99%;
+  }
+  .header {
+    width: 99%;
+  }
+  .subtitle {
+    font-size: 13px;
+  }
+  .wrapper form {
+    width: 100%;
+    padding: 10%;
+  }
 }
