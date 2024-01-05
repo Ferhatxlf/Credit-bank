@@ -30,12 +30,12 @@ export class AuthServiceService {
     return this.http.post(`${this.apiUrl}/clients/login`, client);
   }
 
-  getToken(): string | null {
-    return localStorage.getItem('token');
+  getCurrentUser(): string | null {
+    return localStorage.getItem('curesntUser');
   }
 
-  setToken(token: string): void {
-    localStorage.setItem('token', token);
+  setCurrentUser(user: string): void {
+    localStorage.setItem('curesntUser', user);
   }
 
   banquierLogin(banquier: any): Observable<any> {

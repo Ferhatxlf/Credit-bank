@@ -65,7 +65,7 @@
         </form>
 
         <form
-          [formGroup]="loginForm"
+          [formGroup]="banquierForm"
           (ngSubmit)="banquierLogin()"
           *ngIf="banquier"
         >
@@ -73,7 +73,7 @@
             <input
               type="email"
               class="form-control mb-3"
-              formControlName="username"
+              formControlName="nin"
               id="email"
               placeholder="Nom d'utilisateur"
             />

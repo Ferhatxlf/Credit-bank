@@ -10,26 +10,26 @@
   <div class="details-column">
     <div>
       <div>
-        <h2>Dossier N° {{ folderValue.numero }}</h2>
+        <h2>Dossier N° {{ folderValue.id }}</h2>
         <ul>
-          <li><strong>Nom :</strong> {{ folderValue.name }}</li>
-          <li><strong>Montant :</strong>{{ folderValue.montant }}</li>
-          <li><strong>Crédit demandé :</strong>{{ folderValue.credit }}</li>
-          <li><strong>Courtier :</strong>{{ folderValue.courtier }}</li>
+          <li><strong>Nom :</strong> {{ folderValue.nomDossier }}</li>
+          <li><strong>Montant :</strong>{{ folderValue.montantHabitation }}</li>
+          <li><strong>Crédit demandé :</strong>{{ folderValue.typeCredit }}</li>
           <li>
-            <strong>Durée du financement :</strong>{{ folderValue.duree }}
+            <strong>Durée du financement :</strong
+            >{{ folderValue.dureeFinancement }}
           </li>
 
           <li>
             <strong>type du financement :</strong
-            >{{ folderValue.type_financement }}
+            >{{ folderValue.typeFinancement }}
           </li>
 
           <li>
             <strong>Autre financement en cours :</strong
-            >{{ folderValue.autre_financement }}
+            >{{ folderValue.montantAutreRevenue }}
           </li>
-          <li><strong>Statut :</strong>{{ folderValue.statut }}</li>
+          <li><strong>Statut :</strong>{{ folderValue.status }}</li>
         </ul>
       </div>
     </div>
@@ -39,19 +39,22 @@
     <div>
       <h2>Détails du client</h2>
       <ul>
-        <li><strong>Nom :</strong> {{ folderValue.emprunteur.name }}</li>
-        <li><strong>Age :</strong>{{ folderValue.emprunteur.age }}</li>
-        <li><strong>Tel :</strong>{{ folderValue.emprunteur.num }}</li>
-        <li><strong>Email :</strong>{{ folderValue.emprunteur.email }}</li>
-        <li><strong>Adresse :</strong>{{ folderValue.emprunteur.adresse }}</li>
-        <li><strong>Revenu :</strong>{{ folderValue.emprunteur.revenu }}</li>
+        <li>
+          <strong>Nom :</strong> {{ folderValue.client.nom }}
+          {{ folderValue.client.prenom }}
+        </li>
+        <li><strong>Age :</strong>{{ folderValue.ageEmprunteur }}</li>
+        <li><strong>Tel :</strong>{{ folderValue.client.telephone }}</li>
+        <li><strong>Email :</strong>{{ folderValue.client.email }}</li>
+        <li><strong>Adresse :</strong>{{ folderValue.client.adresse }}</li>
+        <li><strong>Revenu :</strong>{{ folderValue.revenueEmprunteur }}</li>
         <li>
           <strong>Revenu du co-emprunteur :</strong
-          >{{ folderValue.emprunteur.revenu_coemprunteur }}
+          >{{ folderValue.revenueCoEmprunteur }}
         </li>
         <li>
-          <strong>Type du client :</strong
-          >{{ folderValue.emprunteur.type_client }}
+          <strong>Type du client :</strong>
+          Particulier
         </li>
       </ul>
     </div>

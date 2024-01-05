@@ -8,7 +8,9 @@ export class CourtierServiceService {
   private apiUrl = 'http://localhost:8000';
   constructor(public http: HttpClient) {}
 
-  getAllDossier() {
-    return this.http.get(`${this.apiUrl}/dossiers/all`);
+  getAllDossier(agence_id: number) {
+    return this.http.get(
+      `${this.apiUrl}/dossiers/${agence_id}/dossiersnotassigned`
+    );
   }
 }
