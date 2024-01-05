@@ -1,6 +1,7 @@
 // upload.component.ts
 
 import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { SimulationServiceService } from '../../../service/simulation-service.service';
 
 @Component({
   selector: 'app-upload',
@@ -20,6 +21,7 @@ export class UploadComponent implements AfterViewInit {
     'Troisième  fiche de paie',
     'Fichier de résidence',
   ];
+  constructor(private simulationService: SimulationServiceService) {}
   ngAfterViewInit() {
     console.log(this.fileInput); // Doit afficher l'élément d'entrée de fichier dans la console
   }
@@ -71,9 +73,19 @@ export class UploadComponent implements AfterViewInit {
       const file = this.files[i];
       if (file) {
         formData.append(this.fileTypes[i], file);
-        console.log(file);
       }
     }
+
+    console.log(formData);
+
+    this.simulationService.addDocument(8, this.files).subscribe(
+      (rs) => {
+        console.log('sa marche');
+      },
+      (error) => {
+        console.error('erreur', error);
+      }
+    );
 
     // Envoyer formData au backend ici
   }

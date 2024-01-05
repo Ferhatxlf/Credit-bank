@@ -15,4 +15,9 @@ export class TypeComponent {
     // Enregistrez la variable dans localStorage
     localStorage.setItem('financementType', typeName);
   }
+
+  onClickTypeCredit(typeName): void {
+    // Enregistrez la variable dans localStorage
+    localStorage.setItem('creditType', typeName);
+  }
 }
