@@ -21,4 +21,17 @@ export class SimulationServiceService {
       httpOptions
     );
   }
+
+  addDocument(id: any, files: any) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    };
+    return this.http.post(
+      `${this.apiUrl}/dossiers/${id}/files`,
+      files,
+      httpOptions
+    );
+  }
 }
