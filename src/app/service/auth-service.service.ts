@@ -37,4 +37,9 @@ export class AuthServiceService {
   setToken(token: string): void {
     localStorage.setItem('token', token);
   }
+
+  banquierLogin(banquier: any): Observable<any> {
+    console.log('banquier', banquier);
+    return this.http.post(`${this.apiUrl}/banque/comptes/signin`, banquier);
+  }
 }

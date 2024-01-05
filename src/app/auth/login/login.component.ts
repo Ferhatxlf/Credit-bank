@@ -37,11 +37,11 @@ export class LoginComponent implements OnInit {
   }
 
   clientLogin() {
-    this.authService.login(this.loginForm.value).subscribe(
+    this.authService.login(this.banquierForm.value).subscribe(
       (rs) => {
         this.authService.setToken(rs.token);
         console.log(rs.token);
-        this.router.navigate(['/client']);
+        this.router.navigate(['/courtier']);
       },
       (error) => {
         console.error('Erreur de connexion:', error);
@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
   }
 
   banquierLogin() {
-    this.authService.login(this.loginForm.value).subscribe(
+    this.authService.banquierLogin(this.loginForm.value).subscribe(
       (rs) => {
         this.authService.setToken(rs.token);
         console.log(rs.token);
