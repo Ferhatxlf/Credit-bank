@@ -25,7 +25,7 @@ export class SimulationServiceService {
   addDocument(id: any, files: any) {
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
+        'Content-Type': 'multipart/form-data',
       }),
     };
     return this.http.post(
