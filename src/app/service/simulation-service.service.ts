@@ -15,6 +15,10 @@ export class SimulationServiceService {
       }),
     };
 
-    return this.http.post(`${this.apiUrl}/dossiers/add`, dossier, httpOptions);
+    return this.http.post(
+      `${this.apiUrl}/dossiers/adddossier`,
+      dossier,
+      httpOptions
+    );
   }
 }
