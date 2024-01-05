@@ -144,6 +144,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
           }
           console.log(this.data);
           const dossier = {
+            nomDossier: 'achat dune habitation',
             client: {
               id: rs['id'],
             },

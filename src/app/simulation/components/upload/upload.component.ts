@@ -72,18 +72,16 @@ export class UploadComponent implements AfterViewInit {
     for (let i = 0; i < this.files.length; i++) {
       const file = this.files[i];
       if (file) {
-        formData.append(this.fileTypes[i], file);
+        formData.append('files', file);
       }
     }
 
-    console.log(formData);
-
-    this.simulationService.addDocument(8, this.files).subscribe(
+    this.simulationService.addDocument(6, formData).subscribe(
       (rs) => {
-        console.log('sa marche');
+        console.log('files uploads succesfuly');
       },
       (error) => {
-        console.error('erreur', error);
+        console.error('error uploding files', error);
       }
     );
 

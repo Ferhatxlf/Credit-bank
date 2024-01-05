@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -22,16 +23,7 @@ export class SimulationServiceService {
     );
   }
 
-  addDocument(id: any, files: any) {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'multipart/form-data',
-      }),
-    };
-    return this.http.post(
-      `${this.apiUrl}/dossiers/${id}/files`,
-      files,
-      httpOptions
-    );
+  addDocument(id: number, files: FormData): Observable<any> {
+    return this.http.post(`${this.apiUrl}/dossiers/${id}/files`, files);
   }
 }
