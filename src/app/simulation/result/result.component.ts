@@ -10,19 +10,26 @@ export class ResultComponent implements OnInit {
   habitation: string = '';
   financement: string = '';
   durer: string = '';
+  age: string = '';
   interet: string = '0.065';
   apportInitial: number = 0;
   mensualite: string = '';
   revenue: string = '';
+  otherFinancing: string = '';
   prixVehicule: number = 0;
   consomation: boolean = false;
   eligible: boolean = false;
   islamique: boolean = false;
   bonifie: boolean = false;
+  financementType: string = '';
+  financementTypeChoice: string = '';
 
   ngOnInit(): void {
     const type = localStorage.getItem('financementType');
     const immobilierType = localStorage.getItem('immobilierType');
+    const consomationType = localStorage.getItem('consomationType');
+    const islamiqueType = localStorage.getItem('islamiqueType');
+
     const formImmobilierDataJson = localStorage.getItem('formImmobilierData');
     const formConsomationData = localStorage.getItem('formConsomationData');
     const formislamiqueData = localStorage.getItem('formislamiqueData');
@@ -40,14 +47,17 @@ export class ResultComponent implements OnInit {
     }
 
     if (type === 'immobilier') {
+      this.financementType = type;
+      this.financementTypeChoice = immobilierType ? immobilierType : '';
       if (formImmobilierDataJson) {
         // Convertissez la chaîne JSON en objet JavaScript
         const formData = JSON.parse(formImmobilierDataJson);
-
+        this.otherFinancing = formData.otherFinancing;
         this.financement = formData.credit;
         this.durer = formData.durer;
         this.revenue = formData.revenueCumule;
         this.habitation = formData.habitation;
+        this.age = formData.age;
         this.apportInitial =
           parseFloat(formData.habitation) - parseFloat(formData.credit);
         // Appelez la méthode pour calculer la mensualité
@@ -58,12 +68,14 @@ export class ResultComponent implements OnInit {
       }
     } else if (type === 'consomation') {
       this.consomation = true;
+      this.financementTypeChoice = consomationType ? consomationType : '';
       if (formConsomationData) {
         // Convertissez la chaîne JSON en objet JavaScript
         const formData = JSON.parse(formConsomationData);
 
         this.financement = formData.credit;
         this.durer = formData.durer;
+        this.age = formData.age;
         this.revenue = formData.revenueCumule;
         this.habitation = formData.consommation;
         this.apportInitial =
@@ -75,6 +87,7 @@ export class ResultComponent implements OnInit {
         this.verifierEligibiliteConsomation();
       }
     } else if (type === 'islamique') {
+      this.financementTypeChoice = immobilierType ? immobilierType : '';
       this.islamique = true;
       if (formislamiqueData) {
         // Convertissez la chaîne JSON en objet JavaScript
@@ -82,6 +95,7 @@ export class ResultComponent implements OnInit {
 
         this.financement = formData.credit;
         this.durer = formData.durer;
+        this.age = formData.age;
         this.revenue = formData.revenueCumule;
         this.habitation = formData.consommation;
         this.apportInitial =
