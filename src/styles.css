@@ -3,8 +3,7 @@
 /* @import "../node_modules/material-icons/iconFont/material-icons.css"; */
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
-
- body {
+body {
   background-color: #f6f5f4;
 }
 
@@ -17,6 +16,8 @@ input {
   transition: 0.3s ease !important;
   /* background-color: #f5f1f1 !important; */
   color: black !important;
+  box-shadow: none !important;
+  border-radius: 5px !important;
 }
 input::placeholder {
   color: rgb(134, 132, 132);
