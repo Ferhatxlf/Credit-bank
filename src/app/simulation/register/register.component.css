@@ -13,7 +13,15 @@
   animation: translate 0.5s ease;
 }
 
-.container {
+.container-inscription {
+  width: 85%;
+  padding: 1%;
+  margin: 0 auto;
+  max-height: 90%;
+  overflow-y: auto;
+  height: 90%;
+}
+.container-connexion {
   width: 85%;
   padding: 1%;
   margin: 0 auto;
@@ -27,19 +35,21 @@
   margin: 0 auto;
 }
 
-.container input {
+.container-inscription input {
   margin-top: 2%;
-  box-shadow: 0 0 5px 1px rgba(126, 125, 125, 0.24);
+  /* box-shadow: 0 0 5px 1px rgba(126, 125, 125, 0.24); */
   width: 100%; /* Utiliser la largeur complète du conteneur parent */
-  padding: 10px;
-  border-radius: 12px;
+  box-shadow: none;
+  /* padding: 10px; */
+  /* border-radius: 12px; */
 }
 select {
   margin-top: 2%;
-  box-shadow: 0 0 5px 1px rgba(126, 125, 125, 0.24);
+  /* box-shadow: 0 0 5px 1px rgba(126, 125, 125, 0.24); */
   width: 100%; /* Utiliser la largeur complète du conteneur parent */
-  padding: 10px;
-  border-radius: 12px;
+  /* padding: 10px; */
+  /* border-radius: 12px; */
+  box-shadow: none;
 }
 
 .input-container {
@@ -172,8 +182,7 @@ span:hover {
 
 /* pour la connexion */
 .body-container {
-  width: 100%;
-  height: 67%;
+  width: 60%;
   margin: auto;
   border-radius: 15px;
 }
@@ -182,6 +191,7 @@ span:hover {
   display: flex;
   flex-direction: column;
   margin-bottom: 1%;
+  margin-top: 3%;
 }
 .body-container p {
   text-align: center !important;
@@ -190,9 +200,10 @@ span:hover {
   width: 100%;
 }
 .body-container input {
-  border-radius: 12px;
-  padding: 10px;
-  box-shadow: 0 0 5px 1px rgba(126, 125, 125, 0.24);
+  /* border-radius: 12px; */
+  /* padding: 10px; */
+  /* box-shadow: 0 0 5px 1px rgba(126, 125, 125, 0.24); */
+  box-shadow: none;
 }
 .forgot-password-container {
   width: 100%;
@@ -201,10 +212,11 @@ span:hover {
   align-items: end;
   text-align: end;
   justify-content: end;
+  margin: 0 auto;
 }
 
 .forgot-password {
-  width: 35%;
+  width: 50%;
   text-align: end;
   color: #742484;
   font-weight: 400;
@@ -251,3 +263,76 @@ span:hover {
   text-decoration: underline;
 }
 /* fin connexion */
+/* pour la responsivité  */
+@media screen and (max-width: 1000px) {
+  .container-inscription {
+    width: 90%;
+  }
+  .container-connexion {
+    width: 95%;
+    padding: 0;
+  }
+  .body-container {
+    margin-top: 5%;
+    width: 70%;
+  }
+  .body-container input {
+    margin: 0 auto;
+    width: 90%;
+  }
+  .forgot-password-container {
+    width: 90%;
+  }
+  .forgot-password {
+    width: 50%;
+  }
+  .forms {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 800px) {
+  .container-inscription {
+    width: 95%;
+    padding: 0;
+  }
+  .container-connexion {
+    width: 95%;
+    padding: 0;
+  }
+  .body-container {
+    margin-top: 5%;
+    width: 70%;
+  }
+  .body-container input {
+    margin: 0 auto;
+    width: 90%;
+  }
+  .forms {
+    width: 100% !important;
+  }
+}
+@media screen and (max-width: 600px) {
+  .container-inscription {
+    width: 99%;
+    padding: 0;
+  }
+  .body-container {
+    margin-top: 5%;
+    width: 90%;
+  }
+  .body-container input {
+    width: 90%;
+  }
+  .forgot-password {
+    font-size: 10px;
+  }
+}
+@media screen and (max-width: 400px) {
+  .container-connexion {
+    margin-top: 5%;
+  }
+  .body-container {
+    margin-top: 5%;
+    width: 100%;
+  }
+}
