@@ -19,37 +19,82 @@
     <div class="logo-container">
       <img src="../../assets/bankLogo.png" />
     </div>
-    <div class="home">
-      <div class="connexion w-50">
-        <div class="body-container">
-          <span class="title">Connexion</span>
-          <form [formGroup]="loginForm" (ngSubmit)="handleLogin()">
-            <div class="mb-1 mt-5">
-              <input
-                type="email"
-                class="form-control mb-3"
-                formControlName="email"
-                id="email"
-                placeholder="Adresse email"
-              />
-            </div>
-            <div class="mb-3">
-              <input
-                type="password"
-                class="form-control"
-                id="password"
-                formControlName="password"
-                placeholder="Mot de passe"
-              />
-            </div>
-            <div class="button-container">
-              <button class="btn mb-5">Connexion</button>
-            </div>
-            <div class="forgot-password-container">
-              <span class="forgot-password"> Mot de passe oublié ?</span>
-            </div>
-          </form>
+    <div class="connexion w-50">
+      <div class="body-container">
+        <span class="title">Connexion</span>
+        <div class="input-container">
+          <div class="suppositions-container">
+            <span
+              [ngClass]="client ? 'selected' : 'supposition'"
+              (click)="onChangeConnexion()"
+              >Client</span
+            >
+            <span
+              [ngClass]="banquier ? 'selected' : 'supposition'"
+              (click)="onChangeConnexion()"
+              >Banquier</span
+            >
+          </div>
         </div>
+        <form [formGroup]="loginForm" (ngSubmit)="clientLogin()" *ngIf="client">
+          <div class="mb-1 mt-4">
+            <input
+              type="email"
+              class="form-control mb-3"
+              formControlName="email"
+              id="email"
+              placeholder="Adresse email"
+            />
+          </div>
+          <div class="mb-3">
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              formControlName="password"
+              placeholder="Mot de passe"
+            />
+          </div>
+
+          <div class="button-container">
+            <button class="btn mb-4">Connexion</button>
+          </div>
+          <div class="forgot-password-container">
+            <span class="forgot-password"> Mot de passe oublié ?</span>
+          </div>
+        </form>
+
+        <form
+          [formGroup]="loginForm"
+          (ngSubmit)="banquierLogin()"
+          *ngIf="banquier"
+        >
+          <div class="mb-1 mt-4">
+            <input
+              type="email"
+              class="form-control mb-3"
+              formControlName="username"
+              id="email"
+              placeholder="Nom d'utilisateur"
+            />
+          </div>
+          <div class="mb-3">
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              formControlName="password"
+              placeholder="Mot de passe"
+            />
+          </div>
+
+          <div class="button-container">
+            <button class="btn mb-4">Connexion</button>
+          </div>
+          <div class="forgot-password-container">
+            <span class="forgot-password"> Mot de passe oublié ?</span>
+          </div>
+        </form>
       </div>
     </div>
   </div>

@@ -7,6 +7,8 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthServiceService } from '../../service/auth-service.service';
+import { SimulationServiceService } from '../../service/simulation-service.service';
+import { JsonpInterceptor } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
@@ -14,6 +16,7 @@ import { AuthServiceService } from '../../service/auth-service.service';
   styleUrl: './register.component.css',
 })
 export class RegisterComponent implements OnInit, AfterViewInit {
+  data: any;
   applyForm: FormGroup;
   defaultCivility = 'default';
   defaultMaritalStatus = 'default';
@@ -37,7 +40,8 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private authService: AuthServiceService
+    private authService: AuthServiceService,
+    private simulationService: SimulationServiceService
   ) {
     this.applyForm = this.fb.group({
       name: ['', [Validators.required, this.nameValidator]],
@@ -132,8 +136,42 @@ export class RegisterComponent implements OnInit, AfterViewInit {
       );
 
       this.authService.register(formDataJson).subscribe(
-        (responce) => {
-          this.router.navigate(['/simulation/confirmation']);
+        (rs) => {
+          const s = localStorage.getItem('formImmobilierData');
+          if (s) {
+            const simulationData = JSON.parse(s);
+            this.data = simulationData;
+          }
+          console.log(this.data);
+          const dossier = {
+            nomDossier: 'achat dune habitation',
+            client: {
+              id: rs['id'],
+            },
+            typeCredit: localStorage.getItem('creditType'),
+            typeFinancement: localStorage.getItem('financementType'),
+            montantHabitation: this.data.habitation,
+            creditSouhaite: this.data.credit,
+            revenueEmprunteur: this.data.revenue,
+            revenueCoEmprunteur: this.data.revenueCo,
+            montantAutreFinancementEnCours: this.data.autherFinancing,
+            montantRevenueImmobilier: this.data.revenuImobilier,
+            ageEmprunteur: this.data.age,
+            ageCoEmprunteur: this.data.ageCo,
+            dureeFinancement: this.data.durer,
+            montantAutreRevenue: 0,
+          };
+
+          const d = JSON.stringify(dossier);
+          console.log('-----------------d', d);
+          this.simulationService.addDossier(d).subscribe(
+            (rs) => {
+              console.log('dossier cree');
+            },
+            (error) => {
+              console.error('Erreur de connexion:', error);
+            }
+          );
         },
         (error) => {
           console.error('Erreur de connexion:', error);

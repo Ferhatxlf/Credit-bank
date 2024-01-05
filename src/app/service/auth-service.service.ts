@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthServiceService {
-  private apiUrl = 'http://localhost:8080';
+  private apiUrl = 'http://localhost:8000';
   constructor(public http: HttpClient) {}
 
   // inscription ...
@@ -36,5 +36,10 @@ export class AuthServiceService {
 
   setToken(token: string): void {
     localStorage.setItem('token', token);
+  }
+
+  banquierLogin(banquier: any): Observable<any> {
+    console.log('banquier', banquier);
+    return this.http.post(`${this.apiUrl}/banque/comptes/signin`, banquier);
   }
 }
