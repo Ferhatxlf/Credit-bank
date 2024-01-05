@@ -196,11 +196,15 @@ export class FormsComponent implements OnInit {
       let revenueImmobilier = this.applyForm.value.revenueImmobilier
         ? this.applyForm.value.revenueImmobilier.replace(/\s+/g, '')
         : '0';
+      let otherFinancing = this.applyForm.value.otherFinancing
+        ? this.applyForm.value.otherFinancing.replace(/\s+/g, '')
+        : '0';
       let revenueCumule =
         Number(revenue) +
         Number(revenueCo) +
         Number(OtherRevenue) +
-        Number(revenueImmobilier);
+        Number(revenueImmobilier) -
+        Number(otherFinancing);
 
       const formImmobilierData = {
         habitation: this.applyForm.value.habitation
