@@ -13,4 +13,8 @@ export class CourtierServiceService {
       `${this.apiUrl}/dossiers/${agence_id}/dossiersnotassigned`
     );
   }
+
+  getMyDossier(id: number) {
+    return this.http.get(`${this.apiUrl}/dossiers/courtier/${id}/traitee`);
+  }
 }

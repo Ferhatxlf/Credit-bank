@@ -8,6 +8,7 @@ import { CourtierServiceService } from '../service/courtier-service.service';
 })
 export class SharedDataService {
   public allDossier: any = [];
+  public mesDossier: any = [];
   private currentUser!: any;
   private folderData = new BehaviorSubject<any>(null);
   currentFolderData = this.folderData.asObservable();
@@ -32,6 +33,21 @@ export class SharedDataService {
       (rs) => {
         this.allDossier = rs;
         console.log(this.allDossier);
+      },
+      (err) => console.log(err)
+    );
+  }
+
+  getMyFolders() {
+    const a = localStorage.getItem('currentUser');
+    if (a) {
+      this.currentUser = JSON.parse(a);
+    }
+    console.log(this.currentUser);
+    this.courtierService.getMyDossier(this.currentUser.id).subscribe(
+      (rs) => {
+        this.mesDossier = rs;
+        console.log(this.mesDossier);
       },
       (err) => console.log(err)
     );
