@@ -24,12 +24,6 @@
   margin: 0 auto;
 }
 
-.title {
-  font-size: 22px;
-  font-weight: bold;
-  letter-spacing: 1px;
-  color: rgb(110, 112, 112);
-}
 .subtitle {
   width: 60%;
   margin: 2% auto;
@@ -94,7 +88,7 @@ img {
   justify-content: center;
 }
 .btn {
-  width: 45%;
+  width: 60%;
 }
 .btn1 {
   border: 1px solid #722182;
@@ -107,4 +101,48 @@ img {
   border-radius: 20px;
   font-size: medium;
   box-shadow: 0px -12px 16px 8px rgba(0, 0, 0, 0.25) inset;
+}
+/* pour la responsivité  */
+@media screen and (max-width: 1000px) {
+}
+@media screen and (max-width: 800px) {
+  .material-icons {
+    font-size: 200px;
+  }
+  .subtitle {
+    width: 80%;
+  }
+  .explication {
+    width: 80%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .material-icons {
+    font-size: 180px;
+  }
+  .subtitle {
+    width: 90%;
+  }
+  .explication {
+    width: 90%;
+  }
+  .btn {
+    width: 90%;
+  }
+}
+@media screen and (max-width: 400px) {
+  .material-icons {
+    font-size: 140px;
+  }
+  .subtitle {
+    width: 99%;
+  }
+  .explication {
+    width: 99%;
+  }
+  .btn {
+    width: 99%;
+    margin-top: 5%;
+    font-size: small;
+  }
 }
