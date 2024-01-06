@@ -52,4 +52,20 @@ export class SharedDataService {
       (err) => console.log(err)
     );
   }
+
+  affectation(id_dossier) {
+    const a = localStorage.getItem('currentUser');
+    if (a) {
+      this.currentUser = JSON.parse(a);
+    }
+
+    this.courtierService
+      .affecterDossierACourtier(this.currentUser.id, id_dossier)
+      .subscribe(
+        (rs) => {
+          console.log('sa marche');
+        },
+        (err) => console.log('erreur', err)
+      );
+  }
 }

@@ -1,6 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { SharedDataService } from '../shared-data.service';
+import { CourtierServiceService } from '../../service/courtier-service.service';
 
 @Component({
   selector: 'app-detail',
@@ -12,7 +13,8 @@ export class DetailComponent implements OnInit {
   haveCourtier: boolean = false;
   constructor(
     private location: Location,
-    private sharedDataService: SharedDataService
+    private sharedDataService: SharedDataService,
+    private courtierService: CourtierServiceService
   ) {
     this.url = this.location.path();
   }
@@ -25,5 +27,9 @@ export class DetailComponent implements OnInit {
 
   ngOnInit() {
     this.folderValue = this.sharedDataService.getFolderData();
+  }
+
+  afectation(id_dossier) {
+    this.sharedDataService.affectation(id_dossier);
   }
 }
