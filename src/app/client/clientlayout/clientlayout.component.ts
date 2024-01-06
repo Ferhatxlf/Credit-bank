@@ -19,14 +19,22 @@ export class ClientlayoutComponent {
       console.log(this.url);
     });
   }
+
   url: string = '';
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.selected = true;
+  }
 
   goBack(): void {
     this.location.back();
   }
 
+  isSidebarOpen: boolean = false;
+
+  toggleSidebar() {
+    this.isSidebarOpen = !this.isSidebarOpen;
+  }
   dashboardSelected() {
     this.selected = true;
     this.cselected = false;
