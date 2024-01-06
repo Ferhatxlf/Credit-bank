@@ -20,7 +20,7 @@ export class CourtierServiceService {
 
   affecterDossierACourtier(courtierId: number, dossierId: number) {
     return this.http.post(
-      `${this.apiUrl}/assign-dossier/${dossierId}/to-courtier/${courtierId}`,
+      `${this.apiUrl}/dossiers/assign-dossier/${dossierId}/to-courtier/${courtierId}`,
       null
     );
   }
