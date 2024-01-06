@@ -6,6 +6,7 @@ import { CourtierComponent } from './courtier/courtier.component';
 import { DirecteurComponent } from './directeur/directeur.component';
 import { InformationComponent } from './information/information.component';
 
+
 const routes: Routes = [
   { path: '', redirectTo: 'dashbordAdmin', pathMatch: 'full' },
 
@@ -13,6 +14,7 @@ const routes: Routes = [
     path: '',
     component: AdminLayoutComponent,
     children: [
+    
       {
         path: 'dashbordAdmin',
         component: DashbordAdminComponent,

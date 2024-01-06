@@ -54,4 +54,9 @@ export class AdminLayoutComponent {
     this.dselected = false;
     this.pselected = true;
   }
+  isSidebarOpen = true;
+
+  toggleSidebar() {
+    this.isSidebarOpen = !this.isSidebarOpen;
+  }
 }
