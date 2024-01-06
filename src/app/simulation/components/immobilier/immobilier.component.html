@@ -2,6 +2,46 @@
   <h2 class="title">Choisissez votre type de crédit</h2>
 </div>
 <div class="row cards translate">
+  <div
+    class="col-sm-6 col-md-4 col-lg-4"
+    (click)="
+      immobilierType(
+        'Achat d\'un logement promotionnel achevé ou vendu sur plans (Bonifié)'
+      )
+    "
+  >
+    <div class="card">
+      <p>
+        Achat d'un logement promotionnel achevé ou vendu sur plans
+        <strong style="color: var(--var1)">(Bonifié)</strong>
+      </p>
+      <span class="material-icons">arrow_forward_ios</span>
+    </div>
+  </div>
+  <div
+    class="col-sm-6 col-md-4 col-lg-4"
+    (click)="immobilierType('Construction d\'un logement rural (Bonifié)')"
+  >
+    <div class="card">
+      <p>
+        Construction d'un logement rural
+        <strong style="color: var(--var1)">(Bonifié)</strong>
+      </p>
+      <span class="material-icons">arrow_forward_ios</span>
+    </div>
+  </div>
+  <div
+    class="col-sm-6 col-md-4 col-lg-4"
+    (click)="immobilierType('Achat d\'un logement LPP (Bonifié)')"
+  >
+    <div class="card">
+      <p>
+        Achat d'un logement LPP
+        <strong style="color: var(--var1)">(Bonifié)</strong>
+      </p>
+      <span class="material-icons">arrow_forward_ios</span>
+    </div>
+  </div>
   <div class="col-sm-6 col-md-4 col-lg-4">
     <div class="card" (click)="immobilierType('achat logement partirculer')">
       <p>Achat d'un logement auprès d'un particulier</p>
@@ -85,39 +125,6 @@
   >
     <div class="card">
       <p>Extension d'une habitation individuelle</p>
-      <span class="material-icons">arrow_forward_ios</span>
-    </div>
-  </div>
-  <div
-    class="col-sm-6 col-md-4 col-lg-4"
-    (click)="
-      immobilierType(
-        'Achat d\'un logement promotionnel achevé ou vendu sur plans (Bonifié)'
-      )
-    "
-  >
-    <div class="card">
-      <p>
-        Achat d'un logement promotionnel achevé ou vendu sur plans (Bonifié)
-      </p>
-      <span class="material-icons">arrow_forward_ios</span>
-    </div>
-  </div>
-  <div
-    class="col-sm-6 col-md-4 col-lg-4"
-    (click)="immobilierType('Construction d\'un logement rural (Bonifié)')"
-  >
-    <div class="card">
-      <p>Construction d'un logement rural (Bonifié)</p>
-      <span class="material-icons">arrow_forward_ios</span>
-    </div>
-  </div>
-  <div
-    class="col-sm-6 col-md-4 col-lg-4"
-    (click)="immobilierType('Achat d\'un logement LPP (Bonifié)')"
-  >
-    <div class="card">
-      <p>Achat d'un logement LPP (Bonifié)</p>
       <span class="material-icons">arrow_forward_ios</span>
     </div>
   </div>
