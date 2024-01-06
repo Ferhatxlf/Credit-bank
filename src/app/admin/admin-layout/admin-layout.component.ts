@@ -11,6 +11,7 @@ export class AdminLayoutComponent {
   public cselected: boolean = false;
   public dselected: boolean = false;
   public pselected: boolean = false;
+  public arselected: boolean = false;
   constructor(private location: Location) {
     this.url = this.location.path();
     // Écouter les changements d'URL
@@ -32,6 +33,7 @@ export class AdminLayoutComponent {
     this.cselected = false;
     this.dselected = false;
     this.pselected = false;
+    this.arselected=false
   }
 
   creditSelected() {
@@ -39,6 +41,7 @@ export class AdminLayoutComponent {
     this.cselected = true;
     this.dselected = false;
     this.pselected = false;
+    this.arselected=false
   }
 
   dossierSelected() {
@@ -46,13 +49,22 @@ export class AdminLayoutComponent {
     this.cselected = false;
     this.dselected = true;
     this.pselected = false;
+    this.arselected=false
   }
 
+ ArSelected() {
+    this.selected = false;
+    this.cselected = false;
+    this.dselected = false;
+    this.pselected = false;
+    this.arselected=true
+  }
   profileSelected() {
     this.selected = false;
     this.cselected = false;
     this.dselected = false;
     this.pselected = true;
+    this.arselected=false
   }
   isSidebarOpen = true;
 

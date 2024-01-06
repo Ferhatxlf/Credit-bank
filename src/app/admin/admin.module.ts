@@ -9,6 +9,7 @@ import { CourtierComponent } from './courtier/courtier.component';
 import { DirecteurComponent } from './directeur/directeur.component';
 import { InformationComponent } from './information/information.component';
 import { ComponentModule } from '../component/component.module';
+import { AgenceRegionnaleComponent } from './agenceRegionnale/agence-regionnale.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
@@ -19,6 +20,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CourtierComponent,
     DirecteurComponent,
     InformationComponent,
+    AgenceRegionnaleComponent
   ],
   imports: [CommonModule, AdminRoutingModule, ComponentModule,FormsModule,ReactiveFormsModule],
 })

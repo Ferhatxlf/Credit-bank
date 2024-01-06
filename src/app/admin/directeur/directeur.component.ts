@@ -12,6 +12,8 @@ interface Commune {
 interface DirectionRegionale {
   id: number;
   nom: string; 
+adresse :string; 
+createdAt:Date;
 
 
 }
@@ -23,12 +25,26 @@ interface DirectionRegionale {
 export class DirecteurComponent implements OnInit {
   communeForm!: FormGroup;
   communes: Commune[] = [];
-  showForm: boolean = true;
+ // showForm: boolean = true;
   directionForm!: FormGroup;
   directionRegionales: DirectionRegionale[] = [];
 
   constructor(private formBuilder: FormBuilder, private http: HttpClient) {}
 
+
+
+
+
+  showCommuneModal = false;
+  showForm = true; // You can manage the toggle between forms using this property
+
+  showCommuneForm() {
+    this.showCommuneModal = true;
+  }
+
+  showDirectionForm() {
+    // Implement logic to show Agence Régionale form
+  }
   ngOnInit() {
     this.communeForm = this.formBuilder.group({
       communeName: ['', Validators.required],

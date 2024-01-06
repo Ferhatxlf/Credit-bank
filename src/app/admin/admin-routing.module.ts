@@ -5,6 +5,7 @@ import { DashbordAdminComponent } from './dashbord-admin/dashbord-admin.componen
 import { CourtierComponent } from './courtier/courtier.component';
 import { DirecteurComponent } from './directeur/directeur.component';
 import { InformationComponent } from './information/information.component';
+import { AgenceRegionnaleComponent } from './agenceRegionnale/agence-regionnale.component';
 
 
 const routes: Routes = [
@@ -15,6 +16,10 @@ const routes: Routes = [
     component: AdminLayoutComponent,
     children: [
     
+      {
+        path: 'agenceRegionnale',
+        component: AgenceRegionnaleComponent,
+      },
       {
         path: 'dashbordAdmin',
         component: DashbordAdminComponent,

@@ -1,97 +1,44 @@
 <div class="container-fluid">
-  <app-navbar></app-navbar>
-
-  <div class="mt-5">
-    <div class="mb-3 d-flex justify-content-end">
-      <button (click)="showForm = true" class="btn btn-outline-info">
-        <i class="bi bi-plus text-grey"></i> Add Commune
-      </button>
-      <button (click)="showForm = false" class="btn btn-outline-info">
-        <i class="bi bi-table text-grey"></i> Show Communes
-      </button>
-    </div>
-    <div class="mt-5 d-flex justify-content-center">
-      <div class="col-md-6">
-        <div class="row">
-          <div class="col-md-12">
-            <div *ngIf="showForm">
-
-              
-
-              <form [formGroup]="communeForm" (ngSubmit)="addCommune()">
-                <div class="mb-3">
-                  <label for="communeName" class="form-label">Commune Name</label>
-                  <input type="text" class="form-control" id="communeName" placeholder="Enter commune name" formControlName="communeName">
-                </div>
-                <div class="mb-3">
-                  <label for="codePostal" class="form-label">Code postal:</label>
-                  <input type="text" id="codePostal" class="form-control" placeholder="Enter code postal" formControlName="codePostal">
-                </div>
-                <button type="submit" class="btn btn-outline-info mt-3">
-                  <i class="bi bi-plus text-grey"></i> Add Commune
-                </button>
-              </form>
-
-
-
-              <table class="table table-striped table-hover">
-                <thead class="bg-light">
-                  <tr>
-                    <th>ID</th>
-                    <th>Commune Name</th>
-                    <th>Code Postal</th>
-                    <th>Actions</th>
+  <div class="container p-2 mx-auto sm:p-4 text-gray-800">
+      <h2 class="mb-4 text-2xl font-semibold">Communes</h2>
+      <div class="overflow-x-auto">
+          <table class="w-full p-6 text-xs text-left border border-gray-200">
+              <!-- Table headers -->
+              <thead>
+                  <tr class="bg-gray-200">
+                      <th class="px-4 py-2 text-center border">ID</th>
+                      <th class="px-4 py-2 text-center border">Name</th>
+                      <th class="px-4 py-2 text-center border">Postal Code</th>
+                      <!-- Add other headers if needed -->
+                      <th class="p-3 border">
+                          <span class="sr-only">Edit</span>
+                      </th>
                   </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let commune of communes">
-                    <td>{{ commune.id }}</td>
-                    <td>{{ commune.nom }}</td>
-                    <td>{{ commune.codePostal }}</td>
-                    <td>
-                      <button type="button" class="btn btn-light">Edit</button>
-                    </td>
+              </thead>
+              <!-- Table body -->
+              <tbody class="border-b bg-gray-100 border-gray-200">
+                  <!-- Loop through communes -->
+                  <tr *ngFor="let commune of communes" class="border">
+                      <!-- Replace these td contents with respective properties from your Commune interface -->
+                      <td class="px-3 text-2xl font-medium text-gray-400 text-center border">{{ commune.id }}</td>
+                      <td class="px-3 py-2 text-center border">
+                          <p>{{ commune.nom }}</p>
+                      </td>
+                      <td class="px-3 py-2 text-center border">
+                          <span>{{ commune.codePostal }}</span>
+                      </td>
+                      <!-- Add other columns based on your Commune interface -->
+                      <td class="px-3 py-2 text-center border">
+                          <button type="button" title="Open details" class="p-1 rounded-full text-gray-600 hover:bg-gray-700 focus:bg-gray-700">
+                              <svg viewBox="0 0 24 24" class="w-4 h-4 fill-current">
+                                  <path d="M12 6a2 2 0 110-4 2 2 0 010 4zm0 8a2 2 0 110-4 2 2 0 010 4zm-2 6a2 2 0 104 0 2 2 0 00-4 0z"></path>
+                              </svg>
+                          </button>
+                      </td>
                   </tr>
-                </tbody>
-              </table>
-            </div>
-            <div *ngIf="!showForm">
-             
-            
-              <form [formGroup]="directionForm" (ngSubmit)="addRegionalDirection()">
-                <div class="mb-3">
-                  <label for="nom" class="form-label">Direction Name</label>
-                  <input type="text" class="form-control" id="nom" placeholder="Enter direction name" formControlName="nom">
-                </div>
-                <!-- Add more form fields if necessary -->
-            
-                <button type="submit" class="btn btn-outline-info mt-3">
-                  <i class="bi bi-plus text-grey"></i> Add Regional Direction
-                </button>
-              </form>
-              <div *ngIf="directionRegionales.length > 0">
-                <table class="table table-striped">
-                  <thead>
-                    <tr>
-                      <th>ID</th>
-                      <th>Direction Name</th>
-                      <!-- Add more table headers if necessary -->
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let direction of directionRegionales">
-                      <td>{{ direction.id }}</td>
-                      <td>{{ direction.nom }}</td>
-                      <!-- Display other properties as needed -->
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              
-            </div>
-          </div>
-        </div>
+                  <!-- End of loop -->
+              </tbody>
+          </table>
       </div>
-    </div>
   </div>
 </div>
