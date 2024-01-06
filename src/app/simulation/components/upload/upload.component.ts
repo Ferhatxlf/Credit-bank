@@ -76,7 +76,7 @@ export class UploadComponent implements AfterViewInit {
       }
     }
 
-    this.simulationService.addDocument(6, formData).subscribe(
+    this.simulationService.addDocument(1, formData).subscribe(
       (rs) => {
         console.log('files uploads succesfuly');
       },
