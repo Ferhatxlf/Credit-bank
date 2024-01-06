@@ -19,7 +19,7 @@ export class ConfirmationEmailComponent implements OnInit, OnDestroy {
   inputs = Array(6).fill(0);
   inputValues = Array(6).fill(null);
   currentInput = 0;
-  currentUser: any;
+  id_regestring_user: any;
 
   constructor(
     private router: Router,
@@ -61,11 +61,11 @@ export class ConfirmationEmailComponent implements OnInit, OnDestroy {
 
   private startInterval() {
     this.subscription = interval(10000).subscribe(() => {
-      const a = localStorage.getItem('currentUser');
+      const a = localStorage.getItem('id_for_confirmation_email');
       if (a) {
-        this.currentUser = JSON.parse(a);
+        this.id_regestring_user = JSON.parse(a);
       }
-      this.authService.getClient(this.currentUser.id).subscribe(
+      this.authService.getClient(this.id_regestring_user).subscribe(
         (rs) => {
           console.log('vcbls, n;zc, d:', rs);
           if (rs['activated']) {

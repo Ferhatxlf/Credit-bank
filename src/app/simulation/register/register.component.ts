@@ -150,6 +150,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
           }
           console.log(this.data);
           console.log(rs);
+          localStorage.setItem('id_for_confirmation_email', rs['id']);
           const dossier = {
             nomDossier: 'achat dune habitation',
             client: {
