@@ -2,12 +2,20 @@
   <app-navbar></app-navbar>
   <div class="profile">
     <ul>
-      <li><strong>Nom:</strong></li>
-      <li><strong>Prénom:</strong></li>
-      <li><strong>Email:</strong></li>
-      <li><strong>Ville:</strong></li>
-      <li><strong>Pays:</strong></li>
-      <li><strong>Numéro de téléphone:</strong></li>
+      <li><strong>Nom : </strong>{{ Folders[0].client.nom }}</li>
+      <li><strong>Prénom : </strong>{{ Folders[0].client.prenom }}</li>
+      <li><strong>Email : </strong>{{ Folders[0].client.email }}</li>
+      <li><strong>Adresse : </strong>{{ Folders[0].client.adresse }}</li>
+      <li><strong>Ville : </strong> {{ Folders[0].client.ville }}</li>
+      <li>
+        <strong>Code postal : </strong> {{ Folders[0].client.codePostal }}
+      </li>
+      <li>
+        <strong>Nationnalité : </strong> {{ Folders[0].client.nationalite }}
+      </li>
+      <li>
+        <strong>Numéro de téléphone : </strong>{{ Folders[0].client.telephone }}
+      </li>
     </ul>
   </div>
 </div>
