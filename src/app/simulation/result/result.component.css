@@ -132,8 +132,8 @@ p {
 
 /*  pour le pdf  */
 .pdf {
-  background-color: #f6f5f4;
-  height: 173.5vh;
+  margin-top: 30% !important;
+  height: 100%;
 }
 .header-pdf {
   margin: 0 auto;
@@ -153,6 +153,10 @@ p {
   width: 80%;
   text-align: center;
   margin: 0 auto;
+  background-color: #f6f5f4;
+}
+tr {
+  background-color: #f6f5f4 !important;
 }
 
 .footer-result {
@@ -268,5 +272,20 @@ p {
 @media screen and (max-width: 400px) {
   .title {
     font-size: 1.3rem;
+  }
+  .text-explications-container {
+    width: 99%;
+  }
+  .button-container {
+    width: 99%;
+  }
+  .btn {
+    width: 99%;
+  }
+  .btn1 {
+    font-size: small;
+  }
+  .btn2 {
+    font-size: small;
   }
 }
