@@ -30,6 +30,8 @@ export class MesdossierComponent {
       statut: this.fb.control('complet'),
     });
 
+    this.sharedDataService.getAllDossier();
+    this.sharedDataService.getMyFolders();
     this.Folders = this.sharedDataService.mesDossier;
     this.F = this.sharedDataService.mesDossier;
   }
