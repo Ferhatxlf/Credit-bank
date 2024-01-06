@@ -1,26 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import '../../../../node_modules/bootstrap/dist/js/bootstrap.bundle.js';
+import { ClientServiceService } from '../../service/client-service.service.js';
 
 @Component({
   selector: 'app-mesdossier',
   templateUrl: './mesdossier.component.html',
   styleUrl: './mesdossier.component.css',
 })
-export class MesdossierComponent {
-  public Folders: Array<any> = [
-    {
-      nom: 'Dossier1',
-      courtier: 'Courtier1',
-      montantDuPret: 100000,
-      categorie: 'Catégorie1',
-      completer: true,
-    },
-    {
-      nom: 'Dossier2',
-      courtier: 'Courtier2',
-      montantDuPret: 100000,
-      categorie: 'Catégorie2',
-      completer: true,
-    },
-  ];
+export class MesdossierComponent implements OnInit {
+  currentUser: any;
+  public Folders: any = [];
+  constructor(private clientService: ClientServiceService) {}
+  ngOnInit(): void {
+    const a = localStorage.getItem('currentUser');
+    if (a) {
+      this.currentUser = JSON.parse(a);
+    }
+    this.clientService.getDossier(this.currentUser.id).subscribe(
+      (rs) => {
+        console.log(rs);
+        this.Folders = rs;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
 }
