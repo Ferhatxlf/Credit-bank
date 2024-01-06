@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="container p-2 mx-auto sm:p-4 text-gray-800">
-      <h2 class="mb-4 text-2xl font-semibold">Communes</h2>
+    <h2 class="mb-4 text-2xl text-secondary">Communes</h2>
       <div class="overflow-x-auto">
           <table class="w-full p-6 text-xs text-left border border-gray-200">
               <!-- Table headers -->
@@ -20,7 +20,7 @@
                   <!-- Loop through communes -->
                   <tr *ngFor="let commune of communes" class="border">
                       <!-- Replace these td contents with respective properties from your Commune interface -->
-                      <td class="px-3 text-2xl font-medium text-gray-400 text-center border">{{ commune.id }}</td>
+                      <td class="px-3 py-2 text-center border">{{ commune.id }}</td>
                       <td class="px-3 py-2 text-center border">
                           <p>{{ commune.nom }}</p>
                       </td>
