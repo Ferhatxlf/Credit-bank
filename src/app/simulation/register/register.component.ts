@@ -164,6 +164,8 @@ export class RegisterComponent implements OnInit, AfterViewInit {
 
           const d = JSON.stringify(dossier);
           console.log('-----------------d', d);
+
+          this.router.navigate(['/simulation/confirmation']);
           this.simulationService.addDossier(d).subscribe(
             (rs) => {
               console.log('dossier cree');
