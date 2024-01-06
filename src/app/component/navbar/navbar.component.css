@@ -2,6 +2,7 @@
 .navbar {
   overflow: hidden;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
@@ -18,8 +19,40 @@
 .right {
   display: flex;
   align-items: center;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
 }
 
+.right .avatar {
+  display: flex;
+  justify-content: end;
+}
+.avatar img {
+  width: 60px;
+  margin-right: 0;
+  cursor: pointer;
+}
+.right .information {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+.information .name {
+  margin: auto;
+  font-size: 16px;
+  font-weight: 600;
+  width: 100%;
+}
+.information .email {
+  margin: auto;
+  font-size: 14px;
+  opacity: 0.5;
+}
+.logout span {
+  font-size: 30px !important;
+  cursor: pointer;
+}
 .right div {
   display: flex;
   align-items: center;
