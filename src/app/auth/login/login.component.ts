@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     });
 
     this.banquierForm = this.fb.group({
-      username: this.fb.control(''),
+      nin: this.fb.control(''),
       password: this.fb.control(''),
     });
   }
@@ -37,11 +37,18 @@ export class LoginComponent implements OnInit {
   }
 
   clientLogin() {
-    this.authService.login(this.banquierForm.value).subscribe(
+    this.authService.login(this.loginForm.value).subscribe(
       (rs) => {
-        this.authService.setToken(rs.token);
-        console.log(rs.token);
-        this.router.navigate(['/courtier']);
+        console.log(rs);
+        const user = {
+          token: rs.token,
+          id: rs.compte.id,
+          agence_id: rs.compte.agenceId,
+        };
+        console.log(user);
+        localStorage.setItem('currentUser', JSON.stringify(user));
+
+        this.router.navigate(['/client']);
       },
       (error) => {
         console.error('Erreur de connexion:', error);
@@ -50,11 +57,17 @@ export class LoginComponent implements OnInit {
   }
 
   banquierLogin() {
-    this.authService.banquierLogin(this.loginForm.value).subscribe(
+    this.authService.banquierLogin(this.banquierForm.value).subscribe(
       (rs) => {
-        this.authService.setToken(rs.token);
-        console.log(rs.token);
-        this.router.navigate(['/client']);
+        console.log(rs);
+        const user = {
+          token: rs.token,
+          id: rs.compte.id,
+          agence_id: rs.compte.agenceId,
+        };
+        console.log(user);
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        this.router.navigate(['/courtier']);
       },
       (error) => {
         console.error('Erreur de connexion:', error);

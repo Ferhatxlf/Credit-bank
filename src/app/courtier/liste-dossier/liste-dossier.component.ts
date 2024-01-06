@@ -13,53 +13,8 @@ import { SharedDataService } from '../shared-data.service';
 export class ListeDossierComponent implements OnInit {
   public router!: Router;
   public searchForm!: FormGroup;
-  public Folders: Array<any> = [
-    {
-      numero: '1125',
-      name: "Achat d'un véhicule touristique",
-      type_financement: 'Consomation',
-      montant: 1000000,
-      credit: 1000000,
-      statut: 'a completer',
-      duree: '4 années',
-      autre_financement: 0,
-      courtier: '',
-      emprunteur: {
-        name: 'KHELF Ferhat',
-        age: 28,
-        revenu: 100000,
-        revenu_coemprunteur: 100000,
-        num: '0560...',
-        email: 'feraht@gmail.com',
-        adresse: 'tizi ouzou',
-        etatCivil: 'celebataire',
-        type_client: 'Particulier',
-      },
-    },
-    {
-      numero: '1126',
-      name: "Achat d'un F4",
-      type_financement: 'Consomation',
-      montant: 1500000,
-      credit: 1000000,
-      statut: 'complet',
-      duree: '4 années',
-      autre_financement: 0,
-      courtier: ' AMROUNE Laarbi',
-      emprunteur: {
-        name: 'TOUZI Mahrez',
-        age: 28,
-        revenu: 100000,
-        revenu_coemprunteur: 0,
-        num: '0560...',
-        email: 'feraht@gmail.com',
-        adresse: 'tizi ouzou',
-        etatCivil: 'celebataire',
-        type_client: 'Particulier',
-      },
-    },
-  ];
-  public F: Array<any> = this.Folders;
+  public Folders!: Array<any>;
+  public F!: Array<any>;
   public searchActivate: boolean = false;
 
   constructor(
@@ -75,6 +30,9 @@ export class ListeDossierComponent implements OnInit {
       nom_projet: this.fb.control(''),
       statut: this.fb.control('complet'),
     });
+
+    this.Folders = this.sharedDataService.allDossier;
+    this.F = this.sharedDataService.allDossier;
   }
 
   folderClicked(folder) {

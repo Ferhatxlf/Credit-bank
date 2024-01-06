@@ -1,35 +1,35 @@
 <div class="details-info">
-  <div class="numero">Dossier n° : 1125</div>
+  <div class="numero">Dossier n° : {{ folderValue.id }}</div>
   <div class="details-column">
     <div class="title-container">
       <label>Montant du crédit souhaité :</label>
-      <div>8 000 000 DZD</div>
+      <div>{{ folderValue.montantHabitation }} DZD</div>
     </div>
     <div class="title-container">
-      <label>Apport initial :</label>
-      <div>2 000 000 DZD</div>
+      <label>Crédit souhaité:</label>
+      <div>{{ folderValue.creditSouhaite }} DZD</div>
     </div>
     <div class="title-container">
       <label>Revenu de l'emprunteur :</label>
-      <div>150 000 DZD</div>
+      <div>{{ folderValue.revenueEmprunteur }} DZD</div>
     </div>
 
     <div class="title-container">
       <label>Revenu du co-emprunteur :</label>
-      <div>0 DZD</div>
+      <div>{{ folderValue.revenueCoEmprunteur }} DZD</div>
     </div>
 
     <div class="title-container">
       <label>Patrimoine imobilier</label>
-      <div>0 DZD</div>
+      <div>{{ folderValue.montantRevenueImmobilier }} DZD</div>
     </div>
     <div class="title-container">
       <label>Durée du financement :</label>
-      <div>4 années</div>
+      <div>{{ folderValue.dureeFinancement }} années</div>
     </div>
     <div class="title-container">
       <label>Autres crédit en cours :</label>
-      <div>0 DZD</div>
+      <div>{{ folderValue.montantAutreCredit }} DZD</div>
     </div>
   </div>
 </div>

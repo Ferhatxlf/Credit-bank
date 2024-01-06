@@ -10,5 +10,6 @@ export class DashbordComponent implements OnInit {
   constructor(private sharedData: SharedDataService) {}
   ngOnInit(): void {
     this.sharedData.getAllDossier();
+    this.sharedData.getMyFolders();
   }
 }

@@ -25,10 +25,5 @@ export class DetailComponent implements OnInit {
 
   ngOnInit() {
     this.folderValue = this.sharedDataService.getFolderData();
-    if (this.folderValue.courtier === '') {
-      this.haveCourtier = false;
-    } else {
-      this.haveCourtier = true;
-    }
   }
 }
