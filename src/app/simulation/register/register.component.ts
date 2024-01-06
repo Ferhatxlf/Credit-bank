@@ -149,6 +149,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
             this.data = simulationData;
           }
           console.log(this.data);
+          console.log(rs);
           const dossier = {
             nomDossier: 'achat dune habitation',
             client: {
