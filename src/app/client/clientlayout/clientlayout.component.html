@@ -1,51 +1,101 @@
 <div class="container-fluid">
-  <!-- <div class="bg-fond"></div> -->
+  <div class="navbar">
+    <img
+      src="../.../../../../assets/sidebarLaterlShow.png"
+      class="lateralsidebarshow"
+      alt="lateralsidebarshow"
+      (click)="toggleSidebar()"
+    />
+    <div class="navbar-logo-container">
+      <img src="../../assets/bankLogo.png" />
+    </div>
+  </div>
   <div class="sidebar">
     <div class="sidebar-logo-container">
       <img src="../../assets/bankLogo.png" />
     </div>
-    <div
-      class="container-text"
-      [routerLink]="['/client/dashbord']"
-      (click)="dashboardSelected()"
-    >
-      <span class="material-icons sidebar-icons">arrow_forward_ios</span>
-      <span class="sidebar-text" [ngClass]="{ 'special-class': selected }">
-        Dashboard</span
+    <div class="sections">
+      <div
+        class="container-text"
+        [routerLink]="['/client/dashbord']"
+        (click)="dashboardSelected()"
+        [ngClass]="{ 'special-class': selected }"
       >
-    </div>
-    <div
-      class="container-text"
-      [routerLink]="['/client/nouveau-credit']"
-      (click)="creditSelected()"
-    >
-      <span class="material-icons sidebar-icons"> arrow_forward_ios </span>
+        <span class="material-icons sidebar-icons">arrow_forward_ios</span>
+        <span class="sidebar-text"> Dashboard</span>
+      </div>
+      <div
+        class="container-text"
+        [routerLink]="['/client/nouveau-credit']"
+        (click)="creditSelected()"
+        [ngClass]="{ 'special-class': cselected }"
+      >
+        <span class="material-icons sidebar-icons"> arrow_forward_ios </span>
 
-      <span class="sidebar-text" [ngClass]="{ 'special-class': cselected }"
-        >Nouveau crédit</span
+        <span class="sidebar-text">Nouveau crédit</span>
+      </div>
+      <div
+        class="container-text"
+        [routerLink]="['/client/dossier']"
+        (click)="dossierSelected()"
+        [ngClass]="{ 'special-class': dselected }"
       >
-    </div>
-    <div
-      class="container-text"
-      [routerLink]="['/client/dossier']"
-      (click)="dossierSelected()"
-    >
-      <span class="material-icons sidebar-icons"> arrow_forward_ios </span>
+        <span class="material-icons sidebar-icons"> arrow_forward_ios </span>
 
-      <span class="sidebar-text" [ngClass]="{ 'special-class': dselected }"
-        >Mes dossier</span
+        <span class="sidebar-text">Mes dossier</span>
+      </div>
+      <div
+        class="container-text"
+        [routerLink]="['/client/profile']"
+        (click)="profileSelected()"
+        [ngClass]="{ 'special-class': pselected }"
       >
-    </div>
-    <div
-      class="container-text"
-      [routerLink]="['/client/profile']"
-      (click)="profileSelected()"
-    >
-      <span class="material-icons sidebar-icons"> arrow_forward_ios </span>
+        <span class="material-icons sidebar-icons"> arrow_forward_ios </span>
 
-      <span class="sidebar-text" [ngClass]="{ 'special-class': pselected }"
-        >Mon profile</span
-      >
+        <span class="sidebar-text">Mon profile</span>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="isSidebarOpen">
+    <div class="sideBar-lateral-container" (click)="toggleSidebar()"></div>
+    <div class="sideBar-lateral translateSideBar" *ngIf="isSidebarOpen">
+      <div class="sidebar-lateral-header">
+        <span class="material-icons" (click)="toggleSidebar()">close</span>
+      </div>
+      <div class="sidebar-lateral-sections">
+        <div
+          class="sidebar-lateral-container-text"
+          [routerLink]="['/client/dashbord']"
+          (click)="dashboardSelected()"
+          [ngClass]="{ 'sidebar-lateral-special-class': selected }"
+        >
+          <span class="sidebar-text"> Dashboard</span>
+        </div>
+        <div
+          class="sidebar-lateral-container-text"
+          [routerLink]="['/client/nouveau-credit']"
+          (click)="creditSelected()"
+          [ngClass]="{ 'sidebar-lateral-special-class': cselected }"
+        >
+          <span class="sidebar-text">Nouveau crédit</span>
+        </div>
+        <div
+          class="sidebar-lateral-container-text"
+          [routerLink]="['/client/dossier']"
+          (click)="dossierSelected()"
+          [ngClass]="{ 'sidebar-lateral-special-class': dselected }"
+        >
+          <span class="sidebar-text">Mes dossier</span>
+        </div>
+        <div
+          class="sidebar-lateral-container-text"
+          [routerLink]="['/client/profile']"
+          (click)="profileSelected()"
+          [ngClass]="{ 'sidebar-lateral-special-class': pselected }"
+        >
+          <span class="sidebar-text">Mon profile</span>
+        </div>
+      </div>
     </div>
   </div>
 
