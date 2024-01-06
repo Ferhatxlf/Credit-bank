@@ -31,6 +31,8 @@ export class ListeDossierComponent implements OnInit {
       statut: this.fb.control('complet'),
     });
 
+    this.sharedDataService.getAllDossier();
+    this.sharedDataService.getMyFolders();
     this.Folders = this.sharedDataService.allDossier;
     this.F = this.sharedDataService.allDossier;
   }
