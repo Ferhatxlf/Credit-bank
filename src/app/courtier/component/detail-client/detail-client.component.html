@@ -1,13 +1,13 @@
 <div class="details-info">
-  <div class="numero">Dossier n° : 1125</div>
+  <div class="numero">Dossier n° : {{ folderValue.id }}</div>
   <div class="details-column">
     <div class="title-container">
       <label>Nom:</label>
-      <div>KHELF</div>
+      <div>{{ folderValue.client.nom }}</div>
     </div>
     <div class="title-container">
       <label>Prénom:</label>
-      <div>Ferhat</div>
+      <div>{{ folderValue.client.prenom }}</div>
     </div>
 
     <div class="title-container">
@@ -17,24 +17,24 @@
 
     <div class="title-container">
       <label>Adresse email :</label>
-      <div>ferhat&#64;gmail.com</div>
+      <div>{{ folderValue.client.email }}</div>
     </div>
 
     <div class="title-container">
       <label>Numéro de télephone</label>
-      <div>0560...</div>
+      <div>{{ folderValue.client.telephone }}</div>
     </div>
     <div class="title-container">
       <label>Nationnalité :</label>
-      <div>Algerienne</div>
+      <div>{{ folderValue.client.nationalite }}</div>
     </div>
     <div class="title-container">
       <label>Adresse</label>
-      <div>Ouaguneoun tizi ouzou</div>
+      <div>{{ folderValue.client.adresse }}</div>
     </div>
     <div class="title-container">
       <label>Code postal</label>
-      <div>15048</div>
+      <div>{{ folderValue.client.codePostal }}</div>
     </div>
   </div>
 </div>

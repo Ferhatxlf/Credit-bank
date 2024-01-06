@@ -1,9 +1,9 @@
 <div class="details-info">
-  <div class="numero">Dossier n° : 1125</div>
+  <div class="numero">Dossier n° : {{ folderValue.id }}</div>
   <div class="details-column">
     <div class="title-container name">
       <label>Nom:</label>
-      <div>Achat d'un F4</div>
+      <div>{{ folderValue.nomDossier }}</div>
     </div>
     <div class="title-container">
       <label>Type du client :</label>
@@ -11,16 +11,16 @@
     </div>
     <div class="title-container">
       <label>Type du financement :</label>
-      <div>Financement traditionnel (conventionnel)</div>
+      <div>{{ folderValue.typeFinancement }}</div>
     </div>
 
     <div class="title-container">
       <label>Type du crédit :</label>
-      <div>consom</div>
+      <div>{{ folderValue.typeCredit }}</div>
     </div>
     <div class="title-container">
       <label>Durée du financement :</label>
-      <div>4 années</div>
+      <div>{{ folderValue.dureeFinancement }} années</div>
     </div>
     <div class="title-container">
       <label>Date de création :</label>
@@ -28,7 +28,7 @@
     </div>
     <div class="title-container">
       <label>Statut :</label>
-      <div>Dossier complet</div>
+      <div>{{ folderValue.status }}</div>
     </div>
   </div>
 </div>

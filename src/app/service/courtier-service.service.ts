@@ -15,6 +15,13 @@ export class CourtierServiceService {
   }
 
   getMyDossier(id: number) {
-    return this.http.get(`${this.apiUrl}/dossiers/courtier/${id}/traitee`);
+    return this.http.get(`${this.apiUrl}/dossiers/courtier/${id}/Encours`);
+  }
+
+  affecterDossierACourtier(courtierId: number, dossierId: number) {
+    return this.http.post(
+      `${this.apiUrl}/assign-dossier/${dossierId}/to-courtier/${courtierId}`,
+      null
+    );
   }
 }
