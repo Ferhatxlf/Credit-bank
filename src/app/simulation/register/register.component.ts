@@ -18,9 +18,11 @@ import { JsonpInterceptor } from '@angular/common/http';
 export class RegisterComponent implements OnInit, AfterViewInit {
   data: any;
   applyForm: FormGroup;
+  applyFormSignIn: FormGroup;
   defaultCivility = 'default';
   defaultMaritalStatus = 'default';
   submitted: boolean = false;
+  submittedSignIn: boolean = false;
   nationnalitee: boolean = true;
   pays: boolean = true;
   toggleRegisterLogin: boolean = true;
@@ -55,6 +57,10 @@ export class RegisterComponent implements OnInit, AfterViewInit {
       nationality: ['', [Validators.required, this.nameValidator]],
       civility: ['', [Validators.required, this.civilityValidator]],
       maritalStatus: ['', [Validators.required, this.maritalStatusValidator]],
+    });
+    this.applyFormSignIn = this.fb.group({
+      emailConnexion: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]],
     });
   }
   setToggleRegisterLogin() {
@@ -182,6 +188,20 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     } else {
       this.submitted = true;
       console.log('Le formulaire est invalide. Veuillez corriger les erreurs.');
+    }
+  }
+  submitFormSignIn() {
+    if (this.applyFormSignIn.valid) {
+      const formSignInData = {
+        email: this.applyFormSignIn.value.emailConnexion,
+        password: this.applyFormSignIn.value.password,
+      };
+      console.log(formSignInData, 'data de connexion');
+    } else {
+      this.submittedSignIn = true;
+      console.log(
+        'Le formulaire de connexion est invalide. Veuillez corriger les erreurs.'
+      );
     }
   }
 }

@@ -22,11 +22,7 @@
 }
 
 .title {
-  font-size: 1.7rem;
-  color: rgb(110, 112, 112);
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-align: center; /* Centrer le texte horizontalement */
+  text-align: center;
 }
 .forms {
   width: 80%;
@@ -59,7 +55,7 @@ label {
 
 .supposition {
   border: 1px solid rgba(0, 0, 0, 0.226);
-  border-radius: 12px;
+  border-radius: 7px;
   padding: 6px;
   width: 42%;
   color: rgb(145, 142, 142);
@@ -117,9 +113,6 @@ span:hover {
   padding-right: 60px; /* Ajustez la valeur selon vos besoins */
 }
 @media screen and (max-width: 1000px) {
-  .title {
-    font-size: 2rem;
-  }
   .container {
     width: 100%;
   }
@@ -129,7 +122,7 @@ span:hover {
 }
 @media screen and (max-width: 800px) {
   .title {
-    font-size: 1.8rem;
+    font-size: 22px;
   }
   .container {
     width: 100%;
@@ -140,7 +133,7 @@ span:hover {
 }
 @media screen and (max-width: 600px) {
   .title {
-    font-size: 1.2rem;
+    font-size: 20px;
   }
   .container {
     width: 100%;
@@ -151,6 +144,6 @@ span:hover {
 }
 @media screen and (max-width: 400px) {
   .title {
-    font-size: 1.3rem;
+    font-size: 17px;
   }
 }

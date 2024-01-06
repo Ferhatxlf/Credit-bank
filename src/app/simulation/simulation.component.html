@@ -12,189 +12,208 @@
     <div class="sidebar-logo-container">
       <img src="../../assets/bankLogo.png" />
     </div>
-    <div class="container-text">
-      <span class="material-icons sidebar-icons">{{
-        url === "/simulation/immobilier" ||
-        url === "/simulation/consomation" ||
-        url === "/simulation/form" ||
-        url === "/simulation/result" ||
-        url === "/simulation/notice" ||
-        url === "/simulation/register" ||
-        url === "/simulation/confirmation" ||
-        url === "/simulation/success" ||
-        url === "/simulation/formConsomation"
-          ? "check"
-          : "arrow_forward_ios"
-      }}</span>
-      <span
-        class="sidebar-text"
-        [ngClass]="{
-          sidebarScal:
-            url === '/simulation/type' ||
-            url === '/simulation/immobilier' ||
-            url === '/simulation/consomation' ||
-            url === '/simulation/form' ||
-            url === '/simulation/result' ||
-            url === '/simulation/notice' ||
-            url === '/simulation/register' ||
-            url === '/simulation/confirmation' ||
-            url === '/simulation/upload' ||
-            url === '/simulation/success' ||
-            url === '/simulation/formConsomation'
-        }"
-        >Type de financement</span
-      >
-    </div>
-    <div class="container-text">
-      <span class="material-icons sidebar-icons">
-        {{
-          url === "/simulation/form" ||
-          url === "/simulation/result" ||
-          url === "/simulation/notice" ||
-          url === "/simulation/register" ||
-          url === "/simulation/confirmation" ||
-          url === "/simulation/success" ||
-          url === "/simulation/formConsomation"
-            ? "check"
-            : "arrow_forward_ios"
-        }}
-      </span>
-      <span
-        class="sidebar-text"
-        [ngClass]="{
-          sidebarScal:
-            url === '/simulation/immobilier' ||
-            url === '/simulation/consomation' ||
-            url === '/simulation/form' ||
-            url === '/simulation/result' ||
-            url === '/simulation/notice' ||
-            url === '/simulation/register' ||
-            url === '/simulation/confirmation' ||
-            url === '/simulation/upload' ||
-            url === '/simulation/success' ||
-            url === '/simulation/formConsomation'
-        }"
-        >Projet à financer</span
-      >
-    </div>
-    <div class="container-text">
-      <span class="material-icons sidebar-icons">
-        {{
-          url === "/simulation/result" ||
-          url === "/simulation/notice" ||
-          url === "/simulation/register" ||
-          url === "/simulation/confirmation" ||
-          url === "/simulation/upload" ||
-          url === "/simulation/success"
-            ? "check"
-            : "arrow_forward_ios"
-        }}
-      </span>
-      <span
-        class="sidebar-text"
-        [ngClass]="{
-          sidebarScal:
-            url === '/simulation/form' ||
-            url === '/simulation/result' ||
-            url === '/simulation/notice' ||
-            url === '/simulation/register' ||
-            url === '/simulation/confirmation' ||
-            url === '/simulation/upload' ||
-            url === '/simulation/success' ||
-            url === '/simulation/formConsomation'
-        }"
-        >Simuler votre credit</span
-      >
-    </div>
-    <div class="container-text">
-      <span class="material-icons sidebar-icons">
-        {{
-          url === "/simulation/notice" ||
-          url === "/simulation/register" ||
-          url === "/simulation/confirmation" ||
-          url === "/simulation/upload" ||
-          url === "/simulation/success"
-            ? "check"
-            : "arrow_forward_ios"
-        }}
-      </span>
-      <span
-        class="sidebar-text"
-        [ngClass]="{
-          sidebarScal:
-            url === '/simulation/result' ||
-            url === '/simulation/notice' ||
-            url === '/simulation/register' ||
-            url === '/simulation/confirmation' ||
-            url === '/simulation/upload' ||
-            url === '/simulation/success'
-        }"
-        >Résultat de la simulation</span
-      >
-    </div>
-    <hr
-      class="mt-5 mb-5"
-      style="
-        width: 70%;
-        margin: 0 auto;
-        color: rgb(163, 159, 159);
-        border: 1px solid;
-      "
-    />
-    <div class="container-text mt-5">
-      <span class="material-icons sidebar-icons">
-        {{
-          url === "/simulation/confirmation" ||
-          url === "/simulation/upload" ||
-          url === "/simulation/success"
-            ? "check"
-            : "arrow_forward_ios"
-        }}
-      </span>
-      <span
-        class="sidebar-text"
-        [ngClass]="{
-          sidebarScal:
-            url === '/simulation/register' ||
-            url === '/simulation/confirmation' ||
-            url === '/simulation/upload' ||
-            url === '/simulation/success'
-        }"
-        >Inscriptions</span
-      >
-    </div>
 
-    <div class="container-text">
-      <span class="material-icons sidebar-icons">
-        {{
-          url === "/simulation/upload" || url === "/simulation/success"
-            ? "check"
-            : "arrow_forward_ios"
-        }}
-      </span>
-      <span
-        class="sidebar-text"
-        [ngClass]="{
-          sidebarScal:
-            url === '/simulation/confirmation' ||
-            url === '/simulation/upload' ||
-            url === '/simulation/success'
-        }"
-        >Confirmation email</span
-      >
-    </div>
-    <div class="container-text">
-      <span class="material-icons sidebar-icons">
-        {{ url === "/simulation/success" ? "check" : "arrow_forward_ios" }}
-      </span>
-      <span
-        class="sidebar-text"
-        [ngClass]="{
-          sidebarScal:
-            url === '/simulation/upload' || url === '/simulation/success'
-        }"
-        >Chargement des documents</span
-      >
+    <div class="sidebar-sections">
+      <div class="sections">
+        <div class="container-text">
+          <span class="material-icons sidebar-icons">{{
+            url === "/simulation/immobilier" ||
+            url === "/simulation/consomation" ||
+            url === "/simulation/form" ||
+            url === "/simulation/result" ||
+            url === "/simulation/notice" ||
+            url === "/simulation/register" ||
+            url === "/simulation/confirmation" ||
+            url === "/simulation/success" ||
+            url === "/simulation/formConsomation" ||
+            url === "/simulation/islamique-vehicule" ||
+            url === "/simulation/islamique-form"
+              ? "check"
+              : "arrow_forward_ios"
+          }}</span>
+          <span
+            class="sidebar-text"
+            [ngClass]="{
+              sidebarScal:
+                url === '/simulation/type' ||
+                url === '/simulation/immobilier' ||
+                url === '/simulation/consomation' ||
+                url === '/simulation/form' ||
+                url === '/simulation/result' ||
+                url === '/simulation/notice' ||
+                url === '/simulation/register' ||
+                url === '/simulation/confirmation' ||
+                url === '/simulation/upload' ||
+                url === '/simulation/success' ||
+                url === '/simulation/formConsomation' ||
+                url === '/simulation/islamique' ||
+                url === '/simulation/islamique-vehicule' ||
+                url === '/simulation/islamique-form'
+            }"
+            >Type de financement</span
+          >
+        </div>
+        <div class="container-text">
+          <span class="material-icons sidebar-icons">
+            {{
+              url === "/simulation/form" ||
+              url === "/simulation/result" ||
+              url === "/simulation/notice" ||
+              url === "/simulation/register" ||
+              url === "/simulation/confirmation" ||
+              url === "/simulation/success" ||
+              url === "/simulation/formConsomation" ||
+              url === "/simulation/islamique-form"
+                ? "check"
+                : "arrow_forward_ios"
+            }}
+          </span>
+          <span
+            class="sidebar-text"
+            [ngClass]="{
+              sidebarScal:
+                url === '/simulation/immobilier' ||
+                url === '/simulation/consomation' ||
+                url === '/simulation/form' ||
+                url === '/simulation/result' ||
+                url === '/simulation/notice' ||
+                url === '/simulation/register' ||
+                url === '/simulation/confirmation' ||
+                url === '/simulation/upload' ||
+                url === '/simulation/success' ||
+                url === '/simulation/formConsomation' ||
+                url === '/simulation/islamique' ||
+                url === '/simulation/islamique-vehicule' ||
+                url === '/simulation/islamique-form'
+            }"
+            >Projet à financer</span
+          >
+        </div>
+        <div class="container-text">
+          <span class="material-icons sidebar-icons">
+            {{
+              url === "/simulation/result" ||
+              url === "/simulation/notice" ||
+              url === "/simulation/register" ||
+              url === "/simulation/confirmation" ||
+              url === "/simulation/upload" ||
+              url === "/simulation/success"
+                ? "check"
+                : "arrow_forward_ios"
+            }}
+          </span>
+          <span
+            class="sidebar-text"
+            [ngClass]="{
+              sidebarScal:
+                url === '/simulation/form' ||
+                url === '/simulation/result' ||
+                url === '/simulation/notice' ||
+                url === '/simulation/register' ||
+                url === '/simulation/confirmation' ||
+                url === '/simulation/upload' ||
+                url === '/simulation/success' ||
+                url === '/simulation/formConsomation' ||
+                url === '/simulation/islamique-form'
+            }"
+            >Simuler votre credit</span
+          >
+        </div>
+        <div class="container-text">
+          <span class="material-icons sidebar-icons">
+            {{
+              url === "/simulation/notice" ||
+              url === "/simulation/register" ||
+              url === "/simulation/confirmation" ||
+              url === "/simulation/upload" ||
+              url === "/simulation/success"
+                ? "check"
+                : "arrow_forward_ios"
+            }}
+          </span>
+          <span
+            class="sidebar-text"
+            [ngClass]="{
+              sidebarScal:
+                url === '/simulation/result' ||
+                url === '/simulation/notice' ||
+                url === '/simulation/register' ||
+                url === '/simulation/confirmation' ||
+                url === '/simulation/upload' ||
+                url === '/simulation/success'
+            }"
+            >Résultat de la simulation</span
+          >
+        </div>
+      </div>
+
+      <div class="sections">
+        <hr
+          style="
+            width: 100%;
+            margin: 0 auto;
+            color: rgb(163, 159, 159);
+            border: 1px solid;
+          "
+        />
+      </div>
+
+      <div class="sections">
+        <div class="container-text">
+          <span class="material-icons sidebar-icons">
+            {{
+              url === "/simulation/confirmation" ||
+              url === "/simulation/upload" ||
+              url === "/simulation/success"
+                ? "check"
+                : "arrow_forward_ios"
+            }}
+          </span>
+          <span
+            class="sidebar-text"
+            [ngClass]="{
+              sidebarScal:
+                url === '/simulation/register' ||
+                url === '/simulation/confirmation' ||
+                url === '/simulation/upload' ||
+                url === '/simulation/success'
+            }"
+            >Inscriptions</span
+          >
+        </div>
+        <div class="container-text">
+          <span class="material-icons sidebar-icons">
+            {{
+              url === "/simulation/upload" || url === "/simulation/success"
+                ? "check"
+                : "arrow_forward_ios"
+            }}
+          </span>
+          <span
+            class="sidebar-text"
+            [ngClass]="{
+              sidebarScal:
+                url === '/simulation/confirmation' ||
+                url === '/simulation/upload' ||
+                url === '/simulation/success'
+            }"
+            >Confirmation email</span
+          >
+        </div>
+        <div class="container-text">
+          <span class="material-icons sidebar-icons">
+            {{ url === "/simulation/success" ? "check" : "arrow_forward_ios" }}
+          </span>
+          <span
+            class="sidebar-text"
+            [ngClass]="{
+              sidebarScal:
+                url === '/simulation/upload' || url === '/simulation/success'
+            }"
+            >Chargement des documents</span
+          >
+        </div>
+      </div>
     </div>
   </div>
   <nav
@@ -380,7 +399,10 @@
             url === '/simulation/immobilier' ||
             url === '/simulation/consomation' ||
             url === '/simulation/form' ||
-            url === '/simulation/formConsomation'
+            url === '/simulation/formConsomation' ||
+            url === '/simulation/islamique' ||
+            url === '/simulation/islamique-form' ||
+            url === '/simulation/islamique-vehicule'
           "
           disabled
         />

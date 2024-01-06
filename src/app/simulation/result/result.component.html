@@ -1,180 +1,169 @@
-<div class="header d-flex justify-content-center w-100 translate">
-  <div class="title">Votre résultat de simulation</div>
-  <div class="subTitle mt-1 mb-3" *ngIf="eligible">
-    Félicitation vous êtes éligible au financement
-  </div>
-  <div class="subTitle" *ngIf="!eligible">
-    <p
-      style="
-        color: rgb(212, 42, 20);
-        font-size: 16px;
-        width: 70%;
-        margin: 1% auto;
-        font-weight: 600;
-      "
-      *ngIf="!islamique"
-    >
-      Vous n’êtes pas éligible au financement demandé. Cependant, en tenant
-      compte de vos revenus, la banque est en mesure de vous accorder ce
-      montant.
-    </p>
-    <p
-      style="
-        color: rgb(212, 42, 20);
-        font-size: 16px;
-        width: 70%;
-        margin: 1% auto;
-        font-weight: 600;
-      "
-      *ngIf="islamique"
-    >
-      Vous n’êtes pas éligible au financement demandé.
-    </p>
-  </div>
-</div>
-<div class="row cards translate" *ngIf="!islamique">
-  <div class="row class1-container">
-    <div class="col-sm-12 col-md-4 col-lg-4">
-      <div class="card mt-1">
-        <p>Montant de financement</p>
-        <span> {{ financement | currency : "DZD" : "" }} DZD</span>
-      </div>
+<div class="container">
+  <div class="header d-flex justify-content-center w-100 translate">
+    <h2 class="title">Votre résultat de simulation</h2>
+    <div class="subTitle mt-1 mb-1" *ngIf="eligible">
+      Félicitation vous êtes éligible au financement
     </div>
-    <div class="col-sm-12 col-md-4 col-lg-4">
-      <div class="card mt-1">
-        <p>Durée de financement</p>
-        <span> {{ durer }} Années</span>
-      </div>
-    </div>
-    <div class="col-sm-12 col-md-4 col-lg-4">
-      <div class="card mt-1">
-        <p>Taux d'intérêt</p>
-        <span>{{ consomation ? "8.5 %" : "6.5 %" }}</span>
-      </div>
+    <div class="subTitle" *ngIf="!eligible">
+      <p
+        style="
+          color: rgb(212, 42, 20);
+          font-size: 16px;
+          width: 80%;
+          margin: 1% auto;
+          font-weight: 600;
+        "
+        *ngIf="!islamique"
+      >
+        Vous n’êtes pas éligible au financement demandé. Cependant, en tenant
+        compte de vos revenus, la banque est en mesure de vous accorder un
+        financement selon les caractéristiques suivantes :
+      </p>
+      <p
+        style="
+          color: rgb(212, 42, 20);
+          font-size: 16px;
+          width: 80%;
+          margin: 1% auto;
+          font-weight: 600;
+        "
+        *ngIf="islamique"
+      >
+        Selon les informations saisies, vous n'êtes pas éligible au financement.
+      </p>
     </div>
   </div>
-  <div class="row class2-container">
-    <div class="col mt-1">
-      <div class="card special-card">
-        <p>Apport initial</p>
-        <span> {{ apportInitial | currency : "DZD" : "" }} DZD</span>
+  <div class="row mt-3 cards translate" *ngIf="!islamique">
+    <div class="row class1-container">
+      <div class="col-sm-12 col-md-4 col-lg-4 mb-3">
+        <div class="card mt-1">
+          <p>Apport initial</p>
+          <span class="card-text">
+            {{ apportInitial | currency : "DZD" : "" }} DZD</span
+          >
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-4 col-lg-4 mb-3">
+        <div class="card mt-1">
+          <p>Durée de financement</p>
+          <span class="card-text"> {{ durer }} Années</span>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-4 col-lg-4 mb-3">
+        <div class="card mt-1">
+          <p>Taux d'intérêt</p>
+          <span class="card-text">{{ consomation ? "8.5 %" : interet }}</span>
+        </div>
       </div>
     </div>
-    <div class="col mt-1">
-      <div class="card special-card">
-        <p>Mensualités</p>
-        <span>{{ mensualite | currency : "DZD" : "" }} DZD</span>
+    <div class="row class2-container">
+      <div class="col mt-1">
+        <div class="card special-card">
+          <p>Montant de financement</p>
+          <span class="card-text-special">
+            {{ financement | currency : "DZD" : "" }} DZD</span
+          >
+        </div>
+      </div>
+      <div class="col mt-1">
+        <div class="card special-card-mensualite">
+          <p>Mensualités</p>
+          <span class="card-text-special"
+            >{{ mensualite | currency : "DZD" : "" }} DZD</span
+          >
+        </div>
       </div>
     </div>
-  </div>
-  <p
-    class="text-explications"
-    style="font-size: medium; font-weight: 500; color: black"
-  >
-    Les résultats de cette simulation sont fournis à titre informatif et ne sont
-    pas contraignants.
-  </p>
-  <!-- quand le client est eligible -->
-  <div class="button-container">
-    <button class="btn btn1" (click)="generatePDF()">
-      Télécharger une copie de la simulation
-    </button>
-    <button class="btn btn2" [routerLink]="['/simulation/notice']">
-      Je souhaite faire une demande de financement
-    </button>
-  </div>
-  <!-- quand le client est non eligible  -->
-  <!-- <div class="button-container">
-    <div
-      class="raison de non eligibilité"
-      style="
-        border: 1px slid red;
-        border-radius: 12px;
-        background-color: rgba(255, 0, 0, 0.397);
-        font-size: 12px;
-        padding: 3%;
-      "
-    >
-      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam, ullam ut
-      numquam voluptatem maiores dolores rerum fugit? Tempore doloremque eum,
-    </div>
-    <button class="btn btn2" [routerLink]="['/simulation/notice']">
-      Réessayer
-    </button>
-  </div> -->
-</div>
-<div class="row cards-islamique translate" *ngIf="islamique">
-  <div class="row class1-container">
-    <div class="col">
-      <div class="card mt-1">
-        <p>Montant de financement</p>
-        <span> {{ financement | currency : "DZD" : "" }} DZD</span>
-      </div>
-    </div>
-  </div>
-  <div class="row class1-container">
-    <div class="col">
-      <div class="card mt-2">
-        <p>Apport initial</p>
-        <span> {{ apportInitial | currency : "DZD" : "" }} DZD</span>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card mt-2">
-        <p>Durée de financement</p>
-        <span> {{ durer }} Années</span>
-      </div>
-    </div>
-  </div>
-  <div class="row class1-container">
-    <div class="col">
-      <div class="card special-card mt-2">
-        <p>Mensualités</p>
-        <span>{{ mensualite | currency : "DZD" : "" }} DZD</span>
-      </div>
-    </div>
-  </div>
-  <p
-    class="text-explications"
-    style="font-size: small; font-weight: 500; color: black"
-  >
-    Les résultats de cette simulation sont fournis à titre informatif et ne sont
-    pas contraignants.
-  </p>
-  <!-- quand le client est eligible -->
-  <div
-    class="button-container"
-    style="
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      width: 100%;
-    "
-    *ngIf="eligible"
-  >
-    <button
-      class="btn btn1 mt-0"
-      style="width: 48%; font-size: medium"
-      (click)="generatePDF()"
-    >
-      Télécharger une copie de la simulation
-    </button>
-    <button
-      class="btn btn2 mt-0"
-      style="width: 48%; font-size: medium"
-      [routerLink]="['/simulation/notice']"
-    >
-      Je souhaite faire une demande de financement
-    </button>
   </div>
 
-  <!-- quand le client est non eligible  -->
-  <div class="button-container" *ngIf="!eligible">
-    <button class="btn btn2" [routerLink]="['/simulation/islamique-form']">
-      Réessayer
-    </button>
+  <!-- islamique -->
+
+  <div *ngIf="islamique">
+    <div class="row cards-islamique translate">
+      <div class="row class1-container">
+        <div class="col">
+          <div class="card mt-1">
+            <p>Montant de financement</p>
+            <span class="card-text">
+              {{ financement | currency : "DZD" : "" }} DZD</span
+            >
+          </div>
+        </div>
+      </div>
+      <div class="row class1-container mt-3">
+        <div class="col">
+          <div class="card mt-2">
+            <p>Apport initial</p>
+            <span class="card-text">
+              {{ apportInitial | currency : "DZD" : "" }} DZD</span
+            >
+          </div>
+        </div>
+        <div class="col">
+          <div class="card mt-2">
+            <p>Durée de financement</p>
+            <span class="card-text"> {{ durer }} Années</span>
+          </div>
+        </div>
+      </div>
+      <div class="row class1-container mt-3 mb-3">
+        <div class="col">
+          <div class="card special-card mt-2">
+            <p>Mensualités</p>
+            <span class="card-text-special"
+              >{{ mensualite | currency : "DZD" : "" }} DZD</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- quand le client est eligible -->
+    <div class="text-explications-container mt-2 mb-2">
+      <span class="material-icons text-explications-icons">error_outline</span>
+      <p class="text-explications">
+        Les résultats de cette simulation sont fournis à titre informatif et ne
+        sont pas contraignants.
+      </p>
+    </div>
+    <!-- quand le client est eligible -->
+    <div class="button-container mb-5">
+      <button class="btn btn1" (click)="generatePDF()">
+        Télécharger une copie de la simulation
+      </button>
+      <button class="btn btn2" [routerLink]="['/simulation/register']">
+        Je souhaite faire une demande de financement
+      </button>
+    </div>
+
+    <!-- quand le client est non eligible  -->
+    <div class="button-container mb-5" *ngIf="!eligible">
+      <button class="btn btn2" [routerLink]="['/simulation/islamique-form']">
+        Réessayer
+      </button>
+    </div>
+  </div>
+  <div *ngIf="!islamique">
+    <div class="text-explications-container mt-2 mb-2">
+      <span class="material-icons text-explications-icons">error_outline</span>
+      <p class="text-explications">
+        Les résultats de cette simulation sont fournis à titre informatif et ne
+        sont pas contraignants.
+      </p>
+    </div>
+    <!-- quand le client est eligible -->
+    <div class="button-container mb-5">
+      <button class="btn btn1" (click)="generatePDF()">
+        Télécharger une copie de la simulation
+      </button>
+      <button class="btn btn2" [routerLink]="['/simulation/register']">
+        Je souhaite faire une demande de financement
+      </button>
+    </div>
   </div>
 </div>
+
+<!-- pdf -->
+
 <div class="pdf mt-5">
   <div class="header d-flex header-pdf">
     <div class="img-logo-container">
@@ -182,7 +171,8 @@
       <hr style="width: 60%" />
     </div>
     <div class="title">Votre résultat de simulation</div>
-    <h2>Aménagement</h2>
+    <h2>Crédit {{ financementType }}</h2>
+    <h4>{{ financementTypeChoice }}</h4>
   </div>
   <table class="table">
     <h4>Vos données</h4>
@@ -190,32 +180,28 @@
       <tr>
         <th scope="row">1</th>
         <td>Montant de financement</td>
-        <td>2 000 000,00 DZD</td>
+        <td>{{ financement | currency : "DZD" : "" }} DZD</td>
       </tr>
       <tr>
         <th scope="row">2</th>
         <td>Revenu du demandeur</td>
-        <td>100 000,00 DZD</td>
+        <td>{{ revenue | currency : "DZD" : "" }} DZD</td>
       </tr>
       <tr>
         <th scope="row">3</th>
         <td>Age du demandeur</td>
-        <td>27 ans</td>
+        <td>{{ age }} ans</td>
       </tr>
       <tr>
         <th scope="row">4</th>
         <td>Durée du financement</td>
-        <td>3 années</td>
+        <td>{{ durer }} années</td>
       </tr>
-      <tr>
-        <th scope="row">5</th>
-        <td>Possession d'un patrimoine immobilier</td>
-        <td>Non</td>
-      </tr>
+
       <tr>
         <th scope="row">6</th>
         <td>Financement(s) en cours</td>
-        <td>Non</td>
+        <td>{{ otherFinancing ? otherFinancing : "Non" }}</td>
       </tr>
     </tbody>
   </table>
@@ -223,8 +209,10 @@
     <h4>Votre résultat :</h4>
     <p class="p-footer">
       En utilisant les informations que vous avez fournies, vous avez la
-      possibilité d'emprunter 1 800 000,00 DZD sur une période de 4 ans, avec
-      des paiements mensuels de 42 273,05 DZD et un taux d'intérêt de 6 %.
+      possibilité d'emprunter {{ financement | currency : "DZD" : "" }} DZD sur
+      une période de {{ durer }} ans, avec des paiements mensuels de
+      {{ mensualite | currency : "DZD" : "" }} DZD et un taux d'intérêt de
+      {{ consomation ? "8.5 %" : interet }}.
     </p>
   </div>
 </div>

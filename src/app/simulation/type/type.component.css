@@ -24,11 +24,7 @@
 }
 
 .title {
-  font-size: 2rem;
   margin-top: 2%;
-  font-weight: bold;
-  letter-spacing: 1px;
-  color: rgb(110, 112, 112);
 }
 .cards {
   width: 60%;
@@ -117,35 +113,39 @@
   font-weight: 600;
 }
 
-@media screen and (max-width: 1000px) {
-  .title {
-    font-size: 2.5rem;
-  }
+@media screen and (max-width: 1100px) {
   .cards {
-    width: 80vw;
+    width: 100%;
+  }
+  .card {
+    width: 50%;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .cards {
+    width: 100%;
+  }
+  .card {
+    width: 50%;
   }
 }
 @media screen and (max-width: 800px) {
-  .title {
-    font-size: 2rem;
-  }
-  .cards {
-    width: 90vw;
+  .card {
+    width: 60%;
   }
 }
 @media screen and (max-width: 600px) {
-  .title {
-    font-size: 1.5rem;
+  .card {
+    width: 70%;
   }
-  .cards {
-    width: 100vw;
+}
+@media screen and (max-width: 460px) {
+  .card {
+    width: 80%;
   }
 }
 @media screen and (max-width: 400px) {
-  .title {
-    font-size: 1.3rem;
-  }
   .card {
-    width: 90%;
+    width: 98%;
   }
 }

@@ -14,7 +14,12 @@
 .translate {
   animation: translate 0.5s ease;
 }
+.container {
+  width: 100%;
 
+  max-height: 88%;
+  overflow-y: auto;
+}
 .header {
   width: 90%;
   display: flex;
@@ -23,20 +28,13 @@
   text-align: center;
 }
 
-.title {
-  font-size: 2vw;
-
-  font-weight: bold;
-  letter-spacing: 1px;
-  color: rgb(110, 112, 112);
-}
 .subTitle {
   color: rgb(20, 90, 18);
   font-size: 20px;
 }
 .cards {
   width: 90%;
-  height: 75vh;
+  /* height: 75%; */
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -65,27 +63,55 @@
   box-shadow: 0 0 5px 1px rgba(126, 125, 125, 0.24);
   border-bottom-right-radius: 15px;
   border-top-left-radius: 15px;
+  height: 100%;
 }
 
 .special-card {
-  border: 1px solid rgba(48, 46, 46, 0.438);
+  border: 1px solid var(--var1);
+  height: 100%;
+}
+.special-card-mensualite {
+  border: 1px solid var(--var1);
+  height: 100% !important;
 }
 p {
   font-size: 1vw;
   color: rgba(75, 73, 73, 0.658);
   font-weight: 600;
 }
-span {
-  font-size: 1.4vw;
+
+.card-text {
+  font-size: 18px;
   color: black;
   font-weight: bold;
 }
-
+.card-text-special {
+  font-size: 18px;
+  color: var(--var1);
+  font-weight: bold;
+}
+.text-explications-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 70%;
+  margin: 0 auto;
+}
+.text-explications {
+  font-size: medium;
+  font-weight: 500;
+  color: rgb(26, 47, 165);
+}
+.text-explications-icons {
+  color: rgb(26, 47, 165);
+  margin-right: 1%;
+}
 .button-container {
   width: 70%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 0 auto;
 }
 .btn {
   width: 100%;
@@ -181,6 +207,10 @@ span {
   }
   .button-container {
     margin-top: 5%;
+    width: 85%;
+  }
+  .text-explications-container {
+    width: 80%;
   }
 }
 @media screen and (max-width: 800px) {
@@ -196,6 +226,7 @@ span {
   .card {
     padding: 5px;
   }
+
   .class2-container {
     width: 100%;
   }
@@ -211,7 +242,13 @@ span {
 
   .button-container {
     margin-top: 1%;
+    width: 90%;
+  }
+  .cards-islamique {
     width: 100%;
+  }
+  .text-explications-container {
+    width: 90%;
   }
 }
 @media screen and (max-width: 600px) {
@@ -222,6 +259,9 @@ span {
     width: 100%;
   }
   .forms {
+    width: 100%;
+  }
+  .cards-islamique {
     width: 100%;
   }
 }

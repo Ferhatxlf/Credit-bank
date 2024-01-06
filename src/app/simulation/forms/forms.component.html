@@ -1,6 +1,6 @@
 <div class="container translate">
   <div class="header d-flex justify-content-center w-100">
-    <div class="title">Veuillez introduire vos paramètres de calcul</div>
+    <h2 class="title">Veuillez introduire vos paramètres de calcul</h2>
   </div>
   <form class="forms" [formGroup]="applyForm" (ngSubmit)="submitForm()">
     <div
@@ -374,7 +374,7 @@
           type="text"
           class="form-control"
           id="floatingInputGrid"
-          placeholder="Mentionnez ce montant *"
+          placeholder="Mentionnez la mensualité de ce financement *"
           formControlName="otherFinancing"
           [disabled]="!otherFinancing"
           appFormatInput

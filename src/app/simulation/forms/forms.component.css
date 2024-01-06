@@ -21,13 +21,6 @@
   overflow-y: auto;
 }
 
-.title {
-  font-size: 1.7rem;
-  color: rgb(110, 112, 112);
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-align: center; /* Centrer le texte horizontalement */
-}
 .forms {
   width: 80%;
   margin: 0 auto;
@@ -59,7 +52,7 @@ label {
 
 .supposition {
   border: 1px solid rgba(0, 0, 0, 0.226);
-  border-radius: 12px;
+  border-radius: 7px;
   padding: 6px;
   width: 42%;
   color: rgb(145, 142, 142);

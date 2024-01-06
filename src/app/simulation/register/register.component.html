@@ -1,6 +1,6 @@
-<div class="container translate" *ngIf="toggleRegisterLogin">
+<div class="container-inscription translate mb-5" *ngIf="toggleRegisterLogin">
   <div class="header d-flex justify-content-center w-100">
-    <div class="title">Inscription</div>
+    <h2 class="title">Inscription</h2>
   </div>
   <form [formGroup]="applyForm" (ngSubmit)="submitForm()">
     <div
@@ -255,7 +255,7 @@
         padding: 15px;
       "
     >
-      <p class="question">Êtes-vous d'une nationnalité algérienne ?</p>
+      <p class="question">Êtes-vous de nationnalité algérienne ?</p>
       <div class="suppositions-container">
         <span
           class="supposition"
@@ -305,37 +305,63 @@
     </div>
   </form>
 </div>
-<div class="container translate connexion w-50" *ngIf="!toggleRegisterLogin">
+<div
+  class="container-connexion translate connexion"
+  *ngIf="!toggleRegisterLogin"
+>
   <div class="body-container">
-    <span class="connexion-title">Connexion</span>
+    <h2 class="title">Connexion</h2>
 
-    <div class="mb-1 mt-5">
-      <input
-        type="email"
-        class="form-control mb-3"
-        id="email"
-        placeholder="Adresse email"
-      />
-    </div>
-    <div class="">
-      <input
-        type="password"
-        class="form-control"
-        id="password"
-        placeholder="Mot de passe"
-      />
-      <div class="forgot-password-container">
-        <span class="forgot-password"> Mot de passe oublié ?</span>
+    <form [formGroup]="applyFormSignIn" (ngSubmit)="submitFormSignIn()">
+      <div class="mb-1 mt-5">
+        <input
+          type="email"
+          class="form-control mb-3"
+          id="email"
+          placeholder="Adresse email"
+          formControlName="emailConnexion"
+          [ngClass]="{
+            errForm:
+              (applyFormSignIn.get('emailConnexion')?.touched &&
+                !applyFormSignIn.get('emailConnexion')?.dirty) ||
+              (applyFormSignIn.get('emailConnexion')?.invalid &&
+                applyFormSignIn.get('emailConnexion')?.dirty) ||
+              (submittedSignIn && applyFormSignIn.get('emailConnexion')?.invalid),
+          
+          }"
+        />
       </div>
-    </div>
-    <div class="connexion-button-container mt-1 mb-1">
-      <button class="connexion-btn">Connexion</button>
-    </div>
+      <div class="">
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          placeholder="Mot de passe"
+          formControlName="password"
+          [ngClass]="{
+            errForm:
+              (applyFormSignIn.get('password')?.touched &&
+                !applyFormSignIn.get('password')?.dirty) ||
+              (applyFormSignIn.get('password')?.invalid &&
+                applyFormSignIn.get('password')?.dirty) ||
+              (submittedSignIn && applyFormSignIn.get('password')?.invalid),
+          
+          }"
+        />
+        <div class="forgot-password-container">
+          <span class="forgot-password"> Mot de passe oublié ?</span>
+        </div>
+      </div>
+      <div class="connexion-button-container mt-1 mb-1">
+        <button class="connexion-btn" type="submit">Connexion</button>
+      </div>
+    </form>
 
     <div
       class="inscription-container mt-5"
       style="font-size: small; width: 100%"
     >
+      <hr class="mb-3" style="width: 60%; margin: 0 auto" />
       Vous êtes nouveau sur la plateform ?
       <span class="inscription" (click)="setToggleRegisterLogin()"
         >s'inscrire
