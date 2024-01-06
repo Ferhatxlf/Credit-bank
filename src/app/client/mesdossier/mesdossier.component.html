@@ -46,17 +46,31 @@
             <tbody>
               <tr>
                 <th>Agence</th>
-                <th>Montant du prêt</th>
                 <th>Type de financement</th>
                 <th>Type de crédit</th>
+                <th>Durée du financement</th>
                 <th>statut</th>
               </tr>
               <tr>
                 <td>{{ folder.agenceId }}</td>
-                <td>{{ folder.montantHabitation }}</td>
                 <td>{{ folder.typeFinancement }}</td>
                 <td>{{ folder.typeCredit }}</td>
+                <td>{{ folder.dureeFinancement }}</td>
                 <td>{{ folder.status }}</td>
+              </tr>
+              <tr>
+                <th>Montant du crédit</th>
+                <th>Montant souhaité</th>
+                <th>Autre revenues</th>
+                <th>Financement en cours</th>
+                <th>Documents</th>
+              </tr>
+              <tr>
+                <td>{{ folder.montantHabitation }}</td>
+                <td>{{ folder.creditSouhaite }}</td>
+                <td>{{ folder.montantAutreRevenue }}</td>
+                <td>{{ folder.montantAutreFinancementEnCours }}</td>
+                <td>lien vers docs</td>
               </tr>
             </tbody>
           </table>

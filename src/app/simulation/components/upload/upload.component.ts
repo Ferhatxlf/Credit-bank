@@ -21,6 +21,7 @@ export class UploadComponent implements AfterViewInit {
     'Troisième  fiche de paie',
     'Fichier de résidence',
   ];
+  id: any;
   constructor(private simulationService: SimulationServiceService) {}
   ngAfterViewInit() {
     console.log(this.fileInput); // Doit afficher l'élément d'entrée de fichier dans la console
@@ -75,8 +76,12 @@ export class UploadComponent implements AfterViewInit {
         formData.append('files', file);
       }
     }
+    const a = localStorage.getItem('id_for_upload_docs');
+    if (a) {
+      this.id = JSON.parse(a);
+    }
 
-    this.simulationService.addDocument(6, formData).subscribe(
+    this.simulationService.addDocument(this.id, formData).subscribe(
       (rs) => {
         console.log('files uploads succesfuly');
       },

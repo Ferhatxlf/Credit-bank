@@ -176,7 +176,8 @@ export class RegisterComponent implements OnInit, AfterViewInit {
           this.router.navigate(['/simulation/confirmation']);
           this.simulationService.addDossier(d).subscribe(
             (rs) => {
-              console.log('dossier cree');
+              console.log('dossier cree', rs);
+              localStorage.setItem('id_for_upload_docs', rs['id']);
             },
             (error) => {
               console.error('Erreur de connexion:', error);
