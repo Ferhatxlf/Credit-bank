@@ -56,7 +56,8 @@
       </div>
     </div>
   </div>
-  <div class="sideBar-lateral-container" *ngIf="isSidebarOpen">
+  <div *ngIf="isSidebarOpen">
+    <div class="sideBar-lateral-container" (click)="toggleSidebar()"></div>
     <div class="sideBar-lateral translateSideBar" *ngIf="isSidebarOpen">
       <div class="sidebar-lateral-header">
         <span class="material-icons" (click)="toggleSidebar()">close</span>

@@ -42,4 +42,9 @@ export class AuthServiceService {
     console.log('banquier', banquier);
     return this.http.post(`${this.apiUrl}/banque/comptes/signin`, banquier);
   }
+
+  // recuperer les info dun client
+  getClient(client_id) {
+    return this.http.get(`${this.apiUrl}/clients/${client_id}`);
+  }
 }

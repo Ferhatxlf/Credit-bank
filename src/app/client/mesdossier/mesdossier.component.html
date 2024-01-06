@@ -31,7 +31,7 @@
           [attr.aria-expanded]="false"
           [attr.aria-controls]="'flush-collapse' + i"
         >
-          {{ folder.nom }}
+          {{ folder.nomDossier }}
         </button>
       </h2>
       <div
@@ -45,16 +45,18 @@
           <table class="table table-striped table-hover">
             <tbody>
               <tr>
-                <th>Courtier</th>
+                <th>Agence</th>
                 <th>Montant du prêt</th>
-                <th>catégorie</th>
-                <th>completer</th>
+                <th>Type de financement</th>
+                <th>Type de crédit</th>
+                <th>statut</th>
               </tr>
               <tr>
-                <td>{{ folder.courtier }}</td>
-                <td>{{ folder.montantDuPret }}</td>
-                <td>{{ folder.categorie }}</td>
-                <td>{{ folder.completer }}</td>
+                <td>{{ folder.agenceId }}</td>
+                <td>{{ folder.montantHabitation }}</td>
+                <td>{{ folder.typeFinancement }}</td>
+                <td>{{ folder.typeCredit }}</td>
+                <td>{{ folder.status }}</td>
               </tr>
             </tbody>
           </table>
