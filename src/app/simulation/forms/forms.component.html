@@ -41,7 +41,8 @@
             (submitted && applyForm.get('habitation')?.invalid)
           "
         >
-          Champs obligatoire et le montant ne dépasse pas 12 000 000 DZD
+          Champs obligatoire et le montant ne dépasse pas
+          {{ this.rurale ? "2 800 000,00" : "12 000 000,00" }} DZD
         </p>
       </div>
       <div class="form-group">
@@ -136,8 +137,12 @@
             (submitted && applyForm.get('credit')?.invalid)
           "
         >
-          Ce champs est obligatoire est ne depasse pas 90% du financement de
-          l'habitation
+          Ce champs est obligatoire est ne depasse pas
+          {{
+            this.rurale
+              ? "2 100 000,00 DZD"
+              : "90% du financement de l'habitation"
+          }}
         </p>
       </div>
       <div class="form-group">
@@ -167,7 +172,7 @@
             (submitted && applyForm.get('durer')?.invalid)
           "
         >
-          Champs obligatoire la duree maximale est de {{ dureeMax }} ans
+          Champs obligatoire la durée maximale est de {{ dureeMax }} ans
         </p>
       </div>
     </div>
