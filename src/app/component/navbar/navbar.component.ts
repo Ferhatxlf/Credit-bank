@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ROUTES } from '../../app.component';
+import { AuthServiceService } from '../../service/auth-service.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,11 +11,21 @@ import { ROUTES } from '../../app.component';
 export class NavbarComponent implements OnInit {
   private listTitles!: any[];
   location: Location;
-  constructor(location: Location) {
+  currentUser: any;
+  client!: any;
+  constructor(location: Location, private authService: AuthServiceService) {
     this.location = location;
   }
   ngOnInit(): void {
     this.listTitles = ROUTES.filter((listTitle: any) => listTitle);
+    const a = localStorage.getItem('currentUser');
+    /* if (a) {
+      this.currentUser = a;
+    }
+    this.authService.getClient(this.currentUser.id).subscribe((res) => {
+      console.log(res);
+      this.client = res;
+    }); */
   }
   getTitle() {
     var titlee = this.location.prepareExternalUrl(this.location.path());

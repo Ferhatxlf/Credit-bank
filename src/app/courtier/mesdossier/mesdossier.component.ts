@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { SharedDataService } from '../shared-data.service';
+import { CourtierServiceService } from '../../service/courtier-service.service.js';
 @Component({
   selector: 'app-mesdossier',
   templateUrl: './mesdossier.component.html',
@@ -12,14 +13,16 @@ import { SharedDataService } from '../shared-data.service';
 export class MesdossierComponent {
   public router!: Router;
   public searchForm!: FormGroup;
-  public Folders!: Array<any>;
-  public F!: Array<any>;
+  public Folders!: any;
+  public F!: any;
   public searchActivate: boolean = false;
+  currentUser: any;
 
   constructor(
     private fb: FormBuilder,
     router: Router,
-    private sharedDataService: SharedDataService
+    private sharedDataService: SharedDataService,
+    private courtierService: CourtierServiceService
   ) {
     this.router = router;
   }
@@ -30,10 +33,19 @@ export class MesdossierComponent {
       statut: this.fb.control('complet'),
     });
 
-    this.sharedDataService.getAllDossier();
-    this.sharedDataService.getMyFolders();
-    this.Folders = this.sharedDataService.mesDossier;
-    this.F = this.sharedDataService.mesDossier;
+    const a = localStorage.getItem('currentUser');
+    if (a) {
+      this.currentUser = JSON.parse(a);
+    }
+    console.log(this.currentUser);
+    this.courtierService.getMyDossier(this.currentUser.id).subscribe(
+      (rs) => {
+        this.Folders = rs;
+        console.log(this.Folders);
+      },
+      (err) => console.log(err)
+    );
+    this.F = this.Folders;
   }
 
   folderClicked(folder) {
