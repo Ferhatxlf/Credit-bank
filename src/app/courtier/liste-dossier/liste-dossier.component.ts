@@ -51,7 +51,7 @@ export class ListeDossierComponent implements OnInit {
 
   folderClicked(folder) {
     this.sharedDataService.setFolderData(folder);
-    this.router.navigate(['/courtier/detail']);
+    this.router.navigate(['/courtier/detail-dossier']);
   }
   search() {
     if (this.searchActivate) {
