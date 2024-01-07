@@ -89,7 +89,5 @@ export class UploadComponent implements AfterViewInit {
         console.error('error uploding files', error);
       }
     );
-
-    // Envoyer formData au backend ici
   }
 }

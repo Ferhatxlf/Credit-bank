@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { SharedDataService } from '../shared-data.service';
+import { CourtierServiceService } from '../../service/courtier-service.service.js';
 
 @Component({
   selector: 'app-liste-dossier',
@@ -13,14 +14,16 @@ import { SharedDataService } from '../shared-data.service';
 export class ListeDossierComponent implements OnInit {
   public router!: Router;
   public searchForm!: FormGroup;
-  public Folders!: Array<any>;
-  public F!: Array<any>;
+  public Folders!: any;
+  public F!: any;
   public searchActivate: boolean = false;
+  currentUser: any;
 
   constructor(
     private fb: FormBuilder,
     router: Router,
-    private sharedDataService: SharedDataService
+    private sharedDataService: SharedDataService,
+    private courtierService: CourtierServiceService
   ) {
     this.router = router;
   }
@@ -28,18 +31,27 @@ export class ListeDossierComponent implements OnInit {
     this.searchForm = this.fb.group({
       numero_dossier: this.fb.control(''),
       nom_projet: this.fb.control(''),
-      statut: this.fb.control('complet'),
+      statut: this.fb.control('NON_TRAITEE'),
     });
 
-    this.sharedDataService.getAllDossier();
-    this.sharedDataService.getMyFolders();
-    this.Folders = this.sharedDataService.allDossier;
-    this.F = this.sharedDataService.allDossier;
+    const a = localStorage.getItem('currentUser');
+    if (a) {
+      this.currentUser = JSON.parse(a);
+    }
+    console.log(this.currentUser);
+    this.courtierService.getAllDossier(this.currentUser.agence_id).subscribe(
+      (rs) => {
+        this.Folders = rs;
+        console.log(this.Folders);
+      },
+      (err) => console.log(err)
+    );
+    this.F = this.Folders;
   }
 
   folderClicked(folder) {
     this.sharedDataService.setFolderData(folder);
-    this.router.navigate(['/courtier/detail']);
+    this.router.navigate(['/courtier/detail-dossier']);
   }
   search() {
     if (this.searchActivate) {

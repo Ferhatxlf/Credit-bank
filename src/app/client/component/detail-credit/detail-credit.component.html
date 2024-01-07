@@ -1,5 +1,5 @@
 <div class="details-info">
-  <div class="numero">Dossier n° : 1125</div>
+  <div class="numero">Dossier n° : {{ folderValue.id }}</div>
   <div class="details-column">
     <div class="title-container">
       <label>Montant du crédit souhaité :</label>
@@ -8,18 +8,18 @@
         type="text"
         class="form-control"
         id="validationCustom03"
-        value="8 000 000 DZD"
+        value="{{ folderValue.montantHabitation }} DZD"
         disabled
       />
     </div>
     <div class="title-container">
-      <label>Apport initial :</label>
+      <label>Crédit souhaité:</label>
       <!-- <div>2 000 000 DZD</div> -->
       <input
         type="text"
         class="form-control"
         id="validationCustom03"
-        value="2 000 000 DZD"
+        value="{{ folderValue.creditSouhaite }} DZD"
         disabled
       />
     </div>
@@ -30,7 +30,7 @@
         type="text"
         class="form-control"
         id="validationCustom03"
-        value="100 000 DZD"
+        value="{{ folderValue.revenueEmprunteur }} DZD"
         disabled
       />
     </div>
@@ -42,7 +42,7 @@
         type="text"
         class="form-control"
         id="validationCustom03"
-        value="0 DZD"
+        value="{{ folderValue.revenueCoEmprunteur }} DZD"
         disabled
       />
     </div>
@@ -54,7 +54,7 @@
         type="text"
         class="form-control"
         id="validationCustom03"
-        value="2 000 000 DZD"
+        value="{{ folderValue.montantRevenueImmobilier }} DZD"
         disabled
       />
     </div>
@@ -65,7 +65,7 @@
         type="text"
         class="form-control"
         id="validationCustom03"
-        value="2 000 000 DZD"
+        value="{{ folderValue.dureeFinancement }} années"
         disabled
       />
     </div>
@@ -76,7 +76,7 @@
         type="text"
         class="form-control"
         id="validationCustom03"
-        value="2 000 000 DZD"
+        value="{{ folderValue.montantAutreCredit }} DZD"
         disabled
       />
     </div>

@@ -63,12 +63,12 @@
 
   <!-- nouveau  -->
   <div class="row cards translate">
-    <div class="col-sm-12 col-md-4 col-lg-4 mt-2">
+    <div class="col-sm-12 col-md-4 col-lg-4 mt-2" *ngFor="let f of Folders">
       <div class="card">
         <div class="card-left">
           <div class="card-left-header">
-            <h6>Finance Conventionnelle</h6>
-            <p>Crédit Immobilier</p>
+            <h6>{{ f.typeFinancement }}</h6>
+            <p>{{ f.typeCredit }}</p>
           </div>
           <p class="card-date">05/01/2023</p>
         </div>
@@ -78,10 +78,7 @@
           </div>
 
           <!-- <span class="material-icons">arrow_forward_ios</span> -->
-          <button
-            class="btn btn-outline-secondary"
-            [routerLink]="['/client/detail-dossier']"
-          >
+          <button class="btn btn-outline-secondary" (click)="folderClicked(f)">
             Détail
           </button>
         </div>
