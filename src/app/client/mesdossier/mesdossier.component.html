@@ -1,26 +1,8 @@
 <div class="container-fluid">
   <app-navbar></app-navbar>
 
-  <!-- <table class="table table-striped table-hover">
-    <tbody>
-      <tr>
-        <th>nom du dossier</th>
-        <th>Courtier</th>
-        <th>Montant du prêt</th>
-        <th>catégorie</th>
-        <th>completer</th>
-      </tr>
-      <tr *ngFor="let d of Folders">
-        <td>{{ d.nom }}</td>
-        <td>{{ d.courtier }}</td>
-        <td>{{ d.montantDuPret }}</td>
-        <td>{{ d.categorie }}</td>
-        <td>{{ d.completer }}</td>
-      </tr>
-    </tbody>
-  </table> -->
   <!-- Your Angular Component Template -->
-  <div class="accordion mt-5 accordion-flush" id="accordionFlushExample">
+  <!-- <div class="accordion mt-5 accordion-flush" id="accordionFlushExample">
     <div class="accordion-item" *ngFor="let folder of Folders; let i = index">
       <h2 class="accordion-header">
         <button
@@ -41,7 +23,7 @@
         data-bs-parent="#accordionFlushExample"
       >
         <div class="accordion-body">
-          <!-- Your accordion body content -->
+       
           <table class="table table-striped table-hover">
             <tbody>
               <tr>
@@ -74,6 +56,34 @@
               </tr>
             </tbody>
           </table>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <!-- nouveau  -->
+  <div class="row cards translate">
+    <div class="col-sm-12 col-md-4 col-lg-4 mt-2">
+      <div class="card">
+        <div class="card-left">
+          <div class="card-left-header">
+            <h6>Finance Conventionnelle</h6>
+            <p>Crédit Immobilier</p>
+          </div>
+          <p class="card-date">05/01/2023</p>
+        </div>
+        <div class="card-right">
+          <div class="badge-container">
+            <span class="badge text-bg-success">Vérifié</span>
+          </div>
+
+          <!-- <span class="material-icons">arrow_forward_ios</span> -->
+          <button
+            class="btn btn-outline-secondary"
+            [routerLink]="['/client/detail-dossier']"
+          >
+            Détail
+          </button>
         </div>
       </div>
     </div>

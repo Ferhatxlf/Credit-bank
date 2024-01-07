@@ -27,25 +27,67 @@ table {
   background-color: rgba(209, 207, 207, 0.671);
 }
 
-/* th {
-  background-color: #f2f2f2;
-  border: 2pt solid #111010;
-
-  text-align: left;
-  padding: 8px;
-} */
-
-/* td {
-  border: 1px solid #0a0a0a;
-  text-align: left;
-  padding: 8px;
-  max-width: 100px;
-} */
-
-/* tr:nth-child(even) {
-  background-color: #f9f9f9;
+/* nouveau card */
+.cards {
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  height: 90%;
+  overflow-y: auto;
+  padding: 3%;
 }
 
-tr:hover {
-  background-color: #e0e0e0;
-} */
+.card {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  box-shadow: 0 0 5px 3px rgba(133, 129, 129, 0.11);
+  height: 125px;
+  background-color: rgba(255, 255, 255, 0.884);
+  transition: 0.3s ease;
+  border: 1px solid #ddddddb2;
+  border-radius: 10px;
+}
+.card:hover {
+  transform: scale(1.02);
+}
+.card-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
+  padding: 3%;
+}
+.card-left-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.card-left-header h6 {
+  font-weight: 600;
+}
+.card-left-header p {
+  opacity: 0.6;
+}
+.card-left .card-date {
+  opacity: 0.6;
+  margin-bottom: 0;
+  font-size: small;
+}
+
+.card-right {
+  display: flex;
+  flex-direction: column;
+  padding: 3%;
+  justify-content: space-between;
+}
+.btn {
+  padding: 3px 8px;
+  border-radius: 10px;
+  font-size: small;
+}
+.btn:hover {
+  background-color: var(--var1);
+}
+
+/* fin card */
