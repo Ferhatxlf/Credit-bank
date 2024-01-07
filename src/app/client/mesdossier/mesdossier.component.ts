@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import '../../../../node_modules/bootstrap/dist/js/bootstrap.bundle.js';
 import { ClientServiceService } from '../../service/client-service.service.js';
+import { Router } from '@angular/router';
+import { SharedDataService } from '../shared-data.service.js';
 
 @Component({
   selector: 'app-mesdossier',
@@ -10,7 +12,11 @@ import { ClientServiceService } from '../../service/client-service.service.js';
 export class MesdossierComponent implements OnInit {
   currentUser: any;
   public Folders: any = [];
-  constructor(private clientService: ClientServiceService) {}
+  constructor(
+    private clientService: ClientServiceService,
+    private router: Router,
+    private sharedData: SharedDataService
+  ) {}
   ngOnInit(): void {
     const a = localStorage.getItem('currentUser');
     if (a) {
@@ -25,5 +31,10 @@ export class MesdossierComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+
+  folderClicked(folder) {
+    this.sharedData.setFolderData(folder);
+    this.router.navigate(['/client/detail-dossier']);
   }
 }

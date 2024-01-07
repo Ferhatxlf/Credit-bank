@@ -51,6 +51,7 @@ export class MesdossierComponent {
   folderClicked(folder) {
     this.sharedDataService.setFolderData(folder);
     this.router.navigate(['/courtier/detail-dossier']);
+    console.log(folder);
   }
   search() {
     if (this.searchActivate) {
