@@ -5,6 +5,11 @@ import { DashbordComponent } from './dashbord/dashbord.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MesdossierComponent } from './mesdossier/mesdossier.component';
 import { NouveaucreditComponent } from './nouveaucredit/nouveaucredit.component';
+import { InformationComponent } from './component/information/information.component';
+import { DetailCreditComponent } from './component/detail-credit/detail-credit.component';
+import { DetailClientComponent } from './component/detail-client/detail-client.component';
+import { DocumentComponent } from './component/document/document.component';
+import { MonDossierComponent } from './mon-dossier/mon-dossier.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashbord', pathMatch: 'full' },
@@ -22,6 +27,17 @@ const routes: Routes = [
       },
       { path: 'dossier', component: MesdossierComponent },
       { path: 'nouveau-credit', component: NouveaucreditComponent },
+      {
+        path: 'detail-dossier',
+        component: MonDossierComponent,
+        children: [
+          { path: '', redirectTo: 'information', pathMatch: 'full' },
+          { path: 'information', component: InformationComponent },
+          { path: 'detail-credit', component: DetailCreditComponent },
+          { path: 'detail-client', component: DetailClientComponent },
+          { path: 'document', component: DocumentComponent },
+        ],
+      },
     ],
   },
 ];
