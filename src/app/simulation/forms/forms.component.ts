@@ -18,6 +18,7 @@ export class FormsComponent implements OnInit {
   coBorrower: boolean = false;
   otherRevenue: boolean = false;
   otherFinancing: boolean = false;
+  rurale: boolean = false;
 
   depot: boolean = false;
   dureeMax1: number = 30;
@@ -30,6 +31,10 @@ export class FormsComponent implements OnInit {
     this.setCoBorrower(false);
     this.setRevenueImmobilier(false);
     this.setOtherRevenue(false);
+    const immobilierType = localStorage.getItem('immobilierType');
+    if (immobilierType === "Construction d'un logement rural (Bonifié)") {
+      this.rurale = true;
+    }
     this.applyForm.get('age')?.valueChanges.subscribe((age: number) => {
       if (isNaN(age) || age > 45) {
         this.dureeMax1 = 75 - Number(age);
@@ -116,7 +121,7 @@ export class FormsComponent implements OnInit {
         ?.value.replace(/\s+/g, '');
       console.log(credit, habitation);
       // Vérifier si le crédit dépasse 90% du montant de l'habitation
-      if (credit > 0.9 * habitation) {
+      if (this.rurale ? credit > 2100000 : credit > 0.9 * habitation) {
         return { invalidCredit: true };
       }
 
@@ -129,7 +134,7 @@ export class FormsComponent implements OnInit {
       const habitation = control.value.replace(/\s+/g, '');
 
       // Vérifier si le crédit dépasse 90% du montant de l'habitation
-      if (habitation > 12000000) {
+      if (this.rurale ? habitation > 2800000 : habitation > 12000000) {
         return { invalidHabitation: true };
       }
 

@@ -93,6 +93,5 @@ export class UploadComponent implements AfterViewInit {
     );
 
     // Envoyer formData au backend ici
-    this.router.navigate(["/home"])
   }
 }
