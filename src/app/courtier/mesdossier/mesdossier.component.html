@@ -77,13 +77,13 @@
                 (click)="folderClicked(folder)"
                 *ngFor="let folder of Folders; let i = index"
               >
-                <td>{{ folder.numero }}</td>
-                <td>{{ folder.name }}</td>
-                <td>{{ folder.emprunteur.name }}</td>
-                <td>{{ folder.emprunteur.type_client }}</td>
-                <td>{{ folder.type_financement }}</td>
-                <td>{{ folder.montant }} DA</td>
-                <td>{{ folder.statut }}</td>
+                <td>{{ folder.id }}</td>
+                <td>{{ folder.nomDossier }}</td>
+                <td>{{ folder.client.nom }} {{ folder.client.prenom }}</td>
+                <td>Particulier</td>
+                <td>{{ folder.typeFinancement }}</td>
+                <td>{{ folder.montantHabitation }} DA</td>
+                <td>{{ folder.status }}</td>
               </tr>
             </tbody>
           </table>
