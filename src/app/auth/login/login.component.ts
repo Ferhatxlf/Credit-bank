@@ -43,7 +43,6 @@ export class LoginComponent implements OnInit {
         const user = {
           token: rs.token,
           id: rs.client.id,
-          agence_id: rs.client.agenceId,
         };
         console.log(user);
         localStorage.setItem('currentUser', JSON.stringify(user));

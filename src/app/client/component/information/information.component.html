@@ -1,14 +1,14 @@
 <div class="details-info">
-  <div class="numero">Dossier n° : {{ folderValue.id }}</div>
+  <div class="numero">Dossier {{ folderValue.nomDossier }}</div>
   <div class="details-column">
     <div class="title-container name">
-      <label>Nom:</label>
+      <label>Agence:</label>
       <!-- <div>Achat d'un F4</div> -->
       <input
         type="text"
         class="form-control"
         id="validationCustom03"
-        value="{{ folderValue.nomDossier }}"
+        value="{{ folderValue.assignedagence.adresse }}"
         disabled
       />
     </div>

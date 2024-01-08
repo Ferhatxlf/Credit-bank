@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { ClientServiceService } from '../../service/client-service.service';
 
 @Component({
   selector: 'app-clientlayout',
@@ -11,7 +12,10 @@ export class ClientlayoutComponent implements OnInit {
   public cselected: boolean = false;
   public dselected: boolean = false;
   public pselected: boolean = false;
-  constructor(private location: Location) {
+  constructor(
+    private location: Location,
+    private clientService: ClientServiceService
+  ) {
     this.url = this.location.path();
     // Écouter les changements d'URL
     this.location.onUrlChange((url) => {
@@ -21,9 +25,23 @@ export class ClientlayoutComponent implements OnInit {
   }
 
   url: string = '';
-
-  ngOnInit() {
+  currentUser: any;
+  public Folders: any = [];
+  ngOnInit(): void {
     this.selected = true;
+    const a = localStorage.getItem('currentUser');
+    if (a) {
+      this.currentUser = JSON.parse(a);
+    }
+    this.clientService.getDossier(this.currentUser.id).subscribe(
+      (rs) => {
+        console.log(rs);
+        this.Folders = rs;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 
   goBack(): void {

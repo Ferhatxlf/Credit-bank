@@ -1,7 +1,10 @@
 <div class="container-fluid">
   <app-navbar></app-navbar>
   <div class="title-container">
-    <p>Bienvenue, Monsieur {{ client_name }}</p>
+    <p>
+      Bienvenue, Monsieur {{ Folders[0].client.nom }}
+      {{ Folders[0].client.prenom }}
+    </p>
   </div>
 
   <div class="row cards translate">
@@ -14,7 +17,7 @@
               style="font-size: 12px"
               class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
             >
-              2+
+              {{ Folders.length }}+
             </span>
           </div>
           <span class="txt">Mes dossier </span>
