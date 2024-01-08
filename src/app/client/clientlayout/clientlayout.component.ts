@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 
 @Component({
@@ -6,7 +6,7 @@ import { Location } from '@angular/common';
   templateUrl: './clientlayout.component.html',
   styleUrl: './clientlayout.component.css',
 })
-export class ClientlayoutComponent {
+export class ClientlayoutComponent implements OnInit {
   public selected: boolean = false;
   public cselected: boolean = false;
   public dselected: boolean = false;
@@ -40,13 +40,13 @@ export class ClientlayoutComponent {
     this.cselected = false;
     this.dselected = false;
     this.pselected = false;
+    this.isSidebarOpen = false;
   }
 
   creditSelected() {
-    this.selected = false;
     this.cselected = true;
-    this.dselected = false;
-    this.pselected = false;
+
+    this.isSidebarOpen = false;
   }
 
   dossierSelected() {
@@ -54,6 +54,7 @@ export class ClientlayoutComponent {
     this.cselected = false;
     this.dselected = true;
     this.pselected = false;
+    this.isSidebarOpen = false;
   }
 
   profileSelected() {
@@ -61,5 +62,6 @@ export class ClientlayoutComponent {
     this.cselected = false;
     this.dselected = false;
     this.pselected = true;
+    this.isSidebarOpen = false;
   }
 }
