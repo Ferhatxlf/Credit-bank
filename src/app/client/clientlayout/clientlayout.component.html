@@ -35,9 +35,11 @@
         (click)="dossierSelected()"
         [ngClass]="{ 'special-class': dselected }"
       >
-        <span class="material-icons sidebar-icons"> folder </span>
-
-        <span class="sidebar-text">Mes dossier</span>
+        <div class="folder-container">
+          <span class="material-icons sidebar-icons"> folder </span>
+          <span class="sidebar-text">Mes dossier</span>
+        </div>
+        <span class="badge rounded-pill text-bg-light">05</span>
       </div>
       <div
         class="container-text"
@@ -95,8 +97,15 @@
           (click)="dossierSelected()"
           [ngClass]="{ 'sidebar-lateral-special-class': dselected }"
         >
-          <span class="material-icons sidebar-icons"> folder </span>
-          <span class="sidebar-text">Mes dossier</span>
+          <div class="folder-container">
+            <span class="material-icons sidebar-icons"> folder </span>
+            <span class="sidebar-text">Mes dossier</span>
+          </div>
+          <span
+            class="badge rounded-pill text-bg-light"
+            style="font-size: small; margin-right: 1%"
+            >05</span
+          >
         </div>
         <div
           class="sidebar-lateral-container-text"

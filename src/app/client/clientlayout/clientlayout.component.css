@@ -277,6 +277,13 @@
   color: #722182;
   font-weight: 600;
 }
+.folder-container {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+  text-align: start;
+}
 
 /* pour la sidebar Laterale */
 .sideBar-lateral {
