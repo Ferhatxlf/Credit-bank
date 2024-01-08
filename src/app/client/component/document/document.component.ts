@@ -19,7 +19,16 @@ export class DocumentComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.folderValue = this.sharedData.getFolderData();
+    const a = localStorage.getItem('idDossier');
+    if (a) {
+      this.id = JSON.parse(a);
+    }
+    this.simulationService.getDossier(this.id).subscribe(
+      (res) => {
+        this.folderValue = res;
+      },
+      (err) => console.log(err)
+    );
   }
 
   openFileInput() {

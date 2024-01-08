@@ -34,7 +34,7 @@ export class MesdossierComponent implements OnInit {
   }
 
   folderClicked(folder) {
-    this.sharedData.setFolderData(folder);
+    localStorage.setItem('idDossier', folder.id);
     this.router.navigate(['/client/detail-dossier']);
   }
 }
