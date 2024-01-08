@@ -28,6 +28,7 @@ export class InformationComponent implements OnInit {
     this.simulationService.getDossier(this.id).subscribe(
       (res) => {
         this.folderValue = res;
+        console.log(this.folderValue);
       },
       (err) => console.log(err)
     );
