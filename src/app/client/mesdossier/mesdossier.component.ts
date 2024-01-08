@@ -14,8 +14,7 @@ export class MesdossierComponent implements OnInit {
   public Folders: any = [];
   constructor(
     private clientService: ClientServiceService,
-    private router: Router,
-    private sharedData: SharedDataService
+    private router: Router
   ) {}
   ngOnInit(): void {
     const a = localStorage.getItem('currentUser');
