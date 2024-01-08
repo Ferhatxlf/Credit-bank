@@ -73,8 +73,14 @@
           <p class="card-date">05/01/2023</p>
         </div>
         <div class="card-right">
-          <div class="badge-container">
-            <span class="badge text-bg-success">Vérifié</span>
+          <div class="badge-container" *ngIf="f.status === 'NON_TRAITEE'">
+            <span class="badge text-bg-success">Validé</span>
+          </div>
+          <div class="badge-container" *ngIf="f.status === 'TRAITEMENT_ENCOUS'">
+            <span class="badge text-bg-warning">En cours</span>
+          </div>
+          <div class="badge-container" *ngIf="f.status === 'REJETEE'">
+            <span class="badge text-bg-danger">Refusé</span>
           </div>
 
           <!-- <span class="material-icons">arrow_forward_ios</span> -->

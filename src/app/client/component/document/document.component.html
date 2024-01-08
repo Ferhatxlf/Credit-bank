@@ -2,20 +2,28 @@
 <div class="container">
   <div class="add-document mb-3">
     <h3>Pièces jointes</h3>
-    <span class="material-icons add-icon" style="font-size: 50px !important"
-      >add_circle</span
-    >
+    <form>
+      <input
+        #fileInput
+        class="file-input"
+        type="file"
+        name="file"
+        hidden
+      /><span class="material-icons add-icon" style="font-size: 50px !important"
+        >add_circle</span
+      >
+    </form>
   </div>
   <div class="document-container">
-    <div class="document mt-3">
+    <div class="document mt-3" *ngFor="let d of folderValue.attachedFiles">
       <div class="subtitle">
         <span class="material-icons">check_circle</span>
-        <span>Pièce d'identité</span>
+        <span>{{ d.fileName }}</span>
       </div>
       <span class="material-icons edit">edit</span>
       <span class="material-icons delete">delete</span>
     </div>
-    <div class="document mt-4">
+    <!--  <div class="document mt-4">
       <div class="subtitle">
         <span class="material-icons">check_circle</span>
         <span>Fiche de paie 1</span>
@@ -49,6 +57,6 @@
       </div>
       <span class="material-icons edit">edit</span>
       <span class="material-icons delete">delete_outline</span>
-    </div>
+    </div> -->
   </div>
 </div>
