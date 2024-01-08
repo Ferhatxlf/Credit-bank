@@ -1,34 +1,83 @@
 <div class="details-info">
-  <div class="numero">Dossier n° : {{ folderValue.id }}</div>
+  <div class="numero">Dossier n°: {{ folderValue.id }}</div>
   <div class="details-column">
     <div class="title-container name">
       <label>Nom:</label>
-      <div>{{ folderValue.nomDossier }}</div>
+      <!-- <div>Achat d'un F4</div> -->
+      <input
+        type="text"
+        class="form-control"
+        id="validationCustom03"
+        value="{{ folderValue.nomDossier }}"
+        disabled
+      />
     </div>
     <div class="title-container">
       <label>Type du client :</label>
-      <div>particulier</div>
+      <!-- <div>particulier</div> -->
+      <input
+        type="text"
+        class="form-control"
+        id="validationCustom03"
+        value="particulier"
+        disabled
+      />
     </div>
     <div class="title-container">
       <label>Type du financement :</label>
-      <div>{{ folderValue.typeFinancement }}</div>
+      <!-- <div>Financement traditionnel (conventionnel)</div> -->
+      <input
+        type="text"
+        class="form-control"
+        id="validationCustom03"
+        value="{{ folderValue.typeFinancement }}"
+        disabled
+      />
     </div>
 
     <div class="title-container">
       <label>Type du crédit :</label>
-      <div>{{ folderValue.typeCredit }}</div>
+      <!-- <div>consom</div> -->
+      <input
+        type="text"
+        class="form-control"
+        id="validationCustom03"
+        value="{{ folderValue.typeCredit }}"
+        disabled
+      />
     </div>
     <div class="title-container">
       <label>Durée du financement :</label>
-      <div>{{ folderValue.dureeFinancement }} années</div>
+      <!-- <div>4 années</div> -->
+      <input
+        type="text"
+        class="form-control"
+        id="validationCustom03"
+        value="{{ folderValue.dureeFinancement }} années"
+        disabled
+      />
     </div>
     <div class="title-container">
       <label>Date de création :</label>
-      <div>01/01/2024</div>
+      <!-- <div>01/01/2024</div> -->
+      <input
+        type="text"
+        class="form-control"
+        id="validationCustom03"
+        value="{{ folderValue.createdAt }}"
+        disabled
+      />
     </div>
     <div class="title-container">
       <label>Statut :</label>
-      <div>{{ folderValue.status }}</div>
+      <!-- <div>Dossier complet</div> -->
+      <input
+        type="text"
+        class="form-control"
+        id="validationCustom03"
+        value="{{ folderValue.status }}"
+        disabled
+      />
     </div>
   </div>
 </div>

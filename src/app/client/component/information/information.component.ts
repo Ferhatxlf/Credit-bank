@@ -15,10 +15,7 @@ export class InformationComponent implements OnInit {
   folderValue: any;
   id: any;
 
-  constructor(
-    private sharedData: SharedDataService,
-    private simulationService: SimulationServiceService
-  ) {}
+  constructor(private simulationService: SimulationServiceService) {}
 
   ngOnInit() {
     const a = localStorage.getItem('idDossier');
