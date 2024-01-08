@@ -125,6 +125,23 @@
   width: 100%;
   cursor: pointer;
 }
+.add-credit {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: rgb(100, 98, 98);
+  padding: 10%;
+  transition: 0.6s ease;
+  height: 6%;
+  margin-bottom: 20%;
+  background-color: white;
+  box-shadow: 0 0 5px 1px #66666618;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  cursor: pointer;
+}
+
 .sections {
   height: 90%;
   display: flex;
@@ -143,8 +160,9 @@
   margin-top: 1%;
 }
 .sidebar-icons {
-  font-size: 0.7rem;
+  font-size: 22px;
   margin-left: 2%;
+  margin-bottom: 2%;
 }
 .sidebar-text {
   font-size: 0.9rem;
@@ -209,6 +227,12 @@
 }
 .translateSideBar {
   animation: translateSideBar 0.6s ease;
+  box-shadow: 9px 0px 27px 7px rgba(0, 0, 0, 0.4);
+}
+
+.translateSideBarHidden {
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
 }
 /* .container-text span:hover {
   font-size: 16px;
@@ -258,6 +282,78 @@
 .sideBar-lateral {
   width: 250px;
 }
+.sidebar-lateral-add-credit {
+  width: 90%;
+  height: 12%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid var(--var2);
+  box-shadow: 0 0 10px 2px #66666677;
+  border-radius: 10px;
+  margin: 10% auto;
+  color: black;
+  font-size: 25px;
+}
+.sidebar-icons-add-credit {
+  font-size: 35px !important;
+  font-weight: 600;
+  margin-right: 10px;
+}
+.sidebar-text-add-credit {
+  font-size: 18px;
+  font-weight: 600;
+}
+.sidebar-lateral-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 20px;
+  align-items: center;
+  width: 100%;
+  height: 10%;
+  background-color: whitesmoke;
+}
+
+.sidebar-lateral-footer .avatar {
+  display: flex;
+  justify-content: end;
+}
+.avatar img {
+  width: 70px;
+  margin-right: 0;
+  cursor: pointer;
+}
+
+.information-container {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+.information-container .information {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+.information .name {
+  margin: auto;
+  font-size: 18px;
+  font-weight: 600;
+  width: 100%;
+}
+.information .email {
+  margin: auto;
+  font-size: 15px;
+  opacity: 0.7;
+}
+.logout span {
+  font-size: 30px !important;
+  cursor: pointer;
+  opacity: 0.6;
+}
+.logout span:hover {
+  opacity: 0.9;
+}
 
 /* fin side bar lateral */
 
@@ -289,6 +385,7 @@
     width: 350vw;
     z-index: 1;
     background-color: #00000052;
+    transition: transform 0.3s ease;
   }
   .sideBar-lateral {
     position: fixed;
@@ -298,10 +395,13 @@
     width: 350px;
     z-index: 2;
     background-color: white;
-    box-shadow: 9px 0px 27px 7px rgba(0, 0, 0, 0.4);
     display: flex;
     flex-direction: column;
     justify-content: center;
+    transition: 0.3s ease;
+  }
+  .sidebar-lateral-hidden {
+    width: 0;
   }
   .sidebar-lateral-header {
     width: 100%;
@@ -316,44 +416,46 @@
   .sidebar-lateral-sections {
     width: 90%;
     margin: auto;
-    height: 50%;
+    height: 30%;
+    margin-top: 5px;
   }
   .sidebar-lateral-container-text {
-    height: 15%;
+    height: 22%;
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
+    color: rgba(0, 0, 0, 0.486);
   }
   .sidebar-lateral-container-text span {
-    font-size: 25px;
+    font-size: 22px;
+    margin-left: 20px;
   }
   .container-text:hover {
     cursor: pointer;
     font-size: 16px;
     cursor: pointer;
-    background-color: #b2b7cf86;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-    color: #722182;
+    /* background-color: #b2b7cf86; */
+    background-color: var(--var2);
+    border-radius: 10px;
+    color: black;
     font-weight: 600;
   }
   .sidebar-lateral-special-class {
     font-size: 16px;
     cursor: pointer;
-    background-color: #b2b7cf86;
-    border-radius: 20px;
-    color: #722182;
-    font-weight: 600;
+    /* background-color: #b2b7cf86; */
+    background-color: var(--var2);
+    border-radius: 10px;
+    color: black;
   }
-  .sidebar-lateral-special-class span {
-    font-weight: 600;
-  }
+
   .sidebar-lateral-special-class:hover {
     font-size: 16px;
     cursor: pointer;
-    background-color: #b2b7cf;
-    border-radius: 20px;
-    color: #722182;
+    /* background-color: #b2b7cf; */
+    background-color: var(--var2);
+    border-radius: 10px;
+    color: black;
     font-weight: 600;
   }
 }
