@@ -1,30 +1,40 @@
-.container-fluid {
+.container {
+  width: 100%;
   height: 100%;
-  margin: 0 auto;
-  max-width: 1200px;
-  padding: 20px;
-}
-.profile {
-  margin-top: 50px;
-  background-color: rgb(235, 230, 230);
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 15px 1px rgba(43, 41, 41, 0.479);
 }
 
-h2 {
-  color: #333;
+.ui-w-80 {
+  width: 80px !important;
+  height: auto;
 }
 
-ul {
-  list-style: none;
-  padding: 0;
+.btn-default {
+  border-color: rgba(24, 28, 33, 0.1);
+  background: rgba(0, 0, 0, 0);
+  color: #4e5155;
 }
 
-li {
-  margin-bottom: 10px;
+label {
+  font-size: small;
+  font-weight: 600;
 }
 
-strong {
-  font-weight: bold;
+.btn-outline-primary {
+  border-color: #26b4ff;
+  background: transparent;
+  color: #26b4ff;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+.text-light {
+  color: #babbbc !important;
+}
+
+.card {
+  background-clip: padding-box;
+  box-shadow: 0 1px 4px rgba(24, 28, 33, 0.012);
+  height: 80%;
 }
