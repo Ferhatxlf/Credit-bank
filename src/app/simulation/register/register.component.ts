@@ -114,7 +114,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
       name: ['', [Validators.required, this.nameValidator]],
       firstName: ['', [Validators.required, this.nameValidator]],
       email: ['', [Validators.required, Validators.email]],
-      // address: ['', [Validators.required, Validators.minLength(5)]],
+      address: ['', [Validators.required, Validators.minLength(5)]],
       callNumber: ['', [Validators.required, Validators.minLength(10)]],
       nin: ['', [Validators.required, Validators.minLength(16)]],
       // city: ['', [Validators.required, this.nameValidator]],
@@ -211,7 +211,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
         // codePostal: this.applyForm.value.postCode
         //   ? this.applyForm.value.postCode.replace(/\s+/g, '')
         //   : '',
-        // adresse: this.applyForm.value.address,
+        adresse: this.applyForm.value.address,
         // ville: this.applyForm.value.city,
         nationalite: this.applyForm.value.nationality
           ? this.applyForm.value.nationality

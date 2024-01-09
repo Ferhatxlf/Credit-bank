@@ -214,6 +214,23 @@
           />
         </div>
       </div> -->
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Adresse  *"
+          formControlName="address"
+          [ngClass]="{
+            errForm:
+              (applyForm.get('address')?.touched &&
+                !applyForm.get('address')?.dirty) ||
+              (applyForm.get('address')?.invalid &&
+                applyForm.get('address')?.dirty) ||
+              (submitted && applyForm.get('address')?.invalid),
+          
+          }"
+        />
+      </div>
       <div class="input-container mt-2">
         <div class="form-group">
           <select
