@@ -134,10 +134,10 @@
             >
               Etat civil
             </option>
-            <option value="1">Marié(e)</option>
-            <option value="2">Célébataire</option>
-            <option value="1">Dévorcé(e)</option>
-            <option value="2">Veuf(ve)</option>
+            <option value="Marié(e)">Marié(e)</option>
+            <option value="Célébataire">Célébataire</option>
+            <option value="Dévorcé(e)">Dévorcé(e)</option>
+            <option value="Veuf(ve)">Veuf(ve)</option>
           </select>
         </div>
       </div>
@@ -159,7 +159,7 @@
           }"
         />
       </div>
-      <div class="input-container mt-2">
+      <!-- <div class="input-container mt-2">
         <div class="form-group">
           <input
             type="text"
@@ -211,6 +211,96 @@
               (submitted && applyForm.get('postCode')?.invalid),
           
           }"
+          />
+        </div>
+      </div> -->
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Adresse  *"
+          formControlName="address"
+          [ngClass]="{
+            errForm:
+              (applyForm.get('address')?.touched &&
+                !applyForm.get('address')?.dirty) ||
+              (applyForm.get('address')?.invalid &&
+                applyForm.get('address')?.dirty) ||
+              (submitted && applyForm.get('address')?.invalid),
+          
+          }"
+        />
+      </div>
+      <div class="input-container mt-2">
+        <div class="form-group">
+          <select
+            class="form-select"
+            [(ngModel)]="defaultCity"
+            formControlName="selectedWilaya"
+            [ngClass]="{
+    errForm:
+      (applyForm.get('selectedWilaya')?.touched &&
+        !applyForm.get('selectedWilaya')?.dirty) ||
+      (applyForm.get('selectedWilaya')?.invalid &&
+        applyForm.get('selectedWilaya')?.dirty) ||
+      (submitted && applyForm.get('selectedWilaya')?.invalid),
+  }"
+          >
+            <option
+              [value]="'default'"
+              [disabled]="true"
+              [selected]="defaultCity === 'default'"
+            >
+              Ville
+            </option>
+            <option
+              *ngFor="let item of uniqueData"
+              [value]="item.wilaya_name_ascii"
+            >
+              {{ item.wilaya_name_ascii }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group" style="margin-left: 8px">
+          <select
+            class="form-select"
+            [(ngModel)]="defaultCommune"
+            formControlName="selectedCommune"
+            [ngClass]="{
+    errForm:
+      (applyForm.get('selectedCommune')?.touched &&
+        !applyForm.get('selectedCommune')?.dirty) ||
+      (applyForm.get('selectedCommune')?.invalid &&
+        applyForm.get('selectedCommune')?.dirty) ||
+      (submitted && applyForm.get('selectedCommune')?.invalid),
+  }"
+          >
+            <option
+              [value]="'default'"
+              [disabled]="true"
+              [selected]="defaultCity === 'default'"
+            >
+              Commune
+            </option>
+            <option
+              *ngFor="let item of communes"
+              [value]="item.commune_name_ascii"
+            >
+              {{ item.commune_name_ascii }}
+            </option>
+          </select>
+        </div>
+        <div class="form-group" style="margin-left: 8px">
+          <input
+            type="text"
+            class="form-control"
+            formControlName="postCode"
+            id="postCode"
+            [value]="defaultPostCode"
+            readonly
+            appFormatInputPostal
+            placeholder="Code postal"
           />
         </div>
       </div>
