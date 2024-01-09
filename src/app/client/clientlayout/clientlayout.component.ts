@@ -77,6 +77,19 @@ export class ClientlayoutComponent implements OnInit {
     this.selected = true;
 
     this.listTitles = this.ROUTES.filter((listTitle: any) => listTitle);
+    const a = localStorage.getItem('currentUser');
+    if (a) {
+      this.currentUser = JSON.parse(a);
+    }
+    this.clientService.getDossier(this.currentUser.id).subscribe(
+      (rs) => {
+        console.log(rs);
+        this.Folders = rs;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
   // pour la navbar recuperation des titres ************
   getTitle() {
@@ -91,20 +104,6 @@ export class ClientlayoutComponent implements OnInit {
       }
     }
     return 'Dashboard';
-
-    const a = localStorage.getItem('currentUser');
-    if (a) {
-      this.currentUser = JSON.parse(a);
-    }
-    this.clientService.getDossier(this.currentUser.id).subscribe(
-      (rs) => {
-        console.log(rs);
-        this.Folders = rs;
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
   }
 
   goBack(): void {
