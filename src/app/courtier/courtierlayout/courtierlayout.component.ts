@@ -67,4 +67,13 @@ export class CourtierlayoutComponent {
     this.clientselected = true;
     this.pselected = false;
   }
+
+  currentUser: any;
+  public Folders: any = [];
+
+  isSidebarOpen: boolean = false;
+
+  toggleSidebar() {
+    this.isSidebarOpen = !this.isSidebarOpen;
+  }
 }
