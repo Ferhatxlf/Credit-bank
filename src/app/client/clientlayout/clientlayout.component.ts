@@ -75,7 +75,7 @@ export class ClientlayoutComponent implements OnInit {
   public Folders: any = [];
   ngOnInit(): void {
     this.selected = true;
-
+    this.isSidebarOpen = false;
     this.listTitles = this.ROUTES.filter((listTitle: any) => listTitle);
     const a = localStorage.getItem('currentUser');
     if (a) {

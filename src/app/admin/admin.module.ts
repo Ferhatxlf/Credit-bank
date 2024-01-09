@@ -9,7 +9,8 @@ import { CourtierComponent } from './courtier/courtier.component';
 import { DirecteurComponent } from './directeur/directeur.component';
 import { InformationComponent } from './information/information.component';
 import { ComponentModule } from '../component/component.module';
-import { RouterModule } from '@angular/router';
+import { AgenceRegionnaleComponent } from './agenceRegionnale/agence-regionnale.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,14 @@ import { RouterModule } from '@angular/router';
     CourtierComponent,
     DirecteurComponent,
     InformationComponent,
+    AgenceRegionnaleComponent,
   ],
-  imports: [CommonModule, AdminRoutingModule, ComponentModule, RouterModule],
+  imports: [
+    CommonModule,
+    AdminRoutingModule,
+    ComponentModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
 })
 export class AdminModule {}

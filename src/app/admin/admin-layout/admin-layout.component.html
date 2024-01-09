@@ -25,26 +25,40 @@
         >Gestion des courtiers</span
       >
     </div>
+  
     <div
-      class="container-text"
-      [routerLink]="['/admin/directeur']"
-      (click)="dossierSelected()"
-    >
-      <span class="material-icons sidebar-icons"> arrow_forward_ios </span>
+    class="container-text"
+    [routerLink]="['/admin/directeur']"
+    (click)="dossierSelected()"
+  >
+    <span class="material-icons sidebar-icons"> arrow_forward_ios </span>
 
-      <span class="sidebar-text" [ngClass]="{ 'special-class': dselected }"
-        >Gestion des directeus</span
-      >
-    </div>
+    <span class="sidebar-text" [ngClass]="{ 'special-class': dselected }"
+      >Gestion des communes</span
+    >
+  </div>
+
+
+  <div
+  class="container-text"
+  [routerLink]="['/admin/agenceRegionnale']"
+  (click)="ArSelected()"
+>
+  <span class="material-icons sidebar-icons"> arrow_forward_ios </span>
+
+  <span class="sidebar-text" [ngClass]="{ 'special-class': arselected }"
+    >Gestion  agence-regionnale</span
+  >
+</div>
     <div
       class="container-text"
-      [routerLink]="['/admin/profile']"
+      [routerLink]="['/admin/information']"
       (click)="profileSelected()"
     >
       <span class="material-icons sidebar-icons"> arrow_forward_ios </span>
 
       <span class="sidebar-text" [ngClass]="{ 'special-class': pselected }"
-        >Mon profile</span
+        >gestion des agences</span
       >
     </div>
   </div>

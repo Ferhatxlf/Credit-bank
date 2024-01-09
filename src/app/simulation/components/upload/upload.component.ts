@@ -2,6 +2,8 @@
 
 import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { SimulationServiceService } from '../../../service/simulation-service.service';
+import { HomeComponent } from '../../../home/home.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-upload',
@@ -22,7 +24,7 @@ export class UploadComponent implements AfterViewInit {
     'Fichier de résidence',
   ];
   id: any;
-  constructor(private simulationService: SimulationServiceService) {}
+  constructor(private simulationService: SimulationServiceService,private router :Router) {}
   ngAfterViewInit() {
     console.log(this.fileInput); // Doit afficher l'élément d'entrée de fichier dans la console
   }
@@ -89,5 +91,7 @@ export class UploadComponent implements AfterViewInit {
         console.error('error uploding files', error);
       }
     );
+
+    // Envoyer formData au backend ici
   }
 }
