@@ -1,0 +1,46 @@
+<div class="container-fluid">
+    <div class="container p-2 mx-auto sm:p-4 text-gray-800">
+        <h2 class="mb-4 text-2xl text-secondary">Directions Régionales</h2>
+        <div class="overflow-x-auto">
+            <table class="w-full p-6 text-xs text-left">
+                <!-- Table headers -->
+                <thead>
+                    <tr class="bg-gray-200">
+                        <th class="px-4 py-2 border">ID</th>
+                        <th class="px-4 py-2 border">Name</th>
+                        <th class="px-4 py-2 border">Date</th>
+                        <th class="px-4 py-2 border">Address</th>
+                        <th class="p-3 border">
+                            <span class="sr-only">Edit</span>
+                        </th>
+                    </tr>
+                </thead>
+                <!-- Table body -->
+                <tbody class="border-b bg-gray-100">
+                    <!-- Loop through directionRegionales -->
+                    <tr *ngFor="let direction of directionRegionales" class="border">
+                        <!-- Replace these td contents with respective properties from your DirectionRegionale interface -->
+                        <td class="px-3 py-2 border">{{ direction.id }}</td>
+                        <td class="px-3 py-2 border">
+                            <p>{{ direction.nom }}</p>
+                        </td>
+                        <td class="px-3 py-2 border">
+                            <span>{{ direction.createdAt }}</span>
+                        </td>
+                        <td class="px-3 py-2 border">
+                            <p>{{ direction.adresse }}</p>
+                        </td>
+                        <td class="px-3 py-2 border">
+                            <button type="button" title="Open details" class="p-1 rounded-full text-gray-600 hover:bg-gray-700 focus:bg-gray-700">
+                                <svg viewBox="0 0 24 24" class="w-4 h-4 fill-current">
+                                    <path d="M12 6a2 2 0 110-4 2 2 0 010 4zm0 8a2 2 0 110-4 2 2 0 010 4zm-2 6a2 2 0 104 0 2 2 0 00-4 0z"></path>
+                                </svg>
+                            </button>
+                        </td>
+                    </tr>
+                    <!-- End of loop -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

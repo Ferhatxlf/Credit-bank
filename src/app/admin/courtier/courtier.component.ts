@@ -1,22 +1,37 @@
-import { Component } from '@angular/core';
-import '../../../../node_modules/bootstrap/dist/js/bootstrap.bundle.js';
-
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+interface Compte {
+  id: number;
+  nin: string;
+  role: string;
+  agenceId: number;
+  createdAt: string; // Update the type based on your data
+  // Add other properties as needed
+}
 @Component({
   selector: 'app-courtier',
   templateUrl: './courtier.component.html',
-  styleUrl: './courtier.component.css',
+  styleUrls: ['./courtier.component.css'],
 })
-export class CourtierComponent {
-  public Folders: Array<any> = [
-    {
-      name: 'AMROUNE Laarbi',
-      Agence: 'Freha',
-      Date: '07-07-1999',
-    },
-    {
-      name: 'KHELF Ferhat',
-      Agence: 'Azazga',
-      Date: '07-07-1997',
-    },
-  ];
+export class CourtierComponent implements OnInit {
+
+
+  comptes: Compte[] = []; 
+
+  constructor(private http: HttpClient) {}
+
+  ngOnInit(): void {
+    this.fetchComptes();
+  }
+
+  fetchComptes() {
+    this.http.get<any[]>('http://localhost:8000/banque/comptes').subscribe(
+      (data) => {
+        this.comptes = data;
+      },
+      (error) => {
+        console.error('Error fetching comptes:', error);
+      }
+    );
+  }
 }

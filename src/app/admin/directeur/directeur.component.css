@@ -1,37 +1,21 @@
-.container-fluid {
-  height: 100%;
-  margin: 0 auto;
-  max-width: 1200px;
-  padding: 20px;
-}
+/* Update your CSS file with these styles */
 
-.table-container {
-  margin-top: 50px;
-  width: 100%;
-}
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 1vh;
-}
-.accordion {
-  box-shadow: 0 0 4px 1px rgba(78, 77, 77, 0.247);
-}
-.accordion-button:focus {
-  background-color: rgba(228, 226, 226, 0.623);
-  border: none;
-  box-shadow: none;
-}
-.accordion-button:active {
-  background-color: rgba(209, 207, 207, 0.671);
-}
-.btn-container {
-  display: flex;
+/* src/styles.css */
 
-  justify-content: flex-end;
-}
-.btn-container div:hover {
-  cursor: pointer;
-  color: red;
-}
+@import url('https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css');
+
+/* Other global styles or imports can go here */
+
+.container {
+    padding: 20px;
+  }
+  
+  .container-fluid {
+    margin-top: 20px;
+    padding: 20px;
+  }
+  
+ 
+  /* Add other styles for customization */
+  
