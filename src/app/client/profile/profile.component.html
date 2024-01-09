@@ -1,37 +1,49 @@
 <div class="container light-style flex-grow-1 container-p-y">
-  <div class="card overflow-hidden">
-    <div class="row h-100 row-bordered row-border-light">
-      <div class="col-md-3 pt-0" style="border-right: 1px solid #6666663b">
+  <div class="card">
+    <div class="row h-100 px-0 row-bordered row-border-light">
+      <div class="col-md-3 pt-0 px-0" style="border-right: 1px solid #6666663b">
         <div class="card-body media align-items-center">
           <img
             src="../../../assets/avatar.png"
             class="d-block m-auto ui-w-80"
+            alt="Avatar"
           />
+
           <div class="informations-container">
-            <h3>Touzi Mahrez</h3>
+            <h5>Touzi Mahrez</h5>
             <p>mahreztouzi&#64;gmail.com</p>
-            <p>Particuler</p>
+            <p>Particulier</p>
           </div>
           <hr />
-        </div>
-        <div class="list-button-container">
-          <a
-            class="list-group-item list-group-item-action"
-            (click)="information = true"
-            >Informations personnelles</a
-          >
-          <a
-            class="list-group-item list-group-item-action"
-            (click)="information = false"
-            >Changer Mot de passe</a
-          >
+          <div class="list-button-container">
+            <div class="row w-100 pr-0">
+              <div class="col-sm-6 col-md-12">
+                <a
+                  class="list-group-item list-group-item-action"
+                  (click)="information = true"
+                  [ngClass]="{ active: information }"
+                  >Informations personnelles</a
+                >
+              </div>
+              <div class="col-sm-6 col-md-12">
+                <a
+                  class="list-group-item list-group-item-action"
+                  (click)="information = false"
+                  [ngClass]="{ active: !information }"
+                  >Changer Mot de passe</a
+                >
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="col-md-9">
-        <div class="tab-content" style="overflow-y: auto; height: 100%">
-          <div class="" id="account-info" *ngIf="information">
+        <div
+          class="tab-content"
+          style="overflow-y: auto; height: 100%; margin-right: 2%"
+        >
+          <div id="account-info" *ngIf="information">
             <hr class="border-light m-0" />
-
             <div class="card-body pb-2">
               <h4 class="font-weight-bold py-3 mb-1">
                 Informations personnelles
@@ -118,16 +130,9 @@
               </div>
             </div>
           </div>
-
-          <div
-            class="tab-pane fade active show"
-            id="account-info"
-            *ngIf="!information"
-          >
-            <h4 class="font-weight-bold py-3 mb-1">
-              Informations personnelles
-            </h4>
+          <div *ngIf="!information">
             <div class="card-body pb-2">
+              <h4 class="font-weight-bold py-3 mb-1">Changer Mot de passe</h4>
               <div class="form-group mt-3">
                 <label class="form-label">Mot de passe actuel</label>
                 <input
