@@ -27,8 +27,14 @@ export class SimulationServiceService {
     return this.http.post(`${this.apiUrl}/dossiers/${id}/files`, files);
   }
 
+<<<<<<< HEAD
 
 
 
   
+=======
+  getDossier(id: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/dossiers/${id}`);
+  }
+>>>>>>> 96eb3859a9d5ded56c3507f80f7bd3138a13b871
 }

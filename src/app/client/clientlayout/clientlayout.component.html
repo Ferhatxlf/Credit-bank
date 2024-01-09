@@ -39,7 +39,9 @@
           <span class="material-icons sidebar-icons"> folder </span>
           <span class="sidebar-text">Mes dossier</span>
         </div>
-        <span class="badge rounded-pill text-bg-light">05</span>
+        <span class="badge rounded-pill text-bg-light"
+          >0{{ Folders.length }}</span
+        >
       </div>
       <div
         class="container-text"
@@ -136,6 +138,29 @@
   </div>
 
   <div class="card-container scale-in">
+    <div
+      class="navbar-card-container"
+      [ngClass]="{
+        'navbar-card-container-hidden': url === '/client/profile'
+      }"
+    >
+      <div class="left">
+        <span>{{ getTitle() }}</span>
+      </div>
+      <div class="right">
+        <div class="avatar">
+          <img src="../../../assets/avatar.png" alt="avatar" />
+        </div>
+        <div class="information">
+          <span class="name">Ferhat Khelef</span>
+          <p class="email">fehatKhelefgmail.com</p>
+        </div>
+        <div class="logout">
+          <span class="material-icons"> arrow_drop_down </span>
+        </div>
+      </div>
+    </div>
+
     <router-outlet></router-outlet>
   </div>
 </div>

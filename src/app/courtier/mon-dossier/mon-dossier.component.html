@@ -3,12 +3,12 @@
     >arrow_back_ios</span
   >
   <div class="header d-flex justify-content-center w-100">
-    <div class="title">Détail du Dossier</div>
+    <div class="title">Détail de dossier</div>
   </div>
 </div>
 
-<div class="logo-containerr">
-  <div class="navbar-container">
+<div class="detail-dossier-container">
+  <div class="detail-dossier-header">
     <div
       (click)="goInfo()"
       [class]="info ? 'nv' : 'nav-items'"
@@ -45,8 +45,7 @@
       <span class="nav-items">Document</span>
     </div>
   </div>
-</div>
-
-<div class="container-fluid">
-  <router-outlet></router-outlet>
+  <div class="router-outlet-container">
+    <router-outlet></router-outlet>
+  </div>
 </div>

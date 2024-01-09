@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedDataService } from '../../shared-data.service';
+import { SimulationServiceService } from '../../../service/simulation-service.service';
 
 @Component({
   selector: 'app-detail-credit',
@@ -8,10 +9,23 @@ import { SharedDataService } from '../../shared-data.service';
 })
 export class DetailCreditComponent implements OnInit {
   folderValue: any;
+  id: any;
 
-  constructor(private sharedData: SharedDataService) {}
+  constructor(
+    private sharedData: SharedDataService,
+    private simulationService: SimulationServiceService
+  ) {}
 
   ngOnInit() {
-    this.folderValue = this.sharedData.getFolderData();
+    const a = localStorage.getItem('idDossier');
+    if (a) {
+      this.id = JSON.parse(a);
+    }
+    this.simulationService.getDossier(this.id).subscribe(
+      (res) => {
+        this.folderValue = res;
+      },
+      (err) => console.log(err)
+    );
   }
 }
