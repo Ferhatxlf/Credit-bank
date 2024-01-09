@@ -26,4 +26,9 @@ export class SimulationServiceService {
   addDocument(id: number, files: FormData): Observable<any> {
     return this.http.post(`${this.apiUrl}/dossiers/${id}/files`, files);
   }
+
+
+
+
+  
 }
