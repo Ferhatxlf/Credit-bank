@@ -13,7 +13,7 @@ export class SharedDataService {
   private folderData = new BehaviorSubject<any>(null);
   currentFolderData = this.folderData.asObservable();
 
-  constructor(private courtierService: DirectorServiceService) {}
+  constructor(private directorService: DirectorServiceService) {}
 
   setFolderData(data: any) {
     this.folderData = data;
@@ -29,7 +29,7 @@ export class SharedDataService {
       this.currentUser = JSON.parse(a);
     }
     console.log(this.currentUser);
-    this.courtierService.getAllDossier(this.currentUser.agence_id).subscribe(
+    this.directorService.getAllDossier(this.currentUser.agence_id).subscribe(
       (rs) => {
         this.allDossier = rs;
         console.log(this.allDossier);
@@ -44,7 +44,7 @@ export class SharedDataService {
       this.currentUser = JSON.parse(a);
     }
     console.log(this.currentUser);
-    this.courtierService.getMyDossier(this.currentUser.id).subscribe(
+    this.directorService.getMyDossier(this.currentUser.id).subscribe(
       (rs) => {
         this.mesDossier = rs;
         console.log(this.mesDossier);
@@ -59,7 +59,7 @@ export class SharedDataService {
       this.currentUser = JSON.parse(a);
     }
 
-    this.courtierService
+    this.directorService
       .affecterDossierACourtier(this.currentUser.id, id_dossier)
       .subscribe(
         (rs) => {

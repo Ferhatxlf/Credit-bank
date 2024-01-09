@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 
 import { SharedDataService } from '../shared-data.service';
 import { CourtierServiceService } from '../../service/courtier-service.service.js';
+import { DirectorServiceService } from '../../service/director-service.service.js';
 
 @Component({
   selector: 'app-liste-dossier',
@@ -113,7 +114,8 @@ export class ListeDossierComponent implements OnInit {
     private fb: FormBuilder,
     router: Router,
     private sharedDataService: SharedDataService,
-    private courtierService: CourtierServiceService
+    private courtierService: CourtierServiceService,
+    private directorService: DirectorServiceService
   ) {
     this.router = router;
   }
@@ -140,7 +142,7 @@ export class ListeDossierComponent implements OnInit {
 
   folderClicked(folder) {
     this.sharedDataService.setFolderData(folder);
-    this.router.navigate(['/courtier/detail-dossier']);
+    this.router.navigate(['/director/component/detail-dossier']);
   }
   search() {
     if (this.searchActivate) {
