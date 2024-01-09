@@ -7,7 +7,7 @@ import { ClientServiceService } from '../../service/client-service.service';
   styleUrl: './profile.component.css',
 })
 export class ProfileComponent implements OnInit {
-  information: boolean = false;
+  information: boolean = true;
 
   currentUser: any;
   public Folders: any = [];
