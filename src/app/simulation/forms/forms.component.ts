@@ -208,8 +208,7 @@ export class FormsComponent implements OnInit {
         Number(revenue) +
         Number(revenueCo) +
         Number(OtherRevenue) +
-        Number(revenueImmobilier) -
-        Number(otherFinancing);
+        Number(revenueImmobilier);
 
       const formImmobilierData = {
         habitation: this.applyForm.value.habitation
