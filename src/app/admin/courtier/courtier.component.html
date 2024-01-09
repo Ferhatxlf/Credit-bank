@@ -1,35 +1,75 @@
-<div class="container-fluid">
-  <app-navbar></app-navbar>
-
-  <div class="accordion mt-5 accordion-flush" id="accordionFlushExample">
-    <div class="accordion-item">
-      <div class="accordion-body">
-        <div class="btn-container">
-          <div class="material-icons">add</div>
-        </div>
-        <table class="table table-striped table-hover">
-          <tbody>
-            <tr>
-              <th>Courtier</th>
-              <th>Agence</th>
-              <th>Date de naissance</th>
-              <th>Bloqué</th>
-              <th>Activé</th>
-            </tr>
-            <tr *ngFor="let folder of Folders; let i = index">
-              <td>{{ folder.name }}</td>
-              <td>{{ folder.Agence }}</td>
-              <td>{{ folder.Date }}</td>
-              <td>
-                <button type="button" class="btn btn-danger">Bloqué</button>
-              </td>
-              <td>
-                <button type="button" class="btn btn-success">Activé</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+<<div class="container-fluid">
+  <div class="container p-2 mx-auto sm:p-4 text-gray-800">
+    <h2 class="mb-4 text-2xl text-secondary">gestion des courties</h2>
+    <div class="flex justify-between items-center mb-4">
+      <div class="flex items-center space-x-4">
+        <label for="client" class="flex items-center space-x-2 cursor-pointer">
+          <input type="checkbox" id="client" class="form-checkbox" value="client">
+          <span>Client</span>
+        </label>
+        <label for="couritier" class="flex items-center space-x-2 cursor-pointer">
+          <input type="checkbox" id="couritier" class="form-checkbox" value="couritier">
+          <span>Couritier</span>
+        </label>
+        <!-- Add more checkboxes for other roles as needed -->
       </div>
+      <form class="w-1/3 md:w-1/4 lg:w-1/5 flex items-center relative">
+        <label for="simple-search" class="sr-only">Search</label>
+        <div class="relative w-full">
+          <input type="text" id="simple-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pl-10 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search ..." required>
+          <button type="submit" class="absolute inset-y-0 right-0 px-3 py-2.5 text-sm font-medium text-gray-800 bg-gray-300 rounded-r-lg border border-gray-300 hover:bg-gray-400 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-gray-600 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
+            <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+            </svg>
+            <span class="sr-only">Search</span>
+          </button>
+        </div>
+      </form>
+   
+    
     </div>
-  </div>
-</div>
+
+          <div class="overflow-hidden">
+            <table class="w-full p-6 text-xs text-left">
+              <!-- Table headers -->
+              <thead>
+                  <tr class="bg-gray-200">
+                      <th class="px-4 py-2 border">ID</th>
+                      <th class="px-4 py-2 border">NI/NOM-UTILISATEUR</th>
+                      <th class="px-4 py-2 border">Role</th>
+                      <th class="px-4 py-2 border">Agence ID</th>
+                      <th class="px-4 py-2 border">Created At</th>
+                  </tr>
+              </thead>
+              <!-- Table body -->
+              <tbody class="border-b bg-gray-100">
+                  <!-- Loop through comptes -->
+                  <tr *ngFor="let compte of comptes" class="border">
+                      <!-- Display compte data in table cells -->
+                      <td class="px-4 py-2 border">{{ compte.id }}</td>
+                      <td class="px-4 py-2 border">{{ compte.nin }}</td>
+                      <td class="px-4 py-2 border">{{ compte.role }}</td>
+                      <td class="px-4 py-2 border">{{ compte.agenceId }}</td>
+                      <td class="px-4 py-2 border">{{ compte.createdAt }}</td>
+                  </tr>
+                  <!-- End of loop -->
+              </tbody>
+          </table>
+          </div>
+          <div class="flex justify-end py-1 px-4">
+            <nav class="flex items-center space-x-1">
+              <button type="button" class="p-2.5 inline-flex items-center gap-x-2 text-sm rounded-full text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-white/10 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                <span aria-hidden="true">«</span>
+                <span class="sr-only">Previous</span>
+              </button>
+              <button type="button" class="min-w-[40px] flex justify-center items-center text-gray-800 hover:bg-gray-100 py-2.5 text-sm rounded-full disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-white/10" aria-current="page">1</button>
+              <button type="button" class="min-w-[40px] flex justify-center items-center text-gray-800 hover:bg-gray-100 py-2.5 text-sm rounded-full disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-white/10">2</button>
+              <button type="button" class="min-w-[40px] flex justify-center items-center text-gray-800 hover:bg-gray-100 py-2.5 text-sm rounded-full disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-white/10">3</button>
+              <button type="button" class="p-2.5 inline-flex items-center gap-x-2 text-sm rounded-full text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-white/10 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                <span class="sr-only">Next</span>
+                <span aria-hidden="true">»</span>
+              </button>
+            </nav>
+          </div>
+        </div>
+      </div>

@@ -1,35 +1,44 @@
 <div class="container-fluid">
-  <app-navbar></app-navbar>
-
-  <div class="accordion mt-5 accordion-flush" id="accordionFlushExample">
-    <div class="accordion-item">
-      <div class="accordion-body">
-        <div class="btn-container">
-          <div class="material-icons">add</div>
-        </div>
-        <table class="table table-striped table-hover">
-          <tbody>
-            <tr>
-              <th>Courtier</th>
-              <th>Agence</th>
-              <th>Date de naissance</th>
-              <th>Bloqué</th>
-              <th>Activé</th>
-            </tr>
-            <tr *ngFor="let folder of Folders; let i = index">
-              <td>{{ folder.name }}</td>
-              <td>{{ folder.Agence }}</td>
-              <td>{{ folder.Date }}</td>
-              <td>
-                <button type="button" class="btn btn-danger">Bloqué</button>
-              </td>
-              <td>
-                <button type="button" class="btn btn-success">Activé</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+  <div class="container p-2 mx-auto sm:p-4 text-gray-800">
+    <h2 class="mb-4 text-2xl text-secondary">Communes</h2>
+      <div class="overflow-x-auto">
+          <table class="w-full p-6 text-xs text-left border border-gray-200">
+              <!-- Table headers -->
+              <thead>
+                  <tr class="bg-gray-200">
+                      <th class="px-4 py-2 text-center border">ID</th>
+                      <th class="px-4 py-2 text-center border">Name</th>
+                      <th class="px-4 py-2 text-center border">Postal Code</th>
+                      <!-- Add other headers if needed -->
+                      <th class="p-3 border">
+                          <span class="sr-only">Edit</span>
+                      </th>
+                  </tr>
+              </thead>
+              <!-- Table body -->
+              <tbody class="border-b bg-gray-100 border-gray-200">
+                  <!-- Loop through communes -->
+                  <tr *ngFor="let commune of communes" class="border">
+                      <!-- Replace these td contents with respective properties from your Commune interface -->
+                      <td class="px-3 py-2 text-center border">{{ commune.id }}</td>
+                      <td class="px-3 py-2 text-center border">
+                          <p>{{ commune.nom }}</p>
+                      </td>
+                      <td class="px-3 py-2 text-center border">
+                          <span>{{ commune.codePostal }}</span>
+                      </td>
+                      <!-- Add other columns based on your Commune interface -->
+                      <td class="px-3 py-2 text-center border">
+                          <button type="button" title="Open details" class="p-1 rounded-full text-gray-600 hover:bg-gray-700 focus:bg-gray-700">
+                              <svg viewBox="0 0 24 24" class="w-4 h-4 fill-current">
+                                  <path d="M12 6a2 2 0 110-4 2 2 0 010 4zm0 8a2 2 0 110-4 2 2 0 010 4zm-2 6a2 2 0 104 0 2 2 0 00-4 0z"></path>
+                              </svg>
+                          </button>
+                      </td>
+                  </tr>
+                  <!-- End of loop -->
+              </tbody>
+          </table>
       </div>
-    </div>
   </div>
 </div>

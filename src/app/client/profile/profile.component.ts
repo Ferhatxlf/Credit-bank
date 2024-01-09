@@ -7,10 +7,13 @@ import { ClientServiceService } from '../../service/client-service.service';
   styleUrl: './profile.component.css',
 })
 export class ProfileComponent implements OnInit {
+  information: boolean = true;
+
   currentUser: any;
   public Folders: any = [];
   constructor(private clientService: ClientServiceService) {}
   ngOnInit(): void {
+    this.information = true;
     const a = localStorage.getItem('currentUser');
     if (a) {
       this.currentUser = JSON.parse(a);

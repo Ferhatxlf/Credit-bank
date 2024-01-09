@@ -23,12 +23,60 @@ export class ClientlayoutComponent implements OnInit {
       console.log(this.url);
     });
   }
+  private listTitles!: any[];
+  ROUTES: any = [
+    {
+      path: '/client/dashboard',
+      title: 'Dashboard',
+      icon: 'dashboard',
+      class: '',
+    },
+    {
+      path: '/client/profile',
+      title: 'Mon Profile',
+      icon: 'person',
+      class: '',
+    },
+    {
+      path: '/client/dossier',
+      title: 'Mes dossier',
+      icon: 'person',
+      class: '',
+    },
+    {
+      path: '/client/nouveau-credit',
+      title: 'Nouveau crédit',
+      icon: 'person',
+      class: '',
+    },
+    {
+      path: '/admin/courtier',
+      title: 'Gestion des courtiers',
+      icon: 'person',
+      class: '',
+    },
+    {
+      path: '/admin/directeur',
+      title: 'Gestion des directeurs',
+      icon: 'person',
+      class: '',
+    },
+    {
+      path: '/courtier/dossier',
+      title: 'Liste des dossiers',
+      icon: 'person',
+      class: '',
+    },
+    { path: '/admin/profile', title: 'Mon Profile', icon: 'person', class: '' },
+  ];
 
   url: string = '';
   currentUser: any;
   public Folders: any = [];
   ngOnInit(): void {
     this.selected = true;
+
+    this.listTitles = this.ROUTES.filter((listTitle: any) => listTitle);
     const a = localStorage.getItem('currentUser');
     if (a) {
       this.currentUser = JSON.parse(a);
@@ -42,6 +90,20 @@ export class ClientlayoutComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+  // pour la navbar recuperation des titres ************
+  getTitle() {
+    var titlee = this.location.prepareExternalUrl(this.location.path());
+    if (titlee.charAt(0) === '#') {
+      titlee = titlee.slice(1);
+    }
+
+    for (var item = 0; item < this.listTitles.length; item++) {
+      if (this.listTitles[item].path === titlee) {
+        return this.listTitles[item].title;
+      }
+    }
+    return 'Dashboard';
   }
 
   goBack(): void {
