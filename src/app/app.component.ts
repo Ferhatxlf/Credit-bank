@@ -7,7 +7,7 @@ export const ROUTES: any = [
     class: '',
   },
   { path: '/client/profile', title: 'Mon Profile', icon: 'person', class: '' },
-  { path: '/client/dossier', title: 'Mes dossier', icon: 'person', class: '' },
+  { path: '/client/dossier', title: 'Mes dossiers', icon: 'person', class: '' },
   {
     path: '/client/nouveau-credit',
     title: 'Nouveau crédit',

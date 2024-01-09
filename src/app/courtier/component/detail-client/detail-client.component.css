@@ -1,12 +1,5 @@
 .details-info {
   padding: 10px;
-  box-sizing: border-box;
-
-  box-shadow: 0 0 15px 1px rgba(133, 129, 129, 0.479);
-  background-color: rgba(255, 255, 255, 0.884);
-  border: 1px solid #ccc;
-
-  border-radius: 5px;
 }
 .numero {
   font-weight: bold;
@@ -28,7 +21,8 @@
 }
 
 label {
-  font-weight: bold;
+  font-weight: 600;
+  font-size: small;
   margin-bottom: 5px;
 }
 

@@ -1,35 +1,84 @@
 <div class="details-info">
-  <div class="numero">Dossier n° : {{ folderValue.id }}</div>
+  <div class="numero">Dossier {{ folderValue.nomDossier }}</div>
   <div class="details-column">
     <div class="title-container">
       <label>Montant du crédit souhaité :</label>
-      <div>{{ folderValue.montantHabitation }} DZD</div>
+      <!-- <div>8 000 000 DZD</div> -->
+      <input
+        type="text"
+        class="form-control"
+        id="validationCustom03"
+        value="{{ folderValue.montantHabitation }} DZD"
+        disabled
+      />
     </div>
     <div class="title-container">
       <label>Crédit souhaité:</label>
-      <div>{{ folderValue.creditSouhaite }} DZD</div>
+      <!-- <div>2 000 000 DZD</div> -->
+      <input
+        type="text"
+        class="form-control"
+        id="validationCustom03"
+        value="{{ folderValue.creditSouhaite }} DZD"
+        disabled
+      />
     </div>
     <div class="title-container">
       <label>Revenu de l'emprunteur :</label>
-      <div>{{ folderValue.revenueEmprunteur }} DZD</div>
+      <!-- <div>150 000 DZD</div> -->
+      <input
+        type="text"
+        class="form-control"
+        id="validationCustom03"
+        value="{{ folderValue.revenueEmprunteur }} DZD"
+        disabled
+      />
     </div>
 
     <div class="title-container">
       <label>Revenu du co-emprunteur :</label>
-      <div>{{ folderValue.revenueCoEmprunteur }} DZD</div>
+      <!-- <div>0 DZD</div> -->
+      <input
+        type="text"
+        class="form-control"
+        id="validationCustom03"
+        value="{{ folderValue.revenueCoEmprunteur }} DZD"
+        disabled
+      />
     </div>
 
     <div class="title-container">
       <label>Patrimoine imobilier</label>
-      <div>{{ folderValue.montantRevenueImmobilier }} DZD</div>
+      <!-- <div>0 DZD</div> -->
+      <input
+        type="text"
+        class="form-control"
+        id="validationCustom03"
+        value="{{ folderValue.montantRevenueImmobilier }} DZD"
+        disabled
+      />
     </div>
     <div class="title-container">
       <label>Durée du financement :</label>
-      <div>{{ folderValue.dureeFinancement }} années</div>
+      <!-- <div>4 années</div> -->
+      <input
+        type="text"
+        class="form-control"
+        id="validationCustom03"
+        value="{{ folderValue.dureeFinancement }} années"
+        disabled
+      />
     </div>
     <div class="title-container">
       <label>Autres crédit en cours :</label>
-      <div>{{ folderValue.montantAutreCredit }} DZD</div>
+      <!-- <div>0 DZD</div> -->
+      <input
+        type="text"
+        class="form-control"
+        id="validationCustom03"
+        value="{{ folderValue.montantAutreCredit }} DZD"
+        disabled
+      />
     </div>
   </div>
 </div>

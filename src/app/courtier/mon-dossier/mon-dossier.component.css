@@ -1,8 +1,11 @@
-.container-fluid {
+.router-outlet-container {
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
+  border-bottom: 1px solid #6666663d;
+  border-right: 1px solid #6666663d;
+  border-left: 1px solid #6666663d;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .material-icons {
@@ -23,16 +26,14 @@
   justify-content: flex-start;
   align-items: center;
 }
-.logo-containerr {
-  height: 50px;
-  margin: 10px auto;
-  width: 96%;
+.detail-dossier-container {
   display: flex;
-  justify-content: flex-start;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
   background-color: white;
-  box-shadow: 0 0 15px 1px rgba(133, 129, 129, 0.479);
-  border-radius: 5px;
+  width: 95%;
+  margin: 0 auto;
 }
 .nv {
   background-color: rgba(114, 33, 130, 1);
@@ -41,25 +42,28 @@
 .nv span {
   color: white;
 }
-.navbar-container {
+.detail-dossier-header {
   height: 100%;
   margin: 0 auto;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-radius: 5px;
+  border: 1px solid #6666663d;
 }
-.navbar-container:hover {
+.detail-dossier-header:hover {
   cursor: pointer;
 }
 .nav-items {
   height: 100%;
   width: 100%;
+  padding: 4px 10px;
   display: flex;
   justify-content: center;
   align-items: center;
   color: rgba(114, 33, 130, 1);
-  font-size: 17px;
+  font-size: 15px;
 }
 
 .icons-header {

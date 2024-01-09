@@ -1,6 +1,7 @@
 // information.component.ts
 import { Component, Input, OnInit } from '@angular/core';
 import { SharedDataService } from '../../shared-data.service';
+import { SimulationServiceService } from '../../../service/simulation-service.service';
 
 @Component({
   selector: 'app-information',
@@ -11,9 +12,21 @@ export class InformationComponent implements OnInit {
   @Input() clientName: string = 'moh';
   @Input() clientEmail!: string;
   folderValue: any;
+  id: any;
 
-  constructor(private sharedDataService: SharedDataService) {}
+  constructor(private simulationService: SimulationServiceService) {}
+
   ngOnInit() {
-    this.folderValue = this.sharedDataService.getFolderData();
+    const a = localStorage.getItem('idDossier');
+    if (a) {
+      this.id = JSON.parse(a);
+    }
+    this.simulationService.getDossier(this.id).subscribe(
+      (res) => {
+        this.folderValue = res;
+        console.log(this.folderValue);
+      },
+      (err) => console.log(err)
+    );
   }
 }
