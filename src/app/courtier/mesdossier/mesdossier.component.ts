@@ -49,7 +49,7 @@ export class MesdossierComponent {
   }
 
   folderClicked(folder) {
-    this.sharedDataService.setFolderData(folder);
+    localStorage.setItem('idDossier', folder.id);
     this.router.navigate(['/courtier/detail-dossier']);
     console.log(folder);
   }
