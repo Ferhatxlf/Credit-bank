@@ -246,8 +246,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
             client: {
               id: rs['id'],
             },
-            typeCredit: localStorage.getItem('creditType'),
-            typeFinancement: localStorage.getItem('financementType'),
+            typeCredit: { id: 5 },
             montantHabitation: this.data.habitation,
             creditSouhaite: this.data.credit,
             revenueEmprunteur: this.data.revenue,
