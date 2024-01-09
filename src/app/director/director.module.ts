@@ -13,6 +13,7 @@ import { DetailClientComponent } from './component/detail-client/detail-client.c
 import { DetailCreditComponent } from './component/detail-credit/detail-credit.component';
 import { DocumentComponent } from './component/document/document.component';
 import { InformationComponent } from './component/information/information.component';
+import { DetailComponent } from './detail/detail.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { InformationComponent } from './component/information/information.compon
     DetailCreditComponent,
     DocumentComponent,
     InformationComponent,
+    DetailComponent,
   ],
   imports: [
     CommonModule,

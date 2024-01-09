@@ -1,0 +1,67 @@
+<div class="logo-container mb-2">
+  <span class="material-icons icons-header" (click)="goBack()"
+    >arrow_back_ios</span
+  >
+  <div class="header d-flex justify-content-center w-100">
+    <div class="title">Détail du dossier</div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="details-column">
+    <div>
+      <div>
+        <h2>Dossier N° {{ folderValue.id }}</h2>
+        <ul>
+          <li><strong>Nom :</strong> {{ folderValue.nomDossier }}</li>
+          <li><strong>Montant :</strong>{{ folderValue.montantHabitation }}</li>
+          <li><strong>Crédit demandé :</strong>{{ folderValue.typeCredit }}</li>
+          <li>
+            <strong>Durée du financement :</strong
+            >{{ folderValue.dureeFinancement }}
+          </li>
+
+          <li>
+            <strong>type du financement :</strong
+            >{{ folderValue.typeFinancement }}
+          </li>
+
+          <li>
+            <strong>Autre financement en cours :</strong
+            >{{ folderValue.montantAutreRevenue }}
+          </li>
+          <li><strong>Statut :</strong>{{ folderValue.status }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="details-column">
+    <div>
+      <h2>Détails du client</h2>
+      <ul>
+        <li>
+          <strong>Nom :</strong> {{ folderValue.client.nom }}
+          {{ folderValue.client.prenom }}
+        </li>
+        <li><strong>Age :</strong>{{ folderValue.ageEmprunteur }}</li>
+        <li><strong>Tel :</strong>{{ folderValue.client.telephone }}</li>
+        <li><strong>Email :</strong>{{ folderValue.client.email }}</li>
+        <li><strong>Adresse :</strong>{{ folderValue.client.adresse }}</li>
+        <li><strong>Revenu :</strong>{{ folderValue.revenueEmprunteur }}</li>
+        <li>
+          <strong>Revenu du co-emprunteur :</strong
+          >{{ folderValue.revenueCoEmprunteur }}
+        </li>
+        <li>
+          <strong>Type du client :</strong>
+          Particulier
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="btn_cont">
+  <button class="btn btn2" (click)="afectation(folderValue.id)">
+    Prendre en charge
+  </button>
+</div>
