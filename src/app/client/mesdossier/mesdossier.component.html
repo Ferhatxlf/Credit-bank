@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <!-- nouveau  -->
-  <div class="row cards translate">
+  <div class="cards translate">
     <div class="col-sm-12 col-md-4 col-lg-4 mt-2" *ngFor="let f of Folders">
       <div class="card">
         <div class="card-left">
@@ -21,9 +21,69 @@
             <span class="badge text-bg-danger">Refusé</span>
           </div>
           <!-- <span class="material-icons">arrow_forward_ios</span> -->
-          <button class="btn btn-outline-secondary" (click)="folderClicked(f)">
+          <!-- <button class="btn btn-outline-secondary" (click)="folderClicked(f)">
             Détail
-          </button>
+          </button> -->
+        </div>
+      </div>
+    </div>
+    <div class="col-12 mt-2">
+      <div class="card">
+        <div class="card-left">
+          <span class="material-icons icon-card">folder</span>
+          <div class="card-left-info">
+            <h6>Achat d'un apparetement</h6>
+            <p>Crée le 05/02/2023</p>
+          </div>
+        </div>
+        <div class="card-right en-cours px-3">
+          <span class="material-icons">query_builder</span>
+          <p>En cours</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 mt-2">
+      <div class="card">
+        <div class="card-left">
+          <span class="material-icons icon-card">folder</span>
+          <div class="card-left-info">
+            <h6>Achat d'un apparetement</h6>
+            <p>Crée le 05/02/2023</p>
+          </div>
+        </div>
+        <div class="card-right non-traite px-3">
+          <span class="material-icons">error_outline</span>
+          <p>Non traité</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 mt-2">
+      <div class="card">
+        <div class="card-left">
+          <span class="material-icons icon-card">folder</span>
+          <div class="card-left-info">
+            <h6>Achat d'un apparetement</h6>
+            <p>Crée le 05/02/2023</p>
+          </div>
+        </div>
+        <div class="card-right rejete px-3">
+          <span class="material-icons">gpp_maybe</span>
+          <p>Rejeté</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 mt-2">
+      <div class="card">
+        <div class="card-left">
+          <span class="material-icons icon-card">folder</span>
+          <div class="card-left-info">
+            <h6>Achat d'un apparetement</h6>
+            <p>Crée le 05/02/2023</p>
+          </div>
+        </div>
+        <div class="card-right accepte px-3">
+          <span class="material-icons">check_circler</span>
+          <p>Accepté</p>
         </div>
       </div>
     </div>
