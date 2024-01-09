@@ -9,6 +9,7 @@ import { CourtierComponent } from './courtier/courtier.component';
 import { DirecteurComponent } from './directeur/directeur.component';
 import { InformationComponent } from './information/information.component';
 import { ComponentModule } from '../component/component.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,6 @@ import { ComponentModule } from '../component/component.module';
     DirecteurComponent,
     InformationComponent,
   ],
-  imports: [CommonModule, AdminRoutingModule, ComponentModule],
+  imports: [CommonModule, AdminRoutingModule, ComponentModule, RouterModule],
 })
 export class AdminModule {}

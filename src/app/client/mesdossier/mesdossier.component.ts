@@ -18,12 +18,14 @@ export class MesdossierComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     const a = localStorage.getItem('currentUser');
+
     if (a) {
       this.currentUser = JSON.parse(a);
     }
     this.clientService.getDossier(this.currentUser.id).subscribe(
       (rs) => {
         console.log(rs);
+
         this.Folders = rs;
       },
       (err) => {
