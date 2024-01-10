@@ -1,4 +1,3 @@
-<!-- navbar.component.html -->
 <div class="navbar">
   <div class="left">
     <span>{{ getTitle() }}</span>
@@ -8,8 +7,9 @@
       <img src="../../../assets/avatar.png" alt="avatar" />
     </div>
     <div class="information">
-      <span class="name">user</span>
-      <p class="email">email&#64;gmail.com</p>
+      <span class="name">{{userRole}}</span>
+      <!-- Bind the userNin variable to display the nin -->
+      <p class="email">{{ userNin }}</p>
     </div>
     <div class="logout">
       <span class="material-icons"> arrow_drop_down </span>

@@ -36,4 +36,12 @@ export class MesdossierComponent implements OnInit {
     localStorage.setItem('idDossier', folder.id);
     this.router.navigate(['/client/detail-dossier']);
   }
+  sendFolder(id) {
+    this.clientService.sendFolder(id).subscribe(
+      (rs) => {
+        console.log(rs);
+      },
+      (err) => console.log(err)
+    );
+  }
 }

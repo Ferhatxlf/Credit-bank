@@ -47,4 +47,7 @@ export class AuthServiceService {
   getClient(client_id) {
     return this.http.get(`${this.apiUrl}/clients/${client_id}`);
   }
+  getBanquier(id) {
+    return this.http.get(`${this.apiUrl}/clients/${id}`);
+  }
 }

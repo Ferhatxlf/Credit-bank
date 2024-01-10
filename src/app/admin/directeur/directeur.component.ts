@@ -137,4 +137,29 @@ export class DirecteurComponent implements OnInit {
       }
     );
   }
+
+
+
+
+
+
+
+  
+
+///////////
+itemsPerPage = 10; // Number of items per page
+currentPage = 1; // Current page number
+
+get startIndex(): number {
+  return (this.currentPage - 1) * this.itemsPerPage;
+}
+
+get endIndex(): number {
+  return Math.min(this.currentPage * this.itemsPerPage - 1, this.communes.length - 1);
+}
+
+changePage(pageNumber: number): void {
+  this.currentPage = pageNumber;
+}
+
 }

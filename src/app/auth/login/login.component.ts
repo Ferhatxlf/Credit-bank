@@ -63,6 +63,8 @@ export class LoginComponent implements OnInit {
           token: rs.token,
           id: rs.compte.id,
           agence_id: rs.compte.agenceId,
+          nin: rs.compte.nin ,
+          role:rs.compte.role
         };
         console.log(user);
         localStorage.setItem('currentUser', JSON.stringify(user));
@@ -73,6 +75,7 @@ export class LoginComponent implements OnInit {
       }
     );
   }
+  
   onChangeConnexion() {
     if (this.client) {
       this.client = false;
