@@ -17,6 +17,7 @@ export class MesdossierComponent {
   public F!: any;
   public searchActivate: boolean = false;
   currentUser: any;
+  selectedFolders: any[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -52,6 +53,10 @@ export class MesdossierComponent {
     localStorage.setItem('idDossier', folder.id);
     this.router.navigate(['/courtier/detail-dossier']);
     console.log(folder);
+  }
+  updateSelectedFolders() {
+    this.selectedFolders = this.Folders.filter((folder) => folder.isSelected);
+    console.log(this.selectedFolders);
   }
   search() {
     if (this.searchActivate) {

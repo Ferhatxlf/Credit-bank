@@ -66,29 +66,35 @@
             <tbody>
               <tr>
                 <th>N°</th>
-                <th>Nom du dossier</th>
+                <th>Type du crédit</th>
                 <th>Emprunteur</th>
                 <th>Type du client</th>
-                <th>Type du financement</th>
 
-                <th>Type du crédit</th>
                 <th>Montant du prêt</th>
-                <th>Statut</th>
+
+                <th>Détail</th>
+                <th>Actions</th>
               </tr>
 
-              <tr
-                (click)="folderClicked(folder)"
-                *ngFor="let folder of Folders; let i = index"
-              >
+              <tr *ngFor="let folder of Folders; let i = index">
                 <td>{{ folder.id }}</td>
-                <td>{{ folder.nomDossier }}</td>
+                <td>{{ folder.typeCredit.nomCredit }}</td>
                 <td>{{ folder.client.nom }} {{ folder.client.prenom }}</td>
-                <td>{{ folder.client.email }}</td>
-                <td>{{ folder.typeFinancement }}</td>
+                <td>PART</td>
 
-                <td>{{ folder.typeCredit }}</td>
-                <td>{{ folder.montantHabitation }} DA</td>
-                <td>{{ folder.status }}</td>
+                <td>{{ folder.montantHabitation | number : "1.0-0" }} DA</td>
+                <td>
+                  <i class="material-icons icon" (click)="folderClicked(folder)"
+                    >remove_red_eye</i
+                  >
+                </td>
+                <td>
+                  <i
+                    class="material-icons icon"
+                    (click)="affectation(folder.id)"
+                    >add_circle</i
+                  >
+                </td>
               </tr>
             </tbody>
           </table>
