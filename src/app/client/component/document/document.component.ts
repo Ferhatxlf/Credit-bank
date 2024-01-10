@@ -135,7 +135,7 @@ export class DocumentComponent implements OnInit {
               );
               console.log(this.hasResidence);
               this.hasPaie = this.folderValue.attachedFiles.some(
-                (f) => f.fileName === 'Fiche de paie '
+                (f) => f.fileName === 'Fiche de paie'
               );
               this.hasAutre = this.folderValue.attachedFiles.some(
                 (f) => f.fileName === 'Autre justificatif de revenu'
@@ -170,7 +170,7 @@ export class DocumentComponent implements OnInit {
             );
             console.log(this.hasResidence);
             this.hasPaie = this.folderValue.attachedFiles.some(
-              (f) => f.fileName === 'Fiche de paie '
+              (f) => f.fileName === 'Fiche de paie'
             );
             this.hasAutre = this.folderValue.attachedFiles.some(
               (f) => f.fileName === 'Autre justificatif de revenu'
@@ -179,6 +179,7 @@ export class DocumentComponent implements OnInit {
           },
           (err) => console.log(err)
         );
+        console.log('Fichiers téléchargés avec succès');
       },
       (err) => console.log(err)
     );
