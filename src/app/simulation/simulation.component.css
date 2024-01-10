@@ -134,6 +134,10 @@ nav {
   align-items: center;
   width: 180px;
   margin-right: 0;
+  background-color: whitesmoke;
+  border-radius: 5px;
+  padding: 1px;
+  box-shadow: 0 0 5px 1px #66666627;
 }
 .container-avatar-information {
   display: flex;
@@ -167,8 +171,11 @@ nav {
 }
 .information .email {
   margin: auto;
-  font-size: 13px;
+  font-size: 12px;
   opacity: 0.5;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .container-avatar .logout {
   width: 30px;
@@ -176,10 +183,10 @@ nav {
 .logout span {
   font-size: 30px !important;
   cursor: pointer;
-  color: #333;
+  color: #7a7a7a !important;
 }
 .logout span:hover {
-  color: rgba(254, 182, 0, 1);
+  color: rgba(254, 182, 0, 1) !important;
 }
 .toggle-option {
   position: absolute;
@@ -455,7 +462,7 @@ body {
 
 @media screen and (min-width: 1000px) {
   .container-progressBar-avatar {
-    width: 94%;
+    width: 100%;
   }
   .container-avatar {
     width: 220px;
@@ -478,13 +485,13 @@ body {
 
   .information .name {
     font-size: 16px;
+    text-align: start;
   }
   .information .email {
     font-size: 13px;
+    text-align: start;
   }
-  .logout {
-    margin-right: 5px;
-  }
+
   .logout span {
     font-size: 40px !important;
   }
