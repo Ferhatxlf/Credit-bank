@@ -2,73 +2,160 @@
 <div class="container">
   <div class="add-document mb-3">
     <h3>Pièces jointes</h3>
-    <form (click)="openFileInput()">
-      <input
-        #fileInput
-        class="file-input"
-        type="file"
-        name="file"
-        hidden
-        (change)="onFileSelected($event)"
-      /><span class="material-icons add-icon" style="font-size: 50px !important"
-        >add_circle</span
-      >
-    </form>
+    <span class="material-icons add-icon" style="font-size: 25px !important"
+      >attach_file</span
+    >
   </div>
+
   <div class="document-container">
-    <div class="document mt-3" *ngFor="let d of files">
+    <div class="document mt-3" *ngIf="!hasIdentite">
       <div class="subtitle">
-        <span class="material-icons">check_circle</span>
-        <span>{{ d?.name }}</span>
+        <span class="material-icons icon-red">cancel</span>
+        <span>Pièce d'identité</span>
       </div>
-      <span class="material-icons edit" (click)="removeFile(d)">cancel</span>
-      <span class="material-icons delete" (click)="sendFile(d)"
+      <form (click)="openFileInput(0)" *ngIf="!pieceIdentite">
+        <input
+          #fileInput
+          class="file-input"
+          type="file"
+          name="file"
+          hidden
+          (change)="onFileSelected($event, 'Pièce d\'identité')"
+        />
+
+        <span class="material-icons edit">add_circle</span>
+      </form>
+
+      <span
+        class="material-icons delete"
+        *ngIf="pieceIdentite"
+        (click)="sendFile('Pièce d\'identité')"
         >cloud_upload</span
       >
     </div>
-    <div class="document mt-3" *ngFor="let d of folderValue.attachedFiles">
+
+    <div class="document mt-3" *ngIf="hasIdentite">
       <div class="subtitle">
         <span class="material-icons">check_circle</span>
-        <span>{{ d.fileName }} {{ d?.name }}</span>
+        <span>Pièce d'identité</span>
       </div>
+
       <span class="material-icons edit">edit</span>
-      <span class="material-icons delete">delete</span>
+      <span
+        class="material-icons edit"
+        (click)="deleteFile('Pièce d\'identité')"
+        >delete</span
+      >
     </div>
 
-    <!--  <div class="document mt-4">
+    <div class="document mt-3" *ngIf="!hasResidence">
       <div class="subtitle">
-        <span class="material-icons">check_circle</span>
-        <span>Fiche de paie 1</span>
+        <span class="material-icons icon-red">cancel</span>
+        <span>Fichier de résidence</span>
       </div>
-      <span class="material-icons edit">edit</span>
-      <span class="material-icons delete">delete_outline</span>
-    </div>
+      <form (click)="openFileInput(1)" *ngIf="!residence">
+        <input
+          #fileInput1
+          class="file-input"
+          type="file"
+          name="file1"
+          hidden
+          (change)="onFileSelected($event, 'Fichier de résidence')"
+        />
 
-    <div class="document mt-4">
-      <div class="subtitle">
-        <span class="material-icons">check_circle</span>
-        <span>Fiche de paie 2</span>
-      </div>
-      <span class="material-icons edit">edit</span>
-      <span class="material-icons delete">delete_outline</span>
+        <span class="material-icons edit">add_circle</span>
+      </form>
+      <span
+        class="material-icons delete"
+        *ngIf="residence"
+        (click)="sendFile('Fichier de résidence')"
+        >cloud_upload</span
+      >
     </div>
-
-    <div class="document mt-4">
+    <div class="document mt-3" *ngIf="hasResidence">
       <div class="subtitle">
         <span class="material-icons">check_circle</span>
-        <span>Fiche de paie 3</span>
+        <span>Fichier de résidence</span>
       </div>
+
       <span class="material-icons edit">edit</span>
-      <span class="material-icons delete">delete_outline</span>
+      <span
+        class="material-icons edit"
+        (click)="deleteFile('Fichier de résidence')"
+        >delete</span
+      >
     </div>
+    <div class="document mt-3" *ngIf="!hasPaie">
+      <div class="subtitle">
+        <span class="material-icons icon-red">cancel</span>
+        <span>Fiche de paie </span>
+      </div>
+      <form (click)="openFileInput(2)" *ngIf="!paie">
+        <input
+          #fileInput2
+          class="file-input"
+          type="file"
+          name="file2"
+          hidden
+          (change)="onFileSelected($event, 'Fiche de paie')"
+        />
 
-    <div class="document mt-4">
+        <span class="material-icons edit">add_circle</span>
+      </form>
+      <span
+        class="material-icons delete"
+        *ngIf="paie"
+        (click)="sendFile('Fiche de paie')"
+        >cloud_upload</span
+      >
+    </div>
+    <div class="document mt-3" *ngIf="hasPaie">
       <div class="subtitle">
         <span class="material-icons">check_circle</span>
-        <span>L'acte de propriété.</span>
+        <span>Fiche de paie</span>
       </div>
+
       <span class="material-icons edit">edit</span>
-      <span class="material-icons delete">delete_outline</span>
-    </div> -->
+      <span class="material-icons edit" (click)="deleteFile('Fiche de paie')"
+        >delete</span
+      >
+    </div>
+    <div class="document mt-3" *ngIf="!hasAutre">
+      <div class="subtitle">
+        <span class="material-icons icon-red">cancel</span>
+        <span>Autre justificatif de revenu</span>
+      </div>
+      <form (click)="openFileInput(3)" *ngIf="!autre">
+        <input
+          #fileInput3
+          class="file-input"
+          type="file"
+          name="file3"
+          hidden
+          (change)="onFileSelected($event, 'Autre justificatif de revenu')"
+        />
+
+        <span class="material-icons edit">add_circle</span>
+      </form>
+      <span
+        class="material-icons delete"
+        *ngIf="autre"
+        (click)="sendFile('Autre justificatif de revenu')"
+        >cloud_upload</span
+      >
+    </div>
+    <div class="document mt-3" *ngIf="hasAutre">
+      <div class="subtitle">
+        <span class="material-icons">check_circle</span>
+        <span>Autre justificatif de revenu</span>
+      </div>
+
+      <span class="material-icons edit">edit</span>
+      <span
+        class="material-icons edit"
+        (click)="deleteFile('Autre justificatif de revenu')"
+        >delete</span
+      >
+    </div>
   </div>
 </div>

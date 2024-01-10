@@ -1,8 +1,47 @@
 <<div class="container-fluid">
+
+
+  
   <div class="container p-2 mx-auto sm:p-4 text-gray-800">
     <h2 class="mb-4 text-2xl text-secondary">gestion des courties</h2>
+
+
+
+
+
+
+    
     <div class="flex justify-between items-center mb-4">
       <div class="flex items-center space-x-4">
+        <div class="relative">
+          <button (click)="toggleDropdown()" class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
+            <span class="sr-only">Action button</span>
+            Action
+            <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+            </svg>
+          </button>
+          
+          <!-- Dropdown menu -->
+          <div *ngIf="isDropdownOpen" class="absolute z-10 top-full left-0 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+            <ul class="py-1 text-sm text-gray-700 dark:text-gray-200">
+              <li>
+                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Reward</a>
+              </li>
+              <li>
+                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Promote</a>
+              </li>
+              <li>
+                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Activate account</a>
+              </li>
+            </ul>
+            <div class="py-1">
+              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete User</a>
+            </div>
+          </div>
+        </div>
+        
+        
         <label for="client" class="flex items-center space-x-2 cursor-pointer">
           <input type="checkbox" id="client" class="form-checkbox" value="client">
           <span>Client</span>
@@ -13,18 +52,15 @@
         </label>
         <!-- Add more checkboxes for other roles as needed -->
       </div>
-      <form class="w-1/3 md:w-1/4 lg:w-1/5 flex items-center relative">
-        <label for="simple-search" class="sr-only">Search</label>
-        <div class="relative w-full">
-          <input type="text" id="simple-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pl-10 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search ..." required>
-          <button type="submit" class="absolute inset-y-0 right-0 px-3 py-2.5 text-sm font-medium text-gray-800 bg-gray-300 rounded-r-lg border border-gray-300 hover:bg-gray-400 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-gray-600 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
-            <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-            </svg>
-            <span class="sr-only">Search</span>
-          </button>
-        </div>
-      </form>
+      <label for="table-search" class="sr-only">Search</label>
+      <div class="relative">
+          <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
+              <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+              </svg>
+          </div>
+          <input type="text" id="table-search-users" class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="      Search for users">
+      </div>
    
     
     </div>
@@ -44,7 +80,7 @@
               <!-- Table body -->
               <tbody class="border-b bg-gray-100">
                   <!-- Loop through comptes -->
-                  <tr *ngFor="let compte of comptes" class="border">
+                  <tr *ngFor="let compte of getPaginatedData()" class="border">
                       <!-- Display compte data in table cells -->
                       <td class="px-4 py-2 border">{{ compte.id }}</td>
                       <td class="px-4 py-2 border">{{ compte.nin }}</td>
@@ -56,20 +92,27 @@
               </tbody>
           </table>
           </div>
-          <div class="flex justify-end py-1 px-4">
-            <nav class="flex items-center space-x-1">
-              <button type="button" class="p-2.5 inline-flex items-center gap-x-2 text-sm rounded-full text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-white/10 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
-                <span aria-hidden="true">«</span>
-                <span class="sr-only">Previous</span>
-              </button>
-              <button type="button" class="min-w-[40px] flex justify-center items-center text-gray-800 hover:bg-gray-100 py-2.5 text-sm rounded-full disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-white/10" aria-current="page">1</button>
-              <button type="button" class="min-w-[40px] flex justify-center items-center text-gray-800 hover:bg-gray-100 py-2.5 text-sm rounded-full disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-white/10">2</button>
-              <button type="button" class="min-w-[40px] flex justify-center items-center text-gray-800 hover:bg-gray-100 py-2.5 text-sm rounded-full disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-white/10">3</button>
-              <button type="button" class="p-2.5 inline-flex items-center gap-x-2 text-sm rounded-full text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-white/10 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
-                <span class="sr-only">Next</span>
-                <span aria-hidden="true">»</span>
-              </button>
-            </nav>
-          </div>
+<!-- Pagination controls -->
+<div class="flex justify-end py-1 px-4">
+  <nav class="flex items-center space-x-1">
+    <button type="button" (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1"
+      class="p-2.5 inline-flex items-center gap-x-2 text-sm rounded-full text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none">
+      <span aria-hidden="true">«</span>
+      <span class="sr-only">Previous</span>
+    </button>
+    
+    <button *ngFor="let page of totalNumberOfPages" type="button" (click)="changePage(page)"
+      [disabled]="currentPage === page"
+      class="min-w-[40px] flex justify-center items-center text-gray-800 hover:bg-gray-100 py-2.5 text-sm rounded-full disabled:opacity-50 disabled:pointer-events-none">
+      {{ page }}
+    </button>
+    
+    <button type="button" (click)="changePage(currentPage + 1)" [disabled]="getPaginatedData().length < itemsPerPage"
+      class="p-2.5 inline-flex items-center gap-x-2 text-sm rounded-full text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none">
+      <span class="sr-only">Next</span>
+      <span aria-hidden="true">»</span>
+    </button>
+  </nav>
+</div>
         </div>
       </div>
