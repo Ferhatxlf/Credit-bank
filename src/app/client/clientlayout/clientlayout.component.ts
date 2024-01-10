@@ -39,7 +39,13 @@ export class ClientlayoutComponent implements OnInit {
     },
     {
       path: '/client/dossier',
-      title: 'Mes dossier',
+      title: 'Mes dossiers',
+      icon: 'person',
+      class: '',
+    },
+    {
+      path: '/client/detail-dossier',
+      title: 'Detail',
       icon: 'person',
       class: '',
     },

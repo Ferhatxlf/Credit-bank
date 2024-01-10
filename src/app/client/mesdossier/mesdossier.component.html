@@ -21,8 +21,8 @@
         <div
           class="card-right en-cours px-3"
           *ngIf="
-            f.status === 'TRAITEMENT_ENCOUS' ||
-            f.status === 'TRAITEE' ||
+            (f.status === 'TRAITEMENT_ENCOURS' && f.assignedagence != null) ||
+            (f.status === 'TRAITEE' && f.assignedagence != null) ||
             (f.status === 'NON_TRAITEE' && f.assignedagence != null)
           "
         >
