@@ -20,4 +20,9 @@ describe('DirecteurComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+
+
+
+  
 });
