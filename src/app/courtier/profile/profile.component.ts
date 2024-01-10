@@ -20,7 +20,7 @@ export class ProfileComponent implements OnInit {
       this.currentUser = JSON.parse(a);
     }
     console.log(this.currentUser);
-    this.courtierService.getMyDossier(this.currentUser.id).subscribe(
+    this.courtierService.getDossierEncours(this.currentUser.id).subscribe(
       (rs) => {
         this.Folders = rs;
         console.log(this.Folders);

@@ -10,6 +10,37 @@
         padding: 15px;
       "
     >
+      <div class="form-group" *ngIf="otherCarAndMoto">
+        <input
+          [ngClass]="{
+            errForm:
+              (applyForm.get('bien')?.touched &&
+                !applyForm.get('bien')?.dirty) ||
+              (applyForm.get('bien')?.invalid &&
+                applyForm.get('bien')?.dirty) ||
+              (submitted && applyForm.get('bien')?.invalid),
+            'with-icon':
+              applyForm.get('bien')?.dirty && !applyForm.get('bien')?.invalid
+          }"
+          type="text"
+          class="form-control"
+          id="floatingInputGrid"
+          placeholder="Montant du bien *"
+          formControlName="bien"
+          appFormatInput
+          required
+        />
+        <p
+          class="err-msg"
+          *ngIf="
+            (applyForm.get('bien')?.touched && !applyForm.get('bien')?.dirty) ||
+            (applyForm.get('bien')?.invalid && applyForm.get('bien')?.dirty) ||
+            (submitted && applyForm.get('bien')?.invalid)
+          "
+        >
+          Champs obligatoire
+        </p>
+      </div>
       <div class="form-group">
         <input
           [ngClass]="{
@@ -205,101 +236,6 @@
         />
       </div>
     </div>
-    <!-- <div
-      class="input-container"
-      style="
-        border: 0.6px solid rgba(0, 0, 0, 0.164);
-        border-radius: 15px;
-        padding: 15px;
-      "
-    >
-      <p class="questions">Avez-vous un patrimoine immobilier ?</p>
-      <div class="suppositions-container">
-        <span
-          class="supposition"
-          (click)="setPatrimoine(true)"
-          [class.selected]="patrimoine"
-          >Oui</span
-        >
-        <span
-          class="supposition"
-          (click)="setPatrimoine(false)"
-          [class.selected]="!patrimoine"
-          >Non</span
-        >
-      </div>
-      <div class="form-group">
-        <input
-          [ngClass]="{
-            errForm:
-              patrimoine &&
-              ((applyForm.get('patrimoine')?.touched &&
-                !applyForm.get('patrimoine')?.dirty) ||
-                (applyForm.get('patrimoine')?.invalid &&
-                  applyForm.get('patrimoine')?.dirty) ||
-                (submitted && applyForm.get('patrimoine')?.invalid)),
-            'with-icon':
-              applyForm.get('patrimoine')?.dirty &&
-              !applyForm.get('patrimoine')?.invalid
-          }"
-          type="text"
-          class="form-control"
-          id="floatingInputGrid"
-          placeholder="Mentionnez ce montant *"
-          formControlName="patrimoine"
-          [disabled]="!patrimoine"
-          appFormatInput
-        />
-      </div>
-    </div> -->
-    <!-- <div
-      class="input-container"
-      style="
-        border: 0.6px solid rgba(0, 0, 0, 0.164);
-        border-radius: 15px;
-        padding: 15px;
-      "
-    >
-      <p class="questions">Avez vous un autre financement en cours ?</p>
-      <div class="suppositions-container">
-        <span
-          class="supposition"
-          (click)="setOtherFinancing(true)"
-          [class.selected]="otherFinancing"
-          >Oui</span
-        >
-        <span
-          class="supposition"
-          (click)="setOtherFinancing(false)"
-          [class.selected]="!otherFinancing"
-          >Non</span
-        >
-      </div>
-      <div class="form-group">
-        <input
-          [ngClass]="{
-            errForm:
-              otherFinancing &&
-              ((applyForm.get('otherFinancing')?.touched &&
-                !applyForm.get('otherFinancing')?.dirty) ||
-                (applyForm.get('otherFinancing')?.invalid &&
-                  applyForm.get('otherFinancing')?.dirty) ||
-                (submitted && applyForm.get('otherFinancing')?.invalid)),
-            'with-icon':
-              applyForm.get('otherFinancing')?.dirty &&
-              !applyForm.get('otherFinancing')?.invalid
-          }"
-          type="text"
-          class="form-control"
-          id="floatingInputGrid"
-          placeholder="Mentionnez ce montant *"
-          formControlName="otherFinancing"
-          [disabled]="!otherFinancing"
-          appFormatInput
-          required
-        />
-      </div>
-    </div> -->
 
     <div class="d-flex justify-content-center mt-3">
       <button class="btn btn-primary">Lancer la simulation</button>

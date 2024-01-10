@@ -41,7 +41,7 @@ export class CourtierlayoutComponent {
     );
     this.F = this.Folders;
 
-    this.courtierService.getMyDossier(this.currentUser.id).subscribe(
+    this.courtierService.getDossierEncours(this.currentUser.id).subscribe(
       (rs) => {
         this.myFolders = rs;
         console.log(this.Folders);

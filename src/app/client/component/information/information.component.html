@@ -1,5 +1,5 @@
 <div class="details-info">
-  <div class="numero">Dossier {{ folderValue.nomDossier }}</div>
+  <div class="numero">Dossier : {{ folderValue.typeCredit.nomCredit }}</div>
   <div class="details-column">
     <div class="title-container name">
       <label>Agence:</label>
@@ -24,29 +24,6 @@
       />
     </div>
     <div class="title-container">
-      <label>Type du financement :</label>
-      <!-- <div>Financement traditionnel (conventionnel)</div> -->
-      <input
-        type="text"
-        class="form-control"
-        id="validationCustom03"
-        value="{{ folderValue.typeFinancement }}"
-        disabled
-      />
-    </div>
-
-    <div class="title-container">
-      <label>Type du crédit :</label>
-      <!-- <div>consom</div> -->
-      <input
-        type="text"
-        class="form-control"
-        id="validationCustom03"
-        value="{{ folderValue.typeCredit }}"
-        disabled
-      />
-    </div>
-    <div class="title-container">
       <label>Durée du financement :</label>
       <!-- <div>4 années</div> -->
       <input
@@ -57,6 +34,18 @@
         disabled
       />
     </div>
+    <div class="title-container name">
+      <label>Type du crédit :</label>
+      <!-- <div>consom</div> -->
+      <input
+        type="text"
+        class="form-control"
+        id="validationCustom03"
+        value="{{ folderValue.typeCredit.nomCredit }}"
+        disabled
+      />
+    </div>
+
     <div class="title-container">
       <label>Date de création :</label>
       <!-- <div>01/01/2024</div> -->

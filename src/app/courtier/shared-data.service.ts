@@ -44,7 +44,7 @@ export class SharedDataService {
       this.currentUser = JSON.parse(a);
     }
     console.log(this.currentUser);
-    this.courtierService.getMyDossier(this.currentUser.id).subscribe(
+    this.courtierService.getDossierEncours(this.currentUser.id).subscribe(
       (rs) => {
         this.mesDossier = rs;
         console.log(this.mesDossier);

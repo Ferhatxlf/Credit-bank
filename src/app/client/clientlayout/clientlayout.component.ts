@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ClientServiceService } from '../../service/client-service.service';
+import { AuthServiceService } from '../../service/auth-service.service';
 
 @Component({
   selector: 'app-clientlayout',
@@ -12,9 +13,11 @@ export class ClientlayoutComponent implements OnInit {
   public cselected: boolean = false;
   public dselected: boolean = false;
   public pselected: boolean = false;
+  client: any;
   constructor(
     private location: Location,
-    private clientService: ClientServiceService
+    private clientService: ClientServiceService,
+    private authService: AuthServiceService
   ) {
     this.url = this.location.path();
     // Écouter les changements d'URL
@@ -39,7 +42,13 @@ export class ClientlayoutComponent implements OnInit {
     },
     {
       path: '/client/dossier',
-      title: 'Mes dossier',
+      title: 'Mes dossiers',
+      icon: 'person',
+      class: '',
+    },
+    {
+      path: '/client/detail-dossier',
+      title: 'Detail',
       icon: 'person',
       class: '',
     },
@@ -90,7 +99,18 @@ export class ClientlayoutComponent implements OnInit {
         console.log(err);
       }
     );
+
+    this.authService.getClient(this.currentUser.id).subscribe(
+      (rs) => {
+        console.log(rs);
+        this.client = rs;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
+
   // pour la navbar recuperation des titres ************
   getTitle() {
     var titlee = this.location.prepareExternalUrl(this.location.path());
