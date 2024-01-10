@@ -101,7 +101,7 @@
         >
           <div class="folder-container">
             <span class="material-icons sidebar-icons"> folder </span>
-            <span class="sidebar-text">Mes dossier</span>
+            <span class="sidebar-text">Mes dossiers</span>
           </div>
           <span
             class="badge rounded-pill text-bg-light"
@@ -126,8 +126,8 @@
             <img src="../../../assets/avatar.png" alt="avatar" />
           </div>
           <div class="information">
-            <span class="name">Ferhat Khelef</span>
-            <p class="email">fehatKhelefgmail.com</p>
+            <span class="name">{{ client.nom }} {{ client.prenom }}</span>
+            <p class="email">{{ client.email }}</p>
           </div>
         </div>
         <div class="logout">
@@ -141,7 +141,12 @@
     <div
       class="navbar-card-container"
       [ngClass]="{
-        'navbar-card-container-hidden': url === '/client/profile'
+        'navbar-card-container-hidden':
+          url === '/client/profile' ||
+          url === '/client/detail-dossier/information' ||
+          url === '/client/detail-dossier/detail-client' ||
+          url === '/client/detail-dossier/detail-credit' ||
+          url === '/client/detail-dossier/document'
       }"
     >
       <div class="left">
@@ -152,8 +157,8 @@
           <img src="../../../assets/avatar.png" alt="avatar" />
         </div>
         <div class="information">
-          <span class="name">Ferhat Khelef</span>
-          <p class="email">fehatKhelefgmail.com</p>
+          <span class="name">{{ client.nom }} {{ client.prenom }}</span>
+          <p class="email">{{ client.email }}</p>
         </div>
         <div class="logout">
           <span class="material-icons"> arrow_drop_down </span>
