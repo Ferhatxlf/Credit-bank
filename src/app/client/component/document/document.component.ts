@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { SharedDataService } from '../../shared-data.service';
 import { SimulationServiceService } from '../../../service/simulation-service.service';
+import { ClientServiceService } from '../../../service/client-service.service';
 
 @Component({
   selector: 'app-document',
@@ -25,7 +26,10 @@ export class DocumentComponent implements OnInit {
   hasPaie: boolean = false;
   hasAutre: boolean = false;
 
-  constructor(private simulationService: SimulationServiceService) {}
+  constructor(
+    private simulationService: SimulationServiceService,
+    private clientService: ClientServiceService
+  ) {}
 
   ngOnInit() {
     const a = localStorage.getItem('idDossier');
@@ -150,11 +154,33 @@ export class DocumentComponent implements OnInit {
     }
   }
 
+  deleteFile(name) {
+    this.clientService.deleteFile(name, this.id).subscribe(
+      (rs) => {
+        this.simulationService.getDossier(this.id).subscribe(
+          (res) => {
+            this.folderValue = res;
 
-
-
-
-
-
-  
+            console.log(res);
+            this.hasIdentite = this.folderValue.attachedFiles.some(
+              (f) => f.fileName === "Pièce d'identité"
+            );
+            this.hasResidence = this.folderValue.attachedFiles.some(
+              (f) => f.fileName === 'Fichier de résidence'
+            );
+            console.log(this.hasResidence);
+            this.hasPaie = this.folderValue.attachedFiles.some(
+              (f) => f.fileName === 'Fiche de paie '
+            );
+            this.hasAutre = this.folderValue.attachedFiles.some(
+              (f) => f.fileName === 'Autre justificatif de revenu'
+            );
+            console.log(this.hasAutre);
+          },
+          (err) => console.log(err)
+        );
+      },
+      (err) => console.log(err)
+    );
+  }
 }
