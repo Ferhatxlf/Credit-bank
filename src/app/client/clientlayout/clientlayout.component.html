@@ -19,6 +19,7 @@
       <span class="sidebar-text">Nouveau crédit</span>
     </div>
     <div class="sections">
+   
       <div
         class="container-text"
         [routerLink]="['/client/dashbord']"
@@ -139,11 +140,12 @@
 
   <div class="card-container scale-in">
     <div
-      class="navbar-card-container"
-      [ngClass]="{
-        'navbar-card-container-hidden': url === '/client/profile'
-      }"
-    >
+    class="navbar-card-container"
+    [ngClass]="{
+      'navbar-card-container-hidden': url === '/client/profile' || url === '/client/detail-dossier/information'
+    }"
+    
+  >
       <div class="left">
         <span>{{ getTitle() }}</span>
       </div>
