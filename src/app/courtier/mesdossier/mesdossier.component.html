@@ -97,10 +97,36 @@
                   >
                 </td>
               </tr>
+
+              <tr *ngFor="let folder of FoldersTraite; let i = index">
+                <td>
+                  <input
+                    type="checkbox"
+                    [(ngModel)]="folder.isSelected"
+                    (change)="updateSelectedFolders()"
+                  />
+                </td>
+                <td>{{ folder.id }}</td>
+                <td>{{ folder.typeCredit.nomCredit }}</td>
+                <td>{{ folder.client.nom }} {{ folder.client.prenom }}</td>
+                <td>PART</td>
+
+                <td>{{ folder.montantHabitation | number : "1.0-0" }} DA</td>
+                <td>{{ folder.status }}</td>
+                <td>
+                  <i class="material-icons icon" (click)="folderClicked(folder)"
+                    >remove_red_eye</i
+                  >
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>
-        <div class="btn_cont" *ngIf="selectedFolders.length != 0">
+        <div
+          class="btn_cont"
+          *ngIf="selectedFolders.length != 0"
+          (click)="soumettreDossier()"
+        >
           <button class="btn btn2">Soumettre au directeur de l'agence</button>
         </div>
       </div>
