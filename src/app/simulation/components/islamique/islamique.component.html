@@ -3,20 +3,32 @@
 </div>
 <div class="row cards translate">
   <div class="col">
-    <div class="card">
+    <div
+      class="card"
+      (click)="onClickType('ijaraTamilikiya')"
+      [routerLink]="['/simulation/islamique-form']"
+    >
       <p>Ijara Tamlikia</p>
       <span class="material-icons">arrow_forward_ios</span>
     </div>
 
-    <div class="card" [routerLink]="['/simulation/islamique-vehicule']">
+    <div
+      class="card"
+      (click)="onClickType('morabahaVehicule')"
+      [routerLink]="['/simulation/islamique-vehicule']"
+    >
       <p>Morabaha véhicule</p>
       <span class="material-icons">arrow_forward_ios</span>
     </div>
-    <div class="card">
+    <div class="card" (click)="onClickType('morabaharaMoto')">
       <p>Morabaha moto</p>
       <span class="material-icons">arrow_forward_ios</span>
     </div>
-    <div class="card">
+    <div
+      class="card"
+      (click)="onClickType('morabahaIstihlakiya')"
+      [routerLink]="['/simulation/islamique-form']"
+    >
       <p>Morabaha Istihlakiya</p>
       <span class="material-icons">arrow_forward_ios</span>
     </div>

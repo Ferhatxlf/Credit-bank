@@ -16,13 +16,15 @@ export class ResultComponent implements OnInit {
   mensualite: string = '';
   revenue: string = '';
   otherFinancing: string = '';
-  prixVehicule: number = 0;
+  montantDuBien: number = 0;
   consomation: boolean = false;
   eligible: boolean = false;
   islamique: boolean = false;
   bonifie: boolean = false;
   financementType: string = '';
   financementTypeChoice: string = '';
+  islamiqueotherCarAndVehicule: boolean = false;
+  islamiqueMargeCredit: string = '';
 
   ngOnInit(): void {
     const type = localStorage.getItem('financementType');
@@ -89,17 +91,23 @@ export class ResultComponent implements OnInit {
     } else if (type === 'islamique') {
       this.financementTypeChoice = immobilierType ? immobilierType : '';
       this.islamique = true;
+      if (
+        islamiqueType === 'ijaraTamilikiya' ||
+        islamiqueType === 'morabahaIstihlakiya'
+      ) {
+        this.islamiqueotherCarAndVehicule = true;
+      }
       if (formislamiqueData) {
         // Convertissez la chaîne JSON en objet JavaScript
         const formData = JSON.parse(formislamiqueData);
-
+        this.islamiqueMargeCredit = formData.margeCredit;
         this.financement = formData.credit;
         this.durer = formData.durer;
         this.age = formData.age;
         this.revenue = formData.revenueCumule;
         this.habitation = formData.consommation;
         this.apportInitial =
-          parseFloat(formData.prixVehicule) - parseFloat(formData.credit);
+          parseFloat(formData.montantDuBien) - parseFloat(formData.credit);
         // Appelez la méthode pour calculer la mensualité
         this.calculerMensualiteIslamique();
 
@@ -171,7 +179,9 @@ export class ResultComponent implements OnInit {
   }
   calculerMensualiteIslamique() {
     // Convertissez les chaînes en nombres
-    const financement = parseFloat(this.financement);
+    const financement = this.islamiqueotherCarAndVehicule
+      ? parseFloat(this.islamiqueMargeCredit)
+      : parseFloat(this.financement);
     const durer = parseFloat(this.durer);
     const interet = 0.085 / 12;
 
