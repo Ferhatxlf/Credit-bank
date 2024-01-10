@@ -16,44 +16,74 @@ export class IslamiqueFormComponent implements OnInit {
   patrimoine: boolean = false;
   coBorrower: boolean = false;
   otherFinancing: boolean = false;
+  otherCarAndMoto: boolean = false;
   submitted: boolean = false;
-  dureeMax1: number = 5;
-  dureeMax2: number = 5;
+
+  dureeMax1: number = 30;
+  dureeMax2: number = 30;
   prixVehicule: number = 0;
+  bien: string = '';
 
   applyForm: FormGroup;
 
   ngOnInit(): void {
+    const prix = localStorage.getItem('prix');
+    const otherCarAndMoto = localStorage.getItem('islamiqueType');
     this.setCoBorrower(false);
     this.applyForm.get('age')?.valueChanges.subscribe((age: number) => {
-      if (isNaN(age) || age > 65) {
-        this.dureeMax1 = 70 - Number(age);
-
+      if (this.otherCarAndMoto) {
+        if (isNaN(age) || age > 40) {
+          this.dureeMax1 = 70 - Number(age);
+        } else {
+          if (isNaN(age) || age < 40) {
+            this.dureeMax1 = 30;
+          }
+        }
         // Déclenchez manuellement la validation de la durée
         this.applyForm.get('durer')?.updateValueAndValidity();
-      } else if (isNaN(age) || age < 65) {
-        this.dureeMax1 = 5;
-
+      } else {
+        if (isNaN(age) || age > 65) {
+          this.dureeMax1 = 70 - Number(age);
+        } else {
+          if (isNaN(age) || age < 65) {
+            this.dureeMax1 = 5;
+          }
+        }
         // Déclenchez manuellement la validation de la durée
         this.applyForm.get('durer')?.updateValueAndValidity();
       }
     });
     this.applyForm.get('ageCo')?.valueChanges.subscribe((age: number) => {
-      if (isNaN(age) || age > 65) {
-        this.dureeMax2 = 70 - Number(age);
-
+      if (this.otherCarAndMoto) {
+        if (isNaN(age) || age > 40) {
+          this.dureeMax2 = 70 - Number(age);
+        } else {
+          if (isNaN(age) || age < 65) {
+            this.dureeMax2 = 30;
+          }
+        }
         // Déclenchez manuellement la validation de la durée
         this.applyForm.get('durer')?.updateValueAndValidity();
-      } else if (isNaN(age) || age < 65) {
-        this.dureeMax2 = 5;
-
+      } else {
+        if (isNaN(age) || age > 65) {
+          this.dureeMax2 = 70 - Number(age);
+        } else {
+          if (isNaN(age) || age < 65) {
+            this.dureeMax2 = 5;
+          }
+        }
         // Déclenchez manuellement la validation de la durée
         this.applyForm.get('durer')?.updateValueAndValidity();
       }
     });
-    const prix = localStorage.getItem('prix');
     if (prix) {
       this.prixVehicule = parseFloat(prix);
+    }
+    if (
+      otherCarAndMoto === 'ijaraTamilikiya' ||
+      otherCarAndMoto === 'morabahaIstihlakiya'
+    ) {
+      this.otherCarAndMoto = true;
     }
   }
   get dureeMax(): number {
@@ -62,6 +92,7 @@ export class IslamiqueFormComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private router: Router) {
     this.applyForm = this.fb.group({
+      bien: [''],
       revenue: ['', Validators.required],
       age: ['', [Validators.required, this.ageValidator]],
       credit: ['', [Validators.required, this.creditValidatorFactory()]],
@@ -87,8 +118,14 @@ export class IslamiqueFormComponent implements OnInit {
       const age = Number(this.applyForm?.get('age')?.value);
       const ageCo = Number(this.applyForm?.get('ageCo')?.value);
 
-      if (isNaN(durer) || durer < 0 || durer > 5) {
-        return { invalidDurer: true };
+      if (this.otherCarAndMoto) {
+        if (isNaN(durer) || durer < 0 || durer > 30) {
+          return { invalidDurer: true };
+        }
+      } else {
+        if (isNaN(durer) || durer < 0 || durer > 5) {
+          return { invalidDurer: true };
+        }
       }
 
       // Vérifier si l'âge et la durée dépassent 75 ans
@@ -103,10 +140,19 @@ export class IslamiqueFormComponent implements OnInit {
   creditValidatorFactory(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: boolean } | null => {
       const credit = control.value.replace(/\s+/g, '');
-
-      // Vérifier si le crédit dépasse 90% du montant de l'habitation
-      if (credit > 0.8 * this.prixVehicule) {
-        return { invalidCredit: true };
+      const bien = this.otherCarAndMoto
+        ? this.applyForm.value.bien
+          ? this.applyForm.value.bien.replace(/\s+/g, '')
+          : ''
+        : '';
+      if (this.otherCarAndMoto) {
+        if (credit > 0.8 * Number(bien)) {
+          return { invalidCredit: true };
+        }
+      } else {
+        if (credit > 0.8 * this.prixVehicule) {
+          return { invalidCredit: true };
+        }
       }
 
       return null; // La validation a réussi
@@ -137,21 +183,28 @@ export class IslamiqueFormComponent implements OnInit {
       let revenueCumule = revenueCo
         ? Number(revenue) + Number(revenueCo)
         : Number(revenue);
+      let credit = this.applyForm.value.credit
+        ? this.applyForm.value.credit.replace(/\s+/g, '')
+        : '';
+      let montantDuBien = this.applyForm.value.bien
+        ? this.applyForm.value.bien.replace(/\s+/g, '')
+        : '';
       const formislamiqueData = {
-        credit: this.applyForm.value.credit
-          ? this.applyForm.value.credit.replace(/\s+/g, '')
-          : '',
         revenue: this.applyForm.value.revenue
           ? this.applyForm.value.revenue.replace(/\s+/g, '')
           : '',
         revenueCo: this.applyForm.value.revenueCo
           ? this.applyForm.value.revenueCo.replace(/\s+/g, '')
           : '',
+        margeCredit: this.otherCarAndMoto
+          ? 0.5 * Number(credit) + Number(credit)
+          : 0,
+        credit: credit,
         age: this.applyForm.value.age,
         ageCo: this.applyForm.value.ageCo,
         durer: this.applyForm.value.durer,
         revenueCumule: revenueCumule,
-        prixVehicule: this.prixVehicule,
+        montantDuBien: this.otherCarAndMoto ? montantDuBien : this.prixVehicule,
       };
 
       const formDataJson = JSON.stringify(formislamiqueData);

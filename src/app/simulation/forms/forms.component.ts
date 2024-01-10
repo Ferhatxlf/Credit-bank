@@ -24,6 +24,7 @@ export class FormsComponent implements OnInit {
   dureeMax1: number = 30;
   dureeMax2: number = 30;
 
+  habitation: any;
   applyForm: FormGroup;
 
   ngOnInit(): void {

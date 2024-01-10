@@ -126,7 +126,7 @@
       </p>
     </div>
     <!-- quand le client est eligible -->
-    <div class="button-container mb-5">
+    <div class="button-container mb-5" *ngIf="eligible">
       <button class="btn btn1" (click)="generatePDF()">
         Télécharger une copie de la simulation
       </button>
