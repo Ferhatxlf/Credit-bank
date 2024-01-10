@@ -18,6 +18,7 @@ export class MesdossierComponent {
   public searchActivate: boolean = false;
   currentUser: any;
   selectedFolders: any[] = [];
+  FoldersTraite!: any;
 
   constructor(
     private fb: FormBuilder,
@@ -39,13 +40,23 @@ export class MesdossierComponent {
       this.currentUser = JSON.parse(a);
     }
     console.log(this.currentUser);
-    this.courtierService.getMyDossier(this.currentUser.id).subscribe(
+    this.courtierService.getDossierEncours(this.currentUser.id).subscribe(
       (rs) => {
         this.Folders = rs;
         console.log(this.Folders);
       },
       (err) => console.log(err)
     );
+    this.F = this.Folders;
+
+    this.courtierService.getDossierTraite(this.currentUser.id).subscribe(
+      (rs) => {
+        this.FoldersTraite = rs;
+        console.log(this.FoldersTraite);
+      },
+      (err) => console.log(err)
+    );
+
     this.F = this.Folders;
   }
 
@@ -55,9 +66,12 @@ export class MesdossierComponent {
     console.log(folder);
   }
   updateSelectedFolders() {
-    this.selectedFolders = this.Folders.filter((folder) => folder.isSelected);
+    this.selectedFolders = this.Folders.filter(
+      (folder) => folder.isSelected
+    ).map((folder) => folder.id);
     console.log(this.selectedFolders);
   }
+
   search() {
     if (this.searchActivate) {
       this.searchActivate = false;
@@ -75,5 +89,18 @@ export class MesdossierComponent {
         this.Folders = this.Folders.filter((f) => f.statut === statut);
       }
     }
+  }
+
+  soumettreDossier() {
+    this.courtierService
+      .soumettereDossierADirecteur(this.selectedFolders)
+      .subscribe(
+        (rs) => {
+          console.log(rs);
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
   }
 }
