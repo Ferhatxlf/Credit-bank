@@ -10,6 +10,7 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./simulation.component.css'],
 })
 export class SimulationComponent implements OnInit {
+  toggleOptions: boolean = true;
   constructor(private location: Location) {
     this.url = this.location.path();
     // Écouter les changements d'URL
@@ -21,6 +22,9 @@ export class SimulationComponent implements OnInit {
   url: string = '';
 
   ngOnInit() {}
+  setToggleOption() {
+    this.toggleOptions = !this.toggleOptions;
+  }
 
   goBack(): void {
     this.location.back();
