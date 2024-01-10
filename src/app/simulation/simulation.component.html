@@ -343,98 +343,104 @@
       <span class="material-icons icons-header" (click)="goBack()"
         >arrow_back_ios</span
       >
-      <div class="bar">
-        <input
-          class="bar-input"
-          type="radio"
-          name="input"
-          id="input_0"
-          [checked]="url === '/simulation/success'"
-          disabled
-        />
-        <div class="bar-view">
-          <label class="bar-button" for="input_0"></label>
-        </div>
-        <input
-          class="bar-input"
-          type="radio"
-          name="input"
-          id="input_1"
-          [checked]="url === '/simulation/upload'"
-          disabled
-        />
-        <div class="bar-view">
-          <label class="bar-button" for="input_1"></label>
-        </div>
-        <input
-          class="bar-input"
-          type="radio"
-          name="input"
-          id="input_2"
-          [checked]="
-            url === '/simulation/register' || url === '/simulation/confirmation'
-          "
-          disabled
-        />
-        <div class="bar-view">
-          <label class="bar-button" for="input_2"> </label>
-        </div>
-        <input
-          class="bar-input"
-          type="radio"
-          name="input"
-          id="input_3"
-          [checked]="
-            url === '/simulation/result' || url === '/simulation/notice'
-          "
-          disabled
-        />
-        <div class="bar-view">
-          <label class="bar-button" for="input_3"></label>
-        </div>
-        <input
-          class="bar-input"
-          type="radio"
-          name="input"
-          id="input_4"
-          [checked]="
-            url === '/simulation/type' ||
-            url === '/simulation/immobilier' ||
-            url === '/simulation/consomation' ||
-            url === '/simulation/form' ||
-            url === '/simulation/formConsomation' ||
-            url === '/simulation/islamique' ||
-            url === '/simulation/islamique-form' ||
-            url === '/simulation/islamique-vehicule'
-          "
-          disabled
-        />
-        <div class="bar-view">
-          <label class="bar-button" for="input_4"></label>
-        </div>
-      </div>
-      <div class="container-avatar">
-        <div class="container-avatar-information">
-          <div class="avatar">
-            <img src="../../assets/avatar.png" alt="avatar" />
+      <div
+        class="container-progressBar-avatar"
+        style="display: flex; justify-content: center; align-items: center"
+      >
+        <div class="bar">
+          <input
+            class="bar-input"
+            type="radio"
+            name="input"
+            id="input_0"
+            [checked]="url === '/simulation/success'"
+            disabled
+          />
+          <div class="bar-view">
+            <label class="bar-button" for="input_0"></label>
           </div>
-          <div class="information">
-            <span class="name">Touzii Mahrezzz</span>
-            <p class="email">fehatKhelefgmail.com</p>
+          <input
+            class="bar-input"
+            type="radio"
+            name="input"
+            id="input_1"
+            [checked]="url === '/simulation/upload'"
+            disabled
+          />
+          <div class="bar-view">
+            <label class="bar-button" for="input_1"></label>
           </div>
-          <div class="logout" (click)="setToggleOption()">
-            <span class="material-icons">
-              {{ toggleOptions ? "arrow_drop_up" : "arrow_drop_down" }}
-            </span>
+          <input
+            class="bar-input"
+            type="radio"
+            name="input"
+            id="input_2"
+            [checked]="
+              url === '/simulation/register' ||
+              url === '/simulation/confirmation'
+            "
+            disabled
+          />
+          <div class="bar-view">
+            <label class="bar-button" for="input_2"> </label>
           </div>
-          <div class="toggle-option scale-in" *ngIf="toggleOptions">
-            <div
-              class="toggle-option-arriere-plan"
-              (click)="setToggleOption()"
-            ></div>
-            <span>Mon espace</span>
-            <hr style="width: 80%; margin: 5px auto 5px; opacity: 0.1" />
-            <span>Déconnexion</span>
+          <input
+            class="bar-input"
+            type="radio"
+            name="input"
+            id="input_3"
+            [checked]="
+              url === '/simulation/result' || url === '/simulation/notice'
+            "
+            disabled
+          />
+          <div class="bar-view">
+            <label class="bar-button" for="input_3"></label>
+          </div>
+          <input
+            class="bar-input"
+            type="radio"
+            name="input"
+            id="input_4"
+            [checked]="
+              url === '/simulation/type' ||
+              url === '/simulation/immobilier' ||
+              url === '/simulation/consomation' ||
+              url === '/simulation/form' ||
+              url === '/simulation/formConsomation' ||
+              url === '/simulation/islamique' ||
+              url === '/simulation/islamique-form' ||
+              url === '/simulation/islamique-vehicule'
+            "
+            disabled
+          />
+          <div class="bar-view">
+            <label class="bar-button" for="input_4"></label>
+          </div>
+        </div>
+        <div class="container-avatar">
+          <div class="container-avatar-information">
+            <div class="avatar">
+              <img src="../../assets/avatar.png" alt="avatar" />
+            </div>
+            <div class="information">
+              <span class="name">Touzii Mahrezzz</span>
+              <p class="email">fehatKhelefgmail.com</p>
+            </div>
+            <div class="logout" (click)="setToggleOption()">
+              <span class="material-icons">
+                {{ toggleOptions ? "arrow_drop_up" : "arrow_drop_down" }}
+              </span>
+            </div>
+            <div class="toggle-option scale-in" *ngIf="toggleOptions">
+              <div
+                class="toggle-option-arriere-plan"
+                (click)="setToggleOption()"
+              ></div>
+              <span>Mon espace</span>
+              <hr style="width: 80%; margin: 5px auto 5px; opacity: 0.1" />
+              <span>Déconnexion</span>
+            </div>
           </div>
         </div>
       </div>
