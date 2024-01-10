@@ -14,14 +14,24 @@ export class CourtierServiceService {
     );
   }
 
-  getMyDossier(id: number) {
+  getDossierEncours(id: number) {
     return this.http.get(`${this.apiUrl}/dossiers/courtier/${id}/Encours`);
+  }
+  getDossierTraite(id: number) {
+    return this.http.get(`${this.apiUrl}/dossiers/courtier/${id}/traitee`);
   }
 
   affecterDossierACourtier(courtierId: number, dossierId: number) {
     return this.http.post(
       `${this.apiUrl}/dossiers/assign-dossier/${dossierId}/to-courtier/${courtierId}`,
       null
+    );
+  }
+
+  soumettereDossierADirecteur(dossierIds) {
+    return this.http.post(
+      `${this.apiUrl}/dossiers/sendmultipletoDirectreur`,
+      dossierIds
     );
   }
 }
