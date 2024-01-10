@@ -74,7 +74,6 @@ export class DocumentComponent implements OnInit {
 
     const selectedFile = event.target.files[0];
     if (selectedFile) {
-      console.log('trouvé');
       const modifiedFile = new File([selectedFile], customFileName, {
         type: selectedFile.type,
       });

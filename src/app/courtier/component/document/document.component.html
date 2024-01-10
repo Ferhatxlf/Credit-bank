@@ -5,17 +5,6 @@
     <span class="material-icons add-icon" style="font-size: 25px !important"
       >attach_file</span
     >
-    <!-- <form>
-      <input
-        #fileInput
-        class="file-input"
-        type="file"
-        name="file"
-        hidden
-      /><span class="material-icons add-icon" style="font-size: 50px !important"
-        >attach_file</span
-      >
-    </form> -->
   </div>
   <div class="document-container">
     <div class="document mt-3" *ngFor="let d of folderValue.attachedFiles">
@@ -28,7 +17,7 @@
         target="_blank"
         rel="noopener noreferrer"
         download
-        [href]="d.filePath"
+        (click)="downloadFile(d)"
         >download</a
       >
     </div>
