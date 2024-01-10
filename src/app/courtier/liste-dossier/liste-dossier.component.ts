@@ -72,4 +72,8 @@ export class ListeDossierComponent implements OnInit {
       }
     }
   }
+
+  affectation(id_dossier) {
+    this.sharedDataService.affectation(id_dossier);
+  }
 }
