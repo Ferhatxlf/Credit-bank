@@ -34,9 +34,9 @@
           <span class="material-icons sidebar-icons"> folder </span>
           <span class="sidebar-text">Liste des dossiers</span>
         </div>
-        <span class="badge rounded-pill text-bg-light"
-          >0{{ Folders.length }}</span
-        >
+        <span class="badge rounded-pill text-bg-light">{{
+          Folders.length
+        }}</span>
       </div>
 
       <div
@@ -48,9 +48,9 @@
           <span class="material-icons sidebar-icons"> folder </span>
           <span class="sidebar-text">Mes dossiers</span>
         </div>
-        <span class="badge rounded-pill text-bg-light"
-          >0{{ Folders.length }}</span
-        >
+        <span class="badge rounded-pill text-bg-light">{{
+          myFolders.length
+        }}</span>
       </div>
       <div
         class="container-text"
@@ -107,7 +107,7 @@
           <span
             class="badge rounded-pill text-bg-light"
             style="font-size: small; margin-right: 1%"
-            >05</span
+            >{{ Folders.length }}</span
           >
         </div>
 
@@ -125,7 +125,7 @@
           <span
             class="badge rounded-pill text-bg-light"
             style="font-size: small; margin-right: 1%"
-            >05</span
+            >{{ myFolders.length }}</span
           >
         </div>
         <div

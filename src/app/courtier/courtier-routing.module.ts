@@ -11,6 +11,7 @@ import { InformationComponent } from './component/information/information.compon
 import { DetailCreditComponent } from './component/detail-credit/detail-credit.component';
 import { DetailClientComponent } from './component/detail-client/detail-client.component';
 import { DocumentComponent } from './component/document/document.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -23,6 +24,7 @@ const routes: Routes = [
       { path: 'mes-dossier', component: MesdossierComponent },
       { path: 'client', component: ListeClientComponent },
       { path: 'detail', component: DetailComponent },
+      { path: 'profile', component: ProfileComponent },
       {
         path: 'detail-dossier',
         component: MonDossierComponent,

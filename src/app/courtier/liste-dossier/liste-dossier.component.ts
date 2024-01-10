@@ -50,7 +50,8 @@ export class ListeDossierComponent implements OnInit {
   }
 
   folderClicked(folder) {
-    this.sharedDataService.setFolderData(folder);
+    localStorage.setItem('idDossier', folder.id);
+    console.log(folder);
     this.router.navigate(['/courtier/detail-dossier']);
   }
   search() {
@@ -70,5 +71,9 @@ export class ListeDossierComponent implements OnInit {
         this.Folders = this.Folders.filter((f) => f.statut === statut);
       }
     }
+  }
+
+  affectation(id_dossier) {
+    this.sharedDataService.affectation(id_dossier);
   }
 }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
+import { CourtierServiceService } from '../../service/courtier-service.service';
 
 @Component({
   selector: 'app-courtierlayout',
@@ -7,13 +8,15 @@ import { Location } from '@angular/common';
   styleUrl: './courtierlayout.component.css',
 })
 export class CourtierlayoutComponent {
-  public selected: boolean = false;
-  public cselected: boolean = false;
-  public dselected: boolean = false;
-  public pselected: boolean = false;
-  public clientselected: boolean = false;
+  currentUser: any;
+  public Folders: any = [];
+  public myFolders: any = [];
+  public F: any = [];
 
-  constructor(private location: Location) {
+  constructor(
+    private location: Location,
+    private courtierService: CourtierServiceService
+  ) {
     this.url = this.location.path();
     // Écouter les changements d'URL
     this.location.onUrlChange((url) => {
@@ -23,53 +26,33 @@ export class CourtierlayoutComponent {
   }
   url: string = '';
 
-  ngOnInit() {}
+  ngOnInit() {
+    const a = localStorage.getItem('currentUser');
+    if (a) {
+      this.currentUser = JSON.parse(a);
+    }
+    console.log(this.currentUser);
+    this.courtierService.getAllDossier(this.currentUser.agence_id).subscribe(
+      (rs) => {
+        this.Folders = rs;
+        console.log(this.Folders);
+      },
+      (err) => console.log(err)
+    );
+    this.F = this.Folders;
+
+    this.courtierService.getMyDossier(this.currentUser.id).subscribe(
+      (rs) => {
+        this.myFolders = rs;
+        console.log(this.Folders);
+      },
+      (err) => console.log(err)
+    );
+  }
 
   goBack(): void {
     this.location.back();
   }
-
-  dashboardSelected() {
-    this.selected = true;
-    this.cselected = false;
-    this.dselected = false;
-    this.clientselected = false;
-    this.pselected = false;
-  }
-
-  creditSelected() {
-    this.selected = false;
-    this.cselected = true;
-    this.dselected = false;
-    this.clientselected = false;
-    this.pselected = false;
-  }
-
-  dossierSelected() {
-    this.selected = false;
-    this.cselected = false;
-    this.dselected = true;
-    this.clientselected = false;
-    this.pselected = false;
-  }
-
-  profileSelected() {
-    this.selected = false;
-    this.cselected = false;
-    this.dselected = false;
-    this.clientselected = false;
-    this.pselected = true;
-  }
-  clienttSelected() {
-    this.selected = false;
-    this.cselected = false;
-    this.dselected = false;
-    this.clientselected = true;
-    this.pselected = false;
-  }
-
-  currentUser: any;
-  public Folders: any = [];
 
   isSidebarOpen: boolean = false;
 
