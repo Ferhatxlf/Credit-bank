@@ -1,45 +1,46 @@
 <div class="container mx-auto">
-    <h2 class="mb-4 text-2xl text-secondary">agences </h2>
+  <h2 class="mb-4 text-2xl text-secondary">agences</h2>
 
-    <div class="overflow-x-auto">
-        <table class="w-full p-6 text-xs text-left border border-collapse border-purple-500">
-            <thead>
-                <tr class="bg-gray-200">
-                    <th class="px-4 py-2">ID</th>
-                    <th class="px-4 py-2">Nom</th>
-                    <th class="px-4 py-2">Adresse</th>
-                    <th class="px-4 py-2">Communes</th>
-                    <th class="px-4 py-2 ">Direction Régionale</th>
-                    <th class="px-4 py-2">Created At</th>
-                    <th class="px-4 py-2">Updated At</th>
-                    <!-- Add more table headers if needed -->
-                </tr>
-            </thead>
-            <tbody class="border-b bg-gray-100 border-gray-200">
-                <tr *ngFor="let agence of agences">
-                    <td class="px-4 py-2 border">{{ agence.id }}</td>
-                    <td class="px-4 py-2 border">{{ agence.nom }}</td>
-                    <td class="px-4 py-2 border">{{ agence.adresse }}</td>
-                    <td class="px-4 py-2 border">
-                        <div class="flex flex-col">
-                           
-                            <ul class="mt-2">
-                                <li *ngFor="let commune of agence.communes" class="border-b py-1 text-gray-700">
-                                    {{ commune.nom }} - {{ commune.codePostal }}
-                                </li>
-                             
-                            </ul>
-                           
-                        </div>
-                        
-                    </td>
-                    
-                    <td class="px-4 py-2 border">{{ agence.directionRegionale?.nom }}</td>
-                    <td class="px-4 py-2 border">{{ agence.createdAt }}</td>
-                    <td class="px-4 py-2 border">{{ agence.updatedAt }}</td>
-                    <!-- Add more table cells for other properties -->
-                </tr>
-            </tbody>
-        </table>
-    </div>
+  <div class="overflow-x-auto">
+    <table
+      class="w-full p-6 text-xs text-left border border-collapse border-purple-500"
+    >
+      <thead>
+        <tr class="bg-gray-200">
+          <th class="px-4 py-2">ID</th>
+          <th class="px-4 py-2">Nom</th>
+          <th class="px-4 py-2">Adresse</th>
+          <th class="px-4 py-2">Communes</th>
+          <th class="px-4 py-2">Direction Régionale</th>
+          <th class="px-4 py-2">Created At</th>
+          <th class="px-4 py-2">Updated At</th>
+          <!-- Add more table headers if needed -->
+        </tr>
+      </thead>
+      <tbody class="border-b bg-gray-100 border-gray-200">
+        <tr *ngFor="let agence of agences">
+          <td class="px-4 py-2 border">{{ agence.id }}</td>
+          <td class="px-4 py-2 border">{{ agence.nom }}</td>
+          <td class="px-4 py-2 border">{{ agence.adresse }}</td>
+          <td class="px-4 py-2 border">
+            <div class="flex flex-col">
+              <ul class="mt-2">
+                <li
+                  *ngFor="let commune of agence.communes"
+                  class="border-b py-1 text-gray-700"
+                >
+                  {{ commune.nom }} - {{ commune.codePostal }}
+                </li>
+              </ul>
+            </div>
+          </td>
+
+          <td class="px-4 py-2 border">{{ agence.directionRegionale.nom }}</td>
+          <td class="px-4 py-2 border">{{ agence.createdAt }}</td>
+          <td class="px-4 py-2 border">{{ agence.updatedAt }}</td>
+          <!-- Add more table cells for other properties -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
