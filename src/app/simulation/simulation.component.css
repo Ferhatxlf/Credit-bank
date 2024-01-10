@@ -104,11 +104,12 @@ nav {
 }
 .logo-container {
   margin: 0 auto;
-  width: 96%;
+  width: 98%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
 .logo-container img {
   width: 22%;
   margin-top: 0%;
@@ -131,13 +132,18 @@ nav {
   align-items: center;
   justify-content: center;
   align-items: center;
+  width: 180px;
+  margin-right: 0;
+  background-color: whitesmoke;
+  border-radius: 5px;
+  padding: 1px;
+  box-shadow: 0 0 5px 1px #66666627;
 }
 .container-avatar-information {
   display: flex;
   align-items: center;
   justify-content: center;
   align-items: center;
-  width: 20%;
 }
 
 .container-avatar-information .avatar {
@@ -149,35 +155,38 @@ nav {
   margin-right: 0;
   cursor: pointer;
 }
-.container-avatar .information {
+.container-avatar-information .information {
   display: flex;
   flex-direction: column;
   cursor: pointer;
+  width: 100px;
 }
 .information .name {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   display: inline-block;
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 600;
-  width: 90%;
 }
 .information .email {
   margin: auto;
-  font-size: 10px;
+  font-size: 12px;
   opacity: 0.5;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .container-avatar .logout {
-  width: 8%;
+  width: 30px;
 }
 .logout span {
   font-size: 30px !important;
   cursor: pointer;
-  color: #333;
+  color: #7a7a7a !important;
 }
 .logout span:hover {
-  color: rgba(254, 182, 0, 1);
+  color: rgba(254, 182, 0, 1) !important;
 }
 .toggle-option {
   position: absolute;
@@ -451,12 +460,43 @@ body {
   }
 }
 
-@media screen and (max-width: 1200px) {
-  .progress-container {
-    height: 7vh;
+@media screen and (min-width: 1000px) {
+  .container-progressBar-avatar {
+    width: 100%;
   }
-  .progressBar-icons {
-    font-size: 2vw;
+  .container-avatar {
+    width: 220px;
+    margin-right: 0;
+  }
+  .container-avatar-information {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-items: center;
+    width: 220px;
+  }
+  .container-avatar-information .information {
+    width: 140px;
+  }
+
+  .avatar img {
+    width: 50px;
+  }
+
+  .information .name {
+    font-size: 16px;
+    text-align: start;
+  }
+  .information .email {
+    font-size: 13px;
+    text-align: start;
+  }
+
+  .logout span {
+    font-size: 40px !important;
+  }
+  .toggle-option {
+    top: 60px !important;
   }
 }
 
@@ -477,11 +517,16 @@ body {
   .card-container {
     width: 95%;
   }
+  .container-progressBar-avatar {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1%;
+  }
   .icons-header {
     display: none;
   }
   .bar {
-    margin-top: 3%;
     width: 100%;
   }
   nav {
@@ -515,6 +560,11 @@ body {
     margin-right: 10px;
   }
   .toggle-option {
+    top: 240px !important;
+  }
+}
+@media screen and (max-width: 750px) {
+  .toggle-option {
     top: 220px !important;
   }
 }
@@ -539,6 +589,9 @@ body {
   nav {
     font-size: 12px;
   }
+  .container-avatar {
+    width: 50px;
+  }
   .container-avatar .information {
     display: none !important;
   }
@@ -560,6 +613,16 @@ body {
   nav {
     font-size: 10px;
     height: 10%;
+  }
+  .container-progressBar-avatar {
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+  }
+  .container-avatar {
+    width: 100%;
+    justify-content: end;
+    align-items: end;
   }
 }
 @media screen and (max-width: 350px) {
