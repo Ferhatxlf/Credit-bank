@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientServiceService } from '../../service/client-service.service';
+import { AuthServiceService } from '../../service/auth-service.service';
 
 @Component({
   selector: 'app-profile',
@@ -11,14 +12,17 @@ export class ProfileComponent implements OnInit {
 
   currentUser: any;
   public Folders: any = [];
-  constructor(private clientService: ClientServiceService) {}
+  constructor(
+    private clientService: ClientServiceService,
+    private authService: AuthServiceService
+  ) {}
   ngOnInit(): void {
     this.information = true;
     const a = localStorage.getItem('currentUser');
     if (a) {
       this.currentUser = JSON.parse(a);
     }
-    this.clientService.getDossier(this.currentUser.id).subscribe(
+    this.authService.getClient(this.currentUser.id).subscribe(
       (rs) => {
         console.log(rs);
         this.Folders = rs;

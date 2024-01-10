@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DirecteurComponent } from './directeur.component';
+import { ProfileComponent } from './profile.component';
 
-describe('DirecteurComponent', () => {
-  let component: DirecteurComponent;
-  let fixture: ComponentFixture<DirecteurComponent>;
+describe('ProfileComponent', () => {
+  let component: ProfileComponent;
+  let fixture: ComponentFixture<ProfileComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DirecteurComponent]
+      declarations: [ProfileComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(DirecteurComponent);
+    fixture = TestBed.createComponent(ProfileComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -20,9 +20,4 @@ describe('DirecteurComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-
-
-
-  
 });

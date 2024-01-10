@@ -11,4 +11,11 @@ export class ClientServiceService {
   getDossier(client_id: number) {
     return this.http.get(`${this.apiUrl}/dossiers/client/${client_id}`);
   }
+
+  sendFolder(dossierId: number) {
+    return this.http.post(
+      `${this.apiUrl}/dossiers/assign-agency/${dossierId}`,
+      null
+    );
+  }
 }

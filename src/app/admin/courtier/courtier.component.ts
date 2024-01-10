@@ -34,4 +34,32 @@ export class CourtierComponent implements OnInit {
       }
     );
   }
+
+  isDropdownOpen =false;
+
+  toggleDropdown(): void {
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
+
+  /////////
+  currentPage: number = 1;
+  itemsPerPage: number = 10;
+// Your array of Compte objects (replace this with your data)
+  // Initialize or fetch your data into the comptes array
+
+  changePage(pageNumber: number) {
+    this.currentPage = pageNumber;
+  }
+
+  getPaginatedData(): Compte[] {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return this.comptes.slice(startIndex, endIndex);
+  }
+
+  // Calculate the total number of pages based on data length and itemsPerPage
+  get totalNumberOfPages(): number[] {
+    return Array(Math.ceil(this.comptes.length / this.itemsPerPage)).fill(0).map((x, i) => i + 1);
+  }
 }

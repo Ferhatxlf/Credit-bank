@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { SharedDataService } from '../shared-data.service';
+import { ClientServiceService } from '../../service/client-service.service';
+import { AuthServiceService } from '../../service/auth-service.service';
 import { CourtierServiceService } from '../../service/courtier-service.service';
 
 @Component({
-  selector: 'app-dashbord',
-  templateUrl: './dashbord.component.html',
-  styleUrl: './dashbord.component.css',
+  selector: 'app-profile',
+  templateUrl: './profile.component.html',
+  styleUrl: './profile.component.css',
 })
-export class DashbordComponent implements OnInit {
+export class ProfileComponent implements OnInit {
+  information: boolean = false;
+
   currentUser: any;
   public Folders: any = [];
-  public myFolders: any = [];
-
   constructor(private courtierService: CourtierServiceService) {}
   ngOnInit(): void {
     const a = localStorage.getItem('currentUser');
@@ -19,17 +20,9 @@ export class DashbordComponent implements OnInit {
       this.currentUser = JSON.parse(a);
     }
     console.log(this.currentUser);
-    this.courtierService.getAllDossier(this.currentUser.agence_id).subscribe(
-      (rs) => {
-        this.Folders = rs;
-        console.log(this.Folders);
-      },
-      (err) => console.log(err)
-    );
-
     this.courtierService.getMyDossier(this.currentUser.id).subscribe(
       (rs) => {
-        this.myFolders = rs;
+        this.Folders = rs;
         console.log(this.Folders);
       },
       (err) => console.log(err)

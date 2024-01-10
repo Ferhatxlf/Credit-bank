@@ -13,7 +13,7 @@
               style="font-size: 12px"
               class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
             >
-              2+
+              {{ Folders.length }}+
             </span>
           </div>
 
@@ -22,9 +22,16 @@
       </div>
       <div class="col-sm-12 col-md-4 col-lg-4">
         <div class="card" [routerLink]="['/dossier']">
-          <div class="material-icons">folder</div>
+          <div class="material-icons position-relative">
+            folder<span
+              style="font-size: 12px"
+              class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+            >
+              {{ myFolders.length }}+
+            </span>
+          </div>
 
-          <span class="txt">Mes dossier</span>
+          <span class="txt">Mes dossiers</span>
         </div>
       </div>
       <div class="col-sm-12 col-md-4 col-lg-4">
