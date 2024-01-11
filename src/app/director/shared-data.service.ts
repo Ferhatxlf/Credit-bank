@@ -29,13 +29,15 @@ export class SharedDataService {
       this.currentUser = JSON.parse(a);
     }
     console.log(this.currentUser);
-    this.directorService.getAllDossier(this.currentUser.agence_id).subscribe(
-      (rs) => {
-        this.allDossier = rs;
-        console.log(this.allDossier);
-      },
-      (err) => console.log(err)
-    );
+    this.directorService
+      .getAllDossierForDirector(this.currentUser.agence_id)
+      .subscribe(
+        (rs) => {
+          this.allDossier = rs;
+          console.log(this.allDossier);
+        },
+        (err) => console.log(err)
+      );
   }
 
   getMyFolders() {

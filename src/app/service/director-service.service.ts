@@ -8,10 +8,8 @@ export class DirectorServiceService {
   private apiUrl = 'http://localhost:8000';
   constructor(public http: HttpClient) {}
 
-  getAllDossier(agence_id: number) {
-    return this.http.get(
-      `${this.apiUrl}/dossiers/${agence_id}/dossiersnotassigned`
-    );
+  getAllDossierForDirector(agence_id: number) {
+    return this.http.get(`${this.apiUrl}/dossiers/agence/${agence_id}`);
   }
 
   getMyDossier(id: number) {
