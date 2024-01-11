@@ -45,14 +45,14 @@ export class DocumentComponent implements OnInit {
           (f) => f.fileName === "Pièce d'identité"
         );
         this.hasResidence = this.folderValue.attachedFiles.some(
-          (f) => f.fileName === 'Fichier de résidence'
+          (f) => f.fileName === 'Fichier de résidence.pdf'
         );
         console.log(this.hasResidence);
         this.hasPaie = this.folderValue.attachedFiles.some(
-          (f) => f.fileName === 'Fiche de paie'
+          (f) => f.fileName === 'Fiche de paie.pdf'
         );
         this.hasAutre = this.folderValue.attachedFiles.some(
-          (f) => f.fileName === 'Autre justificatif de revenu'
+          (f) => f.fileName === 'Autre justificatif de revenu.pdf'
         );
         console.log(this.hasAutre);
       },
@@ -74,7 +74,6 @@ export class DocumentComponent implements OnInit {
 
     const selectedFile = event.target.files[0];
     if (selectedFile) {
-      console.log('trouvé');
       const modifiedFile = new File([selectedFile], customFileName, {
         type: selectedFile.type,
       });
@@ -128,17 +127,17 @@ export class DocumentComponent implements OnInit {
 
               console.log(res);
               this.hasIdentite = this.folderValue.attachedFiles.some(
-                (f) => f.fileName === "Pièce d'identité"
+                (f) => f.fileName === "Pièce d'identité.pdf"
               );
               this.hasResidence = this.folderValue.attachedFiles.some(
-                (f) => f.fileName === 'Fichier de résidence'
+                (f) => f.fileName === 'Fichier de résidence.pdf'
               );
               console.log(this.hasResidence);
               this.hasPaie = this.folderValue.attachedFiles.some(
-                (f) => f.fileName === 'Fiche de paie '
+                (f) => f.fileName === 'Fiche de paie.pdf'
               );
               this.hasAutre = this.folderValue.attachedFiles.some(
-                (f) => f.fileName === 'Autre justificatif de revenu'
+                (f) => f.fileName === 'Autre justificatif de revenu.pdf'
               );
               console.log(this.hasAutre);
             },
@@ -163,22 +162,23 @@ export class DocumentComponent implements OnInit {
 
             console.log(res);
             this.hasIdentite = this.folderValue.attachedFiles.some(
-              (f) => f.fileName === "Pièce d'identité"
+              (f) => f.fileName === "Pièce d'identité.pdf"
             );
             this.hasResidence = this.folderValue.attachedFiles.some(
-              (f) => f.fileName === 'Fichier de résidence'
+              (f) => f.fileName === 'Fichier de résidence.pdf'
             );
             console.log(this.hasResidence);
             this.hasPaie = this.folderValue.attachedFiles.some(
-              (f) => f.fileName === 'Fiche de paie '
+              (f) => f.fileName === 'Fiche de paie.pdf'
             );
             this.hasAutre = this.folderValue.attachedFiles.some(
-              (f) => f.fileName === 'Autre justificatif de revenu'
+              (f) => f.fileName === 'Autre justificatif de revenu.pdf'
             );
             console.log(this.hasAutre);
           },
           (err) => console.log(err)
         );
+        console.log('Fichiers téléchargés avec succès');
       },
       (err) => console.log(err)
     );
