@@ -20,6 +20,6 @@ export class ClientServiceService {
   }
 
   deleteFile(name, dossierId) {
-    return this.http.delete(`${this.apiUrl}/dossiers/${dossierId}/files`, name);
+    return this.http.delete(`${this.apiUrl}/dossiers/${dossierId}/files/${name}` );
   }
 }
