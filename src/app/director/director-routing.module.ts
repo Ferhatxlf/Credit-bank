@@ -12,7 +12,7 @@ const routes: Routes = [
     children: [
       { path: 'dashboard', component: DashbordComponent },
       { path: 'dossier', component: ListeDossierComponent },
-      { path: 'mes-dossier', component: MesdossierComponent },
+      //{ path: 'mes-dossier', component: MesdossierComponent },
     ],
   },
 ];
