@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -7,10 +8,19 @@ import { Observable } from 'rxjs';
 })
 export class AuthServiceService {
   private apiUrl = 'http://localhost:8000';
-  constructor(public http: HttpClient) {}
+  private userRole: string = ''; // Stockez le rôle de l'utilisateur ici
+
+  constructor(public http: HttpClient, private router: Router) {}
 
   // inscription ...
 
+  setRole(role: string) {
+    this.userRole = role;
+  }
+
+  getRole(): string {
+    return this.userRole;
+  }
   register(client: any) {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -49,5 +59,11 @@ export class AuthServiceService {
   }
   getBanquier(id) {
     return this.http.get(`${this.apiUrl}/clients/${id}`);
+  }
+
+  logout() {
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('idDossier');
+    this.router.navigate(['/home']);
   }
 }
