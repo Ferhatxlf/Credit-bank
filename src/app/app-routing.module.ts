@@ -29,6 +29,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./simulation/simulation.module').then((m) => m.SimulationModule),
   },
+  {
+    path: 'director',
+    loadChildren: () =>
+      import('./director/director.module').then((m) => m.DirectorModule),
+  },
 ];
 
 @NgModule({

@@ -1,0 +1,43 @@
+.details-info {
+  padding: 10px;
+}
+.numero {
+  font-weight: bold;
+}
+
+.details-column {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  flex: 1;
+  padding: 10px;
+}
+.title-container {
+  flex: 1 1 400px;
+  display: flex;
+  flex-direction: column;
+}
+.name {
+  flex: 1 1 700px;
+}
+
+label {
+  font-weight: 600;
+  font-size: small;
+  margin-bottom: 5px;
+}
+
+.title-container div {
+  border: 1px solid #ccc;
+  padding: 8px;
+  border-radius: 4px;
+  background-color: rgb(230, 227, 227);
+}
+
+.name div {
+  width: 100%;
+  border: 1px solid #ccc;
+  padding: 8px;
+  border-radius: 4px;
+  background-color: rgb(230, 227, 227);
+}

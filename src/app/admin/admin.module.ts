@@ -12,7 +12,6 @@ import { ComponentModule } from '../component/component.module';
 import { AgenceRegionnaleComponent } from './agenceRegionnale/agence-regionnale.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-
 @NgModule({
   declarations: [
     DashbordAdminComponent,
@@ -20,8 +19,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CourtierComponent,
     DirecteurComponent,
     InformationComponent,
-    AgenceRegionnaleComponent
+    AgenceRegionnaleComponent,
   ],
-  imports: [CommonModule, AdminRoutingModule, ComponentModule,FormsModule,ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    AdminRoutingModule,
+    ComponentModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
 })
 export class AdminModule {}
