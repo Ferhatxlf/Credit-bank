@@ -55,7 +55,7 @@ export class SharedDataService {
     );
   }
 
-  affectation(id_dossier) {
+  /*  affectation(id_dossier) {
     const a = localStorage.getItem('currentUser');
     if (a) {
       this.currentUser = JSON.parse(a);
@@ -69,5 +69,5 @@ export class SharedDataService {
         },
         (err) => console.log('erreur', err)
       );
-  }
+  } */
 }

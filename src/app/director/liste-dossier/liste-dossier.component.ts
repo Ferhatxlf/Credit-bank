@@ -45,11 +45,11 @@ export class ListeDossierComponent implements OnInit {
       .subscribe(
         (rs) => {
           this.Folders = rs;
+          this.F = rs;
           console.log(this.Folders);
         },
         (err) => console.log(err)
       );
-    this.F = this.Folders;
   }
 
   folderClicked(folder) {
@@ -63,16 +63,42 @@ export class ListeDossierComponent implements OnInit {
       this.Folders = this.F;
     } else {
       this.searchActivate = true;
-      const numeroDossier = this.searchForm.value.numero_dossier;
-      const nomProjet = this.searchForm.value.nom_projet;
       const statut = this.searchForm.value.statut;
-      if (numeroDossier != '') {
-        this.Folders = this.Folders.filter((f) => f.numero === numeroDossier);
-      } else if (nomProjet != '') {
-        this.Folders = this.Folders.filter((f) => f.name === nomProjet);
-      } else {
-        this.Folders = this.Folders.filter((f) => f.statut === statut);
-      }
+      console.log(statut);
+      console.log(this.Folders);
+      console.log(this.F);
+      this.Folders = this.Folders.filter((f) => f.status === statut);
     }
+  }
+
+  acceptFolder(folder) {
+    this.directeurService.acceptFolder(folder.id).subscribe(
+      (rs) => {
+        console.log(rs);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+  rejectFolder(folder) {
+    this.directeurService.rejectFolder(folder.id).subscribe(
+      (rs) => {
+        console.log(rs);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+  renvoiFolder(folder) {
+    this.directeurService.renvoiyeFolder(folder.id).subscribe(
+      (rs) => {
+        console.log(rs);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 }

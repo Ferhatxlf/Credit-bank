@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { DirectorlayoutComponent } from './directorlayout/directorlayout.component';
 import { DashbordComponent } from './dashbord/dashbord.component';
 import { ListeDossierComponent } from './liste-dossier/liste-dossier.component';
-import { MesdossierComponent } from './mesdossier/mesdossier.component';
 import { MonDossierComponent } from './mon-dossier/mon-dossier.component';
 import { InformationComponent } from './component/information/information.component';
 import { DetailCreditComponent } from './component/detail-credit/detail-credit.component';

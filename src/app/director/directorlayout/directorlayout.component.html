@@ -126,6 +126,34 @@
   </div>
 
   <div class="card-container scale-in">
+    <div
+      class="navbar-card-container"
+      [ngClass]="{
+        'navbar-card-container-hidden':
+          url === '/director/profile' ||
+          url === '/director/detail-dossier/detail-client' ||
+          url === '/director/detail-dossier/information' ||
+          url === '/director/detail-dossier/detail-credit' ||
+          url === '/director/detail-dossier/document'
+      }"
+    >
+      <div class="left">
+        <span>{{ getTitle() }}</span>
+      </div>
+      <div class="right">
+        <div class="avatar">
+          <img src="../../../assets/avatar.png" alt="avatar" />
+        </div>
+        <div class="information">
+          <span class="name">{{ client?.nom }} {{ client?.prenom }}</span>
+          <p class="email">nn</p>
+        </div>
+        <div class="logout">
+          <span class="material-icons mt-2"> logout </span>
+        </div>
+      </div>
+    </div>
+
     <router-outlet></router-outlet>
   </div>
 </div>
