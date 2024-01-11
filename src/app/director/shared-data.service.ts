@@ -29,13 +29,15 @@ export class SharedDataService {
       this.currentUser = JSON.parse(a);
     }
     console.log(this.currentUser);
-    this.directorService.getAllDossier(this.currentUser.agence_id).subscribe(
-      (rs) => {
-        this.allDossier = rs;
-        console.log(this.allDossier);
-      },
-      (err) => console.log(err)
-    );
+    this.directorService
+      .getAllDossierForDirector(this.currentUser.agence_id)
+      .subscribe(
+        (rs) => {
+          this.allDossier = rs;
+          console.log(this.allDossier);
+        },
+        (err) => console.log(err)
+      );
   }
 
   getMyFolders() {
@@ -53,7 +55,7 @@ export class SharedDataService {
     );
   }
 
-  affectation(id_dossier) {
+  /*  affectation(id_dossier) {
     const a = localStorage.getItem('currentUser');
     if (a) {
       this.currentUser = JSON.parse(a);
@@ -67,5 +69,5 @@ export class SharedDataService {
         },
         (err) => console.log('erreur', err)
       );
-  }
+  } */
 }
