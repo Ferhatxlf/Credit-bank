@@ -28,7 +28,7 @@ const routes: Routes = [
       { path: 'dossier', component: MesdossierComponent },
       { path: 'nouveau-credit', component: NouveaucreditComponent },
       {
-        path: 'detail-dossier',
+        path: 'detail-dossier/:id',
         component: MonDossierComponent,
         children: [
           { path: '', redirectTo: 'information', pathMatch: 'full' },

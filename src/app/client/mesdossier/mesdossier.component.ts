@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import '../../../../node_modules/bootstrap/dist/js/bootstrap.bundle.js';
 import { ClientServiceService } from '../../service/client-service.service.js';
 import { Router } from '@angular/router';
-import { SharedDataService } from '../shared-data.service.js';
 
 @Component({
   selector: 'app-mesdossier',
@@ -36,7 +35,7 @@ export class MesdossierComponent implements OnInit {
 
   folderClicked(folder) {
     localStorage.setItem('idDossier', folder.id);
-    this.router.navigate(['/client/detail-dossier']);
+    this.router.navigate(['/client/detail-dossier', folder.id]);
   }
   sendFolder(id) {
     this.clientService.sendFolder(id).subscribe(
