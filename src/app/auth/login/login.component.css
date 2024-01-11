@@ -39,7 +39,7 @@
   width: 90%; /* Ajustement de la largeur pour une meilleure adaptation */
   max-width: 800px; /* Ajout d'une largeur maximale pour éviter que le conteneur devienne trop large */
   height: 80%;
-  /* background-color: rgba(255, 255, 255, 0.884); */
+  max-height: 590px;
   background-color: rgba(255, 255, 255, 0.596);
   backdrop-filter: blur(5px);
   box-shadow: 0 0 15px 1px rgba(43, 41, 41, 0.479);
@@ -49,12 +49,13 @@
 }
 
 .logo-container {
-  width: 30%; /* Ajustement de la largeur à 100% pour une meilleure adaptation */
+  width: 40%; /* Ajustement de la largeur à 100% pour une meilleure adaptation */
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin-bottom: 2%;
+  min-width: 200px;
 }
 
 .material-icons {
@@ -63,7 +64,7 @@
 }
 
 .connexion {
-  width: 30%;
+  width: 100%;
   margin: auto;
   display: flex;
   flex-direction: row;
@@ -83,20 +84,23 @@
 }
 .title {
   text-align: center;
-  color: rgba(254, 182, 0, 1);
   font-weight: 500;
   display: flex;
   flex-direction: column;
-  font-size: 40px;
-  font-weight: bolder;
+
+  font-weight: 600;
   margin-bottom: 1%;
   letter-spacing: 1px;
 }
 
 .body-container input {
-  border-radius: 12px;
-  padding: 10px;
-  box-shadow: 0 0 5px 1px rgba(126, 125, 125, 0.24);
+  border-radius: 5px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+.body-container form {
+  width: 90%;
+  margin: 0 auto;
 }
 .forgot-password-container {
   width: 100%;
@@ -108,7 +112,7 @@
 }
 
 .forgot-password {
-  width: 35%;
+  width: 70%;
   text-align: center;
   color: #742484;
   font-weight: 400;
@@ -121,8 +125,10 @@
   flex-direction: row;
   justify-content: center;
 }
+
 .button-container button {
-  width: 40%;
+  width: 90%;
+  max-width: 200px;
   background-color: #742484;
   color: white;
   border-radius: 15px;
@@ -133,7 +139,9 @@
   background-color: #642072;
 }
 .input-container {
-  width: 100%;
+  width: 90%;
+  margin: 0 auto;
+  max-width: 350px;
 }
 .suppositions-container {
   width: 100%;
