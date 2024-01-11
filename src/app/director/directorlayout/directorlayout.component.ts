@@ -12,6 +12,8 @@ export class DirectorlayoutComponent {
   public cselected: boolean = false;
   public dselected: boolean = false;
   public pselected: boolean = false;
+  userNin: string | null = null;
+  userRole: string | null = null;
   client: any;
   constructor(private location: Location, private router: Router) {
     this.url = this.location.path();
@@ -71,6 +73,24 @@ export class DirectorlayoutComponent {
       icon: 'person',
       class: '',
     },
+    {
+      path: '/courtier/mes-dossier',
+      title: 'Mes dossiers',
+      icon: 'person',
+      class: '',
+    },
+    {
+      path: '/director/dossier',
+      title: 'Liste des dossiers',
+      icon: 'person',
+      class: '',
+    },
+    {
+      path: '/director/dashboard',
+      title: 'Dashboard',
+      icon: 'person',
+      class: '',
+    },
     { path: '/admin/profile', title: 'Mon Profile', icon: 'person', class: '' },
   ];
 
@@ -82,6 +102,12 @@ export class DirectorlayoutComponent {
     this.isSidebarOpen = false;
     this.listTitles = this.ROUTES.filter((listTitle: any) => listTitle);
     const a = localStorage.getItem('currentUser');
+    if (a) this.currentUser = a;
+
+    this.userNin = this.currentUser.nin;
+    this.userRole = this.currentUser.role;
+
+    console.log(this.userNin);
   }
 
   // pour la navbar recuperation des titres ************

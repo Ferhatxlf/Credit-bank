@@ -32,6 +32,12 @@ export const ROUTES: any = [
     icon: 'person',
     class: '',
   },
+  {
+    path: '/courtier/mes-dossier',
+    title: 'Mes dossiers',
+    icon: 'person',
+    class: '',
+  },
   { path: '/admin/profile', title: 'Mon Profile', icon: 'person', class: '' },
 ];
 @Component({
