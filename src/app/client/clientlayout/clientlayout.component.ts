@@ -13,6 +13,7 @@ export class ClientlayoutComponent implements OnInit {
   public cselected: boolean = false;
   public dselected: boolean = false;
   public pselected: boolean = false;
+  isSidebarOpen: boolean = false;
   client: any;
   constructor(
     private location: Location,
@@ -129,8 +130,6 @@ export class ClientlayoutComponent implements OnInit {
   goBack(): void {
     this.location.back();
   }
-
-  isSidebarOpen: boolean = false;
 
   toggleSidebar() {
     this.isSidebarOpen = !this.isSidebarOpen;
