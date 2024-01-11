@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
+import { CourtierGardService } from './guardiens/courtier-gard.service';
+import { DirecteurGardService } from './guardiens/directeur-gard.service';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -21,6 +23,7 @@ const routes: Routes = [
   },
   {
     path: 'courtier',
+    canActivate: [CourtierGardService],
     loadChildren: () =>
       import('./courtier/courtier.module').then((m) => m.CourtierModule),
   },
@@ -31,6 +34,7 @@ const routes: Routes = [
   },
   {
     path: 'director',
+    canActivate: [DirecteurGardService],
     loadChildren: () =>
       import('./director/director.module').then((m) => m.DirectorModule),
   },

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 import { CourtierServiceService } from '../../service/courtier-service.service';
+import { AuthServiceService } from '../../service/auth-service.service';
 
 @Component({
   selector: 'app-courtierlayout',
@@ -15,7 +16,8 @@ export class CourtierlayoutComponent {
 
   constructor(
     private location: Location,
-    private courtierService: CourtierServiceService
+    private courtierService: CourtierServiceService,
+    private authService: AuthServiceService
   ) {
     this.url = this.location.path();
     // Écouter les changements d'URL
@@ -58,5 +60,9 @@ export class CourtierlayoutComponent {
 
   toggleSidebar() {
     this.isSidebarOpen = !this.isSidebarOpen;
+  }
+
+  logout() {
+    this.authService.logout();
   }
 }
