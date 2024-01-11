@@ -6,6 +6,31 @@
     <div class="navbar-logo-container">
       <img src="../../assets/bankLogo.png" />
     </div>
+    <div class="container-avatar">
+      <div class="container-avatar-information">
+        <div class="avatar">
+          <img src="../../assets/avatar.png" alt="avatar" />
+        </div>
+        <div class="information">
+          <span class="name">Touzi Mahrez</span>
+          <p class="email">mahreztouzi&#64;gmail.com</p>
+        </div>
+        <div class="logout" (click)="setToggleOption()">
+          <span class="material-icons">
+            {{ toggleOptions ? "arrow_drop_up" : "arrow_drop_down" }}
+          </span>
+        </div>
+        <div class="toggle-option scale-in" *ngIf="toggleOptions">
+          <div
+            class="toggle-option-arriere-plan"
+            (click)="setToggleOption()"
+          ></div>
+          <span>Mon espace</span>
+          <hr style="width: 80%; margin: 5px auto 5px; opacity: 0.1" />
+          <span>Déconnexion</span>
+        </div>
+      </div>
+    </div>
   </div>
   <!-- <div class="bg-fond"></div> -->
   <div class="sidebar">
@@ -418,7 +443,7 @@
             <label class="bar-button" for="input_4"></label>
           </div>
         </div>
-        <div class="container-avatar">
+        <div class="container-avatar container-avatar-hidden">
           <div class="container-avatar-information">
             <div class="avatar">
               <img src="../../assets/avatar.png" alt="avatar" />

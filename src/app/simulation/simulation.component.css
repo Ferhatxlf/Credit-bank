@@ -533,6 +533,12 @@ body {
     display: flex;
     height: 7%;
   }
+  .container-avatar-hidden {
+    display: none !important;
+  }
+  .toggle-option {
+    top: 90px !important;
+  }
 }
 @media screen and (max-width: 800px) {
   .bar {
@@ -560,14 +566,10 @@ body {
     margin-right: 10px;
   }
   .toggle-option {
-    top: 240px !important;
+    top: 80px !important;
   }
 }
-@media screen and (max-width: 750px) {
-  .toggle-option {
-    top: 220px !important;
-  }
-}
+
 @media screen and (max-width: 600px) {
   .icons-header {
     display: none;
@@ -597,6 +599,9 @@ body {
   .container-avatar .information {
     display: none !important;
   }
+  .toggle-option {
+    top: 70px !important;
+  }
 }
 @media screen and (max-width: 400px) {
   .progress-container {
@@ -617,24 +622,21 @@ body {
     height: 10%;
   }
   .avatar img {
-    width: 40px;
+    width: 45px;
   }
   .logout span {
-    font-size: 20px !important;
+    font-size: 30px !important;
+  }
+  .toggle-option {
+    top: 60px !important;
   }
 }
 @media screen and (max-width: 350px) {
-  .container-progressBar-avatar {
-    flex-direction: column-reverse;
-    justify-content: center;
-    align-items: center;
+  .avatar img {
+    width: 45px;
   }
-  .container-avatar {
-    width: 100%;
-    justify-content: end;
-    align-items: end;
-    background-color: white;
-    box-shadow: none;
+  .logout span {
+    font-size: 30px !important;
   }
   .progress-container {
     height: 3vh;
