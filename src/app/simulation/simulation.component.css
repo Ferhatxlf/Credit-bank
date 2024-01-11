@@ -591,6 +591,8 @@ body {
   }
   .container-avatar {
     width: 50px;
+    background-color: white;
+    box-shadow: none;
   }
   .container-avatar .information {
     display: none !important;
@@ -614,6 +616,14 @@ body {
     font-size: 10px;
     height: 10%;
   }
+  .avatar img {
+    width: 40px;
+  }
+  .logout span {
+    font-size: 20px !important;
+  }
+}
+@media screen and (max-width: 350px) {
   .container-progressBar-avatar {
     flex-direction: column-reverse;
     justify-content: center;
@@ -623,9 +633,9 @@ body {
     width: 100%;
     justify-content: end;
     align-items: end;
+    background-color: white;
+    box-shadow: none;
   }
-}
-@media screen and (max-width: 350px) {
   .progress-container {
     height: 3vh;
   }
