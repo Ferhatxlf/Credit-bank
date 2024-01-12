@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
+import { AuthServiceService } from '../../service/auth-service.service';
 
 @Component({
   selector: 'app-directorlayout',
@@ -12,8 +13,13 @@ export class DirectorlayoutComponent {
   public cselected: boolean = false;
   public dselected: boolean = false;
   public pselected: boolean = false;
+  userNin: string | null = null;
+  userRole: string | null = null;
   client: any;
-  constructor(private location: Location, private router: Router) {
+  constructor(
+    private location: Location,
+    private authService: AuthServiceService
+  ) {
     this.url = this.location.path();
     // Écouter les changements d'URL
     this.location.onUrlChange((url) => {
@@ -71,6 +77,24 @@ export class DirectorlayoutComponent {
       icon: 'person',
       class: '',
     },
+    {
+      path: '/courtier/mes-dossier',
+      title: 'Mes dossiers',
+      icon: 'person',
+      class: '',
+    },
+    {
+      path: '/director/dossier',
+      title: 'Liste des dossiers',
+      icon: 'person',
+      class: '',
+    },
+    {
+      path: '/director/dashboard',
+      title: 'Dashboard',
+      icon: 'person',
+      class: '',
+    },
     { path: '/admin/profile', title: 'Mon Profile', icon: 'person', class: '' },
   ];
 
@@ -81,7 +105,12 @@ export class DirectorlayoutComponent {
     this.selected = true;
     this.isSidebarOpen = false;
     this.listTitles = this.ROUTES.filter((listTitle: any) => listTitle);
-    const a = localStorage.getItem('currentUser');
+    const currentUserData = localStorage.getItem('currentUser');
+    if (currentUserData) {
+      this.currentUser = JSON.parse(currentUserData);
+      this.userNin = this.currentUser.nin;
+      this.userRole = this.currentUser.role;
+    }
   }
 
   // pour la navbar recuperation des titres ************
@@ -136,5 +165,9 @@ export class DirectorlayoutComponent {
     this.dselected = false;
     this.pselected = true;
     this.isSidebarOpen = false;
+  }
+
+  logout() {
+    this.authService.logout();
   }
 }

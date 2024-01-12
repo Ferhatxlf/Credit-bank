@@ -32,7 +32,7 @@ export class MesdossierComponent {
     this.searchForm = this.fb.group({
       numero_dossier: this.fb.control(''),
       nom_projet: this.fb.control(''),
-      statut: this.fb.control('complet'),
+      statut: this.fb.control('NON_TRAITEE'),
     });
 
     const a = localStorage.getItem('currentUser');
@@ -43,11 +43,11 @@ export class MesdossierComponent {
     this.courtierService.getDossierEncours(this.currentUser.id).subscribe(
       (rs) => {
         this.Folders = rs;
+        this.F = rs;
         console.log(this.Folders);
       },
       (err) => console.log(err)
     );
-    this.F = this.Folders;
 
     this.courtierService.getDossierTraite(this.currentUser.id).subscribe(
       (rs) => {
@@ -61,8 +61,7 @@ export class MesdossierComponent {
   }
 
   folderClicked(folder) {
-    localStorage.setItem('idDossier', folder.id);
-    this.router.navigate(['/courtier/detail-dossier']);
+    this.router.navigate(['/courtier/detail-dossier', folder.id]);
     console.log(folder);
   }
   updateSelectedFolders() {

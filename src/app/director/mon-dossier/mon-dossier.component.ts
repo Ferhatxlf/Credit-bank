@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { SharedDataService } from '../shared-data.service';
 import { Location } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-mon-dossier',
@@ -12,12 +13,15 @@ export class MonDossierComponent {
   client: boolean = false;
   docs: boolean = false;
   credit: boolean = false;
+  id: any;
 
   folderValue: any;
   haveCourtier: boolean = false;
   constructor(
     private location: Location,
-    private sharedDataService: SharedDataService
+    private sharedDataService: SharedDataService,
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.url = this.location.path();
   }
@@ -35,6 +39,8 @@ export class MonDossierComponent {
     } else {
       this.haveCourtier = true;
     }
+
+    this.id = this.route.snapshot.paramMap.get('id');
   }
 
   goInfo() {
@@ -42,23 +48,31 @@ export class MonDossierComponent {
     this.credit = false;
     this.client = false;
     this.docs = false;
+
+    this.router.navigate([`/director/detail-dossier/${this.id}/information`]);
   }
   goCredit() {
     this.info = false;
     this.credit = true;
     this.client = false;
     this.docs = false;
+
+    this.router.navigate([`/director/detail-dossier/${this.id}/detail-credit`]);
   }
   goClient() {
     this.info = false;
     this.credit = false;
     this.client = true;
     this.docs = false;
+
+    this.router.navigate([`/director/detail-dossier/${this.id}/detail-client`]);
   }
   goDoc() {
     this.info = false;
     this.credit = false;
     this.client = false;
     this.docs = true;
+
+    this.router.navigate([`/director/detail-dossier/${this.id}/document`]);
   }
 }

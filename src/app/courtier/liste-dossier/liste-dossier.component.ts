@@ -42,17 +42,17 @@ export class ListeDossierComponent implements OnInit {
     this.courtierService.getAllDossier(this.currentUser.agence_id).subscribe(
       (rs) => {
         this.Folders = rs;
+        this.F = rs;
+
         console.log(this.Folders);
       },
       (err) => console.log(err)
     );
-    this.F = this.Folders;
   }
 
   folderClicked(folder) {
-    localStorage.setItem('idDossier', folder.id);
     console.log(folder);
-    this.router.navigate(['/courtier/detail-dossier']);
+    this.router.navigate(['/courtier/detail-dossier', folder.id]);
   }
   search() {
     if (this.searchActivate) {
