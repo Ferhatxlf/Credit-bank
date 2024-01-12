@@ -30,6 +30,7 @@ export class ResultComponent implements OnInit {
   currentUser: any;
   isLoged: boolean = false;
   data: any;
+  s: any;
   constructor(
     private router: Router,
     private simulationService: SimulationServiceService
@@ -340,9 +341,16 @@ export class ResultComponent implements OnInit {
 
   createFolder() {
     if (this.isLoged) {
-      const s = localStorage.getItem('formImmobilierData');
-      if (s) {
-        const simulationData = JSON.parse(s);
+      const type = localStorage.getItem('financementType');
+      if (type === 'immobilier') {
+        this.s = localStorage.getItem('formImmobilierData');
+      } else if (type === 'consomation') {
+        this.s = localStorage.getItem('formConsomationData');
+      } else if (type === 'islamique') {
+        this.s = localStorage.getItem('formislamiqueData');
+      }
+      if (this.s) {
+        const simulationData = JSON.parse(this.s);
         this.data = simulationData;
       }
       const dossier = {

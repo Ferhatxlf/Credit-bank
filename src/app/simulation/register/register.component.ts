@@ -35,6 +35,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   nationnalitee: boolean = true;
   pays: boolean = true;
   toggleRegisterLogin: boolean = true;
+  s: any;
 
   ngAfterViewInit() {
     // Mettez à jour defaultCivilite ici après la première vérification des changements
@@ -233,9 +234,16 @@ export class RegisterComponent implements OnInit, AfterViewInit {
 
       this.authService.register(formDataJson).subscribe(
         (rs) => {
-          const s = localStorage.getItem('formImmobilierData');
-          if (s) {
-            const simulationData = JSON.parse(s);
+          const type = localStorage.getItem('financementType');
+          if (type === 'immobilier') {
+            this.s = localStorage.getItem('formImmobilierData');
+          } else if (type === 'consomation') {
+            this.s = localStorage.getItem('formConsomationData');
+          } else if (type === 'islamique') {
+            this.s = localStorage.getItem('formislamiqueData');
+          }
+          if (this.s) {
+            const simulationData = JSON.parse(this.s);
             this.data = simulationData;
           }
           console.log(this.data);
@@ -301,9 +309,16 @@ export class RegisterComponent implements OnInit, AfterViewInit {
           };
           localStorage.setItem('currentUser', JSON.stringify(user));
 
-          const s = localStorage.getItem('formImmobilierData');
-          if (s) {
-            const simulationData = JSON.parse(s);
+          const type = localStorage.getItem('financementType');
+          if (type === 'immobilier') {
+            this.s = localStorage.getItem('formImmobilierData');
+          } else if (type === 'consomation') {
+            this.s = localStorage.getItem('formConsomationData');
+          } else if (type === 'islamique') {
+            this.s = localStorage.getItem('formislamiqueData');
+          }
+          if (this.s) {
+            const simulationData = JSON.parse(this.s);
             this.data = simulationData;
           }
           console.log(this.data);
