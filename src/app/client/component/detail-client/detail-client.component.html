@@ -1,5 +1,5 @@
 <div class="details-info">
-  <div class="numero">Dossier : {{ folderValue.typeCredit.nomCredit }}</div>
+  <div class="numero">Dossier : {{ folderValue?.typeCredit?.nomCredit }}</div>
   <div class="details-column">
     <div class="title-container">
       <label>Nom:</label>
@@ -8,7 +8,7 @@
         type="text"
         class="form-control"
         id="validationCustom03"
-        value="{{ folderValue.client.nom }}"
+        value="{{ folderValue?.client?.nom }}"
         disabled
       />
     </div>
@@ -18,7 +18,7 @@
         type="text"
         class="form-control"
         id="validationCustom03"
-        value="{{ folderValue.client.prenom }}"
+        value="{{ folderValue?.client?.prenom }}"
         disabled
       />
     </div>
@@ -30,7 +30,7 @@
         type="text"
         class="form-control"
         id="validationCustom03"
-        value="{{ folderValue.ageEmprunteur }}"
+        value="{{ folderValue?.ageEmprunteur }}"
         disabled
       />
     </div>
@@ -42,7 +42,7 @@
         type="email"
         class="form-control"
         id="validationCustom03"
-        value="{{ folderValue.client.email }}"
+        value="{{ folderValue?.client?.email }}"
         disabled
       />
     </div>
@@ -54,7 +54,7 @@
         type="text"
         class="form-control"
         id="validationCustom03"
-        value="{{ folderValue.client.telephone }}"
+        value="{{ folderValue?.client?.telephone }}"
         disabled
       />
     </div>
@@ -65,7 +65,7 @@
         type="text"
         class="form-control"
         id="validationCustom03"
-        value="{{ folderValue.client.nationalite }}"
+        value="{{ folderValue?.client?.nationalite }}"
         disabled
       />
     </div>
@@ -76,7 +76,7 @@
         type="text"
         class="form-control"
         id="validationCustom03"
-        value="{{ folderValue.client.adresse }}"
+        value="{{ folderValue?.client?.adresse }}"
         disabled
       />
     </div>
@@ -87,7 +87,7 @@
         type="text"
         class="form-control"
         id="validationCustom03"
-        value="{{ folderValue.client.codePostal }}"
+        value="{{ folderValue?.client?.codePostal }}"
         disabled
       />
     </div>
