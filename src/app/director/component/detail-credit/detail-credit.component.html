@@ -1,5 +1,5 @@
 <div class="details-info">
-  <div class="numero">Dossier n°: {{ folderValue.id }}</div>
+  <div class="numero">Dossier n°: {{ folderValue?.id }}</div>
   <div class="details-column">
     <div class="title-container">
       <label>Montant du crédit souhaité :</label>
@@ -8,7 +8,7 @@
         type="text"
         class="form-control"
         id="validationCustom03"
-        value="{{ folderValue.montantHabitation | number : '1.0-0' }} DZD"
+        value="{{ folderValue?.montantHabitation | number : '1.0-0' }} DZD"
         disabled
       />
     </div>
@@ -19,7 +19,7 @@
         type="text"
         class="form-control"
         id="validationCustom03"
-        value="{{ folderValue.creditSouhaite | number : '1.0-0' }} DZD"
+        value="{{ folderValue?.creditSouhaite | number : '1.0-0' }} DZD"
         disabled
       />
     </div>
@@ -30,7 +30,7 @@
         type="text"
         class="form-control"
         id="validationCustom03"
-        value="{{ folderValue.revenueEmprunteur | number : '1.0-0' }} DZD"
+        value="{{ folderValue?.revenueEmprunteur | number : '1.0-0' }} DZD"
         disabled
       />
     </div>
@@ -42,7 +42,7 @@
         type="text"
         class="form-control"
         id="validationCustom03"
-        value="{{ folderValue.revenueCoEmprunteur | number : '1.0-0' }} DZD"
+        value="{{ folderValue?.revenueCoEmprunteur | number : '1.0-0' }} DZD"
         disabled
       />
     </div>
@@ -55,7 +55,7 @@
         class="form-control"
         id="validationCustom03"
         value="{{
-          folderValue.montantRevenueImmobilier | number : '1.0-0'
+          folderValue?.montantRevenueImmobilier | number : '1.0-0'
         }} DZD"
         disabled
       />
@@ -67,7 +67,7 @@
         type="text"
         class="form-control"
         id="validationCustom03"
-        value="{{ folderValue.dureeFinancement }} années"
+        value="{{ folderValue?.dureeFinancement }} années"
         disabled
       />
     </div>
@@ -78,7 +78,7 @@
         type="text"
         class="form-control"
         id="validationCustom03"
-        value="{{ folderValue.montantAutreCredit | number : '1.0-0' }} DZD"
+        value="{{ folderValue?.montantAutreCredit | number : '1.0-0' }} DZD"
         disabled
       />
     </div>

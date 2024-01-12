@@ -40,7 +40,7 @@ export class MesdossierComponent {
       this.currentUser = JSON.parse(a);
     }
     console.log(this.currentUser);
-    this.courtierService.getDossierEncours(this.currentUser.id).subscribe(
+    this.courtierService.getAllMyFolders(this.currentUser.id).subscribe(
       (rs) => {
         this.Folders = rs;
         this.F = rs;
@@ -48,21 +48,10 @@ export class MesdossierComponent {
       },
       (err) => console.log(err)
     );
-
-    this.courtierService.getDossierTraite(this.currentUser.id).subscribe(
-      (rs) => {
-        this.FoldersTraite = rs;
-        console.log(this.FoldersTraite);
-      },
-      (err) => console.log(err)
-    );
-
-    this.F = this.Folders;
   }
 
   folderClicked(folder) {
-    localStorage.setItem('idDossier', folder.id);
-    this.router.navigate(['/courtier/detail-dossier']);
+    this.router.navigate(['/courtier/detail-dossier', folder.id]);
     console.log(folder);
   }
   updateSelectedFolders() {
