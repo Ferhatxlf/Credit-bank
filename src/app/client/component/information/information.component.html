@@ -1,5 +1,5 @@
 <div class="details-info">
-  <div class="numero">Dossier : {{ folderValue.typeCredit.nomCredit }}</div>
+  <div class="numero">Dossier : {{ folderValue?.typeCredit?.nomCredit }}</div>
   <div class="details-column">
     <div class="title-container name">
       <label>Agence:</label>
@@ -8,7 +8,7 @@
         type="text"
         class="form-control"
         id="validationCustom03"
-        value="{{ folderValue.assignedagence.adresse }}"
+        value="{{ folderValue?.assignedagence.adresse }}"
         disabled
       />
     </div>
@@ -30,7 +30,7 @@
         type="text"
         class="form-control"
         id="validationCustom03"
-        value="{{ folderValue.dureeFinancement }} années"
+        value="{{ folderValue?.dureeFinancement }} années"
         disabled
       />
     </div>
@@ -41,7 +41,7 @@
         type="text"
         class="form-control"
         id="validationCustom03"
-        value="{{ folderValue.typeCredit.nomCredit }}"
+        value="{{ folderValue?.typeCredit?.nomCredit }}"
         disabled
       />
     </div>
@@ -53,7 +53,7 @@
         type="text"
         class="form-control"
         id="validationCustom03"
-        value="{{ folderValue.createdAt }}"
+        value="{{ folderValue?.createdAt }}"
         disabled
       />
     </div>
@@ -64,7 +64,7 @@
         type="text"
         class="form-control"
         id="validationCustom03"
-        value="{{ folderValue.status }}"
+        value="{{ folderValue?.status }}"
         disabled
       />
     </div>

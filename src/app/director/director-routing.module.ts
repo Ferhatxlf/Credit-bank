@@ -17,7 +17,7 @@ const routes: Routes = [
       { path: 'dashboard', component: DashbordComponent },
       { path: 'dossier', component: ListeDossierComponent },
       {
-        path: 'detail-dossier',
+        path: 'detail-dossier/:id',
         component: MonDossierComponent,
         children: [
           { path: '', redirectTo: 'information', pathMatch: 'full' },

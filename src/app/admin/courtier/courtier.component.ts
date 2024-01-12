@@ -62,4 +62,5 @@ export class CourtierComponent implements OnInit {
   get totalNumberOfPages(): number[] {
     return Array(Math.ceil(this.comptes.length / this.itemsPerPage)).fill(0).map((x, i) => i + 1);
   }
+
 }

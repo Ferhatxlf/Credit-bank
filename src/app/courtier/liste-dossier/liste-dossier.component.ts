@@ -51,9 +51,8 @@ export class ListeDossierComponent implements OnInit {
   }
 
   folderClicked(folder) {
-    localStorage.setItem('idDossier', folder.id);
     console.log(folder);
-    this.router.navigate(['/courtier/detail-dossier']);
+    this.router.navigate(['/courtier/detail-dossier', folder.id]);
   }
   search() {
     if (this.searchActivate) {

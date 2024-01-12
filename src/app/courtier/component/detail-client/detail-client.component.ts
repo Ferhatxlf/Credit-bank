@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedDataService } from '../../shared-data.service';
 import { SimulationServiceService } from '../../../service/simulation-service.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-detail-client',
@@ -13,14 +14,14 @@ export class DetailClientComponent implements OnInit {
 
   constructor(
     private sharedData: SharedDataService,
-    private simulationService: SimulationServiceService
+    private simulationService: SimulationServiceService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
-    const a = localStorage.getItem('idDossier');
-    if (a) {
-      this.id = JSON.parse(a);
-    }
+    this.route.parent?.params.subscribe((parentParams) => {
+      this.id = parentParams['id'];
+    });
     this.simulationService.getDossier(this.id).subscribe(
       (res) => {
         this.folderValue = res;

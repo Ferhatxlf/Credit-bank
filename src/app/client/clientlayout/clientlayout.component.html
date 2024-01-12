@@ -19,6 +19,7 @@
       <span class="sidebar-text">Nouveau crédit</span>
     </div>
     <div class="sections">
+   
       <div
         class="container-text"
         [routerLink]="['/client/dashbord']"
@@ -131,7 +132,7 @@
           </div>
         </div>
         <div class="logout">
-          <span class="material-icons"> logout </span>
+          <span class="material-icons" (click)="logout()"> logout </span>
         </div>
       </div>
     </div>
@@ -157,7 +158,7 @@
           <p class="email">{{ client?.email }}</p>
         </div>
         <div class="logout">
-          <span class="material-icons mt-2"> logout </span>
+          <span class="material-icons mt-2" (click)="logout()"> logout </span>
         </div>
       </div>
     </div>
