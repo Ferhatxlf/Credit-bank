@@ -92,4 +92,16 @@ export class MesdossierComponent {
         }
       );
   }
+
+  status(statu): string | undefined {
+    if (statu === 'TRAITEE') {
+      return 'Dossier traité';
+    } else if (statu === 'TRAITEMENT_ENCOURS') {
+      return 'En cours du traitement';
+    } else if (statu === 'NON_TRAITEE') {
+      return 'Dossier non traité';
+    } else {
+      return 'no';
+    }
+  }
 }

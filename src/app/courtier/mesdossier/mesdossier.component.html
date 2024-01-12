@@ -94,7 +94,7 @@
                 <td>PART</td>
 
                 <td>{{ folder.montantHabitation | number : "1.0-0" }} DA</td>
-                <td>{{ folder.status }}</td>
+                <td>{{ status(folder.status) }}</td>
                 <td>
                   <i class="material-icons icon" (click)="folderClicked(folder)"
                     >remove_red_eye</i
