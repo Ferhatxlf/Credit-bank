@@ -21,7 +21,7 @@ export class IslamiqueMotoComponent {
     {
       name: 'VMS Driver',
       price: 499000,
-      url: '../../../../assets/scooter1.png',
+      url: '../../../../assets/scooter3.png',
     },
   ];
   constructor(private router: Router) {}

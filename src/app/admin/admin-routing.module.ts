@@ -6,7 +6,7 @@ import { CourtierComponent } from './courtier/courtier.component';
 import { DirecteurComponent } from './directeur/directeur.component';
 import { InformationComponent } from './information/information.component';
 import { AgenceRegionnaleComponent } from './agenceRegionnale/agence-regionnale.component';
-
+import { AgenceInfoComponent } from './agence-info/agence-info.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashbordAdmin', pathMatch: 'full' },
@@ -36,6 +36,8 @@ const routes: Routes = [
         path: 'information',
         component: InformationComponent,
       },
+      { path: 'agenceInfo/:id', component: AgenceInfoComponent },
+
     ],
   },
 ];

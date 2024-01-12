@@ -37,6 +37,13 @@
                     <td class="px-4 py-2 border">{{ agence.directionRegionale.nom }}</td>
                     <td class="px-4 py-2 border">{{ agence.createdAt }}</td>
                     <td class="px-4 py-2 border">{{ agence.updatedAt }}</td>
+                    
+                    <td class="px-4 py-2 border">
+                        <!-- Eye icon -->
+                        <span class="material-icons" (click)="onViewDetails(agence.id)" style="cursor: pointer;">
+                          visibility
+                        </span>
+                      </td>
                     <!-- Add more table cells for other properties -->
                 </tr>
             </tbody>
