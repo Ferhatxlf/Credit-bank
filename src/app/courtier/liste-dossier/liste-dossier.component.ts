@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 
 import { SharedDataService } from '../shared-data.service';
 import { CourtierServiceService } from '../../service/courtier-service.service.js';
+import { AuthServiceService } from '../../service/auth-service.service.js';
 
 @Component({
   selector: 'app-liste-dossier',
@@ -23,7 +24,8 @@ export class ListeDossierComponent implements OnInit {
     private fb: FormBuilder,
     router: Router,
     private sharedDataService: SharedDataService,
-    private courtierService: CourtierServiceService
+    private courtierService: CourtierServiceService,
+    private authService: AuthServiceService
   ) {
     this.router = router;
   }
@@ -75,5 +77,9 @@ export class ListeDossierComponent implements OnInit {
 
   affectation(id_dossier) {
     this.sharedDataService.affectation(id_dossier);
+  }
+
+  status(value) {
+    return this.authService.status(value);
   }
 }

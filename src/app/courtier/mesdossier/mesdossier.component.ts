@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 
 import { SharedDataService } from '../shared-data.service';
 import { CourtierServiceService } from '../../service/courtier-service.service.js';
+import { AuthServiceService } from '../../service/auth-service.service.js';
 @Component({
   selector: 'app-mesdossier',
   templateUrl: './mesdossier.component.html',
@@ -23,7 +24,7 @@ export class MesdossierComponent {
   constructor(
     private fb: FormBuilder,
     router: Router,
-    private sharedDataService: SharedDataService,
+    private authService: AuthServiceService,
     private courtierService: CourtierServiceService
   ) {
     this.router = router;
@@ -93,15 +94,7 @@ export class MesdossierComponent {
       );
   }
 
-  status(statu): string | undefined {
-    if (statu === 'TRAITEE') {
-      return 'Dossier traité';
-    } else if (statu === 'TRAITEMENT_ENCOURS') {
-      return 'En cours du traitement';
-    } else if (statu === 'NON_TRAITEE') {
-      return 'Dossier non traité';
-    } else {
-      return 'no';
-    }
+  status(value) {
+    return this.authService.status(value);
   }
 }
