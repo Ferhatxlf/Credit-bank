@@ -85,7 +85,7 @@
                     type="checkbox"
                     [(ngModel)]="folder.isSelected"
                     (change)="updateSelectedFolders()"
-                    *ngIf="folder.status === 'TRAITEE'"
+                    *ngIf="folder.status === 'TRAITEMENT_ENCOURS'"
                   />
                 </td>
                 <td>{{ folder.id }}</td>
@@ -108,7 +108,7 @@
                     type="checkbox"
                     [(ngModel)]="folder.isSelected"
                     (change)="updateSelectedFolders()"
-                    *ngIf="folder.status === 'TRAITEE'"
+                    *ngIf="folder.status === 'TRAITEMENT_ENCOURS'"
                   />
                 </td>
                 <td>{{ folder.id }}</td>
