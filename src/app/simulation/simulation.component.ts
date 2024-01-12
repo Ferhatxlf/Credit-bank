@@ -37,13 +37,13 @@ export class SimulationComponent implements OnInit {
 
     if (this.currentUser?.role === 'particulier') {
       this.isLoged = true;
+      this.authService.getClient(this.currentUser?.id).subscribe(
+        (rs) => {
+          this.client = rs;
+        },
+        (err) => console.log(err)
+      );
     }
-    this.authService.getClient(this.currentUser?.id).subscribe(
-      (rs) => {
-        this.client = rs;
-      },
-      (err) => console.log(err)
-    );
   }
   setToggleOption() {
     this.toggleOptions = !this.toggleOptions;
