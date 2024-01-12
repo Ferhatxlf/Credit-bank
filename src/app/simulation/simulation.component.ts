@@ -11,6 +11,8 @@ import { filter } from 'rxjs/operators';
 })
 export class SimulationComponent implements OnInit {
   toggleOptions: boolean = false;
+  isLoged: boolean = false;
+  currentUser: any;
   constructor(private location: Location) {
     this.url = this.location.path();
     // Écouter les changements d'URL
@@ -23,6 +25,14 @@ export class SimulationComponent implements OnInit {
 
   ngOnInit() {
     this.toggleOptions = false;
+    const a = localStorage.getItem('currentUser');
+    if (a) {
+      this.currentUser = JSON.parse(a);
+    }
+
+    if (this.currentUser?.role === 'particulier') {
+      this.isLoged = true;
+    }
   }
   setToggleOption() {
     this.toggleOptions = !this.toggleOptions;
