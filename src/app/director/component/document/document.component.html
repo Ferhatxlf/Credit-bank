@@ -7,10 +7,10 @@
     >
   </div>
   <div class="document-container">
-    <div class="document mt-3" *ngFor="let d of folderValue.attachedFiles">
+    <div class="document mt-3" *ngFor="let d of folderValue?.attachedFiles">
       <div class="subtitle">
         <span class="material-icons">check_circle</span>
-        <span>{{ d.fileName }} </span>
+        <span>{{ d?.fileName }} </span>
       </div>
       <a
         class="material-icons edit"
@@ -59,3 +59,4 @@
     </div> -->
   </div>
 </div>
+?
