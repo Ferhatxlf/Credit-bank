@@ -19,6 +19,7 @@ import { IslamiqueComponent } from './components/islamique/islamique.component';
 import { FormConsomationComponent } from './components/form-consomation/form-consomation.component';
 import { IslamiqueVehiculeComponent } from './components/islamique-vehicule/islamique-vehicule.component';
 import { IslamiqueFormComponent } from './components/islamique-form/islamique-form.component';
+import { IslamiqueMotoComponent } from './components/islamique-moto/islamique-moto.component';
 
 const simulationRoutes: Routes = [
   {
@@ -40,6 +41,7 @@ const simulationRoutes: Routes = [
       { path: 'islamique', component: IslamiqueComponent },
       { path: 'formConsomation', component: FormConsomationComponent },
       { path: 'islamique-vehicule', component: IslamiqueVehiculeComponent },
+      { path: 'islamique-moto', component: IslamiqueMotoComponent },
       { path: 'islamique-form', component: IslamiqueFormComponent },
     ],
   },
