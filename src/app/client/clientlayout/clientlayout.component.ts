@@ -169,4 +169,8 @@ export class ClientlayoutComponent implements OnInit {
     this.pselected = true;
     this.isSidebarOpen = false;
   }
+
+  logout() {
+    this.authService.logout();
+  }
 }

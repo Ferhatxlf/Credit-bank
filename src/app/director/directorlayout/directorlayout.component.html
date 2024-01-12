@@ -131,10 +131,7 @@
       [ngClass]="{
         'navbar-card-container-hidden':
           url === '/director/profile' ||
-          url === '/director/detail-dossier/detail-client' ||
-          url === '/director/detail-dossier/information' ||
-          url === '/director/detail-dossier/detail-credit' ||
-          url === '/director/detail-dossier/document'
+          url.includes('/director/detail-dossier/')
       }"
     >
       <div class="left">
