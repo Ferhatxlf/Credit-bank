@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <!-- <app-navbar></app-navbar> -->
+  <!--  <app-navbar></app-navbar> -->
 
   <div class="container translate">
     <div class="accordion mt-5 accordion-flush" id="accordionFlushExample">
@@ -28,9 +28,11 @@
                 aria-label="Statut"
                 formControlName="statut"
               >
-                <option selected value="NON_TRAITEE">NON_TRAITEE</option>
-                <option value="TRAITEMENT_ENCOURS">TRAITEMENT_ENCOURS</option>
-                <option selected value="TRAITEE">TRAITEE</option>
+                <option selected value="NON_TRAITEE">Non traité</option>
+                <option value="TRAITEMENT_ENCOURS">Traitement en cours</option>
+                <option value="TRAITEE">Vraité</option>
+                <option value="ACCEPTE">Accepté</option>
+                <option value="REFUSE">Rejeté</option>
               </select>
             </div>
 
@@ -66,29 +68,73 @@
             <tbody>
               <tr>
                 <th>N°</th>
-                <th>Nom du dossier</th>
+                <th>Type du crédit</th>
                 <th>Emprunteur</th>
                 <th>Type du client</th>
-                <th>Type du financement</th>
 
-                <th>Type du crédit</th>
                 <th>Montant du prêt</th>
+
                 <th>Statut</th>
+                <th>Détail</th>
+                <th>Actions</th>
               </tr>
 
-              <tr
-                (click)="folderClicked(folder)"
-                *ngFor="let folder of Folders; let i = index"
-              >
+              <tr *ngFor="let folder of Folders; let i = index">
                 <td>{{ folder.id }}</td>
-                <td>{{ folder.nomDossier }}</td>
+                <td>{{ folder.typeCredit.nomCredit }}</td>
                 <td>{{ folder.client.nom }} {{ folder.client.prenom }}</td>
-                <td>{{ folder.client.email }}</td>
-                <td>{{ folder.typeFinancement }}</td>
+                <td>PART</td>
 
-                <td>{{ folder.typeCredit }}</td>
-                <td>{{ folder.montantHabitation }} DA</td>
-                <td>{{ folder.status }}</td>
+                <td>{{ folder.montantHabitation | number : "1.0-0" }} DA</td>
+                <td>
+                  {{ folder.status }}
+                </td>
+                <td>
+                  <i class="material-icons icon" (click)="folderClicked(folder)"
+                    >remove_red_eye</i
+                  >
+                </td>
+                <td>
+                  <div class="btn-group">
+                    <button
+                      type="button"
+                      class="btn btn-info dropdown-toggle"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      action
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                      <li>
+                        <button
+                          class="dropdown-item"
+                          type="button"
+                          (click)="acceptFolder(folder)"
+                        >
+                          Accepté
+                        </button>
+                      </li>
+                      <li>
+                        <button
+                          class="dropdown-item"
+                          type="button"
+                          (click)="rejectFolder(folder)"
+                        >
+                          Rejeté
+                        </button>
+                      </li>
+                      <li>
+                        <button
+                          class="dropdown-item"
+                          type="button"
+                          (click)="renvoiFolder(folder)"
+                        >
+                          Renvoyé
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
+                </td>
               </tr>
             </tbody>
           </table>

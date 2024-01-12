@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
+import { AuthServiceService } from '../../service/auth-service.service';
 
 @Component({
   selector: 'app-directorlayout',
@@ -11,9 +13,13 @@ export class DirectorlayoutComponent {
   public cselected: boolean = false;
   public dselected: boolean = false;
   public pselected: boolean = false;
-  public clientselected: boolean = false;
-
-  constructor(private location: Location) {
+  userNin: string | null = null;
+  userRole: string | null = null;
+  client: any;
+  constructor(
+    private location: Location,
+    private authService: AuthServiceService
+  ) {
     this.url = this.location.path();
     // Écouter les changements d'URL
     this.location.onUrlChange((url) => {
@@ -21,50 +27,147 @@ export class DirectorlayoutComponent {
       console.log(this.url);
     });
   }
-  url: string = '';
+  private listTitles!: any[];
+  ROUTES: any = [
+    {
+      path: '/client/dashboard',
+      title: 'Dashboard',
+      icon: 'dashboard',
+      class: '',
+    },
+    {
+      path: '/client/profile',
+      title: 'Mon Profile',
+      icon: 'person',
+      class: '',
+    },
+    {
+      path: '/client/dossier',
+      title: 'Mes dossiers',
+      icon: 'person',
+      class: '',
+    },
+    {
+      path: '/client/detail-dossier',
+      title: 'Detail',
+      icon: 'person',
+      class: '',
+    },
+    {
+      path: '/client/nouveau-credit',
+      title: 'Nouveau crédit',
+      icon: 'person',
+      class: '',
+    },
+    {
+      path: '/admin/courtier',
+      title: 'Gestion des courtiers',
+      icon: 'person',
+      class: '',
+    },
+    {
+      path: '/admin/directeur',
+      title: 'Gestion des directeurs',
+      icon: 'person',
+      class: '',
+    },
+    {
+      path: '/courtier/dossier',
+      title: 'Liste des dossiers',
+      icon: 'person',
+      class: '',
+    },
+    {
+      path: '/courtier/mes-dossier',
+      title: 'Mes dossiers',
+      icon: 'person',
+      class: '',
+    },
+    {
+      path: '/director/dossier',
+      title: 'Liste des dossiers',
+      icon: 'person',
+      class: '',
+    },
+    {
+      path: '/director/dashboard',
+      title: 'Dashboard',
+      icon: 'person',
+      class: '',
+    },
+    { path: '/admin/profile', title: 'Mon Profile', icon: 'person', class: '' },
+  ];
 
-  ngOnInit() {}
+  url: string = '';
+  currentUser: any;
+  public Folders: any = [];
+  ngOnInit(): void {
+    this.selected = true;
+    this.isSidebarOpen = false;
+    this.listTitles = this.ROUTES.filter((listTitle: any) => listTitle);
+    const currentUserData = localStorage.getItem('currentUser');
+    if (currentUserData) {
+      this.currentUser = JSON.parse(currentUserData);
+      this.userNin = this.currentUser.nin;
+      this.userRole = this.currentUser.role;
+    }
+  }
+
+  // pour la navbar recuperation des titres ************
+  getTitle() {
+    var titlee = this.location.prepareExternalUrl(this.location.path());
+    if (titlee.charAt(0) === '#') {
+      titlee = titlee.slice(1);
+    }
+
+    for (var item = 0; item < this.listTitles.length; item++) {
+      if (this.listTitles[item].path === titlee) {
+        return this.listTitles[item].title;
+      }
+    }
+    return 'Dashboard';
+  }
 
   goBack(): void {
     this.location.back();
   }
 
+  isSidebarOpen: boolean = false;
+
+  toggleSidebar() {
+    this.isSidebarOpen = !this.isSidebarOpen;
+  }
   dashboardSelected() {
     this.selected = true;
     this.cselected = false;
     this.dselected = false;
-    this.clientselected = false;
     this.pselected = false;
+    this.isSidebarOpen = false;
   }
 
   creditSelected() {
-    this.selected = false;
     this.cselected = true;
-    this.dselected = false;
-    this.clientselected = false;
-    this.pselected = false;
+
+    this.isSidebarOpen = false;
   }
 
   dossierSelected() {
     this.selected = false;
     this.cselected = false;
     this.dselected = true;
-    this.clientselected = false;
     this.pselected = false;
+    this.isSidebarOpen = false;
   }
 
   profileSelected() {
     this.selected = false;
     this.cselected = false;
     this.dselected = false;
-    this.clientselected = false;
     this.pselected = true;
+    this.isSidebarOpen = false;
   }
-  clienttSelected() {
-    this.selected = false;
-    this.cselected = false;
-    this.dselected = false;
-    this.clientselected = true;
-    this.pselected = false;
+
+  logout() {
+    this.authService.logout();
   }
 }

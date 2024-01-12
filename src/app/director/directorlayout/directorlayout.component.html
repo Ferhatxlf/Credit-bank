@@ -1,51 +1,159 @@
 <div class="container-fluid">
+  <div class="navbar">
+    <img
+      src="../.../../../../assets/sidebarLaterlShow.png"
+      class="lateralsidebarshow"
+      alt="lateralsidebarshow"
+      (click)="toggleSidebar()"
+    />
+    <div class="navbar-logo-container">
+      <img src="../../assets/bankLogo.png" />
+    </div>
+  </div>
   <div class="sidebar">
     <div class="sidebar-logo-container">
-      <img src="../../../assets/bankLogo.png" />
+      <img src="../../assets/bankLogo.png" />
     </div>
+
+    <div class="sections">
+      <div
+        class="container-text"
+        [routerLink]="['/director/dashboard']"
+        [ngClass]="{ 'special-class': url === '/director/dashboard' }"
+      >
+        <span class="material-icons sidebar-icons">dashboard</span>
+        <span class="sidebar-text"> Dashboard</span>
+      </div>
+
+      <div
+        class="container-text"
+        [routerLink]="['/director/dossier']"
+        [ngClass]="{ 'special-class': url === '/director/dossier' }"
+      >
+        <div class="folder-container">
+          <span class="material-icons sidebar-icons"> folder </span>
+          <span class="sidebar-text">Liste des dossiers</span>
+        </div>
+        <span class="badge rounded-pill text-bg-light">0</span>
+      </div>
+
+      <div
+        class="container-text"
+        [routerLink]="['/director/profile']"
+        [ngClass]="{ 'special-class': url === '/director/profile' }"
+      >
+        <span class="material-icons sidebar-icons"> account_circle </span>
+
+        <span class="sidebar-text">Mon profile</span>
+      </div>
+    </div>
+  </div>
+  <div>
     <div
-      class="container-text"
-      [routerLink]="['/director/dashboard']"
-      (click)="dashboardSelected()"
-    >
-      <span class="material-icons sidebar-icons">arrow_forward_ios</span>
-      <span class="sidebar-text" [ngClass]="{ 'special-class': selected }">
-        Dashboard</span
-      >
-    </div>
+      *ngIf="isSidebarOpen"
+      class="sideBar-lateral-container"
+      (click)="toggleSidebar()"
+    ></div>
     <div
-      class="container-text"
-      [routerLink]="['/director/dossier']"
-      (click)="creditSelected()"
+      class="sideBar-lateral translateSideBar"
+      [ngClass]="{
+        translateSideBar: isSidebarOpen,
+        translateSideBarHidden: !isSidebarOpen
+      }"
     >
-      <span class="material-icons sidebar-icons"> arrow_forward_ios </span>
+      <div class="sidebar-lateral-header">
+        <span class="material-icons" (click)="toggleSidebar()">close</span>
+      </div>
 
-      <span class="sidebar-text" [ngClass]="{ 'special-class': cselected }"
-        >Liste des dossiers</span
-      >
-    </div>
+      <hr class="mt-5 mb-5" style="width: 80%; margin: 0 auto" />
+      <div class="sidebar-lateral-sections">
+        <div
+          class="sidebar-lateral-container-text"
+          [routerLink]="['/director/dashboard']"
+          [ngClass]="{
+            'sidebar-lateral-special-class': url === '/director/dashboard'
+          }"
+        >
+          <span class="material-icons sidebar-icons">dashboard</span>
+          <span class="sidebar-text"> Dashboard</span>
+        </div>
 
-    <div class="container-text" (click)="dossierSelected()">
-      <span class="material-icons sidebar-icons"> arrow_forward_ios </span>
+        <div
+          class="sidebar-lateral-container-text"
+          [routerLink]="['/director/dossier']"
+          [ngClass]="{
+            'sidebar-lateral-special-class': url === '/director/dossier'
+          }"
+        >
+          <div class="folder-container">
+            <span class="material-icons sidebar-icons"> folder </span>
+            <span class="sidebar-text">Liste des dossiers</span>
+          </div>
+          <span
+            class="badge rounded-pill text-bg-light"
+            style="font-size: small; margin-right: 1%"
+            >0</span
+          >
+        </div>
 
-      <span
-        class="sidebar-text"
-        [ngClass]="{ 'special-class': dselected }"
-        [routerLink]="['/director/mes-dossier']"
-        >Mes dossier</span
-      >
-    </div>
+        <div
+          class="sidebar-lateral-container-text"
+          [routerLink]="['/director/profile']"
+          [ngClass]="{
+            'sidebar-lateral-special-class': url === '/director/profile'
+          }"
+        >
+          <span class="material-icons sidebar-icons"> account_circle </span>
+          <span class="sidebar-text">Mon profile</span>
+        </div>
+      </div>
 
-    <div class="container-text" (click)="profileSelected()">
-      <span class="material-icons sidebar-icons"> arrow_forward_ios </span>
-
-      <span class="sidebar-text" [ngClass]="{ 'special-class': pselected }"
-        >Mon profile</span
-      >
+      <div class="sidebar-lateral-footer">
+        <div class="information-container">
+          <div class="avatar">
+            <img src="../../../assets/avatar.png" alt="avatar" />
+          </div>
+          <div class="information">
+            <span class="name">Ferhat Khelef</span>
+            <p class="email">fehatKhelefgmail.com</p>
+          </div>
+        </div>
+        <div class="logout">
+          <span class="material-icons" (click)="logout()"> logout </span>
+        </div>
+      </div>
     </div>
   </div>
 
   <div class="card-container scale-in">
+    <div
+      class="navbar-card-container"
+      [ngClass]="{
+        'navbar-card-container-hidden':
+          url === '/director/profile' ||
+          url === '/director/detail-dossier/detail-client' ||
+          url === '/director/detail-dossier/information' ||
+          url === '/director/detail-dossier/detail-credit' ||
+          url === '/director/detail-dossier/document'
+      }"
+    >
+      <div class="left">
+        <span>{{ getTitle() }}</span>
+      </div>
+      <div class="right">
+        <div class="avatar">
+          <img src="../../../assets/avatar.png" alt="avatar" />
+        </div>
+        <div class="information">
+          <span class="name">{{ userRole }}</span>
+          <p class="email">{{ userNin }}</p>
+        </div>
+        <div class="logout">
+          <span class="material-icons mt-2" (click)="logout()"> logout </span>
+        </div>
+      </div>
+    </div>
+
     <router-outlet></router-outlet>
   </div>
 </div>

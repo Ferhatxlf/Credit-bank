@@ -43,6 +43,8 @@ export class LoginComponent implements OnInit {
         const user = {
           token: rs.token,
           id: rs.client.id,
+
+          role: 'particulier',
         };
         console.log(user);
         localStorage.setItem('currentUser', JSON.stringify(user));
@@ -63,19 +65,23 @@ export class LoginComponent implements OnInit {
           token: rs.token,
           id: rs.compte.id,
           agence_id: rs.compte.agenceId,
-          nin: rs.compte.nin ,
-          role:rs.compte.role
+          nin: rs.compte.nin,
+          role: rs.compte.role,
         };
         console.log(user);
         localStorage.setItem('currentUser', JSON.stringify(user));
-        this.router.navigate(['/courtier']);
+        if (rs.compte.role === 'courtier') {
+          this.router.navigate(['/courtier']);
+        } else if (rs.compte.role === 'directeur') {
+          this.router.navigate(['/director']);
+        }
       },
       (error) => {
         console.error('Erreur de connexion:', error);
       }
     );
   }
-  
+
   onChangeConnexion() {
     if (this.client) {
       this.client = false;
