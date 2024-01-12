@@ -61,8 +61,7 @@ export class MesdossierComponent {
   }
 
   folderClicked(folder) {
-    localStorage.setItem('idDossier', folder.id);
-    this.router.navigate(['/courtier/detail-dossier']);
+    this.router.navigate(['/courtier/detail-dossier', folder.id]);
     console.log(folder);
   }
   updateSelectedFolders() {
