@@ -31,6 +31,7 @@ import {
   FormatInputNin,
   FormatInputPostal,
 } from './register/formatInput.directive';
+import { IslamiqueMotoComponent } from './components/islamique-moto/islamique-moto.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import {
     FormatInputName,
     FormConsomationComponent,
     IslamiqueVehiculeComponent,
+    IslamiqueMotoComponent,
     IslamiqueFormComponent,
   ],
   imports: [
