@@ -12,8 +12,8 @@
           <img src="../../assets/avatar.png" alt="avatar" />
         </div>
         <div class="information">
-          <span class="name">Touzi Mahrez</span>
-          <p class="email">mahreztouzi&#64;gmail.com</p>
+          <span class="name">{{ client?.nom }} {{ client?.prenom }}</span>
+          <p class="email">{{ client?.email }}</p>
         </div>
         <div class="logout" (click)="setToggleOption()">
           <span class="material-icons">
@@ -25,9 +25,9 @@
             class="toggle-option-arriere-plan"
             (click)="setToggleOption()"
           ></div>
-          <span>Mon espace</span>
+          <span [routerLink]="['/client']">Mon espace</span>
           <hr style="width: 80%; margin: 5px auto 5px; opacity: 0.1" />
-          <span>Déconnexion</span>
+          <span (click)="logout()">Déconnexion</span>
         </div>
       </div>
     </div>

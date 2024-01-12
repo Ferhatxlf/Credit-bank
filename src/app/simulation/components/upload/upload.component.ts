@@ -24,7 +24,10 @@ export class UploadComponent implements AfterViewInit {
     'Fichier de résidence',
   ];
   id: any;
-  constructor(private simulationService: SimulationServiceService,private router :Router) {}
+  constructor(
+    private simulationService: SimulationServiceService,
+    private router: Router
+  ) {}
   ngAfterViewInit() {
     console.log(this.fileInput); // Doit afficher l'élément d'entrée de fichier dans la console
   }
@@ -86,6 +89,7 @@ export class UploadComponent implements AfterViewInit {
     this.simulationService.addDocument(this.id, formData).subscribe(
       (rs) => {
         console.log('files uploads succesfuly');
+        this.router.navigate(['/client']);
       },
       (error) => {
         console.error('error uploding files', error);
