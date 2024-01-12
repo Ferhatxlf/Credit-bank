@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ROUTES } from '../../app.component';
+import { AuthServiceService } from '../../service/auth-service.service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,7 +14,7 @@ export class NavbarComponent implements OnInit {
   currentUser: any; // Variable to store user details
   userNin: string | null = null; // Variable to store the National Identification Number
   userRole: string | null = null;
-  constructor(location: Location) {
+  constructor(location: Location, private authService: AuthServiceService) {
     this.location = location;
   }
 
@@ -23,8 +24,8 @@ export class NavbarComponent implements OnInit {
     if (currentUserData) {
       this.currentUser = JSON.parse(currentUserData);
       // Access the 'nin' property from the currentUser object
-      this.userNin = this.currentUser.nin; 
-      this.userRole=this.currentUser.role
+      this.userNin = this.currentUser.nin;
+      this.userRole = this.currentUser.role;
     }
   }
 
@@ -40,5 +41,9 @@ export class NavbarComponent implements OnInit {
       }
     }
     return 'Dashboard';
+  }
+
+  logout() {
+    this.authService.logout();
   }
 }

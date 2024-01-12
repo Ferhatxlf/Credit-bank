@@ -131,7 +131,7 @@
           </div>
         </div>
         <div class="logout">
-          <span class="material-icons"> logout </span>
+          <span class="material-icons" (click)="logout()"> logout </span>
         </div>
       </div>
     </div>
@@ -142,11 +142,7 @@
       class="navbar-card-container"
       [ngClass]="{
         'navbar-card-container-hidden':
-          url === '/client/profile' ||
-          url === '/client/detail-dossier/information' ||
-          url === '/client/detail-dossier/detail-client' ||
-          url === '/client/detail-dossier/detail-credit' ||
-          url === '/client/detail-dossier/document'
+          url === '/client/profile' || url.includes('/client/detail-dossier/')
       }"
     >
       <div class="left">
@@ -161,7 +157,7 @@
           <p class="email">{{ client?.email }}</p>
         </div>
         <div class="logout">
-          <span class="material-icons mt-2"> logout </span>
+          <span class="material-icons mt-2" (click)="logout()"> logout </span>
         </div>
       </div>
     </div>

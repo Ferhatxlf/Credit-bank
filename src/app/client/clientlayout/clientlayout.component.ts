@@ -77,6 +77,12 @@ export class ClientlayoutComponent implements OnInit {
       icon: 'person',
       class: '',
     },
+    {
+      path: '/courtier/mes-dossier',
+      title: 'Mes dossiers',
+      icon: 'person',
+      class: '',
+    },
     { path: '/admin/profile', title: 'Mon Profile', icon: 'person', class: '' },
   ];
 
@@ -162,5 +168,9 @@ export class ClientlayoutComponent implements OnInit {
     this.dselected = false;
     this.pselected = true;
     this.isSidebarOpen = false;
+  }
+
+  logout() {
+    this.authService.logout();
   }
 }

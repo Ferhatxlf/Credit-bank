@@ -3,7 +3,7 @@
     >arrow_back_ios</span
   >
   <div class="header d-flex justify-content-center w-100">
-    <div class="title">Détail de dossier</div>
+    <h3 class="title">Détail de dossier</h3>
   </div>
 </div>
 
@@ -13,7 +13,6 @@
       (click)="goInfo()"
       [class]="info ? 'nv' : 'nav-items'"
       class="nav-items"
-      [routerLink]="['/client/detail-dossier/information']"
     >
       <span class="nav-items">Information</span>
     </div>
@@ -22,7 +21,6 @@
       (click)="goCredit()"
       [class]="credit ? 'nv' : 'nav-items'"
       class="nav-items"
-      [routerLink]="['/client/detail-dossier/detail-credit']"
     >
       <span class="nav-items">Détail du crédit</span>
     </div>
@@ -31,7 +29,6 @@
       (click)="goClient()"
       [class]="client ? 'nv' : 'nav-items'"
       class="nav-items"
-      [routerLink]="['/client/detail-dossier/detail-client']"
     >
       <span class="nav-items">Détail du client</span>
     </div>
@@ -40,12 +37,86 @@
       (click)="goDoc()"
       [class]="docs ? 'nv' : 'nav-items'"
       class="nav-items"
-      [routerLink]="['/client/detail-dossier/document']"
     >
       <span class="nav-items">Document</span>
     </div>
   </div>
   <div class="router-outlet-container">
     <router-outlet></router-outlet>
+    <div
+      style="
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      "
+    >
+      <button
+        class="btn"
+        style="
+          width: 200px;
+          margin: 0 auto;
+          font-size: small;
+          background-color: var(--var1);
+          font-weight: 600;
+          color: white;
+        "
+        *ngIf="!isSubmitted"
+        (click)="sendFolder()"
+      >
+        Envoyez mon dossier
+      </button>
+      <div
+        style="
+          width: 90%;
+
+          display: flex;
+          justify-content: center;
+          align-items: start;
+          color: rgb(68, 68, 211);
+        "
+        *ngIf="isSubmitted"
+      >
+        <span class="material-icons" style="font-size: 20px">gpp_maybe</span>
+        <p style="margin-left: 5px">
+          Votre dossier a été soumis avec succès, une réponse vous sera bientôt
+          envoyée par e-mail.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="modale-container" *ngIf="showModal">
+    <div class="modale-arriere-plan"></div>
+    <div class="modale">
+      <div class="header">
+        <h6>Confirmation de Soumission de Dossier</h6>
+        <span class="material-icons" (click)="toggleShowModale()">close</span>
+      </div>
+      <div class="body">
+        <span>
+          Nous vous informons que votre dossier a été soumis avec succès. Il
+          sera traité par notre chargé de crédit dans les plus brefs délais. Une
+          fois votre dossier examiné, une réponse vous sera envoyée par e-mail.
+          Nous vous remercions de votre confiance et restons à votre disposition
+          pour toute information complémentaire.
+        </span>
+      </div>
+      <div class="footer">
+        <button
+          class="btn"
+          style="
+            width: 200px;
+            margin: 0 auto;
+            font-size: small;
+            background-color: var(--var1);
+            font-weight: 600;
+            color: white;
+          "
+          (click)="toggleShowModale()"
+        >
+          Ok
+        </button>
+      </div>
+    </div>
   </div>
 </div>
