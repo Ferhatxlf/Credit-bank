@@ -20,6 +20,17 @@ export class AgenceRegionnaleComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private http: HttpClient) {}
 
+
+
+   // Function to extract filename from path
+   extractFileNameFromPath(filePath: string): string {
+    const pathParts: string[] = filePath.split('\\');
+    return pathParts[pathParts.length - 1];
+  }
+
+
+
+
   ngOnInit() {
     this.directionForm = this.formBuilder.group({
       nom: ['', Validators.required],
