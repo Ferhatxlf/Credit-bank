@@ -1,0 +1,17 @@
+
+@import url('https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css');
+
+/* Other global styles or imports can go here */
+
+.container {
+    padding: 20px;
+  }
+  
+  .container-fluid {
+    margin-top: 20px;
+    padding: 20px;
+  }
+  
+ 
+  /* Add other styles for customization */
+  

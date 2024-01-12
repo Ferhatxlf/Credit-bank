@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
+import { Router } from '@angular/router';
 export interface Agence {
   id: number;
   nom: string;
   adresse: string;
   communes: any[]; // Update 'any[]' with the actual type of your communes
   directionRegionale: { nom: string }; // Assuming directionRegionale has a 'nom' property
-  createdAt: string; // Update with the actual type of createdAt
-  updatedAt: string; // Update with the actual type of updatedAt
+  createdAt: Date;
+  updatedAt: Date;
   // Add other properties as needed
 }
 
@@ -22,7 +22,8 @@ export interface Agence {
 export class InformationComponent implements OnInit {
   agences: Agence[] = [];
 
-  constructor(private http: HttpClient) {}
+ 
+  constructor(private router: Router,private http: HttpClient) {}
 
   ngOnInit(): void {
     this.fetchAgences();
@@ -39,4 +40,10 @@ export class InformationComponent implements OnInit {
       }
     );
   }
+
+
+  onViewDetails(idAgence: number): void {
+    this.router.navigate(['admin/agenceInfo', idAgence]);
+  }
+  
 }
