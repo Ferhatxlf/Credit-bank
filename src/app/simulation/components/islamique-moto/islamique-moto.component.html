@@ -1,0 +1,16 @@
+<div class="header d-flex justify-content-center w-100 translate">
+  <h2 class="title">Choisissez un véhicule</h2>
+</div>
+<div class="row cards translate">
+  <div class="col-sm-6 col-md-4 col-lg-6" *ngFor="let moto of motos">
+    <div class="card" (click)="carPrice(moto.price)">
+      <img [src]="moto.url" />
+      <div class="card-info">
+        <p class="cars-name">{{ moto.name }}</p>
+        <p>{{ moto.price }} DZD</p>
+
+        <span class="material-icons">arrow_forward_ios</span>
+      </div>
+    </div>
+  </div>
+</div>
