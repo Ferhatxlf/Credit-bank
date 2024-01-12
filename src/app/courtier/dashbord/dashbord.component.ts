@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedDataService } from '../shared-data.service';
 import { CourtierServiceService } from '../../service/courtier-service.service';
+import { AuthServiceService } from '../../service/auth-service.service';
 
 @Component({
   selector: 'app-dashbord',
@@ -12,7 +13,10 @@ export class DashbordComponent implements OnInit {
   public Folders: any = [];
   public myFolders: any = [];
 
-  constructor(private courtierService: CourtierServiceService) {}
+  constructor(
+    private courtierService: CourtierServiceService,
+    private authService: AuthServiceService
+  ) {}
   ngOnInit(): void {
     const a = localStorage.getItem('currentUser');
     if (a) {
@@ -34,5 +38,8 @@ export class DashbordComponent implements OnInit {
       },
       (err) => console.log(err)
     );
+  }
+  logout() {
+    this.authService.logout();
   }
 }

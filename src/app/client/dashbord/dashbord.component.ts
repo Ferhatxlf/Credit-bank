@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ClientServiceService } from '../../service/client-service.service';
+import { AuthServiceService } from '../../service/auth-service.service';
 
 @Component({
   selector: 'app-dashbord',
@@ -9,7 +10,10 @@ import { ClientServiceService } from '../../service/client-service.service';
 export class DashbordComponent {
   currentUser: any;
   public Folders: any = [];
-  constructor(private clientService: ClientServiceService) {}
+  constructor(
+    private clientService: ClientServiceService,
+    private authService: AuthServiceService
+  ) {}
   ngOnInit(): void {
     const a = localStorage.getItem('currentUser');
     if (a) {
@@ -24,5 +28,9 @@ export class DashbordComponent {
         console.log(err);
       }
     );
+  }
+
+  logout() {
+    this.authService.logout();
   }
 }
