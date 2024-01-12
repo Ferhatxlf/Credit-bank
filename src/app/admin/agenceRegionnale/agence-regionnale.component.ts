@@ -28,13 +28,8 @@ export class AgenceRegionnaleComponent implements OnInit {
     return pathParts[pathParts.length - 1];
   }
 
-  // Test function to demonstrate the filename extraction
-  testFileNameExtraction() {
-    const filePath: string = 'C:\\data\\uploaded-files\\1\\beaaab1e-d315-4575-b1b2-2f6e92a032a9-New Text Document.txt';
-    console.log('filePath:', filePath);
-    const fileName: string = this.extractFileNameFromPath(filePath);
-    console.log('Extracted filename:', fileName);
-  }
+
+
 
   ngOnInit() {
     this.directionForm = this.formBuilder.group({
