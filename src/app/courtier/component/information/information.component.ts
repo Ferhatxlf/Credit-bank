@@ -3,6 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { SharedDataService } from '../../shared-data.service';
 import { SimulationServiceService } from '../../../service/simulation-service.service';
 import { ActivatedRoute } from '@angular/router';
+import { AuthServiceService } from '../../../service/auth-service.service';
 
 @Component({
   selector: 'app-information',
@@ -17,7 +18,8 @@ export class InformationComponent implements OnInit {
 
   constructor(
     private simulationService: SimulationServiceService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authService: AuthServiceService
   ) {}
 
   ngOnInit() {
@@ -31,5 +33,9 @@ export class InformationComponent implements OnInit {
       },
       (err) => console.log(err)
     );
+  }
+
+  status(value) {
+    return this.authService.status(value);
   }
 }
