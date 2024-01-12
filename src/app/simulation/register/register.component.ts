@@ -296,4 +296,10 @@ export class RegisterComponent implements OnInit, AfterViewInit {
       );
     }
   }
+
+
+  setLogin(): void {
+    // Navigate to "/auth/login"
+    this.router.navigate(['/auth/login']);
+  }
 }
