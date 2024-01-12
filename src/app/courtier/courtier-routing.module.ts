@@ -26,7 +26,7 @@ const routes: Routes = [
       { path: 'detail', component: DetailComponent },
       { path: 'profile', component: ProfileComponent },
       {
-        path: 'detail-dossier',
+        path: 'detail-dossier/:id',
         component: MonDossierComponent,
         children: [
           { path: '', redirectTo: 'information', pathMatch: 'full' },
