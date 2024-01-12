@@ -36,8 +36,12 @@ export class CourtierServiceService {
   }
 
   downloadFile(dossierId: number, fileName) {
-    return this.http.get(`${this.apiUrl}/dossiers/downloadFile/${dossierId}/${fileName}`);
+    return this.http.get(
+      `${this.apiUrl}/dossiers/downloadFile/${dossierId}/${fileName}`
+    );
   }
 
-  
+  getAllMyFolders(courtierId) {
+    return this.http.get(`${this.apiUrl}/dossiers/${courtierId}`);
+  }
 }
