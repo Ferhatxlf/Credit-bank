@@ -39,6 +39,9 @@ export class AgenceInfoComponent implements OnInit {
   idAgence: number = 0;
   dossiers: Dossier[] = [];
 
+
+
+
   constructor(private route: ActivatedRoute, private http: HttpClient) {}
 
   ngOnInit(): void {
@@ -61,5 +64,20 @@ export class AgenceInfoComponent implements OnInit {
         console.error('Error fetching dossiers:', error);
       }
     );
+  }
+
+  selectedDossier: Dossier | null = null;
+
+  // ... (existing code)
+
+  openModal(dossier: Dossier): void {
+    console.log("opening modal")
+      this.selectedDossier = dossier;
+  }
+
+  closeModal(): void {
+    this.selectedDossier = null;
+  }  stopPropagation(event: Event): void {
+    event.stopPropagation();
   }
 }
