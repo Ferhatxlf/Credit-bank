@@ -42,6 +42,8 @@ export class CourtierServiceService {
   }
 
   getAllMyFolders(courtierId) {
-    return this.http.get(`${this.apiUrl}/dossiers/${courtierId}`);
+    return this.http.get(
+      `${this.apiUrl}/dossiers/courtier/${courtierId}/alldossiers`
+    );
   }
 }
