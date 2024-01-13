@@ -1,12 +1,21 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { WebSocketService } from './websocket.service';
 @Injectable({
   providedIn: 'root',
 })
 export class CourtierServiceService {
   private apiUrl = 'http://localhost:8000';
-  constructor(public http: HttpClient) {}
+
+  constructor(private http: HttpClient, private webSocketService: WebSocketService) {
+  
+    this.webSocketService.onMessageReceived().subscribe((data) => {
+      console.log('Message received in component:', data);
+ 
+    });
+    
+  }
 
   getAllDossier(agence_id: number) {
     return this.http.get(
@@ -46,4 +55,7 @@ export class CourtierServiceService {
       `${this.apiUrl}/dossiers/courtier/${courtierId}/alldossiers`
     );
   }
+
+ ;
+  
 }

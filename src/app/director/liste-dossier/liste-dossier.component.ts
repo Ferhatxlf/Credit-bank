@@ -76,7 +76,9 @@ export class ListeDossierComponent implements OnInit {
   acceptFolder(folder) {
     this.directeurService.acceptFolder(folder.id).subscribe(
       (rs) => {
+        
         console.log(rs);
+     
       },
       (err) => {
         console.log(err);
@@ -84,15 +86,22 @@ export class ListeDossierComponent implements OnInit {
     );
   }
   rejectFolder(folder) {
-    this.directeurService.rejectFolder(folder.id).subscribe(
-      (rs) => {
+    console.log('Before emitting reject message');
+   // this.webSocketService.getSocket().emit('/receiveMessage', 'message khlifa');
+    console.log('Reject message emitted');
+    this.directeurService.rejectFolder(folder.id).toPromise()
+      .then((rs) => {
         console.log(rs);
-      },
-      (err) => {
+     
+      
+      })
+      .catch((err) => {
         console.log(err);
-      }
-    );
+      });
   }
+
+
+  
   renvoiFolder(folder) {
     this.directeurService.renvoiyeFolder(folder.id).subscribe(
       (rs) => {
