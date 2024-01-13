@@ -26,6 +26,13 @@ export class DocumentComponent implements OnInit {
   hasPaie: boolean = false;
   hasAutre: boolean = false;
 
+  openIdentite: boolean = false;
+  openResidance: boolean = false;
+  openFicheDePaieOne: boolean = false;
+  openFicheDePaieTwo: boolean = false;
+  openFicheDePaieThree: boolean = false;
+  openAutre: boolean = false;
+
   constructor(
     private simulationService: SimulationServiceService,
     private clientService: ClientServiceService
@@ -58,6 +65,30 @@ export class DocumentComponent implements OnInit {
       },
       (err) => console.log(err)
     );
+  }
+  toggleOpen(variable: string) {
+    switch (variable) {
+      case 'openIdentité':
+        this.openIdentite = !this.openIdentite;
+        break;
+      case 'openResidance':
+        this.openResidance = !this.openResidance;
+        break;
+      case 'openFicheDePaieOne':
+        this.openFicheDePaieOne = !this.openFicheDePaieOne;
+        break;
+      case 'openFicheDePaieTwo':
+        this.openFicheDePaieTwo = !this.openFicheDePaieTwo;
+        break;
+      case 'openFicheDePaieThree':
+        this.openFicheDePaieThree = !this.openFicheDePaieThree;
+        break;
+      case 'openAutre':
+        this.openAutre = !this.openAutre;
+        break;
+      default:
+        console.log('Variable non reconnue');
+    }
   }
 
   openFileInput(i) {

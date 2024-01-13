@@ -51,6 +51,7 @@
   align-items: center;
   border-radius: 5px;
   border: 1px solid #6666663d;
+  flex-wrap: wrap;
 }
 .detail-dossier-header:hover {
   cursor: pointer;
@@ -64,6 +65,8 @@
   align-items: center;
   color: rgba(114, 33, 130, 1);
   font-size: 15px;
+  flex: 1; /* Each item takes equal space */
+  box-sizing: border-box;
 }
 
 .icons-header {
@@ -189,5 +192,25 @@
     margin-top: -10px;
 
     height: 400px;
+  }
+}
+/* Media Queries for responsiveness */
+@media (max-width: 1000px) {
+  .nav-items {
+    flex-basis: calc(
+      33.333% - 20px
+    ); /* Three items per row with some spacing */
+  }
+}
+
+@media (max-width: 700px) {
+  .nav-items {
+    flex-basis: calc(50% - 20px); /* Two items per row with some spacing */
+  }
+}
+
+@media (max-width: 400px) {
+  .nav-items {
+    flex-basis: calc(100% - 20px); /* One item per row with some spacing */
   }
 }

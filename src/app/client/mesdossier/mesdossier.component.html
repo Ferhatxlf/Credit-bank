@@ -7,19 +7,14 @@
           <span class="material-icons icon-card">folder</span>
           <div class="card-left-info">
             <h6>{{ f.typeCredit.nomCredit }}</h6>
-            <p>{{ f.createdAt }}</p>
+            <p>Crée le {{ f.createdAt | date : "dd MMMM yyyy" : "fr" }}</p>
           </div>
         </div>
-        <!-- <div
-          class="card-right soumettre px-3"
+        <div
+          class="card-right en-attente px-3"
           *ngIf="f.assignedagence === null"
-          (click)="sendFolder(f.id)"
         >
-          <span class="material-icons">send</span>
-          <p>Envoyer</p>
-        </div> -->
-        <div class="card-right en-cours px-3" *ngIf="f.assignedagence === null">
-          <span class="material-icons">query_builder</span>
+          <span class="material-icons">notification_important</span>
           <p>Dossier en attente</p>
         </div>
         <div
