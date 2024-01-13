@@ -3,15 +3,18 @@
 </div>
 <div class="row cards translate">
   <div class="col">
-    <div class="card" (click)="consomationType('produit electronique')">
+    <div class="card" (click)="consomationType('produit electronique', 1)">
       <p>Produit électronique et électroménager</p>
       <span class="material-icons">arrow_forward_ios</span>
     </div>
-    <div class="card" (click)="consomationType('meubles et accessoires')">
+    <div class="card" (click)="consomationType('meubles et accessoires', 2)">
       <p>Meubles et accessoires de maison</p>
       <span class="material-icons">arrow_forward_ios</span>
     </div>
-    <div class="card" (click)="consomationType('véhicule a usage touristique')">
+    <div
+      class="card"
+      (click)="consomationType('véhicule a usage touristique', 3)"
+    >
       <p>Véhicule à usage touristique</p>
       <span class="material-icons">arrow_forward_ios</span>
     </div>

@@ -357,7 +357,7 @@ export class ResultComponent implements OnInit {
         client: {
           id: this.currentUser.id,
         },
-        typeCredit: { id: 5 },
+        typeCredit: { id: this.data.idCredit },
         montantHabitation: this.data.habitation,
         creditSouhaite: this.data.credit,
         revenueEmprunteur: this.data.revenue,
