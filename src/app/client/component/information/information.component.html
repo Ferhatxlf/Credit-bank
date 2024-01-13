@@ -53,7 +53,7 @@
         type="text"
         class="form-control"
         id="validationCustom03"
-        value="{{ folderValue?.createdAt }}"
+        value="{{ folderValue?.createdAt | date : 'dd/MM/yyyy' }}"
         disabled
       />
     </div>
