@@ -91,14 +91,42 @@ export class DocumentComponent implements OnInit {
     }
   }
 
+  // openFileInput(i) {
+  //   const event = new MouseEvent('click');
+  //   if (i === 0) this.fileInput.nativeElement.dispatchEvent(event);
+  //   if (i === 1) this.fileInput1.nativeElement.dispatchEvent(event);
+  //   if (i === 2) this.fileInput2.nativeElement.dispatchEvent(event);
+  //   if (i === 3) this.fileInput3.nativeElement.dispatchEvent(event);
+  // }
   openFileInput(i) {
     const event = new MouseEvent('click');
-    if (i === 0) this.fileInput.nativeElement.dispatchEvent(event);
-    if (i === 1) this.fileInput1.nativeElement.dispatchEvent(event);
-    if (i === 2) this.fileInput2.nativeElement.dispatchEvent(event);
-    if (i === 3) this.fileInput3.nativeElement.dispatchEvent(event);
-  }
+    let fileInput: ElementRef<HTMLInputElement> | undefined;
 
+    if (i === 0) fileInput = this.fileInput;
+    if (i === 1) fileInput = this.fileInput1;
+    if (i === 2) fileInput = this.fileInput2;
+    if (i === 3) fileInput = this.fileInput3;
+
+    if (fileInput) {
+      fileInput.nativeElement.onchange = () => {
+        if (
+          fileInput?.nativeElement.files &&
+          fileInput.nativeElement.files[0].type !== 'application/pdf'
+        ) {
+          alert('Veuillez télécharger uniquement des fichiers PDF.');
+          fileInput.nativeElement.value = '';
+          this.pieceIdentite = false;
+          this.residence = false;
+          this.paie = false;
+          this.autre = false;
+        }
+      };
+
+      fileInput.nativeElement.dispatchEvent(event);
+    } else {
+      console.log('fileInput is undefined');
+    }
+  }
   onFileSelected(event: any, customFileName: string) {
     console.log(customFileName);
     console.log(event.target);

@@ -87,7 +87,7 @@
         </div>
         <form (click)="toggleOpen('openResidance')" *ngIf="!hasResidence">
           <span class="material-icons edit"
-            >{{ openResidance ? "add" : "add_circle" }}
+            >{{ openResidance ? "remove" : "add" }}
           </span>
         </form>
       </div>
@@ -98,7 +98,7 @@
         class="add-document-input"
       >
         <input
-          #fileInput
+          #fileInput1
           class="file-input"
           type="file"
           name="file"
