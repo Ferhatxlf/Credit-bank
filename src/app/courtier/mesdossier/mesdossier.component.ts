@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { SharedDataService } from '../shared-data.service';
 import { CourtierServiceService } from '../../service/courtier-service.service.js';
 import { AuthServiceService } from '../../service/auth-service.service.js';
+import { GlobalFunctionsService } from '../../service/global-functions.service.js';
 @Component({
   selector: 'app-mesdossier',
   templateUrl: './mesdossier.component.html',
@@ -25,7 +26,8 @@ export class MesdossierComponent {
     private fb: FormBuilder,
     router: Router,
     private authService: AuthServiceService,
-    private courtierService: CourtierServiceService
+    private courtierService: CourtierServiceService,
+    private globalFunctions: GlobalFunctionsService
   ) {
     this.router = router;
   }
@@ -95,6 +97,6 @@ export class MesdossierComponent {
   }
 
   status(value) {
-    return this.authService.status(value);
+    return this.globalFunctions.status(value);
   }
 }

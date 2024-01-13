@@ -4,6 +4,7 @@ import { SharedDataService } from '../../shared-data.service';
 import { SimulationServiceService } from '../../../service/simulation-service.service';
 import { ActivatedRoute } from '@angular/router';
 import { AuthServiceService } from '../../../service/auth-service.service';
+import { GlobalFunctionsService } from '../../../service/global-functions.service';
 
 @Component({
   selector: 'app-information',
@@ -19,7 +20,7 @@ export class InformationComponent implements OnInit {
   constructor(
     private simulationService: SimulationServiceService,
     private route: ActivatedRoute,
-    private authService: AuthServiceService
+    private globalFunctions: GlobalFunctionsService
   ) {}
 
   ngOnInit() {
@@ -36,6 +37,6 @@ export class InformationComponent implements OnInit {
   }
 
   status(value) {
-    return this.authService.status(value);
+    return this.globalFunctions.status(value);
   }
 }
