@@ -95,6 +95,11 @@ table {
   border: 1px solid #5ca6b8;
   background-color: #d8e5f0;
 }
+.en-attente {
+  color: #141410;
+  border: 1px solid #141410;
+  background-color: #3b3b3b27;
+}
 .en-cours {
   color: #ccb011;
   border: 1px solid #ccb011;

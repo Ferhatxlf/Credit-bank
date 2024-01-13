@@ -15,11 +15,9 @@ export class DirectorServiceService {
  compteId!: number;
 
 
- constructor(    private http: HttpClient,  private webSocketService: WebSocketService
-  ) {
+ constructor(private http: HttpClient, private webSocketService: WebSocketService) {
   // Retrieve the user information from localStorage
   const currentUserString = localStorage.getItem('currentUser');
-
 
   // Check if currentUserString is not null
   if (currentUserString !== null) {
@@ -40,8 +38,6 @@ export class DirectorServiceService {
 }
 
 
-
-
   getAllDossierForDirector(agence_id: number) {
     return this.http.get(`${this.apiUrl}/dossiers/agence/${agence_id}`);
   }
@@ -57,30 +53,36 @@ export class DirectorServiceService {
     );
   } */
 
-  acceptFolder(id: number): Observable<any> {
+  
+
+ 
+  acceptFolder(f): Observable<any> {
+
     console.log('Attempting to accept folder...');
     const receiverId = '1'; // Assuming '1' is the receiver's ID
-    const message = 'Folder accepted';
+    const message = `dossiers id : ${f.id} accepter`;
 
     // Notify the WebSocket server that the folder was accepted
     console.log('Sending WebSocket message...');
-    this.webSocketService.sendMessage( this.compteId.toString(), receiverId, message);
-    return this.http.put(`${this.apiUrl}/dossiers/${id}/accept`, {})
-       
-   
-  
+    this.webSocketService.sendMessage( this.compteId.toString(), f.assignedCourtier.id.toString(), message);
+    return this.http.put(`${this.apiUrl}/dossiers/${f.id}/accept`, {
+      dossier: f,
+      idCompte: this.compteId,
+    });
   }
-  
-  rejectFolder(id: number): Observable<any> {
-
-
-    // Make the HTTP request
-    return this.http.put(`${this.apiUrl}/dossiers/${id}/refuse`, {});
+  rejectFolder(f) {
+    return this.http.put(`${this.apiUrl}/dossiers/${f.id}/refuse`, {
+      dossier: f,
+      idCompte: this.compteId,
+    });
   }
-  renvoiyeFolder(id: number) {
+
+  renvoiyeFolder(f) {
     return this.http.put(
-      `${this.apiUrl}/dossiers/${id}/RenvoyerDossier/${this.compteId}`,
-      null
+      `${this.apiUrl}/dossiers/${f.id}/RenvoyerDossier/${this.compteId}`,
+      {
+        dossier: f,
+      }
     );
   }
 }

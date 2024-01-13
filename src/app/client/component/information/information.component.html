@@ -8,7 +8,7 @@
         type="text"
         class="form-control"
         id="validationCustom03"
-        value="{{ folderValue?.assignedagence.adresse }}"
+        value="{{ folderValue?.assignedagence?.adresse }}"
         disabled
       />
     </div>
@@ -34,7 +34,19 @@
         disabled
       />
     </div>
-    <div class="title-container name">
+
+    <div class="title-container">
+      <label>Type de financement :</label>
+      <!-- <div>4 années</div> -->
+      <input
+        type="text"
+        class="form-control"
+        id="validationCustom03"
+        value="{{ folderValue?.typeCredit?.typeFinancement.nomFinancement }} "
+        disabled
+      />
+    </div>
+    <div class="title-container">
       <label>Type du crédit :</label>
       <!-- <div>consom</div> -->
       <input
@@ -53,18 +65,7 @@
         type="text"
         class="form-control"
         id="validationCustom03"
-        value="{{ folderValue?.createdAt }}"
-        disabled
-      />
-    </div>
-    <div class="title-container">
-      <label>Statut :</label>
-      <!-- <div>Dossier complet</div> -->
-      <input
-        type="text"
-        class="form-control"
-        id="validationCustom03"
-        value="{{ folderValue?.status }}"
+        value="{{ folderValue?.createdAt | date : 'dd/MM/yyyy' }}"
         disabled
       />
     </div>

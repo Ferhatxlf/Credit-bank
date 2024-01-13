@@ -12,8 +12,8 @@
           <img src="../../assets/avatar.png" alt="avatar" />
         </div>
         <div class="information">
-          <span class="name">Touzi Mahrez</span>
-          <p class="email">mahreztouzi&#64;gmail.com</p>
+          <span class="name">{{ client?.nom }} {{ client?.prenom }}</span>
+          <p class="email">{{ client?.email }}</p>
         </div>
         <div class="logout" (click)="setToggleOption()">
           <span class="material-icons">
@@ -25,9 +25,9 @@
             class="toggle-option-arriere-plan"
             (click)="setToggleOption()"
           ></div>
-          <span>Mon espace</span>
+          <span [routerLink]="['/client']">Mon espace</span>
           <hr style="width: 80%; margin: 5px auto 5px; opacity: 0.1" />
-          <span>Déconnexion</span>
+          <span (click)="logout()">Déconnexion</span>
         </div>
       </div>
     </div>
@@ -50,10 +50,12 @@
             url === "/simulation/register" ||
             url === "/simulation/confirmation" ||
             url === "/simulation/success" ||
+            url.includes("/simulation/formConsomation/") ||
             url === "/simulation/formConsomation" ||
             url === "/simulation/islamique-vehicule" ||
             url === "/simulation/islamique-moto" ||
-            url === "/simulation/islamique-form"
+            url === "/simulation/islamique-form" ||
+            url.includes("/simulation/form/")
               ? "check"
               : "arrow_forward_ios"
           }}</span>
@@ -64,6 +66,7 @@
                 url === '/simulation/type' ||
                 url === '/simulation/immobilier' ||
                 url === '/simulation/consomation' ||
+                url.includes('/simulation/formConsomation/') ||
                 url === '/simulation/form' ||
                 url === '/simulation/result' ||
                 url === '/simulation/notice' ||
@@ -75,7 +78,8 @@
                 url === '/simulation/islamique' ||
                 url === '/simulation/islamique-vehicule' ||
                 url === '/simulation/islamique-moto' ||
-                url === '/simulation/islamique-form'
+                url === '/simulation/islamique-form' ||
+                url.includes('/simulation/form/')
             }"
             >Type de financement</span
           >
@@ -90,7 +94,8 @@
               url === "/simulation/confirmation" ||
               url === "/simulation/success" ||
               url === "/simulation/formConsomation" ||
-              url === "/simulation/islamique-form"
+              url === "/simulation/islamique-form" ||
+              url.includes("/simulation/form/")
                 ? "check"
                 : "arrow_forward_ios"
             }}
@@ -109,10 +114,12 @@
                 url === '/simulation/upload' ||
                 url === '/simulation/success' ||
                 url === '/simulation/formConsomation' ||
+                url.includes('/simulation/formConsomation/') ||
                 url === '/simulation/islamique' ||
                 url === '/simulation/islamique-vehicule' ||
                 url === '/simulation/islamique-moto' ||
-                url === '/simulation/islamique-form'
+                url === '/simulation/islamique-form' ||
+                url.includes('/simulation/form/')
             }"
             >Projet à financer</span
           >
@@ -142,7 +149,9 @@
                 url === '/simulation/upload' ||
                 url === '/simulation/success' ||
                 url === '/simulation/formConsomation' ||
-                url === '/simulation/islamique-form'
+                url.includes('/simulation/formConsomation/') ||
+                url === '/simulation/islamique-form' ||
+                url.includes('/simulation/form/')
             }"
             >Simuler votre credit</span
           >
@@ -271,9 +280,11 @@
             url === '/simulation/upload' ||
             url === '/simulation/success' ||
             url === '/simulation/formConsomation' ||
+            url.includes('/simulation/formConsomation/') ||
             url === '/simulation/islamique-vehicule' ||
             url === '/simulation/islamique-moto' ||
-            url === '/simulation/islamique'
+            url === '/simulation/islamique' ||
+            url.includes('/simulation/form/')
         }"
       >
         Type de financement
@@ -293,10 +304,12 @@
             url === '/simulation/upload' ||
             url === '/simulation/success' ||
             url === '/simulation/formConsomation' ||
+            url.includes('/simulation/formConsomation/') ||
             url === '/simulation/islamique-vehicule' ||
             url === '/simulation/islamique-moto' ||
             url === '/simulation/islamique' ||
-            url === '/simulation/islamique-form'
+            url === '/simulation/islamique-form' ||
+            url.includes('/simulation/form/')
         }"
       >
         Projet à financer
@@ -314,7 +327,9 @@
             url === '/simulation/upload' ||
             url === '/simulation/success' ||
             url === '/simulation/formConsomation' ||
-            url === '/simulation/islamique-form'
+            url.includes('/simulation/formConsomation/') ||
+            url === '/simulation/islamique-form' ||
+            url.includes('/simulation/form/')
         }"
       >
         Simuler votre credit
@@ -389,7 +404,7 @@
             type="radio"
             name="input"
             id="input_0"
-            [checked]="url === '/simulation/success'"
+            [checked]="url === '/simulation/upload'"
             disabled
           />
           <div class="bar-view">
@@ -400,7 +415,7 @@
             type="radio"
             name="input"
             id="input_1"
-            [checked]="url === '/simulation/upload'"
+            [checked]="url === '/simulation/confirmation'"
             disabled
           />
           <div class="bar-view">
@@ -411,10 +426,7 @@
             type="radio"
             name="input"
             id="input_2"
-            [checked]="
-              url === '/simulation/register' ||
-              url === '/simulation/confirmation'
-            "
+            [checked]="url === '/simulation/register'"
             disabled
           />
           <div class="bar-view">
@@ -444,10 +456,12 @@
               url === '/simulation/consomation' ||
               url === '/simulation/form' ||
               url === '/simulation/formConsomation' ||
+              url.includes('/simulation/formConsomation/') ||
               url === '/simulation/islamique' ||
               url === '/simulation/islamique-form' ||
               url === '/simulation/islamique-vehicule' ||
-              url === '/simulation/islamique-moto'
+              url === '/simulation/islamique-moto' ||
+              url.includes('/simulation/form/')
             "
             disabled
           />
@@ -455,14 +469,14 @@
             <label class="bar-button" for="input_4"></label>
           </div>
         </div>
-        <div class="container-avatar container-avatar-hidden">
+        <div class="container-avatar container-avatar-hidden" *ngIf="isLoged">
           <div class="container-avatar-information">
             <div class="avatar">
               <img src="../../assets/avatar.png" alt="avatar" />
             </div>
             <div class="information">
-              <span class="name">Touzi Mahrez</span>
-              <p class="email">mahreztouzi&#64;gmail.com</p>
+              <span class="name">{{ client?.nom }} {{ client?.prenom }}</span>
+              <p class="email">{{ client?.email }}</p>
             </div>
             <div class="logout" (click)="setToggleOption()">
               <span class="material-icons">
@@ -474,9 +488,9 @@
                 class="toggle-option-arriere-plan"
                 (click)="setToggleOption()"
               ></div>
-              <span>Mon espace</span>
+              <span [routerLink]="['/client']">Mon espace</span>
               <hr style="width: 80%; margin: 5px auto 5px; opacity: 0.1" />
-              <span>Déconnexion</span>
+              <span (click)="logout()">Déconnexion</span>
             </div>
           </div>
         </div>

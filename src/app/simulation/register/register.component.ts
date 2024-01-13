@@ -35,6 +35,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   nationnalitee: boolean = true;
   pays: boolean = true;
   toggleRegisterLogin: boolean = true;
+  s: any;
 
   ngAfterViewInit() {
     // Mettez à jour defaultCivilite ici après la première vérification des changements
@@ -233,9 +234,16 @@ export class RegisterComponent implements OnInit, AfterViewInit {
 
       this.authService.register(formDataJson).subscribe(
         (rs) => {
-          const s = localStorage.getItem('formImmobilierData');
-          if (s) {
-            const simulationData = JSON.parse(s);
+          const type = localStorage.getItem('financementType');
+          if (type === 'immobilier') {
+            this.s = localStorage.getItem('formImmobilierData');
+          } else if (type === 'consomation') {
+            this.s = localStorage.getItem('formConsomationData');
+          } else if (type === 'islamique') {
+            this.s = localStorage.getItem('formislamiqueData');
+          }
+          if (this.s) {
+            const simulationData = JSON.parse(this.s);
             this.data = simulationData;
           }
           console.log(this.data);
@@ -246,7 +254,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
             client: {
               id: rs['id'],
             },
-            typeCredit: { id: 5 },
+            typeCredit: { id: this.data.idCredit },
             montantHabitation: this.data.habitation,
             creditSouhaite: this.data.credit,
             revenueEmprunteur: this.data.revenue,
@@ -289,17 +297,74 @@ export class RegisterComponent implements OnInit, AfterViewInit {
         password: this.applyFormSignIn.value.password,
       };
       console.log(formSignInData, 'data de connexion');
+
+      this.authService.login(formSignInData).subscribe(
+        (rs) => {
+          console.log(rs);
+          const user = {
+            token: rs.token,
+            id: rs.client.id,
+
+            role: 'particulier',
+          };
+          localStorage.setItem('currentUser', JSON.stringify(user));
+
+          const type = localStorage.getItem('financementType');
+          if (type === 'immobilier') {
+            this.s = localStorage.getItem('formImmobilierData');
+          } else if (type === 'consomation') {
+            this.s = localStorage.getItem('formConsomationData');
+          } else if (type === 'islamique') {
+            this.s = localStorage.getItem('formislamiqueData');
+          }
+          if (this.s) {
+            const simulationData = JSON.parse(this.s);
+            this.data = simulationData;
+          }
+          console.log(this.data);
+          console.log(rs);
+          const dossier = {
+            nomDossier: 'achat dune habitation',
+            client: {
+              id: user.id,
+            },
+            typeCredit: { id: this.data.idCredit },
+            montantHabitation: this.data.habitation,
+            creditSouhaite: this.data.credit,
+            revenueEmprunteur: this.data.revenue,
+            revenueCoEmprunteur: this.data.revenueCo,
+            montantAutreFinancementEnCours: this.data.autherFinancing,
+            montantRevenueImmobilier: this.data.revenuImobilier,
+            ageEmprunteur: this.data.age,
+            ageCoEmprunteur: this.data.ageCo,
+            dureeFinancement: this.data.durer,
+            montantAutreRevenue: 0,
+          };
+
+          const d = JSON.stringify(dossier);
+          console.log('-----------------d', d);
+
+          this.simulationService.addDossier(d).subscribe(
+            (rs) => {
+              console.log('dossier cree', rs);
+              localStorage.setItem('id_for_upload_docs', rs['id']);
+
+              this.router.navigate(['/client']);
+            },
+            (error) => {
+              console.error('Erreur de connexion:', error);
+            }
+          );
+        },
+        (error) => {
+          console.error('Erreur de connexion:', error);
+        }
+      );
     } else {
       this.submittedSignIn = true;
       console.log(
         'Le formulaire de connexion est invalide. Veuillez corriger les erreurs.'
       );
     }
-  }
-
-
-  setLogin(): void {
-    // Navigate to "/auth/login"
-    this.router.navigate(['/auth/login']);
   }
 }

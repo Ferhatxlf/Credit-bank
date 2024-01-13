@@ -14,13 +14,6 @@ export class AuthServiceService {
 
   // inscription ...
 
-  setRole(role: string) {
-    this.userRole = role;
-  }
-
-  getRole(): string {
-    return this.userRole;
-  }
   register(client: any) {
     const httpOptions = {
       headers: new HttpHeaders({

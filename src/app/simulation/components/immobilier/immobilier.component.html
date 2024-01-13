@@ -6,7 +6,8 @@
     class="col-sm-6 col-md-4 col-lg-4"
     (click)="
       immobilierType(
-        'Achat d\'un logement promotionnel achevé ou vendu sur plans (Bonifié)'
+        'Achat d\'un logement promotionnel achevé ou vendu sur plans (Bonifié)',
+        4
       )
     "
   >
@@ -20,7 +21,7 @@
   </div>
   <div
     class="col-sm-6 col-md-4 col-lg-4"
-    (click)="immobilierType('Construction d\'un logement rural (Bonifié)')"
+    (click)="immobilierType('Construction d\'un logement rural (Bonifié)', 5)"
   >
     <div class="card">
       <p>
@@ -32,7 +33,7 @@
   </div>
   <div
     class="col-sm-6 col-md-4 col-lg-4"
-    (click)="immobilierType('Achat d\'un logement LPP (Bonifié)')"
+    (click)="immobilierType('Achat d\'un logement LPP (Bonifié)', 6)"
   >
     <div class="card">
       <p>
@@ -43,7 +44,7 @@
     </div>
   </div>
   <div class="col-sm-6 col-md-4 col-lg-4">
-    <div class="card" (click)="immobilierType('achat logement partirculer')">
+    <div class="card" (click)="immobilierType('achat logement partirculer', 7)">
       <p>Achat d'un logement auprès d'un particulier</p>
       <span class="material-icons">arrow_forward_ios</span>
     </div>
@@ -51,7 +52,7 @@
 
   <div
     class="col-sm-6 col-md-4 col-lg-4"
-    (click)="immobilierType('achat logement promoteur')"
+    (click)="immobilierType('achat logement promoteur', 8)"
   >
     <div class="card">
       <p>Achat d'un logement auprès d'un promoteur</p>
@@ -61,7 +62,7 @@
 
   <div
     class="col-sm-6 col-md-4 col-lg-4"
-    (click)="immobilierType('achat logement vente sur plan')"
+    (click)="immobilierType('achat logement vente sur plan', 9)"
   >
     <div class="card">
       <p>Achat d'un logement formule "Vente Sur Plan"</p>
@@ -71,7 +72,7 @@
 
   <div
     class="col-sm-6 col-md-4 col-lg-4"
-    (click)="immobilierType('acquisition local commercial')"
+    (click)="immobilierType('acquisition local commercial', 10)"
   >
     <div class="card">
       <p>Acquisition d'un local commercial en "VSP"</p>
@@ -81,7 +82,7 @@
 
   <div
     class="col-sm-6 col-md-4 col-lg-4"
-    (click)="immobilierType('cooperative')"
+    (click)="immobilierType('cooperative', 11)"
   >
     <div class="card">
       <p>Coopérative immobilière</p>
@@ -91,7 +92,7 @@
 
   <div
     class="col-sm-6 col-md-4 col-lg-4"
-    (click)="immobilierType('aménagement')"
+    (click)="immobilierType('aménagement', 12)"
   >
     <div class="card">
       <p>Aménagement</p>
@@ -101,7 +102,7 @@
 
   <div
     class="col-sm-6 col-md-4 col-lg-4"
-    (click)="immobilierType(' Construction individuelle')"
+    (click)="immobilierType(' Construction individuelle', 13)"
   >
     <div class="card">
       <p>Construction d'une habitation individuelle</p>
@@ -111,7 +112,7 @@
 
   <div
     class="col-sm-6 col-md-4 col-lg-4"
-    (click)="immobilierType('zone rurale')"
+    (click)="immobilierType('zone rurale', 14)"
   >
     <div class="card">
       <p>Construction zone rurale</p>
@@ -121,7 +122,7 @@
 
   <div
     class="col-sm-6 col-md-4 col-lg-4"
-    (click)="immobilierType('extension logement partirculer')"
+    (click)="immobilierType('extension logement partirculer', 15)"
   >
     <div class="card">
       <p>Extension d'une habitation individuelle</p>

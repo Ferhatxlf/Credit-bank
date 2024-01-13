@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import html2pdf from 'html2pdf.js';
+import { SimulationServiceService } from '../../service/simulation-service.service';
 
 @Component({
   selector: 'app-result',
@@ -25,8 +27,23 @@ export class ResultComponent implements OnInit {
   financementTypeChoice: string = '';
   islamiqueotherCarAndVehicule: boolean = false;
   islamiqueMargeCredit: string = '';
-
+  currentUser: any;
+  isLoged: boolean = false;
+  data: any;
+  s: any;
+  constructor(
+    private router: Router,
+    private simulationService: SimulationServiceService
+  ) {}
   ngOnInit(): void {
+    const a = localStorage.getItem('currentUser');
+    if (a) {
+      this.currentUser = JSON.parse(a);
+    }
+
+    if (this.currentUser?.role === 'particulier') {
+      this.isLoged = true;
+    }
     const type = localStorage.getItem('financementType');
     const immobilierType = localStorage.getItem('immobilierType');
     const consomationType = localStorage.getItem('consomationType');
@@ -319,6 +336,54 @@ export class ResultComponent implements OnInit {
       return parseFloat(this.mensualite) <= revenue * 0.4;
     } else {
       return parseFloat(this.mensualite) <= revenue * 0.5;
+    }
+  }
+
+  createFolder() {
+    if (this.isLoged) {
+      const type = localStorage.getItem('financementType');
+      if (type === 'immobilier') {
+        this.s = localStorage.getItem('formImmobilierData');
+      } else if (type === 'consomation') {
+        this.s = localStorage.getItem('formConsomationData');
+      } else if (type === 'islamique') {
+        this.s = localStorage.getItem('formislamiqueData');
+      }
+      if (this.s) {
+        const simulationData = JSON.parse(this.s);
+        this.data = simulationData;
+      }
+      const dossier = {
+        client: {
+          id: this.currentUser.id,
+        },
+        typeCredit: { id: this.data.idCredit },
+        montantHabitation: this.data.habitation,
+        creditSouhaite: this.data.credit,
+        revenueEmprunteur: this.data.revenue,
+        revenueCoEmprunteur: this.data.revenueCo,
+        montantAutreFinancementEnCours: this.data.autherFinancing,
+        montantRevenueImmobilier: this.data.revenuImobilier,
+        ageEmprunteur: this.data.age,
+        ageCoEmprunteur: this.data.ageCo,
+        dureeFinancement: this.data.durer,
+        montantAutreRevenue: 0,
+      };
+
+      const d = JSON.stringify(dossier);
+
+      this.simulationService.addDossier(d).subscribe(
+        (rs) => {
+          console.log('dossier cree', rs);
+
+          this.router.navigate(['/client/dossier']);
+        },
+        (error) => {
+          console.error('Erreur de connexion:', error);
+        }
+      );
+    } else {
+      this.router.navigate(['/simulation/register']);
     }
   }
 }
