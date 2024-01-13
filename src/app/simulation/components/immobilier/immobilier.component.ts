@@ -9,9 +9,9 @@ import { Router } from '@angular/router';
 })
 export class ImmobilierComponent {
   constructor(private router: Router) {}
-  immobilierType(typeName): void {
+  immobilierType(typeName, id): void {
     // Enregistrez la variable dans localStorage
     localStorage.setItem('immobilierType', typeName);
-    this.router.navigate(['/simulation/form']);
+    this.router.navigate([`/simulation/form/${id}`]);
   }
 }

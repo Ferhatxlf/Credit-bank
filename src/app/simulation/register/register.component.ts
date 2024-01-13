@@ -254,7 +254,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
             client: {
               id: rs['id'],
             },
-            typeCredit: { id: 5 },
+            typeCredit: { id: this.data.idCredit },
             montantHabitation: this.data.habitation,
             creditSouhaite: this.data.credit,
             revenueEmprunteur: this.data.revenue,
@@ -328,7 +328,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
             client: {
               id: user.id,
             },
-            typeCredit: { id: 5 },
+            typeCredit: { id: this.data.idCredit },
             montantHabitation: this.data.habitation,
             creditSouhaite: this.data.credit,
             revenueEmprunteur: this.data.revenue,

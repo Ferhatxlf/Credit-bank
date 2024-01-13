@@ -27,7 +27,7 @@ const simulationRoutes: Routes = [
     component: SimulationComponent,
     children: [
       { path: '', redirectTo: 'type', pathMatch: 'full' },
-      { path: 'form', component: FormsComponent },
+      { path: 'form/:id', component: FormsComponent },
       { path: 'result', component: ResultComponent },
       { path: 'type', component: TypeComponent },
       { path: 'notice', component: NoticeForRegisterComponent },
@@ -39,7 +39,7 @@ const simulationRoutes: Routes = [
       { path: 'confirmation', component: ConfirmationEmailComponent },
       { path: 'success', component: SuccessComponent },
       { path: 'islamique', component: IslamiqueComponent },
-      { path: 'formConsomation', component: FormConsomationComponent },
+      { path: 'formConsomation/:id', component: FormConsomationComponent },
       { path: 'islamique-vehicule', component: IslamiqueVehiculeComponent },
       { path: 'islamique-moto', component: IslamiqueMotoComponent },
       { path: 'islamique-form', component: IslamiqueFormComponent },
