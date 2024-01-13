@@ -1,18 +1,25 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { WebSocketService } from './websocket.service';
+import { tap } from 'rxjs/operators';
+
+
 @Injectable({
   providedIn: 'root',
 })
 export class DirectorServiceService {
   private apiUrl = 'http://localhost:8000';
+  
  // Declare a variable to store the user ID
  compteId!: number;
 
 
- constructor(private http: HttpClient) {
+ constructor(    private http: HttpClient,  private webSocketService: WebSocketService
+  ) {
   // Retrieve the user information from localStorage
   const currentUserString = localStorage.getItem('currentUser');
+
 
   // Check if currentUserString is not null
   if (currentUserString !== null) {
@@ -51,12 +58,25 @@ export class DirectorServiceService {
   } */
 
   acceptFolder(id: number): Observable<any> {
-    return this.http.put(`${this.apiUrl}/dossiers/${id}/accept`, {});
-  }
-  rejectFolder(id: number) {
-    return this.http.put(`${this.apiUrl}/dossiers/${id}/refuse`,{});
-  }
+    console.log('Attempting to accept folder...');
+    const receiverId = '1'; // Assuming '1' is the receiver's ID
+    const message = 'Folder accepted';
 
+    // Notify the WebSocket server that the folder was accepted
+    console.log('Sending WebSocket message...');
+    this.webSocketService.sendMessage( this.compteId.toString(), receiverId, message);
+    return this.http.put(`${this.apiUrl}/dossiers/${id}/accept`, {})
+       
+   
+  
+  }
+  
+  rejectFolder(id: number): Observable<any> {
+
+
+    // Make the HTTP request
+    return this.http.put(`${this.apiUrl}/dossiers/${id}/refuse`, {});
+  }
   renvoiyeFolder(id: number) {
     return this.http.put(
       `${this.apiUrl}/dossiers/${id}/RenvoyerDossier/${this.compteId}`,

@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { SharedDataService } from '../shared-data.service';
 import { CourtierServiceService } from '../../service/courtier-service.service.js';
 import { DirectorServiceService } from '../../service/director-service.service.js';
+import { WebSocketService } from '../../service/websocket.service.js';
+
 
 @Component({
   selector: 'app-liste-dossier',
@@ -24,7 +26,9 @@ export class ListeDossierComponent implements OnInit {
     private fb: FormBuilder,
     router: Router,
     private sharedDataService: SharedDataService,
-    private directeurService: DirectorServiceService
+    private directeurService: DirectorServiceService,
+    private webSocketService: WebSocketService 
+  
   ) {
     this.router = router;
   }
@@ -73,7 +77,9 @@ export class ListeDossierComponent implements OnInit {
   acceptFolder(folder) {
     this.directeurService.acceptFolder(folder.id).subscribe(
       (rs) => {
+        
         console.log(rs);
+     
       },
       (err) => {
         console.log(err);
@@ -81,15 +87,22 @@ export class ListeDossierComponent implements OnInit {
     );
   }
   rejectFolder(folder) {
-    this.directeurService.rejectFolder(folder.id).subscribe(
-      (rs) => {
+    console.log('Before emitting reject message');
+   // this.webSocketService.getSocket().emit('/receiveMessage', 'message khlifa');
+    console.log('Reject message emitted');
+    this.directeurService.rejectFolder(folder.id).toPromise()
+      .then((rs) => {
         console.log(rs);
-      },
-      (err) => {
+     
+      
+      })
+      .catch((err) => {
         console.log(err);
-      }
-    );
+      });
   }
+
+
+  
   renvoiFolder(folder) {
     this.directeurService.renvoiyeFolder(folder.id).subscribe(
       (rs) => {
