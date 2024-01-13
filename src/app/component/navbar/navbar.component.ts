@@ -25,7 +25,9 @@ export class NavbarComponent implements OnInit {
       this.currentUser = JSON.parse(currentUserData);
       // Access the 'nin' property from the currentUser object
       this.userNin = this.currentUser.nin;
-      this.userRole = this.currentUser.role;
+      if (this.currentUser.role === 'courtier') {
+        this.userRole = 'Chargé de crédit';
+      }
     }
   }
 

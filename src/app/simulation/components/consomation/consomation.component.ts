@@ -8,9 +8,9 @@ import { Router } from '@angular/router';
 })
 export class ConsomationComponent {
   constructor(private router: Router) {}
-  consomationType(typeName): void {
+  consomationType(typeName, id): void {
     // Enregistrez la variable dans localStorage
     localStorage.setItem('consomationType', typeName);
-    this.router.navigate(['/simulation/formConsomation']);
+    this.router.navigate([`/simulation/formConsomation/${id}`]);
   }
 }

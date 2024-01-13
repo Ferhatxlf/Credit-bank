@@ -14,7 +14,7 @@
     <div class="sidebar-logo-container">
       <img src="../../assets/bankLogo.png" />
     </div>
-    <div class="add-credit" (click)="creditSelected()">
+    <div class="add-credit" [routerLink]="['/simulation/type']">
       <span class="material-icons sidebar-icons"> add_circle </span>
       <span class="sidebar-text">Nouveau crédit</span>
     </div>

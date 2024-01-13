@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { SharedDataService } from '../shared-data.service';
 import { CourtierServiceService } from '../../service/courtier-service.service.js';
 import { DirectorServiceService } from '../../service/director-service.service.js';
+import { AuthServiceService } from '../../service/auth-service.service.js';
+import { GlobalFunctionsService } from '../../service/global-functions.service.js';
 
 @Component({
   selector: 'app-liste-dossier',
@@ -23,8 +25,9 @@ export class ListeDossierComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     router: Router,
-    private sharedDataService: SharedDataService,
-    private directeurService: DirectorServiceService
+    private authService: AuthServiceService,
+    private directeurService: DirectorServiceService,
+    private globalFunctions: GlobalFunctionsService
   ) {
     this.router = router;
   }
@@ -99,5 +102,9 @@ export class ListeDossierComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+
+  status(value) {
+    return this.globalFunctions.status(value);
   }
 }

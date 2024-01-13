@@ -74,7 +74,7 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/courtier']);
         } else if (rs.compte.role === 'directeur') {
           this.router.navigate(['/director']);
-        }else if (rs.compte.role === 'admin') {
+        } else if (rs.compte.role === 'admin') {
           this.router.navigate(['/admin']);
         }
       },
@@ -94,3 +94,4 @@ export class LoginComponent implements OnInit {
     }
   }
 }
+//2eba41bc
