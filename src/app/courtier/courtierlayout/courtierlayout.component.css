@@ -41,7 +41,6 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
   width: 100%;
 }
 
@@ -51,13 +50,13 @@
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   font-weight: 100;
+  margin-left: 10px;
 }
 
 .right {
   display: flex;
   align-items: center;
-  justify-content: center;
-  align-items: center;
+  justify-content: end;
   width: 30%;
 }
 
@@ -74,17 +73,18 @@
   display: flex;
   flex-direction: column;
   cursor: pointer;
+  max-width: 70%;
 }
 .information .name {
-  margin: auto;
   font-size: 16px;
   font-weight: 600;
-  width: 90%;
+  width: 100%;
+  text-align: start !important;
 }
 .information .email {
-  margin: auto;
   font-size: 14px;
   opacity: 0.5;
+  width: 100%;
 }
 .right.logout {
   width: 10%;
@@ -93,6 +93,7 @@
   font-size: 40px !important;
   cursor: pointer;
   color: #333;
+  margin-right: 10px;
 }
 .logout span:hover {
   color: rgba(254, 182, 0, 1);
