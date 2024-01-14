@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { WebSocketService } from './websocket.service';
+import { BanquierService,Banquier } from './BanquierService';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,7 @@ export class AuthServiceService {
   private apiUrl = 'http://localhost:8000';
   private userRole: string = ''; // Stockez le rôle de l'utilisateur ici
 
-  constructor(public http: HttpClient, private router: Router,  private webSocketService: WebSocketService ) {}
+  constructor(public http: HttpClient, private router: Router,  private webSocketService: WebSocketService,  private banquierService: BanquierService ) {}
 
   // inscription ...
 
@@ -58,6 +59,7 @@ export class AuthServiceService {
   logout() {
     localStorage.removeItem('currentUser');
     localStorage.removeItem('idDossier');
+this.banquierService.clearBanquier();
     this.webSocketService.disconnect();
     this.router.navigate(['/home']);
   }

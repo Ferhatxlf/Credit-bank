@@ -1,64 +1,61 @@
+// WebSocketService.ts
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-
+import { debounce } from 'lodash';
 import io from 'socket.io-client';
+import { BanquierService, Banquier } from './BanquierService';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WebSocketService {
   private socket: any;
+  private receivedMessagesss: any[] = [];
+  private debounceConnectBasedOnRole = debounce((userId: string, role: string) => {
+    this.connectBasedOnRole(userId, role);
+  }, 1000);
 
-  private receivedMessages: any[] = [];
-  constructor() {
+  constructor(private banquierService: BanquierService) {
     this.initializeWebSocket();
   }
 
-  private initializeWebSocket(): void {
-    const currentUser = this.getCurrentUserFromLocalStorage();
-
-    if (currentUser) {
-      this.connectBasedOnRole(currentUser.id, currentUser.role);
+  initializeWebSocket(): void {
+    const storedUser = this.retrieveUserFromLocalStorage();
+    if (storedUser) {
+      this.connectBasedOnRole(storedUser.id, storedUser.role);
+    } else {
+      this.banquierService.getBanquier().subscribe((currentUser) => {
+        if (currentUser) {
+          this.saveUserToLocalStorage(currentUser);
+          this.connectBasedOnRole(currentUser.id, currentUser.role);
+        }
+      });
     }
 
     this.subscribeToUserChanges();
   }
 
-  private getCurrentUserFromLocalStorage(): any {
-    const userString = localStorage.getItem('currentUser');
-    return userString ? JSON.parse(userString) : null;
-  }
-
   private subscribeToUserChanges(): void {
-    window.addEventListener('storage', (event) => {
-      if (event.key === 'currentUser') {
-        const updatedUser = this.getCurrentUserFromLocalStorage();
-        if (updatedUser) {
-          this.connectBasedOnRole(updatedUser.id, updatedUser.role);
-        } else {
-          this.disconnect();
-        }
+    this.banquierService.getBanquier().subscribe((user) => {
+      if (user) {
+        this.saveUserToLocalStorage(user);
+        this.connectBasedOnRole(user.id, user.role);
       }
     });
   }
 
   private connectBasedOnRole(userId: string, role: string): void {
     if (this.socket && this.socket.connected) {
-      this.disconnect(); // Disconnect before connecting with the new user
+      this.disconnect();
     }
-
     this.socket = io('http://localhost:9000');
 
-    // Handle connection errors
     this.socket.on('connect_error', (error: any) => {
       console.error('WebSocket connection error:', error);
     });
 
-    // Handle disconnection
     this.socket.on('disconnect', () => {
       console.log('Socket disconnected');
-      // Perform any cleanup or additional actions as needed
     });
 
     if (role === 'directeur') {
@@ -66,14 +63,13 @@ export class WebSocketService {
     } else if (role === 'courtier') {
       this.courtierConnect(userId);
     }
-    // Add more conditions for other roles if needed
   }
 
- directorConnect(directorId: string): void {
+  directorConnect(directorId: string): void {
     this.socket.emit('directorConnected', directorId);
   }
 
-courtierConnect(courtierId: string): void {
+  courtierConnect(courtierId: string): void {
     this.socket.emit('courtierConnected', courtierId);
   }
 
@@ -86,17 +82,35 @@ courtierConnect(courtierId: string): void {
     return new Observable((observer) => {
       this.socket.on('messageReceived', (data: any) => {
         console.log('Received message:', data);
-        this.receivedMessages.push(data);
-        localStorage.setItem('receivedMessages', JSON.stringify(this.receivedMessages));
-        observer.next(this.receivedMessages);
-      });
-    });
+  
+        // Check if the receiverId matches the current user's id
+     
+          // Push the received data into the receivedMessages array
+          this.receivedMessagesss.push(data);
+  
+          // Save the updated receivedMessages array to local storage
+          localStorage.setItem('notification', JSON.stringify(data));
+  
+          // Notify observers with the received data
+          observer.next(data);
+        }
+
+   ) });
   }
   
-
+  
   disconnect(): void {
     if (this.socket && this.socket.connected) {
       this.socket.disconnect();
     }
+  }
+
+  private saveUserToLocalStorage(user: Banquier): void {
+    localStorage.setItem('currentUser', JSON.stringify(user));
+  }
+
+  private retrieveUserFromLocalStorage(): Banquier | null {
+    const storedUser = localStorage.getItem('currentUser');
+    return storedUser ? JSON.parse(storedUser) : null;
   }
 }
