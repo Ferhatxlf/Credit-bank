@@ -5,7 +5,7 @@ import {
   Validators,
   AbstractControl,
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ValidatorFn } from '@angular/forms';
 @Component({
   selector: 'app-islamique-form',
@@ -90,7 +90,11 @@ export class IslamiqueFormComponent implements OnInit {
     return Math.min(this.dureeMax1, this.dureeMax2);
   }
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
     this.applyForm = this.fb.group({
       bien: [''],
       revenue: ['', Validators.required],
@@ -205,6 +209,8 @@ export class IslamiqueFormComponent implements OnInit {
         durer: this.applyForm.value.durer,
         revenueCumule: revenueCumule,
         montantDuBien: this.otherCarAndMoto ? montantDuBien : this.prixVehicule,
+
+        idCredit: this.route.snapshot.paramMap.get('id'),
       };
 
       const formDataJson = JSON.stringify(formislamiqueData);
