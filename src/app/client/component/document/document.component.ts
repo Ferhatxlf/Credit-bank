@@ -49,7 +49,7 @@ export class DocumentComponent implements OnInit {
 
         console.log(res);
         this.hasIdentite = this.folderValue.attachedFiles.some(
-          (f) => f.fileName === "Pièce d'identité"
+          (f) => f.fileName === "Pièce d'identité.pdf"
         );
         this.hasResidence = this.folderValue.attachedFiles.some(
           (f) => f.fileName === 'Fichier de résidence.pdf'
@@ -235,11 +235,11 @@ export class DocumentComponent implements OnInit {
             );
             console.log(this.hasAutre);
           },
-          (err) => console.log(err)
+          (error) => console.log('erreur lors du chargement des fichier', error)
         );
         console.log('Fichiers téléchargés avec succès');
       },
-      (err) => console.log(err)
+      (err) => console.log('erreur lors de la supression', err)
     );
   }
 }
