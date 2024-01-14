@@ -21,7 +21,6 @@
       (click)="goCredit()"
       [class]="credit ? 'nv' : 'nav-items'"
       class="nav-items"
-      [routerLink]="['/director/detail-dossier/detail-credit']"
     >
       <span class="nav-items">Détail du crédit</span>
     </div>
@@ -30,7 +29,6 @@
       (click)="goClient()"
       [class]="client ? 'nv' : 'nav-items'"
       class="nav-items"
-      [routerLink]="['/director/detail-dossier/detail-client']"
     >
       <span class="nav-items">Détail du client</span>
     </div>
@@ -39,12 +37,49 @@
       (click)="goDoc()"
       [class]="docs ? 'nv' : 'nav-items'"
       class="nav-items"
-      [routerLink]="['/director/detail-dossier/document']"
     >
       <span class="nav-items">Document</span>
     </div>
   </div>
   <div class="router-outlet-container">
+    <div
+      class="commentaier-container"
+      [@openClose]="isOpen ? 'open' : 'closed'"
+      (click)="toggle()"
+    >
+      <span class="material-icons" *ngIf="!isOpen">mode_comment</span>
+      <div class="comment-display-container" *ngIf="isOpen">
+        <div class="comment">
+          <h4>Directeur</h4>
+          <p>
+            Lorem ipsum dolor sit amet consectetur, Lorem ipsum dolor sit amet
+            consectetur, Lorem ipsum dolor sit amet consectetur,
+          </p>
+        </div>
+        <div class="comment">
+          <h4>Directeur</h4>
+          <p>
+            Lorem ipsum dolor sit amet consectetur, Lorem ipsum dolor sit amet
+            consectetur, Lorem ipsum dolor sit amet consectetur,
+          </p>
+        </div>
+        <div class="comment">
+          <h4>Directeur</h4>
+          <p>
+            Lorem ipsum dolor sit amet consectetur, Lorem ipsum dolor sit amet
+            consectetur, Lorem ipsum dolor sit amet consectetur,
+          </p>
+        </div>
+        <div class="comment">
+          <h4>Directeur</h4>
+          <p>
+            Lorem ipsum dolor sit amet consectetur, Lorem ipsum dolor sit amet
+            consectetur, Lorem ipsum dolor sit amet consectetur,
+          </p>
+        </div>
+      </div>
+    </div>
+
     <router-outlet></router-outlet>
   </div>
 </div>
