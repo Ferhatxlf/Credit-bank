@@ -28,7 +28,9 @@
       <div
         class="container-text"
         [routerLink]="['/courtier/dossier']"
-        [ngClass]="{ 'special-class': url === '/courtier/dossier' }"
+        [ngClass]="{
+          'special-class': url === '/courtier/dossier'
+        }"
       >
         <div class="folder-container">
           <span class="material-icons sidebar-icons"> folder </span>
@@ -42,7 +44,9 @@
       <div
         class="container-text"
         [routerLink]="['/courtier/mes-dossier']"
-        [ngClass]="{ 'special-class': url === '/courtier/mes-dossier' }"
+        [ngClass]="{
+          'special-class': url === '/courtier/mes-dossier'
+        }"
       >
         <div class="folder-container">
           <span class="material-icons sidebar-icons"> folder </span>
