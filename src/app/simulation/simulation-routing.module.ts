@@ -42,7 +42,7 @@ const simulationRoutes: Routes = [
       { path: 'formConsomation/:id', component: FormConsomationComponent },
       { path: 'islamique-vehicule', component: IslamiqueVehiculeComponent },
       { path: 'islamique-moto', component: IslamiqueMotoComponent },
-      { path: 'islamique-form', component: IslamiqueFormComponent },
+      { path: 'islamique-form/:id', component: IslamiqueFormComponent },
     ],
   },
 ];
