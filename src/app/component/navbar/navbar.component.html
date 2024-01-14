@@ -2,6 +2,22 @@
   <div class="left">
     <span>{{ getTitle() }}</span>
   </div>
+   <div *ngIf="showDropdown" >
+    <p *ngFor="let notification of notifications" >
+      {{ notification.message }}
+    </p>
+    <p>list notification</p>
+    </div>
+  <div class="btn-group dropup">
+ 
+    <button type="button" class="btn btn-danger" (click)="toggleDropdown()">
+      <i class="material-icons">notifications</i>
+      <span class="badge badge-pill badge-primary">7</span>
+    </button>
+  
+  </div>
+  
+
   <div class="right">
     <div class="avatar">
       <img src="../../../assets/avatar.png" alt="avatar" />
@@ -15,14 +31,3 @@
     </div>
   </div>
 </div>
-
-<!-- <div class="right">
-  <div class="avatar">
-    <img src="../../../assets/avatar.png" alt="avatar" />
-  </div>
-  <div class="information">
-    <span class="name">{{ client?.nom }} {{ client?.prenom }}</span>
-    <p class="email">{{ client?.email }}</p>
-  </div>
-  <div class="logout"></div>
-</div> -->

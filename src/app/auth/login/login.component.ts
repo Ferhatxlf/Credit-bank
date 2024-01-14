@@ -74,9 +74,13 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('currentUser', JSON.stringify(user));
    
         if (rs.compte.role === 'courtier') {
+          this.webSocketService.courtierConnect(rs.compte.id)
           this.router.navigate(['/courtier']);
+          
         } else if (rs.compte.role === 'directeur') {
+          this.webSocketService.directorConnect(rs.compte.id)
           this.router.navigate(['/director']);
+        
         } else if (rs.compte.role === 'admin') {
           this.router.navigate(['/admin']);
         }
