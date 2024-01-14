@@ -19,6 +19,7 @@ import { IslamiqueComponent } from './components/islamique/islamique.component';
 import { FormConsomationComponent } from './components/form-consomation/form-consomation.component';
 import { IslamiqueVehiculeComponent } from './components/islamique-vehicule/islamique-vehicule.component';
 import { IslamiqueFormComponent } from './components/islamique-form/islamique-form.component';
+import { IslamiqueMotoComponent } from './components/islamique-moto/islamique-moto.component';
 
 const simulationRoutes: Routes = [
   {
@@ -26,7 +27,7 @@ const simulationRoutes: Routes = [
     component: SimulationComponent,
     children: [
       { path: '', redirectTo: 'type', pathMatch: 'full' },
-      { path: 'form', component: FormsComponent },
+      { path: 'form/:id', component: FormsComponent },
       { path: 'result', component: ResultComponent },
       { path: 'type', component: TypeComponent },
       { path: 'notice', component: NoticeForRegisterComponent },
@@ -38,8 +39,9 @@ const simulationRoutes: Routes = [
       { path: 'confirmation', component: ConfirmationEmailComponent },
       { path: 'success', component: SuccessComponent },
       { path: 'islamique', component: IslamiqueComponent },
-      { path: 'formConsomation', component: FormConsomationComponent },
+      { path: 'formConsomation/:id', component: FormConsomationComponent },
       { path: 'islamique-vehicule', component: IslamiqueVehiculeComponent },
+      { path: 'islamique-moto', component: IslamiqueMotoComponent },
       { path: 'islamique-form', component: IslamiqueFormComponent },
     ],
   },

@@ -31,7 +31,7 @@ export class DashbordComponent implements OnInit {
       (err) => console.log(err)
     );
 
-    this.courtierService.getDossierEncours(this.currentUser.id).subscribe(
+    this.courtierService.getAllMyFolders(this.currentUser.id).subscribe(
       (rs) => {
         this.myFolders = rs;
         console.log(this.Folders);

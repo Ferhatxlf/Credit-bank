@@ -14,17 +14,16 @@
     <div class="sidebar-logo-container">
       <img src="../../assets/bankLogo.png" />
     </div>
-    <div class="add-credit" (click)="creditSelected()">
+    <div class="add-credit" [routerLink]="['/simulation/type']">
       <span class="material-icons sidebar-icons"> add_circle </span>
       <span class="sidebar-text">Nouveau crédit</span>
     </div>
     <div class="sections">
-   
       <div
         class="container-text"
         [routerLink]="['/client/dashbord']"
         (click)="dashboardSelected()"
-        [ngClass]="{ 'special-class': selected }"
+        [ngClass]="{ ' special-class': url === '/client/dashbord' }"
       >
         <span class="material-icons sidebar-icons">dashboard</span>
         <span class="sidebar-text"> Dashboard</span>
@@ -34,7 +33,10 @@
         class="container-text"
         [routerLink]="['/client/dossier']"
         (click)="dossierSelected()"
-        [ngClass]="{ 'special-class': dselected }"
+        [ngClass]="{
+          ' special-class':
+            url === '/client/dossier' || url.includes('/client/detail-dossier/')
+        }"
       >
         <div class="folder-container">
           <span class="material-icons sidebar-icons"> folder </span>
@@ -48,7 +50,7 @@
         class="container-text"
         [routerLink]="['/client/profile']"
         (click)="profileSelected()"
-        [ngClass]="{ 'special-class': pselected }"
+        [ngClass]="{ ' special-class': url === '/client/profile' }"
       >
         <span class="material-icons sidebar-icons"> account_circle </span>
 

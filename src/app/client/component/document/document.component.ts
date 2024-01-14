@@ -26,6 +26,13 @@ export class DocumentComponent implements OnInit {
   hasPaie: boolean = false;
   hasAutre: boolean = false;
 
+  openIdentite: boolean = false;
+  openResidance: boolean = false;
+  openFicheDePaieOne: boolean = false;
+  openFicheDePaieTwo: boolean = false;
+  openFicheDePaieThree: boolean = false;
+  openAutre: boolean = false;
+
   constructor(
     private simulationService: SimulationServiceService,
     private clientService: ClientServiceService
@@ -42,7 +49,7 @@ export class DocumentComponent implements OnInit {
 
         console.log(res);
         this.hasIdentite = this.folderValue.attachedFiles.some(
-          (f) => f.fileName === "Pièce d'identité"
+          (f) => f.fileName === "Pièce d'identité.pdf"
         );
         this.hasResidence = this.folderValue.attachedFiles.some(
           (f) => f.fileName === 'Fichier de résidence.pdf'
@@ -59,15 +66,67 @@ export class DocumentComponent implements OnInit {
       (err) => console.log(err)
     );
   }
-
-  openFileInput(i) {
-    const event = new MouseEvent('click');
-    if (i === 0) this.fileInput.nativeElement.dispatchEvent(event);
-    if (i === 1) this.fileInput1.nativeElement.dispatchEvent(event);
-    if (i === 2) this.fileInput2.nativeElement.dispatchEvent(event);
-    if (i === 3) this.fileInput3.nativeElement.dispatchEvent(event);
+  toggleOpen(variable: string) {
+    switch (variable) {
+      case 'openIdentité':
+        this.openIdentite = !this.openIdentite;
+        break;
+      case 'openResidance':
+        this.openResidance = !this.openResidance;
+        break;
+      case 'openFicheDePaieOne':
+        this.openFicheDePaieOne = !this.openFicheDePaieOne;
+        break;
+      case 'openFicheDePaieTwo':
+        this.openFicheDePaieTwo = !this.openFicheDePaieTwo;
+        break;
+      case 'openFicheDePaieThree':
+        this.openFicheDePaieThree = !this.openFicheDePaieThree;
+        break;
+      case 'openAutre':
+        this.openAutre = !this.openAutre;
+        break;
+      default:
+        console.log('Variable non reconnue');
+    }
   }
 
+  // openFileInput(i) {
+  //   const event = new MouseEvent('click');
+  //   if (i === 0) this.fileInput.nativeElement.dispatchEvent(event);
+  //   if (i === 1) this.fileInput1.nativeElement.dispatchEvent(event);
+  //   if (i === 2) this.fileInput2.nativeElement.dispatchEvent(event);
+  //   if (i === 3) this.fileInput3.nativeElement.dispatchEvent(event);
+  // }
+  openFileInput(i) {
+    const event = new MouseEvent('click');
+    let fileInput: ElementRef<HTMLInputElement> | undefined;
+
+    if (i === 0) fileInput = this.fileInput;
+    if (i === 1) fileInput = this.fileInput1;
+    if (i === 2) fileInput = this.fileInput2;
+    if (i === 3) fileInput = this.fileInput3;
+
+    if (fileInput) {
+      fileInput.nativeElement.onchange = () => {
+        if (
+          fileInput?.nativeElement.files &&
+          fileInput.nativeElement.files[0].type !== 'application/pdf'
+        ) {
+          alert('Veuillez télécharger uniquement des fichiers PDF.');
+          fileInput.nativeElement.value = '';
+          this.pieceIdentite = false;
+          this.residence = false;
+          this.paie = false;
+          this.autre = false;
+        }
+      };
+
+      fileInput.nativeElement.dispatchEvent(event);
+    } else {
+      console.log('fileInput is undefined');
+    }
+  }
   onFileSelected(event: any, customFileName: string) {
     console.log(customFileName);
     console.log(event.target);
@@ -176,11 +235,11 @@ export class DocumentComponent implements OnInit {
             );
             console.log(this.hasAutre);
           },
-          (err) => console.log(err)
+          (error) => console.log('erreur lors du chargement des fichier', error)
         );
         console.log('Fichiers téléchargés avec succès');
       },
-      (err) => console.log(err)
+      (err) => console.log('erreur lors de la supression', err)
     );
   }
 }

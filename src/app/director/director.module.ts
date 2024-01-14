@@ -13,6 +13,13 @@ import { DetailCreditComponent } from './component/detail-credit/detail-credit.c
 import { DocumentComponent } from './component/document/document.component';
 import { InformationComponent } from './component/information/information.component';
 
+
+
+
+
+
+
+
 @NgModule({
   declarations: [
     DirectorlayoutComponent,
@@ -30,6 +37,8 @@ import { InformationComponent } from './component/information/information.compon
     DirectorRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+
   ],
+
 })
 export class DirectorModule {}

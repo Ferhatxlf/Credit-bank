@@ -8,7 +8,266 @@
   </div>
 
   <div class="document-container">
-    <div class="document mt-3" *ngIf="!hasIdentite">
+    <!-- pour l'identité -->
+    <div class="document-add-container mt-3">
+      <div class="document">
+        <div class="subtitle">
+          <span>Pièce d'identité </span>
+          <span
+            *ngIf="!hasIdentite"
+            style="font-size: small; opacity: 0.6; margin-left: 5px"
+            >(aucun fichier)</span
+          >
+          <span class="material-icons" *ngIf="hasIdentite">check</span>
+        </div>
+        <form (click)="toggleOpen('openIdentité')" *ngIf="!hasIdentite">
+          <span class="material-icons edit"
+            >{{ openIdentite ? "remove" : "add" }}
+          </span>
+        </form>
+      </div>
+
+      <form
+        *ngIf="openIdentite && !pieceIdentite"
+        (click)="openFileInput(0)"
+        class="add-document-input"
+      >
+        <input
+          #fileInput
+          class="file-input"
+          type="file"
+          name="file"
+          hidden
+          (change)="onFileSelected($event, 'Pièce d\'identité')"
+        />
+        <span class="material-icons edit">cloud_upload</span>
+        <p>Ajouter un fichier</p>
+      </form>
+      <div class="document-selected" *ngIf="pieceIdentite && !hasIdentite">
+        <div class="document-detail">
+          <img src="../../../../assets/pdfLogo.png" alt="pdflogo" />
+          <p>Pièce d'identité.pdf</p>
+        </div>
+        <button
+          (click)="sendFile('Pièce d\'identité')"
+          class="btn btn-secondary"
+          style="font-size: small"
+        >
+          Confirmer
+        </button>
+      </div>
+      <div class="document mt-3" *ngIf="hasIdentite">
+        <div class="document-detail">
+          <!-- <span class="material-icons">folder</span> -->
+          <img src="../../../../assets/pdfLogo.png" alt="pdflogo" />
+          <p>Pièce d'identité.pdf</p>
+        </div>
+
+        <div class="document-options">
+          <span class="material-icons edit">edit</span>
+          <span
+            class="material-icons edit"
+            (click)="deleteFile('Pièce d\'identité.pdf')"
+            >delete</span
+          >
+        </div>
+      </div>
+    </div>
+    <!-- pour la residance  -->
+    <div class="document-add-container mt-3">
+      <div class="document">
+        <div class="subtitle">
+          <span>Fichier de résidence</span>
+          <span
+            *ngIf="!hasResidence"
+            style="font-size: small; opacity: 0.6; margin-left: 5px"
+            >(aucun fichier)</span
+          >
+          <span class="material-icons" *ngIf="hasResidence">check</span>
+        </div>
+        <form (click)="toggleOpen('openResidance')" *ngIf="!hasResidence">
+          <span class="material-icons edit"
+            >{{ openResidance ? "remove" : "add" }}
+          </span>
+        </form>
+      </div>
+
+      <form
+        *ngIf="openResidance && !residence"
+        (click)="openFileInput(1)"
+        class="add-document-input"
+      >
+        <input
+          #fileInput1
+          class="file-input"
+          type="file"
+          name="file"
+          hidden
+          (change)="onFileSelected($event, 'Fichier de résidence')"
+        />
+        <span class="material-icons edit">cloud_upload</span>
+        <p>Ajouter un fichier</p>
+      </form>
+      <div class="document-selected" *ngIf="residence && !hasResidence">
+        <div class="document-detail">
+          <img src="../../../../assets/pdfLogo.png" alt="pdflogo" />
+          <p>Fichier de résidence.pdf</p>
+        </div>
+        <button
+          (click)="sendFile('Fichier de résidence')"
+          class="btn btn-secondary"
+          style="font-size: small"
+        >
+          Confirmer
+        </button>
+      </div>
+      <div class="document mt-3" *ngIf="hasResidence">
+        <div class="document-detail">
+          <img src="../../../../assets/pdfLogo.png" alt="pdflogo" />
+          <p>Fichier de résidence.pdf</p>
+        </div>
+
+        <div class="document-options">
+          <span class="material-icons edit">edit</span>
+          <span
+            class="material-icons edit"
+            (click)="deleteFile('Fichier de résidence.pdf')"
+            >delete</span
+          >
+        </div>
+      </div>
+    </div>
+    <!-- pour les fiches de paie -->
+    <div class="document-add-container mt-3">
+      <div class="document">
+        <div class="subtitle">
+          <span>Fiche de paie</span>
+          <span
+            *ngIf="!hasPaie"
+            style="font-size: small; opacity: 0.6; margin-left: 5px"
+            >(aucun fichier)</span
+          >
+          <span class="material-icons" *ngIf="hasPaie">check</span>
+        </div>
+        <form (click)="toggleOpen('openFicheDePaieOne')" *ngIf="!hasPaie">
+          <span class="material-icons edit"
+            >{{ openFicheDePaieOne ? "remove" : "add" }}
+          </span>
+        </form>
+      </div>
+
+      <form
+        *ngIf="openFicheDePaieOne && !paie"
+        (click)="openFileInput(2)"
+        class="add-document-input"
+      >
+        <input
+          #fileInput2
+          class="file-input"
+          type="file"
+          name="file2"
+          hidden
+          (change)="onFileSelected($event, 'Fiche de paie')"
+        />
+        <span class="material-icons edit">cloud_upload</span>
+        <p>Ajouter un fichier</p>
+      </form>
+      <div class="document-selected" *ngIf="paie && !hasPaie">
+        <div class="document-detail">
+          <img src="../../../../assets/pdfLogo.png" alt="pdflogo" />
+          <p>Fiche de paie.pdf</p>
+        </div>
+        <button
+          (click)="sendFile('Fiche de paie')"
+          class="btn btn-secondary"
+          style="font-size: small"
+        >
+          Confirmer
+        </button>
+      </div>
+      <div class="document mt-3" *ngIf="hasPaie">
+        <div class="document-detail">
+          <img src="../../../../assets/pdfLogo.png" alt="pdflogo" />
+          <p>Fiche de paie.pdf</p>
+        </div>
+
+        <div class="document-options">
+          <span class="material-icons edit">edit</span>
+          <span
+            class="material-icons edit"
+            (click)="deleteFile('Fiche de paie.pdf')"
+            >delete</span
+          >
+        </div>
+      </div>
+    </div>
+    <!-- autre fichier -->
+    <div class="document-add-container mt-3">
+      <div class="document">
+        <div class="subtitle">
+          <span>Autre justificatif de revenu</span>
+          <span
+            *ngIf="!hasAutre"
+            style="font-size: small; opacity: 0.6; margin-left: 5px"
+            >(aucun fichier)</span
+          >
+          <span class="material-icons" *ngIf="hasAutre">check</span>
+        </div>
+        <form (click)="toggleOpen('openAutre')" *ngIf="!hasAutre">
+          <span class="material-icons edit"
+            >{{ openAutre ? "remove" : "add" }}
+          </span>
+        </form>
+      </div>
+
+      <form
+        *ngIf="openAutre && !autre"
+        (click)="openFileInput(3)"
+        class="add-document-input"
+      >
+        <input
+          #fileInput3
+          class="file-input"
+          type="file"
+          name="file3"
+          hidden
+          (change)="onFileSelected($event, 'Autre justificatif de revenu')"
+        />
+        <span class="material-icons edit">cloud_upload</span>
+        <p>Ajouter un fichier</p>
+      </form>
+      <div class="document-selected" *ngIf="autre && !hasAutre">
+        <div class="document-detail">
+          <img src="../../../../assets/pdfLogo.png" alt="pdflogo" />
+          <p>Autre justificatif de revenu.pdf</p>
+        </div>
+        <button
+          (click)="sendFile('Autre justificatif de revenu')"
+          class="btn btn-secondary"
+          style="font-size: small"
+        >
+          Confirmer
+        </button>
+      </div>
+      <div class="document mt-3" *ngIf="hasAutre">
+        <div class="document-detail">
+          <img src="../../../../assets/pdfLogo.png" alt="pdflogo" />
+          <p>Autre justificatif de revenu.pdf</p>
+        </div>
+
+        <div class="document-options">
+          <span class="material-icons edit">edit</span>
+          <span
+            class="material-icons edit"
+            (click)="deleteFile('Autre justificatif de revenu.pdf')"
+            >delete</span
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- ancien code -->
+    <!-- <div class="document mt-3" *ngIf="!hasIdentite">
       <div class="subtitle">
         <span class="material-icons icon-red">cancel</span>
         <span>Pièce d'identité</span>
@@ -32,9 +291,8 @@
         (click)="sendFile('Pièce d\'identité')"
         >cloud_upload</span
       >
-    </div>
-
-    <div class="document mt-3" *ngIf="hasIdentite">
+    </div> -->
+    <!-- <div class="document mt-3" *ngIf="hasIdentite">
       <div class="subtitle">
         <span class="material-icons">check_circle</span>
         <span>Pièce d'identité</span>
@@ -158,6 +416,6 @@
         (click)="deleteFile('Autre justificatif de revenu.pdf')"
         >delete</span
       >
-    </div>
+    </div> -->
   </div>
 </div>

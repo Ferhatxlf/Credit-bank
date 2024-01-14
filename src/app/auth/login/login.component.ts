@@ -3,6 +3,7 @@ import { Location } from '@angular/common';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthServiceService } from '../../service/auth-service.service';
 import { Router } from '@angular/router';
+import { WebSocketService } from '../../service/websocket.service';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
     private location: Location,
     private fb: FormBuilder,
     private authService: AuthServiceService
+    ,private webSocketService: WebSocketService
   ) {}
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -70,11 +72,12 @@ export class LoginComponent implements OnInit {
         };
         console.log(user);
         localStorage.setItem('currentUser', JSON.stringify(user));
+   
         if (rs.compte.role === 'courtier') {
           this.router.navigate(['/courtier']);
         } else if (rs.compte.role === 'directeur') {
           this.router.navigate(['/director']);
-        }else if (rs.compte.role === 'admin') {
+        } else if (rs.compte.role === 'admin') {
           this.router.navigate(['/admin']);
         }
       },
@@ -94,3 +97,4 @@ export class LoginComponent implements OnInit {
     }
   }
 }
+//2eba41bc

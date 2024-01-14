@@ -5,7 +5,7 @@ import {
   Validators,
   AbstractControl,
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ValidatorFn } from '@angular/forms';
 
 @Component({
@@ -64,7 +64,11 @@ export class FormConsomationComponent implements OnInit {
     return Math.min(this.dureeMax1, this.dureeMax2);
   }
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
     this.applyForm = this.fb.group({
       consommation: [
         '',
@@ -210,6 +214,7 @@ export class FormConsomationComponent implements OnInit {
         ageCo: this.applyForm.value.ageCo,
         durer: this.applyForm.value.durer,
         revenueCumule: revenueCumule,
+        idCredit: this.route.snapshot.paramMap.get('id'),
       };
 
       const formDataJson = JSON.stringify(formConsomationData);
