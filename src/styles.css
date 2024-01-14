@@ -4,13 +4,27 @@
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
 body {
-  background-color: #f6f5f4;
+  /* background-color: #f6f5f4; */
+  background-color: #f0f0f0;
 }
 
 * {
   /* font-family: "Franklin Gothic small", "Arial Narrow", Arial, sans-serif; */
   font-family: basier_circle_regular, Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
+}
+*::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 0.5rem;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 0.5rem;
+  background-color: #0004;
+  visibility: hidden;
+}
+*:hover::-webkit-scrollbar-thumb {
+  visibility: visible;
 }
 input {
   transition: 0.3s ease !important;
