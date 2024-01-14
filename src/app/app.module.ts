@@ -7,7 +7,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { WebSocketService } from './service/websocket.service';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+import { LOCALE_ID } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+registerLocaleData(localeFr);
 
 @NgModule({
   declarations: [AppComponent, HomeComponent],
@@ -16,14 +21,10 @@ import { WebSocketService } from './service/websocket.service';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    
-
+    BrowserAnimationsModule,
   ],
 
   bootstrap: [AppComponent],
-  providers: [
-    WebSocketService, // Add this line
-    // ... other services or providers
-  ],
+  providers: [WebSocketService, { provide: LOCALE_ID, useValue: 'fr-FR' }],
 })
 export class AppModule {}

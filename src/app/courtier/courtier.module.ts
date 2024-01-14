@@ -18,9 +18,6 @@ import { DocumentComponent } from './component/document/document.component';
 import { ProfileComponent } from './profile/profile.component';
 import { NotificationComponent } from './notification/notification.component';
 
-
-
-
 @NgModule({
   declarations: [
     CourtierlayoutComponent,
@@ -43,8 +40,6 @@ import { NotificationComponent } from './notification/notification.component';
     ComponentModule,
     ReactiveFormsModule,
     FormsModule,
-
   ],
-
 })
 export class CourtierModule {}

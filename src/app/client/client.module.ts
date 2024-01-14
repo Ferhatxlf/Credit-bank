@@ -13,11 +13,6 @@ import { DetailCreditComponent } from './component/detail-credit/detail-credit.c
 import { DetailClientComponent } from './component/detail-client/detail-client.component';
 import { DocumentComponent } from './component/document/document.component';
 import { MonDossierComponent } from './mon-dossier/mon-dossier.component';
-import { registerLocaleData } from '@angular/common';
-import localeFr from '@angular/common/locales/fr';
-import { LOCALE_ID } from '@angular/core';
-
-registerLocaleData(localeFr);
 
 @NgModule({
   declarations: [
@@ -33,6 +28,5 @@ registerLocaleData(localeFr);
     MonDossierComponent,
   ],
   imports: [CommonModule, ClientRoutingModule, ComponentModule],
-  providers: [{ provide: LOCALE_ID, useValue: 'fr-FR' }],
 })
 export class ClientModule {}
