@@ -2,11 +2,43 @@ import { Component } from '@angular/core';
 import { SharedDataService } from '../shared-data.service';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+} from '@angular/animations';
 
 @Component({
   selector: 'app-mon-dossier',
   templateUrl: './mon-dossier.component.html',
   styleUrl: './mon-dossier.component.css',
+  animations: [
+    trigger('openClose', [
+      state(
+        'open',
+        style({
+          height: '350px',
+          width: '200px',
+          backgroundColor: 'white',
+          borderRadius: '10px',
+          justifyContent: 'start',
+          alignItem: 'start',
+          color: 'black',
+        })
+      ),
+      state(
+        'closed',
+        style({
+          height: '55px',
+          width: '55px',
+          backgroundColor: 'green',
+        })
+      ),
+      transition('open <=> closed', [animate('0.6s ease-out')]),
+    ]),
+  ],
 })
 export class MonDossierComponent {
   info: boolean = true;
@@ -30,6 +62,11 @@ export class MonDossierComponent {
 
   goBack(): void {
     this.location.back();
+  }
+  isOpen = false;
+
+  toggle() {
+    this.isOpen = !this.isOpen;
   }
 
   ngOnInit() {
