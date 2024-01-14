@@ -8,7 +8,7 @@
         type="text"
         class="form-control"
         id="validationCustom03"
-        value="{{ folderValue?.montantHabitation | number : '1.0-0' }} DZD"
+        value="{{ folderValue?.montantHabitation | currency : 'DZD' : '' }} "
         disabled
       />
     </div>
@@ -19,7 +19,7 @@
         type="text"
         class="form-control"
         id="validationCustom03"
-        value="{{ folderValue?.creditSouhaite | number : '1.0-0' }} DZD"
+        value="{{ folderValue?.creditSouhaite | currency : 'DZD' : '' }} "
         disabled
       />
     </div>
@@ -30,7 +30,7 @@
         type="text"
         class="form-control"
         id="validationCustom03"
-        value="{{ folderValue?.revenueEmprunteur | number : '1.0-0' }} DZD"
+        value="{{ folderValue?.revenueEmprunteur | currency : 'DZD' : '' }} "
         disabled
       />
     </div>
@@ -42,21 +42,27 @@
         type="text"
         class="form-control"
         id="validationCustom03"
-        value="{{ folderValue?.revenueCoEmprunteur | number : '1.0-0' }} DZD"
+        value="{{
+          folderValue?.revenueCoEmprunteur
+            ? (folderValue?.revenueCoEmprunteur | currency : 'DZD' : '')
+            : 'Aucun '
+        }} "
         disabled
       />
     </div>
 
     <div class="title-container">
-      <label>Patrimoine imobilier</label>
+      <label>Patrimoine immobilier</label>
       <!-- <div>0 DZD</div> -->
       <input
         type="text"
         class="form-control"
         id="validationCustom03"
         value="{{
-          folderValue?.montantRevenueImmobilier | number : '1.0-0'
-        }} DZD"
+          folderValue?.montantRevenueImmobilier
+            ? (folderValue?.montantRevenueImmobilier | currency : 'DZD' : '')
+            : 'Aucun patrimoine immobilier'
+        }} "
         disabled
       />
     </div>
@@ -78,7 +84,11 @@
         type="text"
         class="form-control"
         id="validationCustom03"
-        value="{{ folderValue?.montantAutreCredit | number : '1.0-0' }} DZD"
+        value="{{
+          folderValue?.montantAutreCredit
+            ? (folderValue.montantAutreCredit | currency : 'DZD' : '')
+            : 'Aucun autre crédit'
+        }}"
         disabled
       />
     </div>
