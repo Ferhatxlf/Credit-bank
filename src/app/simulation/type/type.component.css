@@ -54,7 +54,8 @@
   border: none;
   background-color: rgb(243, 250, 255);
   width: 70%;
-  box-shadow: 0 0 5px 1px rgba(126, 125, 125, 0.24);
+  box-shadow: 0 0 5px 1px rgba(126, 125, 125, 0.24),
+    inset 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 .islamique {
   display: flex;
@@ -73,7 +74,8 @@
   border: none;
   background-color: white !important;
   width: 70%;
-  box-shadow: 0 0 5px 1px rgba(126, 125, 125, 0.24);
+  box-shadow: 0 0 5px 1px rgba(126, 125, 125, 0.24),
+    inset 0px 0px 10px rgba(0, 0, 0, 0.1);
   transition: 0.3s ease !important  ;
 }
 .card:hover .material-icons {
@@ -81,12 +83,14 @@
 }
 
 .card:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 12px 1px rgba(138, 136, 136, 0.5);
+  transform: scale(1.06);
+  box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.2),
+    inset 0px 0px 15px rgba(0, 0, 0, 0.1);
 }
 .islamique:hover {
   transform: none !important;
-  box-shadow: 0 0 5px 1px rgba(126, 125, 125, 0.24) !important;
+  box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.2),
+    inset 0px 0px 15px rgba(0, 0, 0, 0.1) !important;
 }
 
 .card p:hover {

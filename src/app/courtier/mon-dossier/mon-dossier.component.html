@@ -42,6 +42,44 @@
     </div>
   </div>
   <div class="router-outlet-container">
+    <div
+      class="commentaier-container"
+      [@openClose]="isOpen ? 'open' : 'closed'"
+      (click)="toggle()"
+    >
+      <span class="material-icons" *ngIf="!isOpen">mode_comment</span>
+      <div class="comment-display-container" *ngIf="isOpen">
+        <div class="comment">
+          <h4>Directeur</h4>
+          <p>
+            Lorem ipsum dolor sit amet consectetur, Lorem ipsum dolor sit amet
+            consectetur, Lorem ipsum dolor sit amet consectetur,
+          </p>
+        </div>
+        <div class="comment">
+          <h4>Directeur</h4>
+          <p>
+            Lorem ipsum dolor sit amet consectetur, Lorem ipsum dolor sit amet
+            consectetur, Lorem ipsum dolor sit amet consectetur,
+          </p>
+        </div>
+        <div class="comment">
+          <h4>Directeur</h4>
+          <p>
+            Lorem ipsum dolor sit amet consectetur, Lorem ipsum dolor sit amet
+            consectetur, Lorem ipsum dolor sit amet consectetur,
+          </p>
+        </div>
+        <div class="comment">
+          <h4>Directeur</h4>
+          <p>
+            Lorem ipsum dolor sit amet consectetur, Lorem ipsum dolor sit amet
+            consectetur, Lorem ipsum dolor sit amet consectetur,
+          </p>
+        </div>
+      </div>
+    </div>
+
     <router-outlet></router-outlet>
   </div>
 </div>

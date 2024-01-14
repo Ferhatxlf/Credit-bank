@@ -62,46 +62,66 @@
         </form>
       </div>
 
-      <div class="accordion-item">
-        <div class="accordion-body">
-          <table class="table table-striped table-hover">
-            <tbody>
-              <tr>
-                <th>N°</th>
-                <th>Type du crédit</th>
-                <th>Emprunteur</th>
-                <th>Type du client</th>
+      <section class="table__body">
+        <table>
+          <thead>
+            <tr>
+              <th>N°</th>
+              <th>Type du crédit</th>
+              <th>Emprunteur</th>
+              <th>Type du client</th>
+              <th>Montant du prêt</th>
+              <th>Détail</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let folder of Folders; let i = index">
+              <td>
+                {{ folder.id }}
+              </td>
+              <td style="display: flex; align-items: end">
+                <span
+                  class="material-icons"
+                  style="color: orange; margin-right: 5px"
+                  >folder</span
+                >
+                {{ folder.typeCredit.nomCredit }}
+              </td>
+              <td>{{ folder.client.nom }} {{ folder.client.prenom }}</td>
 
-                <th>Montant du prêt</th>
+              <td>Particulier</td>
+              <td>
+                {{ folder.montantHabitation | currency : "DZD" : "" }} DZD
+              </td>
 
-                <th>Détail</th>
-                <th>Actions</th>
-              </tr>
+              <td>
+                <i class="material-icons icon" (click)="folderClicked(folder)"
+                  >remove_red_eye</i
+                >
+              </td>
+              <td>
 
-              <tr *ngFor="let folder of Folders; let i = index">
-                <td>{{ folder.id }}</td>
-                <td>{{ folder.typeCredit.nomCredit }}</td>
-                <td>{{ folder.client.nom }} {{ folder.client.prenom }}</td>
-                <td>PART</td>
+                <!-- <i class="material-icons icon" (click)="affectation(folder.id)"
+                  >add</i
+                > -->
+                <button
+                  class="btn"
+                  style="
+                    font-size: smaller;
+                    background-color: var(--var1);
+                    color: white;
+                  "
+                  (click)="affectation(folder.id)"
+                >
+                  Examiner
+                </button>
 
-                <td>{{ folder.montantHabitation | number : "1.0-0" }} DA</td>
-                <td>
-                  <i class="material-icons icon" (click)="folderClicked(folder)"
-                    >remove_red_eye</i
-                  >
-                </td>
-                <td>
-                  <i
-                    class="material-icons icon"
-                    (click)="affectation(folder.id)"
-                    >add_circle</i
-                  >
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
     </div>
   </div>
 </div>
