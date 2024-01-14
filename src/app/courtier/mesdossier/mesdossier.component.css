@@ -3,6 +3,12 @@
   margin: 0 auto;
   max-width: 1200px;
   overflow: auto;
+  width: 100%;
+}
+.container {
+  width: 100%;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 .container {
   padding-left: 0 !important;

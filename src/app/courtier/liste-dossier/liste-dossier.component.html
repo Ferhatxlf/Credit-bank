@@ -89,16 +89,19 @@
                 {{ folder.typeCredit.nomCredit }}
               </td>
               <td>{{ folder.client.nom }} {{ folder.client.prenom }}</td>
+
               <td>Particulier</td>
               <td>
                 {{ folder.montantHabitation | currency : "DZD" : "" }} DZD
               </td>
+
               <td>
                 <i class="material-icons icon" (click)="folderClicked(folder)"
                   >remove_red_eye</i
                 >
               </td>
               <td>
+
                 <!-- <i class="material-icons icon" (click)="affectation(folder.id)"
                   >add</i
                 > -->
@@ -113,6 +116,7 @@
                 >
                   Examiner
                 </button>
+
               </td>
             </tr>
           </tbody>

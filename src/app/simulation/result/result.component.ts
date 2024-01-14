@@ -31,6 +31,8 @@ export class ResultComponent implements OnInit {
   isLoged: boolean = false;
   data: any;
   s: any;
+  type!: number;
+  montant!: number;
   constructor(
     private router: Router,
     private simulationService: SimulationServiceService
@@ -341,24 +343,36 @@ export class ResultComponent implements OnInit {
 
   createFolder() {
     if (this.isLoged) {
-      const type = localStorage.getItem('financementType');
-      if (type === 'immobilier') {
+      const t = localStorage.getItem('financementType');
+      if (t === 'immobilier') {
         this.s = localStorage.getItem('formImmobilierData');
-      } else if (type === 'consomation') {
+        this.type = 1;
+      } else if (t === 'consomation') {
         this.s = localStorage.getItem('formConsomationData');
-      } else if (type === 'islamique') {
+        this.type = 2;
+        console.log('hhhhhhhhhhhhhhhhhhhhhhhh', this.type);
+      } else if (t === 'islamique') {
         this.s = localStorage.getItem('formislamiqueData');
+        this.type = 3;
       }
       if (this.s) {
         const simulationData = JSON.parse(this.s);
         this.data = simulationData;
+        if (this.type === 1) {
+          this.montant = this.data.habitation;
+        } else if (this.type === 2) {
+          this.montant = this.data.consommation;
+        } else if (this.type === 3) {
+          this.montant = this.data.montantDuBien;
+        }
       }
+      console.log(this.data);
       const dossier = {
         client: {
           id: this.currentUser.id,
         },
         typeCredit: { id: this.data.idCredit },
-        montantHabitation: this.data.habitation,
+        montantHabitation: this.montant,
         creditSouhaite: this.data.credit,
         revenueEmprunteur: this.data.revenue,
         revenueCoEmprunteur: this.data.revenueCo,
