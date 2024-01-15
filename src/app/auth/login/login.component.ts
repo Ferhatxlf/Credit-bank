@@ -70,6 +70,8 @@ export class LoginComponent implements OnInit {
     );
   }
 
+  
+
   banquierLogin() {
     this.authService.banquierLogin(this.banquierForm.value).subscribe(
       (rs) => {
