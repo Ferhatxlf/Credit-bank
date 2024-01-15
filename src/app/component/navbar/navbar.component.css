@@ -13,20 +13,6 @@
 /* Add styles for the link-styled class */
 /* Your existing CSS styles */
 
-/* Add styles for the link-styled class */
-.link-styled {
-  background: none;
-  border: none;
-  color: var(--secondary-color); /* Use your secondary color variable here */
-  cursor: pointer;
-  text-decoration: underline;
-  padding: 0;
-
-  font-size: 15px;
-   margin-right: 5px
-}
-
-
 .left span {
   color: #666565b0;
   font-size: 20px;

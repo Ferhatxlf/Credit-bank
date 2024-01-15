@@ -1,6 +1,4 @@
 <div class="navbar-card-container">
-
-
   <div class="left">
     <span>{{ getTitle() }}</span>
   </div>
@@ -64,15 +62,30 @@
         <span style="font-size: smaller; width: 80%; text-wrap: wrap">
           {{ message }}
         </span>
-    
       </div>
-  <!-- Your existing HTML code -->
-
-
-
+      <!-- Your existing HTML code -->
     </div>
     <!-- Add a styled button with the (click) event handler -->
-<button class="link-styled" (click)="clearNotifications()">effacer</button>
+    <div
+      style="
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      "
+    >
+      <span
+        style="
+          font-weight: 600;
+          font-size: small;
+          cursor: pointer;
+          color: rgb(80, 145, 243);
+        "
+        (click)="clearNotifications()"
+      >
+        Effacer tout
+      </span>
+    </div>
   </div>
 
   <div class="right">

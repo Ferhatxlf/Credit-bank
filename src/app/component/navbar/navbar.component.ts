@@ -15,7 +15,7 @@ export class NavbarComponent implements OnInit {
   currentUser: any; // Variable to store user details
   userNin: string | null = null; // Variable to store the National Identification Number
   userRole: string | null = null;
-  isNotified: boolean = true;
+  isNotified: boolean = false;
   containerNotificationShow: boolean = false;
   constructor(
     location: Location,
@@ -46,7 +46,6 @@ export class NavbarComponent implements OnInit {
         // Check if receiverId is defined and matches the current user's id
         if (message.receiverId && message.receiverId == this.currentUser.id) {
           this.notifications.push(message.message);
-          this.isNotified = true;
         }
       });
     }
@@ -61,6 +60,7 @@ export class NavbarComponent implements OnInit {
       if (message.receiverId === this.currentUser.id) {
         // Push the individual message into the notifications array
         this.notifications.push(message.message);
+        this.isNotified = true;
       }
     });
 
@@ -102,19 +102,17 @@ export class NavbarComponent implements OnInit {
     this.showDropdown = !this.showDropdown;
   }
 
-
   removeNotification(index: number): void {
     this.notifications.splice(index, 1);
   }
   clearNotifications(): void {
     // Clear notifications in local storage
     localStorage.removeItem('receivedMessages');
-  
+
     // Clear notifications in the component property
     this.notifications = [];
-  
+
     // Set isNotified to false
     this.isNotified = false;
   }
-  
 }
