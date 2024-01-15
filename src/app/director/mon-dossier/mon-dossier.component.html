@@ -81,5 +81,86 @@
     </div>
 
     <router-outlet></router-outlet>
+
+    <div
+      class="btn_cont"
+      style="
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        bottom: 20px;
+      "
+      (click)="toggleShowModale()"
+    >
+      <button
+        class="btn btn2"
+        style="font-size: small; background-color: var(--var1); color: white"
+        *ngIf="!isTraite"
+      >
+        Soumettre
+      </button>
+    </div>
+    <div
+      style="
+        width: 90%;
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        bottom: 20px;
+        color: rgb(68, 68, 211);
+      "
+      *ngIf="isTraite"
+    >
+      <span class="material-icons" style="font-size: 20px">gpp_maybe</span>
+      <p style="margin-left: 5px">Ce dossier est envoyé au directeur !</p>
+    </div>
+  </div>
+  <div class="modale-container" *ngIf="showModal">
+    <div class="modale-arriere-plan"></div>
+    <div class="modale">
+      <div class="header">
+        <h6>Ajouter un commentaire</h6>
+        <span class="material-icons" (click)="toggleShowModale()">close</span>
+      </div>
+      <div class="body">
+        <select
+          class="form-select"
+          [(ngModel)]="action"
+          aria-label="Accepter la demande"
+        >
+          <option selected value="Accepter">Accepter la demande</option>
+          <option value="Rejeter">Rejeter la demande</option>
+          <option value="Renvoyer">Renvoyer pour plus d'information</option>
+        </select>
+
+        <div class="form-floating" style="width: 100%; height: 90%">
+          <textarea
+            class="form-control"
+            placeholder="Leave a comment here"
+            id="floatingTextarea2"
+            style="height: 100px; box-shadow: none"
+            [(ngModel)]="comment"
+          ></textarea>
+          <label for="floatingTextarea2">Commentaire</label>
+        </div>
+      </div>
+      <div class="footer">
+        <button
+          class="btn"
+          style="
+            width: 200px;
+            margin: 0 auto;
+            font-size: small;
+            background-color: var(--var1);
+            font-weight: 600;
+            color: white;
+          "
+          (click)="folderActions()"
+        >
+          Soumettre
+        </button>
+      </div>
+    </div>
   </div>
 </div>
