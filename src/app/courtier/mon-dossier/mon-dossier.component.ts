@@ -57,6 +57,7 @@ export class MonDossierComponent {
   idDossier: any;
   isOpen: boolean = false;
   showModal: boolean = false;
+  comment: any;
   constructor(
     private location: Location,
     private sharedDataService: SharedDataService,

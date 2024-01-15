@@ -74,11 +74,9 @@ export class ListeDossierComponent implements OnInit {
   }
 
   acceptFolder(folder) {
-    this.directeurService.acceptFolder(folder).subscribe(
+    this.directeurService.acceptFolder(folder, '').subscribe(
       (rs) => {
-        
         console.log(rs);
-     
       },
       (err) => {
         console.log(err);
@@ -86,22 +84,19 @@ export class ListeDossierComponent implements OnInit {
     );
   }
   rejectFolder(folder) {
-
-    this.directeurService.rejectFolder(folder.id).toPromise()
+    this.directeurService
+      .rejectFolder(folder.id, '')
+      .toPromise()
       .then((rs) => {
         console.log(rs);
-     
-      
       })
       .catch((err) => {
         console.log(err);
       });
   }
 
-
-  
   renvoiFolder(folder) {
-    this.directeurService.renvoiyeFolder(folder.id).subscribe(
+    this.directeurService.renvoiyeFolder(folder.id, '').subscribe(
       (rs) => {
         console.log(rs);
       },
