@@ -84,6 +84,76 @@
   color: rgb(2, 2, 2);
 }
 
+/* navbar.css */
+.navbar-card-container {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.left span {
+  color: #666565b0;
+  font-size: 20px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-weight: 100;
+  margin-left: 10px;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  width: auto;
+}
+
+.right .avatar {
+  display: flex;
+  justify-content: end;
+}
+.avatar img {
+  width: 60px;
+  margin-right: 0;
+  cursor: pointer;
+}
+.right .information {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  max-width: 70%;
+}
+.information .name {
+  font-size: 16px;
+  font-weight: 600;
+  width: 100%;
+  text-align: start !important;
+}
+.information .email {
+  font-size: 14px;
+  opacity: 0.5;
+  width: 100%;
+}
+.right.logout {
+  width: 10%;
+}
+.logout span {
+  font-size: 40px !important;
+  cursor: pointer;
+  color: #333;
+  margin-right: 10px;
+}
+.logout span:hover {
+  color: rgba(254, 182, 0, 1);
+}
+.navbar-card-container-hidden {
+  display: none !important;
+}
+
+/* fin navbar card container */
+
 @media screen and (max-width: 800px) {
   .card {
     margin-top: 10px;
