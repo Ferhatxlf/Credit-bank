@@ -48,7 +48,7 @@ export class WebSocketService {
     if (this.socket && this.socket.connected) {
       this.disconnect();
     }
-    this.socket = io('http://localhost:9000');
+    this.socket = io('https://illustrious-lovely-fedora.glitch.me');
 
     this.socket.on('connect_error', (error: any) => {
       console.error('WebSocket connection error:', error);
