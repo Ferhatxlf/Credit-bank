@@ -42,7 +42,7 @@ export class NavbarComponent implements OnInit {
       const storedMessages = JSON.parse(storedMessagesString);
       storedMessages.forEach((message: any) => {
         console.log(message.receiverId + 'id reciver');
-        console.log(this.currentUser.id + 'jjj');
+        console.log(this.currentUser.id + 'curent user');
         // Check if receiverId is defined and matches the current user's id
         if (message.receiverId && message.receiverId == this.currentUser.id) {
           this.notifications.push(message.message);
@@ -102,11 +102,19 @@ export class NavbarComponent implements OnInit {
     this.showDropdown = !this.showDropdown;
   }
 
-  clearNotifications(): void {
-    this.notifications = [];
-  }
 
   removeNotification(index: number): void {
     this.notifications.splice(index, 1);
   }
+  clearNotifications(): void {
+    // Clear notifications in local storage
+    localStorage.removeItem('receivedMessages');
+  
+    // Clear notifications in the component property
+    this.notifications = [];
+  
+    // Set isNotified to false
+    this.isNotified = false;
+  }
+  
 }
