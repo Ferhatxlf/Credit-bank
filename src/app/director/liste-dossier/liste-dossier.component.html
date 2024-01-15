@@ -1,5 +1,4 @@
-<div class="container-fluid">
-  <!--  <app-navbar></app-navbar> -->
+<!-- <div class="container-fluid">
 
   <div class="container translate">
     <div class="accordion mt-5 accordion-flush" id="accordionFlushExample">
@@ -144,6 +143,150 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="container-fluid">
+  <div class="container translate">
+    <div class="accordion mt-5 accordion-flush" id="accordionFlushExample">
+      <div class="forms">
+        <form [formGroup]="searchForm" (ngSubmit)="search()">
+          <div class="input-container">
+            <div class="form-group" style="margin-left: 8px">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="N° du projet"
+                formControlName="numero_dossier"
+              />
+            </div>
+            <div class="form-group" style="margin-left: 8px">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Nom du projet"
+                formControlName="nom_projet"
+              />
+            </div>
+            <div class="form-group" style="margin-left: 8px">
+              <select
+                class="form-select"
+                aria-label="Statut"
+                formControlName="statut"
+              >
+                <option selected value="NON_TRAITEE">Non traité</option>
+                <option value="TRAITEMENT_ENCOURS">Traitement en cours</option>
+                <option value="TRAITEE">Traité</option>
+                <option value="ACCEPTE">Accepté</option>
+                <option value="REFUSE">Rejeté</option>
+              </select>
+            </div>
+
+            <div
+              class="button-container"
+              style="margin-left: 8px"
+              *ngIf="!searchActivate"
+            >
+              <input
+                type="submit"
+                class="btn-control material-icons"
+                value="search"
+              />
+            </div>
+            <div
+              class="button-container"
+              style="margin-left: 8px"
+              *ngIf="searchActivate"
+            >
+              <input
+                type="submit"
+                class="btn-control material-icons"
+                value="close"
+              />
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <section class="table__body">
+        <table>
+          <thead class="z-2">
+            <tr>
+              <th>N°</th>
+              <th>Type du crédit</th>
+              <th>Emprunteur</th>
+              <th>Type du client</th>
+
+              <th>Montant du prêt</th>
+
+              <th>Statut</th>
+              <th>Détail</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let folder of Folders; let i = index">
+              <td>{{ folder.id }}</td>
+              <td>{{ folder.typeCredit.nomCredit }}</td>
+              <td>{{ folder.client.nom }} {{ folder.client.prenom }}</td>
+              <td>Particulier</td>
+
+              <td>
+                {{ folder.montantHabitation | currency : "DZD" : "" }} DZD
+              </td>
+              <td>{{ status(folder.status) }}</td>
+              <td>
+                <i class="material-icons icon" (click)="folderClicked(folder)"
+                  >remove_red_eye</i
+                >
+              </td>
+
+              <td>
+                <div class="btn-group z-1">
+                  <button
+                    type="button"
+                    class="btn btn-info dropdown-toggle"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    action
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li>
+                      <button
+                        class="dropdown-item"
+                        type="button"
+                        (click)="acceptFolder(folder)"
+                      >
+                        Accepter
+                      </button>
+                    </li>
+                    <li>
+                      <button
+                        class="dropdown-item"
+                        type="button"
+                        (click)="rejectFolder(folder)"
+                      >
+                        Rejeter
+                      </button>
+                    </li>
+                    <li>
+                      <button
+                        class="dropdown-item"
+                        type="button"
+                        (click)="renvoiFolder(folder)"
+                      >
+                        Renvoyer
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
     </div>
   </div>
 </div>

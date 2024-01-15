@@ -44,8 +44,16 @@
   padding: 5px;
   overflow-y: scroll;
 }
-*::-webkit-scrollbar {
-  width: 0px; /* Mostly for vertical scrollbars */
+.comment-display-container::-webkit-scrollbar {
+  width: 0.3rem; /* Mostly for vertical scrollbars */
+}
+.comment-display-container::-webkit-scrollbar-thumb {
+  border-radius: 0.5rem;
+  background-color: #0004;
+  visibility: hidden;
+}
+.comment-display-container::-webkit-scrollbar-thumb {
+  visibility: visible;
 }
 
 .comment {
@@ -67,6 +75,62 @@
   text-align: start;
 }
 /* fin commentaire container */
+/* pour la modale  */
+.modale-container {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modale-arriere-plan {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background-color: #e9e6e657;
+  backdrop-filter: blur(2px);
+}
+.modale {
+  width: 450px;
+  height: auto;
+  background-color: white;
+  z-index: 10;
+  box-shadow: 0 0 10px 3px #66656538;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.modale .header {
+  padding: 7px 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: 1px solid #6665651c;
+  background-color: rgb(250, 249, 249);
+}
+.modale .header .material-icons {
+  cursor: pointer;
+}
+
+.modale .body {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 5px 10px;
+}
+.modale .body span {
+  font-size: 14px;
+  text-align: justify;
+  margin-top: 5px;
+}
+.modale .footer {
+  padding: 5px 10px;
+}
+/* fin modale */
 
 .material-icons {
   margin-left: 8px;
@@ -266,6 +330,12 @@
 @media (max-width: 700px) {
   .nav-items {
     flex-basis: calc(50% - 20px); /* Two items per row with some spacing */
+  }
+}
+@media screen and (max-width: 500px) {
+  .btn_cont {
+    left: 10px !important;
+    justify-content: start !important;
   }
 }
 

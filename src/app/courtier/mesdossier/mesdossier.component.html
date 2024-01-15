@@ -66,7 +66,6 @@
         <table>
           <thead>
             <tr>
-              <th></th>
               <th>N°</th>
               <th>Type du crédit</th>
               <th>Emprunteur</th>
@@ -80,16 +79,22 @@
           </thead>
           <tbody>
             <tr *ngFor="let folder of Folders; let i = index">
-              <td>
+              <!-- <td>
                 <input
                   type="checkbox"
                   [(ngModel)]="folder.isSelected"
                   (change)="updateSelectedFolders()"
                   *ngIf="folder.status === 'TRAITEMENT_ENCOURS'"
                 />
-              </td>
+              </td> -->
               <td>{{ folder.id }}</td>
-              <td>{{ folder.typeCredit.nomCredit }}</td>
+              <td style="display: flex; align-items: end">
+                <span
+                  class="material-icons"
+                  style="color: orange; margin-right: 5px"
+                  >folder</span
+                >{{ folder.typeCredit.nomCredit }}
+              </td>
               <td>{{ folder.client.nom }} {{ folder.client.prenom }}</td>
               <td>Particulier</td>
 
@@ -107,7 +112,7 @@
         </table>
       </section>
     </div>
-    <div
+    <!-- <div
       class="btn_cont"
       *ngIf="selectedFolders.length != 0"
       (click)="soumettreDossier()"
@@ -119,6 +124,6 @@
       >
         Soumettre au directeur de l'agence
       </button>
-    </div>
+    </div> -->
   </div>
 </div>

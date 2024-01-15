@@ -82,22 +82,27 @@ nav {
 /* **fin nav */
 
 .card-container {
-  transition: 0.6s ease;
+  /* transition: 0.6s ease; */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 
   width: 75%; /* Ajustement de la largeur pour une meilleure adaptation */
 
   height: 90%;
   background-color: rgba(255, 255, 255, 0.884);
-  box-shadow: 0 0 15px 1px rgba(43, 41, 41, 0.479);
-  /* box-shadow: 0 0 15px 1px rgba(245, 54, 54, 0.808); */
-  /* box-shadow: 0 0 15px 1px rgb(24, 218, 18); */
+  /* box-shadow: 0 0 15px 1px rgba(43, 41, 41, 0.479); */
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1),
+    inset 0px 0px 10px rgba(0, 0, 0, 0.2);
 
   overflow: hidden; /* Ajout de overflow: hidden pour gérer le débordement des enfants */
   border-top-left-radius: 35px;
   border-bottom-right-radius: 35px;
+  border-top-right-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
 }
 .card-container:hover {
   transform: scale(1.03);
+  box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.2),
+    inset 0px 0px 15px rgba(0, 0, 0, 0.3);
 }
 .card-container-no-transform {
   transform: scale(1.03) !important;

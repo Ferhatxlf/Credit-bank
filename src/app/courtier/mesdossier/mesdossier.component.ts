@@ -61,7 +61,7 @@ export class MesdossierComponent {
     this.selectedFolders = this.Folders.filter(
       (folder) => folder.isSelected
     ).map((folder) => folder.id);
-    console.log(this.selectedFolders);
+    console.log('selecteur folderr', this.selectedFolders);
   }
 
   search() {
