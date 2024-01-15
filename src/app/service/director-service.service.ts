@@ -56,7 +56,8 @@ export class DirectorServiceService {
   acceptFolder(f, comment): Observable<any> {
     console.log('Attempting to accept folder...');
     const receiverId = '1'; // Assuming '1' is the receiver's ID
-    const message = `dossiers id : ${f.id} accepter`;
+    const message = `dossier  N : ${f.id} accepter`;
+ 
     console.log(f + 'folder');
 
     // Notify the WebSocket server that the folder was accepted
@@ -71,14 +72,28 @@ export class DirectorServiceService {
       comment
     );
   }
-  rejectFolder(f, comment) {
+  rejectFolder(f, comment): Observable<any> {
+    const message = `dossier  N : ${f.id} refuser`;
+    console.log('Sending WebSocket message...');
+    this.webSocketService.sendMessage(
+      this.compteId.toString(),
+      f.assignedCourtier.id.toString(),
+      message
+    );
     return this.http.put(
       `${this.apiUrl}/dossiers/${f.id}/refuse/${this.compteId}`,
       comment
     );
   }
 
-  renvoiyeFolder(f, comment) {
+  renvoiyeFolder(f, comment): Observable<any> {
+    const message = `dossier  N : ${f.id} renvoyer`;
+    console.log('Sending WebSocket message...');
+    this.webSocketService.sendMessage(
+      this.compteId.toString(),
+      f.assignedCourtier.id.toString(),
+      message
+    );
     return this.http.put(
       `${this.apiUrl}/dossiers/${f.id}/RenvoyerDossier/${this.compteId}`,
       comment

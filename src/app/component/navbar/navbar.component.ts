@@ -15,6 +15,8 @@ export class NavbarComponent implements OnInit {
   currentUser: any; // Variable to store user details
   userNin: string | null = null; // Variable to store the National Identification Number
   userRole: string | null = null;
+  isNotified: boolean = false;
+  containerNotificationShow: boolean = false;
   constructor(
     location: Location,
     private authService: AuthServiceService,
@@ -23,32 +25,31 @@ export class NavbarComponent implements OnInit {
     this.location = location;
   }
   notifications: any[] = [];
+  toggleIsNotfied() {
+    this.isNotified = false;
+    this.containerNotificationShow = !this.containerNotificationShow;
+  }
 
   ngOnInit(): void {
     const storedMessagesString = localStorage.getItem('receivedMessages');
     const currentUserData = localStorage.getItem('currentUser');
 
-
     if (storedMessagesString) {
-
       if (currentUserData) {
         this.currentUser = JSON.parse(currentUserData);
       }
-  
+
       const storedMessages = JSON.parse(storedMessagesString);
       storedMessages.forEach((message: any) => {
-        console.log(message.receiverId+"id reciver")
-        console.log(this.currentUser.id+"jjj")
+        console.log(message.receiverId + 'id reciver');
+        console.log(this.currentUser.id + 'curent user');
         // Check if receiverId is defined and matches the current user's id
         if (message.receiverId && message.receiverId == this.currentUser.id) {
           this.notifications.push(message.message);
-    
         }
       });
-      
     }
 
-  
     this.webSocketService.onMessageReceived().subscribe((message) => {
       console.log('Received message:', message);
       if (currentUserData) {
@@ -56,15 +57,15 @@ export class NavbarComponent implements OnInit {
       }
 
       // Check if the receiverId matches the current user's id
-      if (message.receiverId ===  this.currentUser.id) {
+      if (message.receiverId === this.currentUser.id) {
         // Push the individual message into the notifications array
         this.notifications.push(message.message);
+        this.isNotified = true;
       }
     });
-  
 
     this.listTitles = ROUTES.filter((listTitle: any) => listTitle);
-  
+
     if (currentUserData) {
       this.currentUser = JSON.parse(currentUserData);
       // Access the 'nin' property from the currentUser object
@@ -101,11 +102,17 @@ export class NavbarComponent implements OnInit {
     this.showDropdown = !this.showDropdown;
   }
 
-  clearNotifications(): void {
-    this.notifications = [];
-  }
-
   removeNotification(index: number): void {
     this.notifications.splice(index, 1);
+  }
+  clearNotifications(): void {
+    // Clear notifications in local storage
+    localStorage.removeItem('receivedMessages');
+
+    // Clear notifications in the component property
+    this.notifications = [];
+
+    // Set isNotified to false
+    this.isNotified = false;
   }
 }

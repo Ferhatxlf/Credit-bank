@@ -1,31 +1,111 @@
 <div class="navbar-card-container">
-  <div *ngFor="let message of notifications; let i = index" class="alert alert-info" role="alert">
-    <button type="button" class="close" aria-label="Close" (click)="removeNotification(i)">
-      <span aria-hidden="true">&times;</span>
-    </button>
-    {{ message }}
-  </div>
-
   <div class="left">
     <span>{{ getTitle() }}</span>
-   
   </div>
 
-<!-- Example single danger button -->
-<div class="btn-group">
-  <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-    Action
-  </button>
-  <ul class="dropdown-menu">
-    <li><a class="dropdown-item" href="#">Action</a></li>
-    <li><a class="dropdown-item" href="#">Another action</a></li>
-    <li><a class="dropdown-item" href="#">Something else here</a></li>
-    <li><hr class="dropdown-divider"></li>
-    <li><a class="dropdown-item" href="#">Separated link</a></li>
-  </ul>
-</div>
+  <!-- Example single danger button -->
+  <div
+    class="arriere-plan-notificiation"
+    style="
+      width: 100vw;
+      height: 100vh;
+      position: absolute;
+      top: 0 !important;
+      left: 0 !important;
+      z-index: 999;
+    "
+    *ngIf="containerNotificationShow"
+    (click)="containerNotificationShow = false"
+  ></div>
+  <div
+    class="notifications"
+    style="
+      position: absolute;
+      top: 55px;
+      right: 200px;
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      align-items: start;
+      width: 200px;
+      height: 280px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 10px 10px 5px rgba(0, 0, 0, 0.137);
+      z-index: 1000;
+    "
+    *ngIf="containerNotificationShow"
+  >
+    <div class="notification-header" style="padding: 10px">
+      <p style="font-size: small; font-weight: 600">Notifications</p>
+    </div>
+    <div class="notification-body" style="width: 100%; height: 100%">
+      <div
+        *ngFor="let message of notifications; let i = index"
+        class="notification"
+        style="
+          display: flex;
+          width: 100%;
+          padding: 5px;
+          justify-content: start;
+          align-items: start;
+          background-color: white;
+          box-shadow: 0 5px 8px 1px #6666661c;
+        "
+        (click)="removeNotification(i)"
+      >
+        <span
+          class="material-icons"
+          style="font-size: 15px; margin-right: 5px; color: rgb(80, 145, 243)"
+          >notifications</span
+        >
+        <span style="font-size: smaller; width: 80%; text-wrap: wrap">
+          {{ message }}
+        </span>
+      </div>
+      <!-- Your existing HTML code -->
+    </div>
+    <!-- Add a styled button with the (click) event handler -->
+    <div
+      style="
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      "
+    >
+      <span
+        style="
+          font-weight: 600;
+          font-size: small;
+          cursor: pointer;
+          color: rgb(80, 145, 243);
+        "
+        (click)="clearNotifications()"
+      >
+        Effacer tout
+      </span>
+    </div>
+  </div>
 
   <div class="right">
+    <div class="notification-container" (click)="toggleIsNotfied()">
+      <span class="material-icons">notifications</span>
+      <p
+        style="
+          position: absolute;
+          font-size: 20px;
+          color: red;
+          top: 13px;
+          right: 11px;
+          height: 8px;
+          width: 8px;
+          border-radius: 50%;
+          background-color: red;
+        "
+        *ngIf="isNotified"
+      ></p>
+    </div>
     <div class="avatar">
       <img src="../../../assets/avatar.png" alt="avatar" />
     </div>
