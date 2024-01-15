@@ -49,32 +49,13 @@
     >
       <span class="material-icons" *ngIf="!isOpen">mode_comment</span>
       <div class="comment-display-container" *ngIf="isOpen">
-        <div class="comment">
+        <div
+          class="comment"
+          *ngFor="let comment of currentDossier.commentaires"
+        >
           <h4>Directeur</h4>
           <p>
-            Lorem ipsum dolor sit amet consectetur, Lorem ipsum dolor sit amet
-            consectetur, Lorem ipsum dolor sit amet consectetur,
-          </p>
-        </div>
-        <div class="comment">
-          <h4>Directeur</h4>
-          <p>
-            Lorem ipsum dolor sit amet consectetur, Lorem ipsum dolor sit amet
-            consectetur, Lorem ipsum dolor sit amet consectetur,
-          </p>
-        </div>
-        <div class="comment">
-          <h4>Directeur</h4>
-          <p>
-            Lorem ipsum dolor sit amet consectetur, Lorem ipsum dolor sit amet
-            consectetur, Lorem ipsum dolor sit amet consectetur,
-          </p>
-        </div>
-        <div class="comment">
-          <h4>Directeur</h4>
-          <p>
-            Lorem ipsum dolor sit amet consectetur, Lorem ipsum dolor sit amet
-            consectetur, Lorem ipsum dolor sit amet consectetur,
+            {{ comment.comment }}
           </p>
         </div>
       </div>
@@ -90,9 +71,9 @@
         position: absolute;
         bottom: 20px;
       "
-      (click)="toggleShowModale()"
     >
       <button
+        (click)="toggleShowModale()"
         class="btn btn2"
         style="font-size: small; background-color: var(--var1); color: white"
         *ngIf="!isTraite"
