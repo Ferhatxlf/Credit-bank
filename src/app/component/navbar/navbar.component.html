@@ -1,19 +1,5 @@
 <div class="navbar-card-container">
-  <div
-    *ngFor="let message of notifications; let i = index"
-    class="alert alert-info"
-    role="alert"
-  >
-    <button
-      type="button"
-      class="close"
-      aria-label="Close"
-      (click)="removeNotification(i)"
-    >
-      <span aria-hidden="true">&times;</span>
-    </button>
-    {{ message }}
-  </div>
+
 
   <div class="left">
     <span>{{ getTitle() }}</span>

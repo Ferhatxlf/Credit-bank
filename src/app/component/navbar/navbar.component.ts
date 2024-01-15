@@ -42,7 +42,7 @@ export class NavbarComponent implements OnInit {
       const storedMessages = JSON.parse(storedMessagesString);
       storedMessages.forEach((message: any) => {
         console.log(message.receiverId + 'id reciver');
-        console.log(this.currentUser.id + 'jjj');
+        console.log(this.currentUser.id + 'curent user');
         // Check if receiverId is defined and matches the current user's id
         if (message.receiverId && message.receiverId == this.currentUser.id) {
           this.notifications.push(message.message);
