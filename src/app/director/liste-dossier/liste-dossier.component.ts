@@ -21,6 +21,7 @@ export class ListeDossierComponent implements OnInit {
   public F!: any;
   public searchActivate: boolean = false;
   currentUser: any;
+  showModal: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -53,6 +54,10 @@ export class ListeDossierComponent implements OnInit {
         },
         (err) => console.log(err)
       );
+  }
+  // poour la modale
+  toggleShowModale() {
+    this.showModal = !this.showModal;
   }
 
   folderClicked(folder) {
