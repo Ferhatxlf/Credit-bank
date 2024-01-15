@@ -5,6 +5,8 @@ import { AuthServiceService } from '../../service/auth-service.service';
 import { Router } from '@angular/router';
 import { WebSocketService } from '../../service/websocket.service';
 
+
+import { BanquierService,Banquier } from '../../service/BanquierService';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -19,8 +21,10 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private location: Location,
     private fb: FormBuilder,
-    private authService: AuthServiceService
-    ,private webSocketService: WebSocketService
+    private authService: AuthServiceService,
+    private webSocketService: WebSocketService,
+    private banquierService: BanquierService
+
   ) {}
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -72,10 +76,23 @@ export class LoginComponent implements OnInit {
         };
         console.log(user);
         localStorage.setItem('currentUser', JSON.stringify(user));
-   
+  
+        const banquier: Banquier = {
+          id: rs.compte.id,
+          token: rs.token,
+          agence_id: rs.compte.agenceId,
+          nin: rs.compte.nin,
+          role: rs.compte.role,
+        };
+    
+        // Set banquier in the service
+        this.banquierService.setBanquier(banquier);
+  
         if (rs.compte.role === 'courtier') {
+          this.webSocketService.courtierConnect(rs.compte.id);
           this.router.navigate(['/courtier']);
         } else if (rs.compte.role === 'directeur') {
+          this.webSocketService.directorConnect(rs.compte.id);
           this.router.navigate(['/director']);
         } else if (rs.compte.role === 'admin') {
           this.router.navigate(['/admin']);
@@ -86,6 +103,7 @@ export class LoginComponent implements OnInit {
       }
     );
   }
+  
 
   onChangeConnexion() {
     if (this.client) {

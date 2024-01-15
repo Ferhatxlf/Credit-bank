@@ -61,6 +61,7 @@ export class DirectorServiceService {
     console.log('Attempting to accept folder...');
     const receiverId = '1'; // Assuming '1' is the receiver's ID
     const message = `dossiers id : ${f.id} accepter`;
+    console.log(f+"folder")
 
     // Notify the WebSocket server that the folder was accepted
     console.log('Sending WebSocket message...');

@@ -1,7 +1,17 @@
 <div class="navbar-card-container">
+  <div *ngFor="let message of notifications; let i = index" class="alert alert-info" role="alert">
+    <button type="button" class="close" aria-label="Close" (click)="removeNotification(i)">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    {{ message }}
+  </div>
+  
   <div class="left">
     <span>{{ getTitle() }}</span>
   </div>
+
+  
+
   <div class="right">
     <div class="avatar">
       <img src="../../../assets/avatar.png" alt="avatar" />
@@ -15,14 +25,3 @@
     </div>
   </div>
 </div>
-
-<!-- <div class="right">
-  <div class="avatar">
-    <img src="../../../assets/avatar.png" alt="avatar" />
-  </div>
-  <div class="information">
-    <span class="name">{{ client?.nom }} {{ client?.prenom }}</span>
-    <p class="email">{{ client?.email }}</p>
-  </div>
-  <div class="logout"></div>
-</div> -->

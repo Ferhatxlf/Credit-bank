@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { WebSocketService } from './service/websocket.service';
+import { Router } from '@angular/router';
 export const ROUTES: any = [
   {
     path: '/client/dashboard',
@@ -47,4 +49,17 @@ export const ROUTES: any = [
 })
 export class AppComponent {
   title = 'Credit-bank';
+  notifications: any[] = [];
+  constructor(private router: Router, private webSocketService: WebSocketService) {}
+
+  ngOnInit(): void {
+    // Initialize the WebSocket service when the component is initialized
+    this.webSocketService.initializeWebSocket();
+    this.webSocketService.onMessageReceived().subscribe((message) => {
+      // Push the individual message into the notifications array
+      this.notifications.push(message);
+    });
+  
+   
+  }
 }

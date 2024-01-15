@@ -1,67 +1,75 @@
+// WebSocketService.ts
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-
+import { debounce } from 'lodash';
 import io from 'socket.io-client';
+import { BanquierService, Banquier } from './BanquierService';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WebSocketService {
   private socket: any;
+  private receivedMessages: any[] = [];
+  private debounceConnectBasedOnRole = debounce((userId: string, role: string) => {
+    this.connectBasedOnRole(userId, role);
+  }, 1000);
 
-  constructor() {
+  constructor(private banquierService: BanquierService) {
     this.initializeWebSocket();
   }
 
-  private initializeWebSocket(): void {
-    const currentUser = this.getCurrentUserFromLocalStorage();
-    console.log("currentUser"+currentUser)
-    if (currentUser) {
-      this.connectBasedOnRole(currentUser.id, currentUser.role);
+  initializeWebSocket(): void {
+    const storedUser = this.retrieveUserFromLocalStorage();
+    if (storedUser) {
+      this.connectBasedOnRole(storedUser.id, storedUser.role);
+    } else {
+      this.banquierService.getBanquier().subscribe((currentUser) => {
+        if (currentUser) {
+          this.saveUserToLocalStorage(currentUser);
+          this.connectBasedOnRole(currentUser.id, currentUser.role);
+        }
+      });
     }
 
-    // Assuming you want to reconnect on user changes, you can subscribe to user changes.
     this.subscribeToUserChanges();
   }
 
-  private getCurrentUserFromLocalStorage(): any {
-    const userString = localStorage.getItem('currentUser');
-    return userString ? JSON.parse(userString) : null;
-  }
-
   private subscribeToUserChanges(): void {
-    // Assuming you want to reconnect on user changes, you can subscribe to changes in local storage.
-    // This is just a simple example; you might need a more sophisticated mechanism based on your application's logic.
-    window.addEventListener('storage', (event) => {
-      if (event.key === 'currentUser') {
-        const updatedUser = this.getCurrentUserFromLocalStorage();
-        if (updatedUser) {
-          this.connectBasedOnRole(updatedUser.id, updatedUser.role);
-        } else {
-          // Handle the case when the user is removed from local storage (e.g., logout)
-          this.disconnect();
-        }
+    this.banquierService.getBanquier().subscribe((user) => {
+      if (user) {
+        this.saveUserToLocalStorage(user);
+        this.connectBasedOnRole(user.id, user.role);
       }
     });
   }
 
   private connectBasedOnRole(userId: string, role: string): void {
+    if (this.socket && this.socket.connected) {
+      this.disconnect();
+    }
     this.socket = io('http://localhost:9000');
+
+    this.socket.on('connect_error', (error: any) => {
+      console.error('WebSocket connection error:', error);
+    });
+
+    this.socket.on('disconnect', () => {
+      console.log('Socket disconnected');
+    });
 
     if (role === 'directeur') {
       this.directorConnect(userId);
     } else if (role === 'courtier') {
       this.courtierConnect(userId);
     }
-    // Add more conditions for other roles if needed
   }
 
-  private directorConnect(directorId: string): void {
+  directorConnect(directorId: string): void {
     this.socket.emit('directorConnected', directorId);
   }
 
-  private courtierConnect(courtierId: string): void {
+  courtierConnect(courtierId: string): void {
     this.socket.emit('courtierConnected', courtierId);
   }
 
@@ -73,17 +81,36 @@ export class WebSocketService {
   onMessageReceived(): Observable<any> {
     return new Observable((observer) => {
       this.socket.on('messageReceived', (data: any) => {
-        console.log('Received message:', data); // Log the received message
-        observer.next(data);
-      });
-    });
+        console.log('Received message:', data);
+  
+        // Check if the receiverId matches the current user's id
+     
+          // Push the received data into the receivedMessages array
+          this.receivedMessages.push(data);
+  
+          // Save the updated receivedMessages array to local storage
+          localStorage.setItem('receivedMessages', JSON.stringify(this.receivedMessages));
+  
+          // Notify observers with the received data
+          observer.next(data);
+        }
+
+   ) });
   }
   
-
-  // Disconnect the socket when needed (e.g., on logout or component destroy)
+  
   disconnect(): void {
-    if (this.socket) {
+    if (this.socket && this.socket.connected) {
       this.socket.disconnect();
     }
+  }
+
+  private saveUserToLocalStorage(user: Banquier): void {
+    localStorage.setItem('currentUser', JSON.stringify(user));
+  }
+
+  private retrieveUserFromLocalStorage(): Banquier | null {
+    const storedUser = localStorage.getItem('currentUser');
+    return storedUser ? JSON.parse(storedUser) : null;
   }
 }
