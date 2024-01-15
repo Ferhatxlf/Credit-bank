@@ -47,7 +47,12 @@
       [@openClose]="isOpen ? 'open' : 'closed'"
       (click)="toggle()"
     >
-      <span class="material-icons" *ngIf="!isOpen">mode_comment</span>
+      <span
+        class="material-icons"
+        style="cursor: pointer; z-index: 1"
+        *ngIf="!isOpen"
+        >mode_comment</span
+      >
       <div class="comment-display-container" *ngIf="isOpen">
         <div class="comment" *ngFor="let comment of folder.commentaires">
           <h4>Directeur</h4>
@@ -76,7 +81,7 @@
         style="font-size: small; background-color: var(--var1); color: white"
         *ngIf="!isTraite"
       >
-        Soumettre
+        Action sur le dossier
       </button>
     </div>
     <div
@@ -98,10 +103,13 @@
     <div class="modale-arriere-plan"></div>
     <div class="modale">
       <div class="header">
-        <h6>Ajouter un commentaire</h6>
+        <h6>Action sur le dossier</h6>
         <span class="material-icons" (click)="toggleShowModale()">close</span>
       </div>
       <div class="body">
+        <p style="font-size: small; font-weight: 600; margin-top: 10px">
+          1-Choisir une action :
+        </p>
         <select
           class="form-select"
           [(ngModel)]="action"
@@ -111,7 +119,9 @@
           <option value="Rejeter">Rejeter la demande</option>
           <option value="Renvoyer">Renvoyer pour plus d'information</option>
         </select>
-
+        <p style="font-size: small; font-weight: 600; margin-top: 10px">
+          2-Ajouter un commentaire :
+        </p>
         <div class="form-floating" style="width: 100%; height: 90%">
           <textarea
             class="form-control"
