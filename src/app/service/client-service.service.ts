@@ -1,6 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
+import { catchError, map, tap } from 'rxjs/operators';
+
+import { Observable, of, throwError } from 'rxjs';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -20,9 +24,18 @@ export class ClientServiceService {
     );
   }
 
-  deleteFile(name, dossierId) {
+ /* deleteFile(name, dossierId) {
     return this.http.delete(
       `${this.apiUrl}/dossiers/${dossierId}/files/${name}`
+    );
+  }*/
+  
+  deleteFile(name: string, dossierId: number): Observable<string> {
+    const url = `${this.apiUrl}/dossiers/${dossierId}/files/${name}`;
+
+    return this.http.delete(url, { responseType: 'text' }).pipe(
+      tap(() => console.log('File deleted successfully.')),
+      catchError(error => throwError(error))
     );
   }
 }
