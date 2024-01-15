@@ -42,7 +42,7 @@ export class NavbarComponent implements OnInit {
         // Check if receiverId is defined and matches the current user's id
         if (message.receiverId && message.receiverId == this.currentUser.id) {
           this.notifications.push(message.message);
-          alert(message.message)
+    
         }
       });
       
