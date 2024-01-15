@@ -26,27 +26,45 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     const storedMessagesString = localStorage.getItem('receivedMessages');
+    const currentUserData = localStorage.getItem('currentUser');
+
 
     if (storedMessagesString) {
+
+      if (currentUserData) {
+        this.currentUser = JSON.parse(currentUserData);
+      }
+  
       const storedMessages = JSON.parse(storedMessagesString);
-      console.log('All stored messages:', storedMessages); // Log all stored messages
-      this.notifications = storedMessages;
+      storedMessages.forEach((message: any) => {
+        console.log(message.receiverId+"id reciver")
+        console.log(this.currentUser.id+"jjj")
+        // Check if receiverId is defined and matches the current user's id
+        if (message.receiverId && message.receiverId == this.currentUser.id) {
+          this.notifications.push(message.message);
+          alert(message.message)
+        }
+      });
+      
     }
 
   
     this.webSocketService.onMessageReceived().subscribe((message) => {
       console.log('Received message:', message);
+      if (currentUserData) {
+        this.currentUser = JSON.parse(currentUserData);
+      }
 
       // Check if the receiverId matches the current user's id
-      if (message.receiverId === this.currentUser.id) {
+      if (message.receiverId ===  this.currentUser.id) {
         // Push the individual message into the notifications array
-        this.notifications.push(message);
+        this.notifications.push(message.message);
       }
     });
   
 
     this.listTitles = ROUTES.filter((listTitle: any) => listTitle);
-    const currentUserData = localStorage.getItem('currentUser');
+  
     if (currentUserData) {
       this.currentUser = JSON.parse(currentUserData);
       // Access the 'nin' property from the currentUser object

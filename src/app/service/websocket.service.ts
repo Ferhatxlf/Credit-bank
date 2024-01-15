@@ -10,7 +10,7 @@ import { BanquierService, Banquier } from './BanquierService';
 })
 export class WebSocketService {
   private socket: any;
-  private receivedMessagesss: any[] = [];
+  private receivedMessages: any[] = [];
   private debounceConnectBasedOnRole = debounce((userId: string, role: string) => {
     this.connectBasedOnRole(userId, role);
   }, 1000);
@@ -86,10 +86,10 @@ export class WebSocketService {
         // Check if the receiverId matches the current user's id
      
           // Push the received data into the receivedMessages array
-          this.receivedMessagesss.push(data);
+          this.receivedMessages.push(data);
   
           // Save the updated receivedMessages array to local storage
-          localStorage.setItem('notification', JSON.stringify(data));
+          localStorage.setItem('receivedMessages', JSON.stringify(this.receivedMessages));
   
           // Notify observers with the received data
           observer.next(data);
