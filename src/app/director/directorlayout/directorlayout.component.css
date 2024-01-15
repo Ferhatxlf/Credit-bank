@@ -115,10 +115,10 @@
   overflow: hidden; /* Ajout de overflow: hidden pour gérer le débordement des enfants */
   border-top-left-radius: 35px;
   border-bottom-right-radius: 35px;
+
+  transform: scale(1.01);
 }
-.card-container:hover {
-  transform: scale(1.03);
-}
+
 .logo-container {
   margin: 0 auto;
   width: 96%;
