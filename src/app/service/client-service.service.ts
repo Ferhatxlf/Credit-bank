@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ClientServiceService {
+  // private apiUrl = 'https://unique-zinc-production.up.railway.app/';
   private apiUrl = 'http://localhost:8000';
   constructor(public http: HttpClient) {}
 

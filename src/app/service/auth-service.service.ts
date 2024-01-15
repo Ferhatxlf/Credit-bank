@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthServiceService {
+  // private apiUrl = 'https://unique-zinc-production.up.railway.app/';
   private apiUrl = 'http://localhost:8000';
   private userRole: string = ''; // Stockez le rôle de l'utilisateur ici
 
