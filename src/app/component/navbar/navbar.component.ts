@@ -102,11 +102,19 @@ export class NavbarComponent implements OnInit {
     this.showDropdown = !this.showDropdown;
   }
 
-  clearNotifications(): void {
-    this.notifications = [];
-  }
 
   removeNotification(index: number): void {
     this.notifications.splice(index, 1);
   }
+  clearNotifications(): void {
+    // Clear notifications in local storage
+    localStorage.removeItem('receivedMessages');
+  
+    // Clear notifications in the component property
+    this.notifications = [];
+  
+    // Set isNotified to false
+    this.isNotified = false;
+  }
+  
 }
