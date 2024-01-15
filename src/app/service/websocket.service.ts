@@ -51,7 +51,7 @@ export class WebSocketService {
     this.socket = io('https://illustrious-lovely-fedora.glitch.me');
 
     this.socket.on('connect_error', (error: any) => {
-      console.error('WebSocket connection error:', error);
+      //console.error('WebSocket connection error:', error);
     });
 
     this.socket.on('disconnect', () => {
