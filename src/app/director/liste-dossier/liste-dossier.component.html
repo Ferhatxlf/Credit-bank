@@ -187,8 +187,8 @@
                 <option selected value="NON_TRAITEE">Non traité</option>
                 <option value="TRAITEMENT_ENCOURS">Traitement en cours</option>
                 <option value="TRAITEE">Traité</option>
-                <option value="ACCEPTE">Accepté</option>
-                <option value="REFUSE">Rejeté</option>
+                <option value="ACCEPTER">Accepté</option>
+                <option value="REJETER">Rejeté</option>
               </select>
             </div>
 
@@ -236,7 +236,11 @@
           <tbody>
             <tr *ngFor="let folder of Folders; let i = index">
               <td>
-                <input type="checkbox" />
+                <input
+                  type="checkbox"
+                  [(ngModel)]="folder.isSelected"
+                  (change)="updateSelectedFolders()"
+                />
               </td>
 
               <td>{{ folder.typeCredit.nomCredit }}</td>
@@ -253,7 +257,9 @@
                 >
               </td>
               <td style="display: flex; justify-content: center">
-                <i class="material-icons icon" (click)="toggleShowModale()"
+                <i
+                  class="material-icons icon"
+                  (click)="toggleShowModale(folder?.id)"
                   >add</i
                 >
               </td>
@@ -314,13 +320,28 @@
         margin: 0 auto;
       "
     >
-      <button class="btn btn-success" style="font-size: small" disabled>
+      <button
+        class="btn btn-success"
+        style="font-size: small"
+        [disabled]="selectedFolders.length === 0"
+        (click)="acceptFolder()"
+      >
         Accepter
       </button>
-      <button class="btn btn-danger" style="font-size: small" disabled>
+      <button
+        class="btn btn-danger"
+        style="font-size: small"
+        [disabled]="selectedFolders.length === 0"
+        (click)="rejectFolder()"
+      >
         Rejeter
       </button>
-      <button class="btn btn-secondary" style="font-size: small" disabled>
+      <button
+        class="btn btn-secondary"
+        style="font-size: small"
+        [disabled]="selectedFolders.length === 0"
+        (click)="renvoiFolder()"
+      >
         Retour pour information
       </button>
     </div>
@@ -331,11 +352,12 @@
     <div class="modale">
       <div class="header">
         <h6>Ajouter un commentaire</h6>
-        <span class="material-icons" (click)="toggleShowModale()">close</span>
+        <span class="material-icons" (click)="toggleShowModale('')">close</span>
       </div>
       <div class="body">
         <div class="form-floating" style="width: 100%; height: 90%">
           <textarea
+            [(ngModel)]="comment"
             class="form-control"
             placeholder="Leave a comment here"
             id="floatingTextarea2"
@@ -355,6 +377,7 @@
             font-weight: 600;
             color: white;
           "
+          (click)="addComment()"
         >
           Soumettre
         </button>
