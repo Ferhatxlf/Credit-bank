@@ -6,7 +6,9 @@ import { WebSocketService } from './websocket.service';
   providedIn: 'root',
 })
 export class CourtierServiceService {
-  private apiUrl = 'https://unique-zinc-production.up.railway.app';
+  // private apiUrl = 'https://unique-zinc-production.up.railway.app';
+
+  private apiUrl = 'http://localhost:8000';
 
   constructor(
     private http: HttpClient,

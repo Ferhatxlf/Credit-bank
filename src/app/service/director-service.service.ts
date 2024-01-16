@@ -1,14 +1,18 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { WebSocketService } from './websocket.service';
-import { tap } from 'rxjs/operators';
+
+import { catchError, map, tap } from 'rxjs/operators';
+
+import { Observable, of, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DirectorServiceService {
-  private apiUrl = 'https://unique-zinc-production.up.railway.app';
+  // private apiUrl = 'https://unique-zinc-production.up.railway.app';
+
+  private apiUrl = 'http://localhost:8000';
 
   // Declare a variable to store the user ID
   compteId!: number;
@@ -53,36 +57,67 @@ export class DirectorServiceService {
     );
   } */
 
-  acceptFolder(f): Observable<any> {
-    console.log('Attempting to accept folder...');
+  acceptFolder(Ids): Observable<any> {
+    /*  console.log('Attempting to accept folder...');
     const receiverId = '1'; // Assuming '1' is the receiver's ID
-    const message = `dossiers id : ${f.id} accepter`;
+    const message = `dossier  N : ${f.id} accepter`;
+
+    console.log(f + 'folder');
 
     // Notify the WebSocket server that the folder was accepted
     console.log('Sending WebSocket message...');
     this.webSocketService.sendMessage(
       this.compteId.toString(),
-      f.assignedCourtier.id.toString(),
+      f?.assignedCourtier?.id.toString(),
       message
-    );
-    return this.http.put(`${this.apiUrl}/dossiers/${f.id}/accept`, {
-      dossier: f,
-      idCompte: this.compteId,
-    });
+    ); */
+
+    return this.http
+      .post(`${this.apiUrl}/dossiers/updateStatusToAccepter`, Ids, {
+        responseType: 'text',
+      })
+      .pipe(
+        tap(() => console.log('success.')),
+        catchError((error) => throwError(error))
+      );
   }
-  rejectFolder(f) {
-    return this.http.put(`${this.apiUrl}/dossiers/${f.id}/refuse`, {
-      dossier: f,
-      idCompte: this.compteId,
-    });
+  rejectFolder(Ids): Observable<any> {
+    /*  const message = `dossier  N : ${f?.id} refuser`;
+    console.log('Sending WebSocket message...');
+    this.webSocketService.sendMessage(
+      this.compteId.toString(),
+      f?.assignedCourtier?.id.toString(),
+      message
+    ); */
+    return this.http
+      .post(`${this.apiUrl}/dossiers/updateStatusToRefuser`, Ids, {
+        responseType: 'text',
+      })
+      .pipe(
+        tap(() => console.log('success.')),
+        catchError((error) => throwError(error))
+      );
   }
 
-  renvoiyeFolder(f) {
-    return this.http.put(
-      `${this.apiUrl}/dossiers/${f.id}/RenvoyerDossier/${this.compteId}`,
-      {
-        dossier: f,
-      }
-    );
+  renvoiyeFolder(Ids): Observable<any> {
+    /* const message = `dossier  N : ${f.id} renvoyer`;
+    console.log('Sending WebSocket message...');
+    this.webSocketService.sendMessage(
+      this.compteId.toString(),
+      f.assignedCourtier.id.toString(),
+      message
+    ); */
+    return this.http
+      .post(`${this.apiUrl}/dossiers/updateStatusToRenvoyer`, Ids, {
+        responseType: 'text',
+      })
+      .pipe(
+        tap(() => console.log('success.')),
+        catchError((error) => throwError(error))
+      );
+  }
+
+  addComment(comment, id) {
+    return this.http.post(`${this.apiUrl}/dossiers/${id}/addComment`, comment);
   }
 }

@@ -1,12 +1,158 @@
-.router-outlet-container {
+.container-fluid {
+  height: 100%;
+  margin: 0 auto;
+  max-width: 1400px;
+  overflow: auto;
+  width: 100%;
+  padding-bottom: 10%;
+}
+.container {
   width: 100%;
   height: 100%;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.router-outlet-container {
+  width: 100%;
+  height: auto;
+  max-height: 90%;
   border-bottom: 1px solid #6666663d;
   border-right: 1px solid #6666663d;
   border-left: 1px solid #6666663d;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
+  overflow-y: auto;
+  padding-top: 20px;
 }
+
+/* pour le commentaire container */
+
+.commentaier-container {
+  width: 55px;
+  height: 55px;
+  padding: 5px;
+  border-radius: 50%;
+  background-color: var(--var1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white; /* Change text color to white for better contrast */
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); /* Modern shadow effect */
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smooth transition effect */
+  cursor: pointer;
+}
+
+.commentaier-container:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); /* Shadow effect on hover */
+}
+
+.commentaier-container span {
+  margin: auto;
+  font-size: 35px;
+}
+.comment-display-container {
+  width: 100%;
+  height: 340px;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  overflow-y: scroll;
+}
+.comment-display-container::-webkit-scrollbar {
+  width: 0.3rem; /* Mostly for vertical scrollbars */
+}
+.comment-display-container::-webkit-scrollbar-thumb {
+  border-radius: 0.5rem;
+  background-color: #0004;
+  visibility: hidden;
+}
+.comment-display-container::-webkit-scrollbar-thumb {
+  visibility: visible;
+}
+
+.comment {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(236, 245, 255);
+  box-shadow: 0 3px 5px 1px #6666663d;
+  margin-top: 15px;
+  padding: 5px;
+  border-radius: 10px;
+}
+.comment h4 {
+  font-size: small;
+  font-weight: 600;
+}
+.comment p {
+  font-size: smaller;
+  text-align: start;
+}
+/* fin commentaire container */
+/* pour la modale  */
+.modale-container {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modale-arriere-plan {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background-color: #e9e6e657;
+  backdrop-filter: blur(2px);
+}
+.modale {
+  width: 450px;
+  height: auto;
+  background-color: white;
+  z-index: 10;
+  box-shadow: 0 0 10px 3px #66656538;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.modale .header {
+  padding: 7px 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: 1px solid #6665651c;
+  background-color: rgb(250, 249, 249);
+}
+.modale .header .material-icons {
+  cursor: pointer;
+}
+
+.modale .body {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5px 10px;
+}
+.modale .body span {
+  font-size: 14px;
+  text-align: justify;
+  margin-top: 5px;
+}
+.modale .footer {
+  padding: 5px 10px;
+}
+/* fin modale */
 
 .material-icons {
   margin-left: 8px;
@@ -14,7 +160,6 @@
 .title {
   margin-top: 15px;
   color: #666565;
-  font-size: 1.8em;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   font-weight: 100;
@@ -25,25 +170,27 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  height: 15%;
 }
 .detail-dossier-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   background-color: white;
   width: 95%;
   margin: 0 auto;
+  height: 100%;
 }
 .nv {
-  background-color: rgba(114, 33, 130, 1);
+  /* background-color: rgba(114, 33, 130, 1); */
+  background-color: rgb(240, 239, 239);
 }
 
 .nv span {
-  color: white;
+  color: var(--var1);
 }
 .detail-dossier-header {
-  height: 100%;
   margin: 0 auto;
   width: 100%;
   display: flex;
@@ -51,12 +198,12 @@
   align-items: center;
   border-radius: 5px;
   border: 1px solid #6666663d;
+  flex-wrap: wrap;
 }
 .detail-dossier-header:hover {
   cursor: pointer;
 }
 .nav-items {
-  height: 100%;
   width: 100%;
   padding: 4px 10px;
   display: flex;
@@ -64,6 +211,8 @@
   align-items: center;
   color: rgba(114, 33, 130, 1);
   font-size: 15px;
+  flex: 1; /* Each item takes equal space */
+  box-sizing: border-box;
 }
 
 .icons-header {
@@ -128,11 +277,29 @@
   }
 }
 
-@media screen and (max-width: 1233px) {
-  .container-fluid {
-    overflow: auto;
-    margin-top: -10px;
+/* Media Queries for responsiveness */
+@media (max-width: 1000px) {
+  .nav-items {
+    flex-basis: calc(
+      33.333% - 20px
+    ); /* Three items per row with some spacing */
+  }
+}
 
-    height: 400px;
+@media (max-width: 700px) {
+  .nav-items {
+    flex-basis: calc(50% - 20px); /* Two items per row with some spacing */
+  }
+}
+@media screen and (max-width: 500px) {
+  .btn_cont {
+    left: 10px !important;
+    justify-content: start !important;
+  }
+}
+
+@media (max-width: 400px) {
+  .nav-items {
+    flex-basis: calc(100% - 20px); /* One item per row with some spacing */
   }
 }

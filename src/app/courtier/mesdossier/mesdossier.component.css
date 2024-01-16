@@ -1,19 +1,82 @@
 .container-fluid {
   height: 100%;
   margin: 0 auto;
-  max-width: 1200px;
-  overflow: auto;
+  max-width: 1400px;
   width: 100%;
+  padding-bottom: 10%;
 }
 .container {
   width: 100%;
+  height: 100%;
   padding-left: 0 !important;
   padding-right: 0 !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
 }
-.container {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
+
+/* pour la modale  */
+.modale-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
 }
+.modale-arriere-plan {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: #e9e6e657;
+  backdrop-filter: blur(2px);
+  top: 0;
+  left: 0;
+}
+.modale {
+  width: 450px;
+  height: auto;
+  background-color: white;
+  z-index: 10;
+  box-shadow: 0 0 10px 3px #66656538;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.modale .header {
+  padding: 7px 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: 1px solid #6665651c;
+  background-color: rgb(250, 249, 249);
+}
+.modale .header .material-icons {
+  cursor: pointer;
+}
+
+.modale .body {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5px 10px;
+}
+.modale .body span {
+  font-size: 14px;
+  text-align: justify;
+  margin-top: 5px;
+}
+.modale .footer {
+  padding: 5px 10px;
+}
+/* fin modale */
 
 /* Style des icônes */
 .material-icons.icon {
@@ -52,12 +115,6 @@ select {
   margin: auto;
 }
 
-.button-container {
-  margin-left: 12px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 .btn-control {
   color: white;
   border: none;
@@ -77,7 +134,7 @@ select {
 
 .table__header {
   width: 100%;
-  height: 10%;
+  height: 90%;
   background-color: #fff4;
   padding: 0.8rem 1rem;
 
@@ -108,13 +165,13 @@ select {
 
 .table__body {
   width: 100%;
-  max-height: calc(89% - 1.6rem);
+  height: 80%;
   background-color: #fffb;
   margin: 0.8rem auto;
   border-radius: 0.6rem;
   border: 1px solid rgba(0, 0, 0, 0.301);
-  overflow: auto;
-  overflow: overlay;
+  overflow-y: auto !important;
+  overflow: overlay !important;
 }
 
 .table__body::-webkit-scrollbar {

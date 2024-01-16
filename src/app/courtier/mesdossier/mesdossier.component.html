@@ -1,8 +1,16 @@
 <div class="container-fluid">
   <app-navbar></app-navbar>
-
   <div class="container translate">
-    <div class="accordion mt-5 accordion-flush" id="accordionFlushExample">
+    <div
+      style="
+        height: 95%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      "
+    >
       <div class="forms">
         <form [formGroup]="searchForm" (ngSubmit)="search()">
           <div class="input-container">
@@ -67,7 +75,6 @@
           <thead>
             <tr>
               <th></th>
-              <th>N°</th>
               <th>Type du crédit</th>
               <th>Emprunteur</th>
               <th>Type du client</th>
@@ -76,6 +83,7 @@
 
               <th>Statut</th>
               <th>Détail</th>
+              <th>Commentaire</th>
             </tr>
           </thead>
           <tbody>
@@ -88,8 +96,13 @@
                   *ngIf="folder.status === 'TRAITEMENT_ENCOURS'"
                 />
               </td>
-              <td>{{ folder.id }}</td>
-              <td>{{ folder.typeCredit.nomCredit }}</td>
+              <td style="display: flex; align-items: end">
+                <span
+                  class="material-icons"
+                  style="color: orange; margin-right: 5px"
+                  >folder</span
+                >{{ folder.typeCredit.nomCredit }}
+              </td>
               <td>{{ folder.client.nom }} {{ folder.client.prenom }}</td>
               <td>Particulier</td>
 
@@ -102,23 +115,70 @@
                   >remove_red_eye</i
                 >
               </td>
+              <td style="display: flex; justify-content: center">
+                <i class="material-icons icon" (click)="toggleShowModale()"
+                  >add</i
+                >
+              </td>
             </tr>
           </tbody>
         </table>
       </section>
     </div>
     <div
-      class="btn_cont"
-      *ngIf="selectedFolders.length != 0"
-      (click)="soumettreDossier()"
-      style="width: 100%; display: flex; justify-content: center"
+      class="button-container"
+      style="
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-around;
+        margin: 0 auto;
+      "
     >
       <button
-        class="btn btn2"
-        style="font-size: small; background-color: var(--var1); color: white"
+        class="btn btn-success"
+        style="font-size: small"
+        [disabled]="selectedFolders.length === 0"
+        (click)="soumettreDossier()"
       >
-        Soumettre au directeur de l'agence
+        Soumettre au directeur
       </button>
+    </div>
+  </div>
+
+  <div class="modale-container" *ngIf="showModal">
+    <div class="modale-arriere-plan"></div>
+    <div class="modale">
+      <div class="header">
+        <h6>Ajouter un commentaire</h6>
+        <span class="material-icons" (click)="toggleShowModale()">close</span>
+      </div>
+      <div class="body">
+        <div class="form-floating" style="width: 100%; height: 90%">
+          <textarea
+            class="form-control"
+            placeholder="Leave a comment here"
+            id="floatingTextarea2"
+            style="height: 100px; box-shadow: none"
+          ></textarea>
+          <label for="floatingTextarea2">Commentaire</label>
+        </div>
+      </div>
+      <div class="footer">
+        <button
+          class="btn"
+          style="
+            width: 100px;
+            margin: 0 auto;
+            font-size: small;
+            background-color: var(--var1);
+            font-weight: 600;
+            color: white;
+          "
+        >
+          Soumettre
+        </button>
+      </div>
     </div>
   </div>
 </div>

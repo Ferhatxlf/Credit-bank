@@ -2,7 +2,16 @@
   <app-navbar></app-navbar>
 
   <div class="container translate">
-    <div class="accordion mt-5 accordion-flush" id="accordionFlushExample">
+    <div
+      style="
+        height: 95%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      "
+    >
       <div class="forms">
         <form [formGroup]="searchForm" (ngSubmit)="search()">
           <div class="input-container">
@@ -101,7 +110,6 @@
                 >
               </td>
               <td>
-
                 <!-- <i class="material-icons icon" (click)="affectation(folder.id)"
                   >add</i
                 > -->
@@ -116,7 +124,6 @@
                 >
                   Examiner
                 </button>
-
               </td>
             </tr>
           </tbody>

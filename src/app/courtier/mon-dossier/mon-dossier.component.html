@@ -1,85 +1,82 @@
-<div class="logo-container mb-2">
-  <span class="material-icons icons-header" (click)="goBack()"
-    >arrow_back_ios</span
-  >
-  <div class="header d-flex justify-content-center w-100">
-    <div class="title">Détail de dossier</div>
-  </div>
-</div>
-
-<div class="detail-dossier-container">
-  <div class="detail-dossier-header">
-    <div
-      (click)="goInfo()"
-      [class]="info ? 'nv' : 'nav-items'"
-      class="nav-items"
-    >
-      <span class="nav-items">Information</span>
-    </div>
-
-    <div
-      (click)="goCredit()"
-      [class]="credit ? 'nv' : 'nav-items'"
-      class="nav-items"
-    >
-      <span class="nav-items">Détail du crédit</span>
-    </div>
-
-    <div
-      (click)="goClient()"
-      [class]="client ? 'nv' : 'nav-items'"
-      class="nav-items"
-    >
-      <span class="nav-items">Détail du client</span>
-    </div>
-
-    <div
-      (click)="goDoc()"
-      [class]="docs ? 'nv' : 'nav-items'"
-      class="nav-items"
-    >
-      <span class="nav-items">Document</span>
-    </div>
-  </div>
-  <div class="router-outlet-container">
-    <div
-      class="commentaier-container"
-      [@openClose]="isOpen ? 'open' : 'closed'"
-      (click)="toggle()"
-    >
-      <span class="material-icons" *ngIf="!isOpen">mode_comment</span>
-      <div class="comment-display-container" *ngIf="isOpen">
-        <div class="comment">
-          <h4>Directeur</h4>
-          <p>
-            Lorem ipsum dolor sit amet consectetur, Lorem ipsum dolor sit amet
-            consectetur, Lorem ipsum dolor sit amet consectetur,
-          </p>
-        </div>
-        <div class="comment">
-          <h4>Directeur</h4>
-          <p>
-            Lorem ipsum dolor sit amet consectetur, Lorem ipsum dolor sit amet
-            consectetur, Lorem ipsum dolor sit amet consectetur,
-          </p>
-        </div>
-        <div class="comment">
-          <h4>Directeur</h4>
-          <p>
-            Lorem ipsum dolor sit amet consectetur, Lorem ipsum dolor sit amet
-            consectetur, Lorem ipsum dolor sit amet consectetur,
-          </p>
-        </div>
-        <div class="comment">
-          <h4>Directeur</h4>
-          <p>
-            Lorem ipsum dolor sit amet consectetur, Lorem ipsum dolor sit amet
-            consectetur, Lorem ipsum dolor sit amet consectetur,
-          </p>
-        </div>
+<div class="container-fluid">
+  <div class="container">
+    <div class="logo-container mb-2">
+      <span class="material-icons icons-header" (click)="goBack()"
+        >arrow_back_ios</span
+      >
+      <div class="header d-flex justify-content-center w-100">
+        <div class="title">Détail de dossier</div>
       </div>
     </div>
 
-    <router-outlet></router-outlet>
+    <div class="detail-dossier-container">
+      <div class="detail-dossier-header">
+        <div
+          (click)="goInfo()"
+          [class]="info ? 'nv' : 'nav-items'"
+          class="nav-items"
+        >
+          <span class="nav-items">Information</span>
+        </div>
+
+        <div
+          (click)="goCredit()"
+          [class]="credit ? 'nv' : 'nav-items'"
+          class="nav-items"
+        >
+          <span class="nav-items">Détail du crédit</span>
+        </div>
+
+        <div
+          (click)="goClient()"
+          [class]="client ? 'nv' : 'nav-items'"
+          class="nav-items"
+        >
+          <span class="nav-items">Détail du client</span>
+        </div>
+
+        <div
+          (click)="goDoc()"
+          [class]="docs ? 'nv' : 'nav-items'"
+          class="nav-items"
+        >
+          <span class="nav-items">Document</span>
+        </div>
+      </div>
+      <div class="router-outlet-container">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+    <div
+      style="
+        width: 90%;
+        display: flex;
+        justify-content: center;
+
+        color: rgb(68, 68, 211);
+      "
+      *ngIf="isTraite"
+    >
+      <span class="material-icons" style="font-size: 20px">gpp_maybe</span>
+      <p style="margin-left: 5px">Ce dossier est envoyé au directeur !</p>
+    </div>
   </div>
 </div>
+<!-- <div
+          class="commentaier-container"
+          [@openClose]="isOpen ? 'open' : 'closed'"
+          (click)="toggle()"
+        >
+          <span class="material-icons" *ngIf="!isOpen">mode_comment</span>
+          <div class="comment-display-container" *ngIf="isOpen">
+            <div
+              class="comment"
+              *ngFor="let comment of currentDossier.commentaires"
+            >
+              <h4>Directeur</h4>
+              <p>
+                {{ comment.comment }}
+              </p>
+            </div>
+          </div>
+        </div> -->

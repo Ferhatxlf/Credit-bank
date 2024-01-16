@@ -1,57 +1,106 @@
 .container-fluid {
   height: 100%;
   margin: 0 auto;
-  max-width: 1200px;
-  padding: 20px;
-  overflow-y: auto;
-  
-  overflow-x: auto;
+  max-width: 1400px;
+  overflow: auto;
+  width: 100%;
+  padding-bottom: 10%;
+}
+.container {
+  width: 100%;
+  height: 100%;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
 }
 
-.table-container {
-  margin-top: 50px;
+/* pour la modale  */
+.modale-container {
   width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
 }
-
-table {
+.modale-arriere-plan {
   width: 100%;
-  border-collapse: collapse;
-  margin-top: 1vh;
+  height: 100%;
+  position: absolute;
+  background-color: #e9e6e657;
+  backdrop-filter: blur(2px);
+  top: 0;
+  left: 0;
 }
-tr:hover {
+.modale {
+  width: 450px;
+  height: auto;
+  background-color: white;
+  z-index: 10;
+  box-shadow: 0 0 10px 3px #66656538;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.modale .header {
+  padding: 7px 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: 1px solid #6665651c;
+  background-color: rgb(250, 249, 249);
+}
+.modale .header .material-icons {
   cursor: pointer;
 }
-.accordion {
-  box-shadow: 0 0 4px 1px rgba(78, 77, 77, 0.247);
+
+.modale .body {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5px 10px;
 }
-.accordion-button:focus {
-  background-color: rgba(228, 226, 226, 0.623);
-  border: none;
-  box-shadow: none;
+.modale .body span {
+  font-size: 14px;
+  text-align: justify;
+  margin-top: 5px;
 }
-.accordion-button:active {
-  background-color: rgba(209, 207, 207, 0.671);
+.modale .footer {
+  padding: 5px 10px;
 }
+/* fin modale */
+
+/* Style des icônes */
+.material-icons.icon {
+  cursor: pointer; /* Change le curseur en main quand on survole une icône */
+  color: #007bff; /* Couleur des icônes */
+}
+
+.material-icons.icon:hover {
+  color: #0056b3; /* Change la couleur des icônes au survol */
+}
+
 /* -------------------------------------------------------- */
 
 .forms {
-  width: 90%;
+  width: 70%;
   margin: 0 auto;
 }
 
 .container input {
-  box-shadow: 0 0 5px 1px rgba(126, 125, 125, 0.24);
-  width: 100%; /* Utiliser la largeur complète du conteneur parent */
-  padding: 10px;
-  border-radius: 10px;
-  border: 1px solid rgba(0, 0, 0, 0.562);
+  width: 100%;
 }
 select {
-  box-shadow: 0 0 5px 1px rgba(126, 125, 125, 0.24);
   width: 100%; /* Utiliser la largeur complète du conteneur parent */
-  padding: 10px;
-  border-radius: 10px;
-  border: 1px solid rgba(0, 0, 0, 0.562);
 }
 
 .input-container {
@@ -67,16 +116,196 @@ select {
   margin: auto;
 }
 
-.button-container {
-  margin-left: 12px;
-
-  width: 45px;
-  height: 45px;
-}
 .btn-control {
   color: white;
-  background-color: #722182;
+  border: none;
+  box-shadow: 0 0 5px 1px #66666650;
+  padding: 7px;
+  color: #722182 !important;
 }
-.icon {
-  color: #722182;
+/* ùùùùùù*************** */
+@media print {
+  .table,
+  .table__body {
+    overflow: visible;
+    height: auto !important;
+    width: auto !important;
+  }
+}
+
+.table__header {
+  width: 100%;
+  height: 90%;
+  background-color: #fff4;
+  padding: 0.8rem 1rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.table__header .input-group {
+  width: 35%;
+  height: 100%;
+  background-color: #fff5;
+  padding: 0 0.8rem;
+  border-radius: 2rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: 0.2s;
+}
+
+.table__header .input-group:hover {
+  width: 45%;
+  background-color: #fff8;
+  box-shadow: 0 0.1rem 0.4rem #0002;
+}
+
+.table__body {
+  width: 100%;
+  height: 80%;
+  background-color: #fffb;
+  margin: 0.8rem auto;
+  border-radius: 0.6rem;
+  border: 1px solid rgba(0, 0, 0, 0.301);
+  overflow-y: auto !important;
+  overflow: overlay !important;
+}
+
+.table__body::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 0.5rem;
+}
+
+.table__body::-webkit-scrollbar-thumb {
+  border-radius: 0.5rem;
+  background-color: #0004;
+  visibility: hidden;
+}
+
+.table__body:hover::-webkit-scrollbar-thumb {
+  visibility: visible;
+}
+
+table {
+  width: 100%;
+}
+
+table,
+th,
+td {
+  border-collapse: collapse;
+  padding: 10px;
+  text-align: left;
+  font-size: small;
+}
+
+thead th {
+  position: sticky;
+  top: 0;
+  left: 0;
+  background-color: #d5d1defe;
+  cursor: pointer;
+  text-transform: capitalize;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #0000000b;
+}
+
+tbody tr {
+  --delay: 0.1s;
+  transition: 0.5s ease-in-out var(--delay), background-color 0s;
+}
+
+tbody tr.hide {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+tbody tr:hover {
+  background-color: #fff6 !important;
+}
+
+tbody tr td,
+tbody tr td p,
+tbody tr td img {
+  transition: 0.2s ease-in-out;
+}
+
+tbody tr.hide td,
+tbody tr.hide td p {
+  padding: 0;
+  font: 0 / 0 sans-serif;
+  transition: 0.2s ease-in-out 0.5s;
+}
+
+tbody tr.hide td img {
+  width: 0;
+  height: 0;
+  transition: 0.2s ease-in-out 0.5s;
+}
+
+.status {
+  padding: 0.4rem 0;
+  border-radius: 2rem;
+  text-align: center;
+}
+
+.status.delivered {
+  background-color: #86e49d;
+  color: #006b21;
+}
+
+.status.cancelled {
+  background-color: #d893a3;
+  color: #b30021;
+}
+
+.status.pending {
+  background-color: #ebc474;
+}
+
+.status.shipped {
+  background-color: #6fcaea;
+}
+
+@media (max-width: 1000px) {
+  td:not(:first-of-type) {
+    min-width: 12.1rem;
+  }
+}
+
+thead th span.icon-arrow {
+  display: inline-block;
+  width: 1.3rem;
+  height: 1.3rem;
+  border-radius: 50%;
+  border: 1.4px solid transparent;
+
+  text-align: center;
+  font-size: 1rem;
+
+  margin-left: 0.5rem;
+  transition: 0.2s ease-in-out;
+}
+
+thead th:hover span.icon-arrow {
+  border: 1.4px solid #6c00bd;
+}
+
+thead th:hover {
+  color: #6c00bd;
+}
+
+thead th.active span.icon-arrow {
+  background-color: #6c00bd;
+  color: #fff;
+}
+
+thead th.asc span.icon-arrow {
+  transform: rotate(180deg);
 }
