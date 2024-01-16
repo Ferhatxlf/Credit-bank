@@ -50,7 +50,10 @@ export const ROUTES: any = [
 export class AppComponent {
   title = 'Credit-bank';
   notifications: any[] = [];
-  constructor(private router: Router, private webSocketService: WebSocketService) {}
+  constructor(
+    private router: Router,
+    private webSocketService: WebSocketService
+  ) {}
 
   ngOnInit(): void {
     // Initialize the WebSocket service when the component is initialized
@@ -59,7 +62,5 @@ export class AppComponent {
       // Push the individual message into the notifications array
       this.notifications.push(message);
     });
-  
-   
   }
 }
