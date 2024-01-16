@@ -22,7 +22,9 @@ export class ListeDossierComponent implements OnInit {
   public searchActivate: boolean = false;
   currentUser: any;
   showModal: boolean = false;
-
+  comment: any;
+  selectedFolders: any[] = [];
+  idDossier: any;
   constructor(
     private fb: FormBuilder,
     router: Router,
@@ -56,8 +58,9 @@ export class ListeDossierComponent implements OnInit {
       );
   }
   // poour la modale
-  toggleShowModale() {
+  toggleShowModale(id) {
     this.showModal = !this.showModal;
+    this.idDossier = id;
   }
 
   folderClicked(folder) {
@@ -77,9 +80,14 @@ export class ListeDossierComponent implements OnInit {
       this.Folders = this.Folders.filter((f) => f.status === statut);
     }
   }
-
-  acceptFolder(folder) {
-    this.directeurService.acceptFolder(folder, '').subscribe(
+  updateSelectedFolders() {
+    this.selectedFolders = this.Folders.filter(
+      (folder) => folder.isSelected
+    ).map((folder) => folder.id);
+    console.log('selecteur folderr', this.selectedFolders);
+  }
+  acceptFolder() {
+    this.directeurService.acceptFolder(this.selectedFolders).subscribe(
       (rs) => {
         console.log(rs);
       },
@@ -88,9 +96,9 @@ export class ListeDossierComponent implements OnInit {
       }
     );
   }
-  rejectFolder(folder) {
+  rejectFolder() {
     this.directeurService
-      .rejectFolder(folder.id, '')
+      .rejectFolder(this.selectedFolders)
       .toPromise()
       .then((rs) => {
         console.log(rs);
@@ -100,8 +108,8 @@ export class ListeDossierComponent implements OnInit {
       });
   }
 
-  renvoiFolder(folder) {
-    this.directeurService.renvoiyeFolder(folder.id, '').subscribe(
+  renvoiFolder() {
+    this.directeurService.renvoiyeFolder(this.selectedFolders).subscribe(
       (rs) => {
         console.log(rs);
       },
@@ -113,5 +121,13 @@ export class ListeDossierComponent implements OnInit {
 
   status(value) {
     return this.globalFunctions.status(value);
+  }
+
+  addComment() {
+    this.directeurService
+      .addComment(this.comment, this.idDossier)
+      .subscribe((rs) => {
+        console.log(rs);
+      });
   }
 }
