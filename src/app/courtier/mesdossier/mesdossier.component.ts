@@ -7,6 +7,7 @@ import { SharedDataService } from '../shared-data.service';
 import { CourtierServiceService } from '../../service/courtier-service.service.js';
 import { AuthServiceService } from '../../service/auth-service.service.js';
 import { GlobalFunctionsService } from '../../service/global-functions.service.js';
+import { DirectorServiceService } from '../../service/director-service.service.js';
 @Component({
   selector: 'app-mesdossier',
   templateUrl: './mesdossier.component.html',
@@ -22,19 +23,23 @@ export class MesdossierComponent {
   selectedFolders: any[] = [];
   FoldersTraite!: any;
   showModal: boolean = false;
+  idDossier: any;
+  comment: any;
 
   constructor(
     private fb: FormBuilder,
     router: Router,
     private authService: AuthServiceService,
     private courtierService: CourtierServiceService,
-    private globalFunctions: GlobalFunctionsService
+    private globalFunctions: GlobalFunctionsService,
+    private directeurService: DirectorServiceService
   ) {
     this.router = router;
   }
   // poour la modale
-  toggleShowModale() {
+  toggleShowModale(id) {
     this.showModal = !this.showModal;
+    this.idDossier = id;
   }
 
   ngOnInit(): void {
@@ -104,5 +109,13 @@ export class MesdossierComponent {
 
   status(value) {
     return this.globalFunctions.status(value);
+  }
+
+  addComment() {
+    this.directeurService
+      .addComment(this.comment, this.idDossier)
+      .subscribe((rs) => {
+        console.log(rs);
+      });
   }
 }

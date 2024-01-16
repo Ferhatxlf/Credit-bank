@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -9,6 +9,13 @@ export class SimulationServiceService {
   private apiUrl = 'https://unique-zinc-production.up.railway.app';
   //private apiUrl = 'http://localhost:8000';
   constructor(public http: HttpClient) {}
+
+  private loading = new Subject<boolean>();
+  loading$ = this.loading.asObservable();
+
+  annoncerLoading(loading: boolean) {
+    this.loading.next(loading);
+  }
 
   addDossier(dossier: any) {
     const httpOptions = {

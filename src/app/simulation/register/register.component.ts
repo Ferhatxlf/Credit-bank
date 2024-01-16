@@ -1,4 +1,10 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  OnInit,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
@@ -38,6 +44,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   s: any;
   type!: number;
   montant!: number;
+  @Output() loading = new EventEmitter<boolean>();
 
   ngAfterViewInit() {
     // Mettez à jour defaultCivilite ici après la première vérification des changements
@@ -201,6 +208,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   }
   submitForm() {
     if (this.applyForm.valid) {
+      this.simulationService.annoncerLoading(true);
       const formRegisterData = {
         nom: this.applyForm.value.name,
         prenom: this.applyForm.value.firstName,
@@ -287,6 +295,9 @@ export class RegisterComponent implements OnInit, AfterViewInit {
             (rs) => {
               console.log('dossier cree', rs);
               localStorage.setItem('id_for_upload_docs', rs['id']);
+              setTimeout(() => {
+                this.simulationService.annoncerLoading(false);
+              }, 200);
             },
             (error) => {
               console.error('Erreur de connexion:', error);
@@ -304,6 +315,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   }
   submitFormSignIn() {
     if (this.applyFormSignIn.valid) {
+      this.loading.emit(true);
       const formSignInData = {
         email: this.applyFormSignIn.value.emailConnexion,
         password: this.applyFormSignIn.value.password,
