@@ -68,15 +68,22 @@
         disabled
       />
     </div>
-    <div class="title-container name">
-      <label>Commentaire directeur :</label>
+    <div
+      class="title-container name"
+      *ngFor="let comment of folderValue?.commentaires"
+    >
+      <label
+        >Commentaire {{ comment?.compte?.role }}, le
+        {{ comment?.commentDate | date : "dd/MM/yyyy" }}</label
+      >
       <!-- <div>Dossier complet</div> -->
       <input
-        type="textArea"
+        type="text-area"
         class="form-control"
         id="validationCustom03"
-        value="{{ status(folderValue?.status) }}"
+        value="{{ comment?.comment }}"
         disabled
+        rows="6"
       />
     </div>
   </div>
