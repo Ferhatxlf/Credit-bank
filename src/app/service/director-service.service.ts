@@ -10,9 +10,9 @@ import { Observable, of, throwError } from 'rxjs';
   providedIn: 'root',
 })
 export class DirectorServiceService {
-  // private apiUrl = 'https://unique-zinc-production.up.railway.app';
+  private apiUrl = 'https://unique-zinc-production.up.railway.app';
 
-  private apiUrl = 'http://localhost:8000';
+  // private apiUrl = 'http://localhost:8000';
 
   // Declare a variable to store the user ID
   compteId!: number;

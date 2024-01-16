@@ -6,8 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class SimulationServiceService {
-  // private apiUrl = 'https://unique-zinc-production.up.railway.app';
-  private apiUrl = 'http://localhost:8000';
+  private apiUrl = 'https://unique-zinc-production.up.railway.app';
+  //private apiUrl = 'http://localhost:8000';
   constructor(public http: HttpClient) {}
 
   addDossier(dossier: any) {
