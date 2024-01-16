@@ -62,7 +62,19 @@
           <input type="text" id="table-search-users" class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="      Search for users">
       </div>
    
-    
+    <!-- courtier.component.html -->
+<div>
+<!-- courtier.component.html -->
+<div>
+  <!-- Your existing content here -->
+  <button (click)="toggleModal()" class="bg-blue-500 text-white p-2 rounded">ajouter</button>
+
+  <!-- Use the app-modal component and bind to its closeModal event -->
+ 
+</div>
+
+</div>
+
     </div>
 
           <div class="overflow-hidden">
@@ -116,3 +128,4 @@
 </div>
         </div>
       </div>
+      <app-modal *ngIf="isModalOpen" (closeModal)="closeModal()"></app-modal>

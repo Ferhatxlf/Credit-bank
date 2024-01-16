@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+
 import { HttpClient } from '@angular/common/http';
+import { ModalComponent } from '../component/modal/modal.component';
+import { Component, OnInit, ElementRef, HostListener } from '@angular/core';
 interface Compte {
   id: number;
   nin: string;
@@ -17,8 +19,11 @@ export class CourtierComponent implements OnInit {
 
 
   comptes: Compte[] = []; 
-
-  constructor(private http: HttpClient) {}
+  isModalOpen = false;
+  private elRef: ElementRef;
+  constructor(private http: HttpClient, elRef: ElementRef) {
+    this.elRef = elRef;
+  }
 
   ngOnInit(): void {
     this.fetchComptes();
@@ -62,5 +67,15 @@ export class CourtierComponent implements OnInit {
   get totalNumberOfPages(): number[] {
     return Array(Math.ceil(this.comptes.length / this.itemsPerPage)).fill(0).map((x, i) => i + 1);
   }
+
+
+  toggleModal(): void {
+    this.isModalOpen = !this.isModalOpen;
+  }
+
+  closeModal(): void {
+    this.isModalOpen = false;
+  }
+
 
 }

@@ -11,6 +11,7 @@ import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import { LOCALE_ID } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ApiConfigService} from "./service/ApiConfig.service"
 
 registerLocaleData(localeFr);
 
@@ -25,6 +26,6 @@ registerLocaleData(localeFr);
   ],
 
   bootstrap: [AppComponent],
-  providers: [WebSocketService, { provide: LOCALE_ID, useValue: 'fr-FR' }],
+  providers: [WebSocketService, { provide: LOCALE_ID, useValue: 'fr-FR' },ApiConfigService],
 })
 export class AppModule {}
