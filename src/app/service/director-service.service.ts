@@ -5,6 +5,7 @@ import { WebSocketService } from './websocket.service';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Observable, of, throwError } from 'rxjs';
+import { ApiConfigService} from './ApiConfig.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,14 +13,16 @@ import { Observable, of, throwError } from 'rxjs';
 export class DirectorServiceService {
   // private apiUrl = 'https://unique-zinc-production.up.railway.app';
 
-  private apiUrl = 'http://localhost:8000';
+  //private apiUrl = 'http://localhost:8000';
+  private  apiUrl = this.apiConfigService.getApiUrl();
 
   // Declare a variable to store the user ID
   compteId!: number;
 
   constructor(
     private http: HttpClient,
-    private webSocketService: WebSocketService
+    private webSocketService: WebSocketService,
+    private apiConfigService: ApiConfigService
   ) {
     // Retrieve the user information from localStorage
     const currentUserString = localStorage.getItem('currentUser');

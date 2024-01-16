@@ -1,14 +1,16 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ApiConfigService} from './ApiConfig.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SimulationServiceService {
   // private apiUrl = 'https://unique-zinc-production.up.railway.app';
-  private apiUrl = 'http://localhost:8000';
-  constructor(public http: HttpClient) {}
+ // private apiUrl = 'http://localhost:8000';
+  private  apiUrl = this.apiConfigService.getApiUrl();
+  constructor(public http: HttpClient,  private apiConfigService: ApiConfigService) {}
 
   addDossier(dossier: any) {
     const httpOptions = {

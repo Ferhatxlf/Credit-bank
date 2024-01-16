@@ -12,6 +12,8 @@ import { ComponentModule } from '../component/component.module';
 import { AgenceRegionnaleComponent } from './agenceRegionnale/agence-regionnale.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AgenceInfoComponent } from './agence-info/agence-info.component';
+import { ModalComponent } from './component/modal/modal.component';
+
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { AgenceInfoComponent } from './agence-info/agence-info.component';
     InformationComponent,
     AgenceRegionnaleComponent,
     AgenceInfoComponent,
+    ModalComponent,
+
   ],
   imports: [
     CommonModule,

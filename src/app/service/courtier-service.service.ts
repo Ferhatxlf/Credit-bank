@@ -2,17 +2,20 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { WebSocketService } from './websocket.service';
+import { ApiConfigService} from './ApiConfig.service';
 @Injectable({
   providedIn: 'root',
 })
 export class CourtierServiceService {
   // private apiUrl = 'https://unique-zinc-production.up.railway.app';
 
-  private apiUrl = 'http://localhost:8000';
+  //private apiUrl = 'http://localhost:8000';
+  private  apiUrl = this.apiConfigService.getApiUrl();
 
   constructor(
     private http: HttpClient,
-    private webSocketService: WebSocketService
+    private webSocketService: WebSocketService,
+    private apiConfigService: ApiConfigService
   ) {
     this.webSocketService.onMessageReceived().subscribe((data) => {
       console.log('Message received in component:', data);
