@@ -57,8 +57,8 @@ export class DirectorServiceService {
     );
   } */
 
-  acceptFolder(f): Observable<any> {
-    console.log('Attempting to accept folder...');
+  acceptFolder(Ids): Observable<any> {
+    /*  console.log('Attempting to accept folder...');
     const receiverId = '1'; // Assuming '1' is the receiver's ID
     const message = `dossier  N : ${f.id} accepter`;
 
@@ -70,10 +70,10 @@ export class DirectorServiceService {
       this.compteId.toString(),
       f?.assignedCourtier?.id.toString(),
       message
-    );
+    ); */
 
     return this.http
-      .put(`${this.apiUrl}/dossiers/${f?.id}/accept/${this.compteId}`, {
+      .post(`${this.apiUrl}/dossiers/updateStatusToAccepter`, Ids, {
         responseType: 'text',
       })
       .pipe(
@@ -81,39 +81,43 @@ export class DirectorServiceService {
         catchError((error) => throwError(error))
       );
   }
-  rejectFolder(f): Observable<any> {
-    const message = `dossier  N : ${f?.id} refuser`;
+  rejectFolder(Ids): Observable<any> {
+    /*  const message = `dossier  N : ${f?.id} refuser`;
     console.log('Sending WebSocket message...');
     this.webSocketService.sendMessage(
       this.compteId.toString(),
       f?.assignedCourtier?.id.toString(),
       message
-    );
-    return this.http.put(
-      `${this.apiUrl}/dossiers/${f?.id}/refuse/${this.compteId}`,
-      ''
-    );
+    ); */
+    return this.http
+      .post(`${this.apiUrl}/dossiers/updateStatusToRefuser`, Ids, {
+        responseType: 'text',
+      })
+      .pipe(
+        tap(() => console.log('success.')),
+        catchError((error) => throwError(error))
+      );
   }
 
-  renvoiyeFolder(f): Observable<any> {
-    const message = `dossier  N : ${f.id} renvoyer`;
+  renvoiyeFolder(Ids): Observable<any> {
+    /* const message = `dossier  N : ${f.id} renvoyer`;
     console.log('Sending WebSocket message...');
     this.webSocketService.sendMessage(
       this.compteId.toString(),
       f.assignedCourtier.id.toString(),
       message
-    );
-    return this.http.put(
-      `${this.apiUrl}/dossiers/${f.id}/RenvoyerDossier/${this.compteId}`,
-      ''
-    );
+    ); */
+    return this.http
+      .post(`${this.apiUrl}/dossiers/updateStatusToRenvoyer`, Ids, {
+        responseType: 'text',
+      })
+      .pipe(
+        tap(() => console.log('success.')),
+        catchError((error) => throwError(error))
+      );
   }
 
   addComment(comment, id) {
-    const params = new HttpParams().set('comment', comment);
-
-    return this.http.post(`${this.apiUrl}/dossiers/${id}/addComment`, null, {
-      params,
-    });
+    return this.http.post(`${this.apiUrl}/dossiers/${id}/addComment`, comment);
   }
 }
