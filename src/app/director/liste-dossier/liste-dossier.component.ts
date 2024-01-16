@@ -22,8 +22,9 @@ export class ListeDossierComponent implements OnInit {
   public searchActivate: boolean = false;
   currentUser: any;
   showModal: boolean = false;
-
+  comment: any;
   selectedFolders: any[] = [];
+  idDossier: any;
   constructor(
     private fb: FormBuilder,
     router: Router,
@@ -57,8 +58,9 @@ export class ListeDossierComponent implements OnInit {
       );
   }
   // poour la modale
-  toggleShowModale() {
+  toggleShowModale(id) {
     this.showModal = !this.showModal;
+    this.idDossier = id;
   }
 
   folderClicked(folder) {
@@ -119,5 +121,13 @@ export class ListeDossierComponent implements OnInit {
 
   status(value) {
     return this.globalFunctions.status(value);
+  }
+
+  addComment() {
+    this.directeurService
+      .addComment(this.comment, this.idDossier)
+      .subscribe((rs) => {
+        console.log(rs);
+      });
   }
 }

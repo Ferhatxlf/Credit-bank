@@ -106,4 +106,12 @@ export class DirectorServiceService {
       ''
     );
   }
+
+  addComment(comment, id) {
+    const params = new HttpParams().set('comment', comment);
+
+    return this.http.post(`${this.apiUrl}/dossiers/${id}/addComment`, null, {
+      params,
+    });
+  }
 }
