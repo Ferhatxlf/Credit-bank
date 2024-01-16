@@ -6,15 +6,17 @@ import { WebSocketService } from './websocket.service';
   providedIn: 'root',
 })
 export class CourtierServiceService {
+  // private apiUrl = 'https://unique-zinc-production.up.railway.app';
+
   private apiUrl = 'http://localhost:8000';
 
-  constructor(private http: HttpClient, private webSocketService: WebSocketService) {
-  
+  constructor(
+    private http: HttpClient,
+    private webSocketService: WebSocketService
+  ) {
     this.webSocketService.onMessageReceived().subscribe((data) => {
       console.log('Message received in component:', data);
- 
     });
-    
   }
 
   getAllDossier(agence_id: number) {
@@ -55,7 +57,4 @@ export class CourtierServiceService {
       `${this.apiUrl}/dossiers/courtier/${courtierId}/alldossiers`
     );
   }
-
- ;
-  
 }

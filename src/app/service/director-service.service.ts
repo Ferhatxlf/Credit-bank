@@ -8,6 +8,8 @@ import { tap } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class DirectorServiceService {
+  // private apiUrl = 'https://unique-zinc-production.up.railway.app';
+
   private apiUrl = 'http://localhost:8000';
 
   // Declare a variable to store the user ID
@@ -57,7 +59,7 @@ export class DirectorServiceService {
     console.log('Attempting to accept folder...');
     const receiverId = '1'; // Assuming '1' is the receiver's ID
     const message = `dossier  N : ${f.id} accepter`;
- 
+
     console.log(f + 'folder');
 
     // Notify the WebSocket server that the folder was accepted
