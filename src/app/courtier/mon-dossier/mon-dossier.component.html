@@ -1,93 +1,58 @@
-<div class="logo-container mb-2">
-  <span class="material-icons icons-header" (click)="goBack()"
-    >arrow_back_ios</span
-  >
-  <div class="header d-flex justify-content-center w-100">
-    <div class="title">Détail de dossier</div>
-  </div>
-</div>
-
-<div class="detail-dossier-container">
-  <div class="detail-dossier-header">
-    <div
-      (click)="goInfo()"
-      [class]="info ? 'nv' : 'nav-items'"
-      class="nav-items"
-    >
-      <span class="nav-items">Information</span>
-    </div>
-
-    <div
-      (click)="goCredit()"
-      [class]="credit ? 'nv' : 'nav-items'"
-      class="nav-items"
-    >
-      <span class="nav-items">Détail du crédit</span>
-    </div>
-
-    <div
-      (click)="goClient()"
-      [class]="client ? 'nv' : 'nav-items'"
-      class="nav-items"
-    >
-      <span class="nav-items">Détail du client</span>
-    </div>
-
-    <div
-      (click)="goDoc()"
-      [class]="docs ? 'nv' : 'nav-items'"
-      class="nav-items"
-    >
-      <span class="nav-items">Document</span>
-    </div>
-  </div>
-  <div class="router-outlet-container">
-    <div
-      class="commentaier-container"
-      [@openClose]="isOpen ? 'open' : 'closed'"
-      (click)="toggle()"
-    >
-      <span class="material-icons" *ngIf="!isOpen">mode_comment</span>
-      <div class="comment-display-container" *ngIf="isOpen">
-        <div
-          class="comment"
-          *ngFor="let comment of currentDossier.commentaires"
-        >
-          <h4>Directeur</h4>
-          <p>
-            {{ comment.comment }}
-          </p>
-        </div>
+<div class="container-fluid">
+  <div class="container">
+    <div class="logo-container mb-2">
+      <span class="material-icons icons-header" (click)="goBack()"
+        >arrow_back_ios</span
+      >
+      <div class="header d-flex justify-content-center w-100">
+        <div class="title">Détail de dossier</div>
       </div>
     </div>
 
-    <router-outlet></router-outlet>
-    <div
-      class="btn_cont"
-      style="
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        position: absolute;
-        bottom: 20px;
-      "
-    >
-      <button
-        (click)="toggleShowModale()"
-        class="btn btn2"
-        style="font-size: small; background-color: var(--var1); color: white"
-        *ngIf="!isTraite"
-      >
-        Soumettre au directeur de l'agence
-      </button>
+    <div class="detail-dossier-container">
+      <div class="detail-dossier-header">
+        <div
+          (click)="goInfo()"
+          [class]="info ? 'nv' : 'nav-items'"
+          class="nav-items"
+        >
+          <span class="nav-items">Information</span>
+        </div>
+
+        <div
+          (click)="goCredit()"
+          [class]="credit ? 'nv' : 'nav-items'"
+          class="nav-items"
+        >
+          <span class="nav-items">Détail du crédit</span>
+        </div>
+
+        <div
+          (click)="goClient()"
+          [class]="client ? 'nv' : 'nav-items'"
+          class="nav-items"
+        >
+          <span class="nav-items">Détail du client</span>
+        </div>
+
+        <div
+          (click)="goDoc()"
+          [class]="docs ? 'nv' : 'nav-items'"
+          class="nav-items"
+        >
+          <span class="nav-items">Document</span>
+        </div>
+      </div>
+      <div class="router-outlet-container">
+        <router-outlet></router-outlet>
+      </div>
     </div>
     <div
       style="
         width: 90%;
         display: flex;
         justify-content: center;
-        position: absolute;
-        bottom: 20px;
+
         color: rgb(68, 68, 211);
       "
       *ngIf="isTraite"
@@ -96,41 +61,22 @@
       <p style="margin-left: 5px">Ce dossier est envoyé au directeur !</p>
     </div>
   </div>
-  <div class="modale-container" *ngIf="showModal">
-    <div class="modale-arriere-plan"></div>
-    <div class="modale">
-      <div class="header">
-        <h6>Ajouter un commentaire</h6>
-        <span class="material-icons" (click)="toggleShowModale()">close</span>
-      </div>
-      <div class="body">
-        <div class="form-floating" style="width: 100%; height: 100%">
-          <textarea
-            class="form-control"
-            placeholder="Leave a comment here"
-            id="floatingTextarea2"
-            style="height: 100px; box-shadow: none"
-            [(ngModel)]="comment"
-          ></textarea>
-          <label for="floatingTextarea2">Commentaire</label>
-        </div>
-      </div>
-      <div class="footer">
-        <button
-          class="btn"
-          style="
-            width: 200px;
-            margin: 0 auto;
-            font-size: small;
-            background-color: var(--var1);
-            font-weight: 600;
-            color: white;
-          "
-          (click)="soumettreDossier()"
-        >
-          Soumettre
-        </button>
-      </div>
-    </div>
-  </div>
 </div>
+<!-- <div
+          class="commentaier-container"
+          [@openClose]="isOpen ? 'open' : 'closed'"
+          (click)="toggle()"
+        >
+          <span class="material-icons" *ngIf="!isOpen">mode_comment</span>
+          <div class="comment-display-container" *ngIf="isOpen">
+            <div
+              class="comment"
+              *ngFor="let comment of currentDossier.commentaires"
+            >
+              <h4>Directeur</h4>
+              <p>
+                {{ comment.comment }}
+              </p>
+            </div>
+          </div>
+        </div> -->
