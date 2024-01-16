@@ -236,7 +236,11 @@
           <tbody>
             <tr *ngFor="let folder of Folders; let i = index">
               <td>
-                <input type="checkbox" />
+                <input
+                  type="checkbox"
+                  [(ngModel)]="folder.isSelected"
+                  (change)="updateSelectedFolders()"
+                />
               </td>
 
               <td>{{ folder.typeCredit.nomCredit }}</td>
@@ -314,13 +318,28 @@
         margin: 0 auto;
       "
     >
-      <button class="btn btn-success" style="font-size: small" disabled>
+      <button
+        class="btn btn-success"
+        style="font-size: small"
+        [disabled]="selectedFolders.length === 0"
+        (click)="acceptFolder()"
+      >
         Accepter
       </button>
-      <button class="btn btn-danger" style="font-size: small" disabled>
+      <button
+        class="btn btn-danger"
+        style="font-size: small"
+        [disabled]="selectedFolders.length === 0"
+        (click)="rejectFolder()"
+      >
         Rejeter
       </button>
-      <button class="btn btn-secondary" style="font-size: small" disabled>
+      <button
+        class="btn btn-secondary"
+        style="font-size: small"
+        [disabled]="selectedFolders.length === 0"
+        (click)="renvoiFolder()"
+      >
         Retour pour information
       </button>
     </div>

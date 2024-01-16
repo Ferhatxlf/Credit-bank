@@ -23,6 +23,7 @@ export class ListeDossierComponent implements OnInit {
   currentUser: any;
   showModal: boolean = false;
 
+  selectedFolders: any[] = [];
   constructor(
     private fb: FormBuilder,
     router: Router,
@@ -77,9 +78,14 @@ export class ListeDossierComponent implements OnInit {
       this.Folders = this.Folders.filter((f) => f.status === statut);
     }
   }
-
-  acceptFolder(folder) {
-    this.directeurService.acceptFolder(folder, '').subscribe(
+  updateSelectedFolders() {
+    this.selectedFolders = this.Folders.filter(
+      (folder) => folder.isSelected
+    ).map((folder) => folder.id);
+    console.log('selecteur folderr', this.selectedFolders);
+  }
+  acceptFolder() {
+    this.directeurService.acceptFolder(this.selectedFolders).subscribe(
       (rs) => {
         console.log(rs);
       },
@@ -88,9 +94,9 @@ export class ListeDossierComponent implements OnInit {
       }
     );
   }
-  rejectFolder(folder) {
+  rejectFolder() {
     this.directeurService
-      .rejectFolder(folder.id, '')
+      .rejectFolder(this.selectedFolders)
       .toPromise()
       .then((rs) => {
         console.log(rs);
@@ -100,8 +106,8 @@ export class ListeDossierComponent implements OnInit {
       });
   }
 
-  renvoiFolder(folder) {
-    this.directeurService.renvoiyeFolder(folder.id, '').subscribe(
+  renvoiFolder() {
+    this.directeurService.renvoiyeFolder(this.selectedFolders).subscribe(
       (rs) => {
         console.log(rs);
       },

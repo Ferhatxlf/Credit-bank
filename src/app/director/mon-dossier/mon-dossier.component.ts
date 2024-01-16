@@ -130,7 +130,7 @@ export class MonDossierComponent {
     this.router.navigate([`/director/detail-dossier/${this.id}/document`]);
   }
 
-  folderActions() {
+  /* folderActions() {
     if (this.action === 'Accepter') {
       console.log('aaccept', this.comment);
       this.directeurService.acceptFolder(this.folder, this.comment).subscribe(
@@ -166,5 +166,5 @@ export class MonDossierComponent {
         }
       );
     }
-  }
+  } */
 }

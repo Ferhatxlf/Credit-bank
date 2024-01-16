@@ -1,8 +1,10 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { WebSocketService } from './websocket.service';
-import { tap } from 'rxjs/operators';
+
+import { catchError, map, tap } from 'rxjs/operators';
+
+import { Observable, of, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -53,40 +55,45 @@ export class DirectorServiceService {
     );
   } */
 
-  acceptFolder(f, comment): Observable<any> {
+  acceptFolder(f): Observable<any> {
     console.log('Attempting to accept folder...');
     const receiverId = '1'; // Assuming '1' is the receiver's ID
     const message = `dossier  N : ${f.id} accepter`;
- 
+
     console.log(f + 'folder');
 
     // Notify the WebSocket server that the folder was accepted
     console.log('Sending WebSocket message...');
     this.webSocketService.sendMessage(
       this.compteId.toString(),
-      f.assignedCourtier.id.toString(),
+      f?.assignedCourtier?.id.toString(),
       message
     );
-    return this.http.put(
-      `${this.apiUrl}/dossiers/${f.id}/accept/${this.compteId}`,
-      comment
-    );
+
+    return this.http
+      .put(`${this.apiUrl}/dossiers/${f?.id}/accept/${this.compteId}`, {
+        responseType: 'text',
+      })
+      .pipe(
+        tap(() => console.log('success.')),
+        catchError((error) => throwError(error))
+      );
   }
-  rejectFolder(f, comment): Observable<any> {
-    const message = `dossier  N : ${f.id} refuser`;
+  rejectFolder(f): Observable<any> {
+    const message = `dossier  N : ${f?.id} refuser`;
     console.log('Sending WebSocket message...');
     this.webSocketService.sendMessage(
       this.compteId.toString(),
-      f.assignedCourtier.id.toString(),
+      f?.assignedCourtier?.id.toString(),
       message
     );
     return this.http.put(
-      `${this.apiUrl}/dossiers/${f.id}/refuse/${this.compteId}`,
-      comment
+      `${this.apiUrl}/dossiers/${f?.id}/refuse/${this.compteId}`,
+      ''
     );
   }
 
-  renvoiyeFolder(f, comment): Observable<any> {
+  renvoiyeFolder(f): Observable<any> {
     const message = `dossier  N : ${f.id} renvoyer`;
     console.log('Sending WebSocket message...');
     this.webSocketService.sendMessage(
@@ -96,7 +103,7 @@ export class DirectorServiceService {
     );
     return this.http.put(
       `${this.apiUrl}/dossiers/${f.id}/RenvoyerDossier/${this.compteId}`,
-      comment
+      ''
     );
   }
 }
