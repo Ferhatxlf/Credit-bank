@@ -4,14 +4,18 @@ import { Injectable } from '@angular/core';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Observable, of, throwError } from 'rxjs';
-
+import { ApiConfigService } from './ApiConfig.service';
 @Injectable({
   providedIn: 'root',
 })
 export class ClientServiceService {
-  private apiUrl = 'https://unique-zinc-production.up.railway.app';
+  // private apiUrl = 'https://unique-zinc-production.up.railway.app';
   //private apiUrl = 'http://localhost:8000';
-  constructor(public http: HttpClient) {}
+  private apiUrl = this.apiConfigService.getApiUrl();
+  constructor(
+    public http: HttpClient,
+    private apiConfigService: ApiConfigService
+  ) {}
 
   getDossier(client_id: number) {
     return this.http.get(`${this.apiUrl}/dossiers/client/${client_id}`);

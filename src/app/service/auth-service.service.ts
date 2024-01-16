@@ -7,23 +7,22 @@ import { Router } from '@angular/router';
 import { WebSocketService } from './websocket.service';
 import { BanquierService, Banquier } from './BanquierService';
 import { catchError } from 'rxjs/operators';
-
+import { ApiConfigService } from './ApiConfig.service';
 @Injectable({
   providedIn: 'root',
 })
 export class AuthServiceService {
-  private apiUrl = 'https://unique-zinc-production.up.railway.app';
-  // private apiUrl = 'http://localhost:8000';
+  // private apiUrl = 'https://unique-zinc-production.up.railway.app';
+  private apiUrl = this.apiConfigService.getApiUrl();
   private userRole: string = ''; // Stockez le rôle de l'utilisateur ici
 
   constructor(
     public http: HttpClient,
     private router: Router,
     private webSocketService: WebSocketService,
-    private banquierService: BanquierService
+    private banquierService: BanquierService,
+    private apiConfigService: ApiConfigService
   ) {}
-
-  // inscription ...
 
   register(client: any) {
     const httpOptions = {
