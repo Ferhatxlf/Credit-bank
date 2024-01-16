@@ -43,15 +43,16 @@ table {
   justify-content: space-between;
   flex-direction: row;
   box-shadow: 0 5px 5px 1px rgba(196, 192, 192, 0.178);
-  height: 60px;
+  height: 70px;
   background-color: rgba(255, 255, 255, 0.884);
-  transition: 0.3s ease;
+  transition: all 0.3s ease-out;
   border: 1px solid #ddddddb2;
   border-radius: 5px;
 }
 .card:hover {
   transform: scale(1.02);
   cursor: pointer;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.11), 0 6px 6px rgba(0, 0, 0, 0.13);
 }
 .card-left {
   display: flex;
@@ -89,6 +90,7 @@ table {
   margin: 10px;
   width: auto;
   min-width: 20%;
+  height: 35px;
 }
 .soumettre {
   color: #5ca6b8;
@@ -135,6 +137,15 @@ table {
 /* fin card */
 /* pour la responsivité */
 @media screen and (max-width: 800px) {
+  .card-right > * {
+    font-size: small !important;
+    font-weight: 400 !important;
+  }
+}
+@media screen and (max-width: 700px) {
+  .card-right {
+    display: none;
+  }
 }
 @media screen and (max-width: 600px) {
   .card-left-info h6 {

@@ -543,9 +543,7 @@
     border-radius: 0px;
     overflow-y: auto;
   }
-  .card-container:hover {
-    transform: none;
-  }
+
   .navbar {
     margin-bottom: 0;
   }
