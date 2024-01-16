@@ -80,7 +80,10 @@ export class DirectorServiceService {
         responseType: 'text',
       })
       .pipe(
-        tap(() => console.log('success.')),
+        tap(() => {
+          window.location.reload();
+          console.log('success.');
+        }),
         catchError((error) => throwError(error))
       );
   }
@@ -97,7 +100,10 @@ export class DirectorServiceService {
         responseType: 'text',
       })
       .pipe(
-        tap(() => console.log('success.')),
+        tap(() => {
+          window.location.reload();
+          console.log('success.');
+        }),
         catchError((error) => throwError(error))
       );
   }
@@ -115,7 +121,10 @@ export class DirectorServiceService {
         responseType: 'text',
       })
       .pipe(
-        tap(() => console.log('success.')),
+        tap(() => {
+          window.location.reload();
+          console.log('success.');
+        }),
         catchError((error) => throwError(error))
       );
   }
