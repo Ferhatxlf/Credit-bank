@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ClientServiceService {
-  private apiUrl = 'http://localhost:8000';
+  private apiUrl = 'https://unique-zinc-production.up.railway.app';
   constructor(public http: HttpClient) {}
 
   getDossier(client_id: number) {
