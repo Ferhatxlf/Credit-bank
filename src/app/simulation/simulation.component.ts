@@ -1,9 +1,10 @@
 // SimulationComponent.ts
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { SharedService } from './shared.service';
 import { filter } from 'rxjs/operators';
 import { AuthServiceService } from '../service/auth-service.service';
+import { SimulationServiceService } from '../service/simulation-service.service';
 
 @Component({
   selector: 'app-simulation',
@@ -15,15 +16,21 @@ export class SimulationComponent implements OnInit {
   isLoged: boolean = false;
   currentUser: any;
   client: any;
+  loadingSpinner: boolean = false;
+
   constructor(
     private location: Location,
-    private authService: AuthServiceService
+    private authService: AuthServiceService,
+    private loading: SimulationServiceService
   ) {
     this.url = this.location.path();
     // Écouter les changements d'URL
     this.location.onUrlChange((url) => {
       this.url = url;
       console.log(this.url);
+    });
+    this.loading.loading$.subscribe((loading) => {
+      this.loadingSpinner = loading;
     });
   }
   url: string = '';

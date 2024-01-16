@@ -1,8 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { ApiConfigService} from './ApiConfig.service';
-
+import { Observable, Subject } from 'rxjs';
+import { ApiConfigService } from './ApiConfig.service';
 @Injectable({
   providedIn: 'root',
 })
@@ -11,6 +10,13 @@ export class SimulationServiceService {
  // private apiUrl = 'http://localhost:8000';
   private  apiUrl = this.apiConfigService.getApiUrl();
   constructor(public http: HttpClient,  private apiConfigService: ApiConfigService) {}
+
+  private loading = new Subject<boolean>();
+  loading$ = this.loading.asObservable();
+
+  annoncerLoading(loading: boolean) {
+    this.loading.next(loading);
+  }
 
   addDossier(dossier: any) {
     const httpOptions = {

@@ -388,7 +388,9 @@
   </nav>
   <div
     class="card-container scale-in"
-    [ngClass]="{ 'card-container-no-transform': toggleOptions }"
+    [ngClass]="{
+      'card-container-no-transform': toggleOptions || loadingSpinner
+    }"
   >
     <div class="logo-container mt-3">
       <span class="material-icons icons-header" (click)="goBack()"
@@ -510,5 +512,28 @@
       </div>
     </div>
     <router-outlet></router-outlet>
+    <!-- pour le loading -->
+    <div
+      style="
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(245, 245, 245, 0.63);
+        backdrop-filter: blur(5px);
+      "
+      *ngIf="loadingSpinner"
+    >
+      <img
+        class="isLoading"
+        src="../../../assets/loading.png"
+        style="width: 60px"
+        alt="loading"
+      />
+    </div>
   </div>
 </div>
