@@ -46,6 +46,7 @@ export class NavbarComponent implements OnInit {
         // Check if receiverId is defined and matches the current user's id
         if (message.receiverId && message.receiverId == this.currentUser.id) {
           this.notifications.push(message.message);
+          this.isNotified = true;
         }
       });
     }
@@ -60,7 +61,7 @@ export class NavbarComponent implements OnInit {
       if (message.receiverId === this.currentUser.id) {
         // Push the individual message into the notifications array
         this.notifications.push(message.message);
-        this.isNotified = true;
+      
       }
     });
 
