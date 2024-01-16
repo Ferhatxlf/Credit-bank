@@ -21,6 +21,7 @@ export class MesdossierComponent {
   currentUser: any;
   selectedFolders: any[] = [];
   FoldersTraite!: any;
+  showModal: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -31,6 +32,11 @@ export class MesdossierComponent {
   ) {
     this.router = router;
   }
+  // poour la modale
+  toggleShowModale() {
+    this.showModal = !this.showModal;
+  }
+
   ngOnInit(): void {
     this.searchForm = this.fb.group({
       numero_dossier: this.fb.control(''),

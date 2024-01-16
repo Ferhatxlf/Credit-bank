@@ -9,7 +9,7 @@ import { Observable, of, throwError } from 'rxjs';
   providedIn: 'root',
 })
 export class ClientServiceService {
-  // private apiUrl = 'https://unique-zinc-production.up.railway.app/';
+  // private apiUrl = 'https://unique-zinc-production.up.railway.app';
   private apiUrl = 'http://localhost:8000';
   constructor(public http: HttpClient) {}
 
@@ -24,18 +24,18 @@ export class ClientServiceService {
     );
   }
 
- /* deleteFile(name, dossierId) {
+  /* deleteFile(name, dossierId) {
     return this.http.delete(
       `${this.apiUrl}/dossiers/${dossierId}/files/${name}`
     );
   }*/
-  
+
   deleteFile(name: string, dossierId: number): Observable<string> {
     const url = `${this.apiUrl}/dossiers/${dossierId}/files/${name}`;
 
     return this.http.delete(url, { responseType: 'text' }).pipe(
       tap(() => console.log('File deleted successfully.')),
-      catchError(error => throwError(error))
+      catchError((error) => throwError(error))
     );
   }
 }

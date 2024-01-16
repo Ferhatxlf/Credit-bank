@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class TypeService {
-  // private apiUrl = 'https://unique-zinc-production.up.railway.app/';
+  // private apiUrl = 'https://unique-zinc-production.up.railway.app';
   private apiUrl = 'http://localhost:8000';
 
   constructor(private http: HttpClient) {}
