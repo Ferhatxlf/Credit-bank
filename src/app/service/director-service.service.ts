@@ -118,6 +118,17 @@ export class DirectorServiceService {
   }
 
   addComment(comment, id) {
-    return this.http.post(`${this.apiUrl}/dossiers/${id}/addComment`, comment);
+    return this.http
+      .post(
+        `${this.apiUrl}/dossiers/${id}/addComment/${this.compteId}`,
+        comment,
+        {
+          responseType: 'text',
+        }
+      )
+      .pipe(
+        tap(() => console.log('success.')),
+        catchError((error) => throwError(error))
+      );
   }
 }
