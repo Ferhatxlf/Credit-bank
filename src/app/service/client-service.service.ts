@@ -4,15 +4,18 @@ import { Injectable } from '@angular/core';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Observable, of, throwError } from 'rxjs';
-import { ApiConfigService} from './ApiConfig.service';
+import { ApiConfigService } from './ApiConfig.service';
 @Injectable({
   providedIn: 'root',
 })
 export class ClientServiceService {
   // private apiUrl = 'https://unique-zinc-production.up.railway.app';
   //private apiUrl = 'http://localhost:8000';
-  private  apiUrl = this.apiConfigService.getApiUrl();
-  constructor(public http: HttpClient,  private apiConfigService: ApiConfigService) {}
+  private apiUrl = this.apiConfigService.getApiUrl();
+  constructor(
+    public http: HttpClient,
+    private apiConfigService: ApiConfigService
+  ) {}
 
   getDossier(client_id: number) {
     return this.http.get(`${this.apiUrl}/dossiers/client/${client_id}`);
@@ -35,7 +38,10 @@ export class ClientServiceService {
     const url = `${this.apiUrl}/dossiers/${dossierId}/files/${name}`;
 
     return this.http.delete(url, { responseType: 'text' }).pipe(
-      tap(() => console.log('File deleted successfully.')),
+      tap(() => {
+        window.location.reload();
+        console.log('File deleted successfully.');
+      }),
       catchError((error) => throwError(error))
     );
   }
