@@ -5,7 +5,7 @@ import { WebSocketService } from './websocket.service';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Observable, of, throwError } from 'rxjs';
-import { ApiConfigService} from './ApiConfig.service';
+import { ApiConfigService } from './ApiConfig.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +14,7 @@ export class DirectorServiceService {
   // private apiUrl = 'https://unique-zinc-production.up.railway.app';
 
   //private apiUrl = 'http://localhost:8000';
-  private  apiUrl = this.apiConfigService.getApiUrl();
+  private apiUrl = this.apiConfigService.getApiUrl();
 
   // Declare a variable to store the user ID
   compteId!: number;
@@ -60,7 +60,7 @@ export class DirectorServiceService {
     );
   } */
 
-  acceptFolder(Ids): Observable<any> {
+  acceptFolder(folders): Observable<any> {
     /*  console.log('Attempting to accept folder...');
     const receiverId = '1'; // Assuming '1' is the receiver's ID
     const message = `dossier  N : ${f.id} accepter`;
@@ -75,6 +75,8 @@ export class DirectorServiceService {
       message
     ); */
 
+    const Ids = folders.map((f) => f.id);
+
     return this.http
       .post(`${this.apiUrl}/dossiers/updateStatusToAccepter`, Ids, {
         responseType: 'text',
@@ -87,7 +89,7 @@ export class DirectorServiceService {
         catchError((error) => throwError(error))
       );
   }
-  rejectFolder(Ids): Observable<any> {
+  rejectFolder(folders): Observable<any> {
     /*  const message = `dossier  N : ${f?.id} refuser`;
     console.log('Sending WebSocket message...');
     this.webSocketService.sendMessage(
@@ -95,6 +97,9 @@ export class DirectorServiceService {
       f?.assignedCourtier?.id.toString(),
       message
     ); */
+
+    const Ids = folders.map((f) => f.id);
+
     return this.http
       .post(`${this.apiUrl}/dossiers/updateStatusToRefuser`, Ids, {
         responseType: 'text',
@@ -108,7 +113,7 @@ export class DirectorServiceService {
       );
   }
 
-  renvoiyeFolder(Ids): Observable<any> {
+  renvoiyeFolder(folders): Observable<any> {
     /* const message = `dossier  N : ${f.id} renvoyer`;
     console.log('Sending WebSocket message...');
     this.webSocketService.sendMessage(
@@ -116,6 +121,8 @@ export class DirectorServiceService {
       f.assignedCourtier.id.toString(),
       message
     ); */
+
+    const Ids = folders.map((f) => f.id);
     return this.http
       .post(`${this.apiUrl}/dossiers/updateStatusToRenvoyer`, Ids, {
         responseType: 'text',
