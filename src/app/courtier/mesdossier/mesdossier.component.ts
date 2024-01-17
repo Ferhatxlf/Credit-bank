@@ -46,7 +46,7 @@ export class MesdossierComponent {
     this.searchForm = this.fb.group({
       numero_dossier: this.fb.control(''),
       nom_projet: this.fb.control(''),
-      statut: this.fb.control('NON_TRAITEE'),
+      statut: this.fb.control('TRAITEMENT_ENCOURS'),
     });
 
     const a = localStorage.getItem('currentUser');
@@ -57,7 +57,10 @@ export class MesdossierComponent {
     this.courtierService.getAllMyFolders(this.currentUser.id).subscribe(
       (rs) => {
         this.Folders = rs;
-        this.F = rs;
+        this.Folders = this.Folders.filter(
+          (f) => f.status !== 'ACCEPTER' && f.status !== 'REFUSER'
+        );
+        this.F = this.Folders;
         console.log(this.Folders);
       },
       (err) => console.log(err)

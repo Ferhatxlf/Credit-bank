@@ -17,6 +17,7 @@ import { DetailClientComponent } from './component/detail-client/detail-client.c
 import { DocumentComponent } from './component/document/document.component';
 import { ProfileComponent } from './profile/profile.component';
 import { NotificationComponent } from './notification/notification.component';
+import { DossierFinalisesComponent } from './dossier-finalises/dossier-finalises.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { NotificationComponent } from './notification/notification.component';
     DocumentComponent,
     ProfileComponent,
     NotificationComponent,
+    DossierFinalisesComponent,
   ],
   imports: [
     CommonModule,

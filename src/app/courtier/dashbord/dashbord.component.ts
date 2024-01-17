@@ -30,7 +30,9 @@ export class DashbordComponent implements OnInit {
     this.courtierService.getAllMyFolders(this.currentUser.id).subscribe(
       (rs) => {
         this.myFolders = rs;
-        console.log(this.Folders);
+        this.myFolders = this.myFolders.filter(
+          (f) => f.status !== 'ACCEPTER' && f.status !== 'REFUSER'
+        );
       },
       (err) => console.log(err)
     );
