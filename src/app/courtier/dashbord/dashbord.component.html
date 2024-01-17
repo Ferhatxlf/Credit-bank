@@ -42,10 +42,19 @@
       </div>
     </div>
     <div class="row class2-container">
-      <div class="col">
+      <div class="col-sm-12 col-md-6">
         <div class="card special-card">
           <div class="material-icons">exit_to_app</div>
           <span class="txt">Déconnexion</span>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-6">
+        <div
+          class="card special-card"
+          [routerLink]="['/courtier/dossier-finalise']"
+        >
+          <div class="material-icons">archive</div>
+          <span class="txt">Dossiers finalisés</span>
         </div>
       </div>
     </div>

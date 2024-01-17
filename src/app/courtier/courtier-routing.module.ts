@@ -12,7 +12,8 @@ import { DetailCreditComponent } from './component/detail-credit/detail-credit.c
 import { DetailClientComponent } from './component/detail-client/detail-client.component';
 import { DocumentComponent } from './component/document/document.component';
 import { ProfileComponent } from './profile/profile.component';
-import { NotificationComponent } from './notification/notification.component'
+import { NotificationComponent } from './notification/notification.component';
+import { DossierFinalisesComponent } from './dossier-finalises/dossier-finalises.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -27,6 +28,7 @@ const routes: Routes = [
       { path: 'detail', component: DetailComponent },
       { path: 'profile', component: ProfileComponent },
       { path: 'notif', component: NotificationComponent },
+      { path: 'dossier-finalise', component: DossierFinalisesComponent },
       {
         path: 'detail-dossier/:id',
         component: MonDossierComponent,

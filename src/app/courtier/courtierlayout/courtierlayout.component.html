@@ -56,6 +56,22 @@
           myFolders.length
         }}</span>
       </div>
+
+      <div
+        class="container-text"
+        [routerLink]="['/courtier/dossier-finalise']"
+        [ngClass]="{
+          'special-class': url === '/courtier/dossier-finalise'
+        }"
+      >
+        <div class="folder-container">
+          <span class="material-icons sidebar-icons"> archive </span>
+          <span class="sidebar-text">Dossiers finalisés</span>
+        </div>
+        <span class="badge rounded-pill text-bg-light">{{
+          myFolders.length
+        }}</span>
+      </div>
       <div
         class="container-text"
         [routerLink]="['/courtier/profile']"
@@ -125,6 +141,24 @@
           <div class="folder-container">
             <span class="material-icons sidebar-icons"> folder </span>
             <span class="sidebar-text">Mes dossiers</span>
+          </div>
+          <span
+            class="badge rounded-pill text-bg-light"
+            style="font-size: small; margin-right: 1%"
+            >{{ myFolders.length }}</span
+          >
+        </div>
+        <div
+          class="sidebar-lateral-container-text"
+          [routerLink]="['/courtier/dossier-finalise']"
+          [ngClass]="{
+            'sidebar-lateral-special-class':
+              url === '/courtier/dossier-finalise'
+          }"
+        >
+          <div class="folder-container">
+            <span class="material-icons sidebar-icons"> archive </span>
+            <span class="sidebar-text">Dossiers finalisés</span>
           </div>
           <span
             class="badge rounded-pill text-bg-light"
