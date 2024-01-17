@@ -95,6 +95,12 @@ export class DirectorlayoutComponent {
       icon: 'person',
       class: '',
     },
+    {
+      path: '/director/dossier-finalise',
+      title: 'Dossiers finalisés',
+      icon: 'person',
+      class: '',
+    },
     { path: '/admin/profile', title: 'Mon Profile', icon: 'person', class: '' },
   ];
 
