@@ -217,23 +217,7 @@ export class DocumentComponent implements OnInit {
       (rs) => {
         this.simulationService.getDossier(this.id).subscribe(
           (res) => {
-            this.folderValue = res;
-
-            console.log(res);
-            this.hasIdentite = this.folderValue.attachedFiles.some(
-              (f) => f.fileName === "Pièce d'identité.pdf"
-            );
-            this.hasResidence = this.folderValue.attachedFiles.some(
-              (f) => f.fileName === 'Fichier de résidence.pdf'
-            );
-            console.log(this.hasResidence);
-            this.hasPaie = this.folderValue.attachedFiles.some(
-              (f) => f.fileName === 'Fiche de paie.pdf'
-            );
-            this.hasAutre = this.folderValue.attachedFiles.some(
-              (f) => f.fileName === 'Autre justificatif de revenu.pdf'
-            );
-            console.log(this.hasAutre);
+            console.log('Fichiers téléchargés avec succès');
           },
           (error) => console.log('erreur lors du chargement des fichier', error)
         );
