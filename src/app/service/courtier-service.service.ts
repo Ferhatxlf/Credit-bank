@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, catchError, tap, throwError } from 'rxjs';
 import { WebSocketService } from './websocket.service';
 import { ApiConfigService } from './ApiConfig.service';
 @Injectable({
@@ -34,17 +34,32 @@ export class CourtierServiceService {
   }
 
   affecterDossierACourtier(courtierId: number, dossierId: number) {
-    return this.http.post(
-      `${this.apiUrl}/dossiers/assign-dossier/${dossierId}/to-courtier/${courtierId}`,
-      null
-    );
+    return this.http
+      .post(
+        `${this.apiUrl}/dossiers/assign-dossier/${dossierId}/to-courtier/${courtierId}`,
+        null
+      )
+      .pipe(
+        tap(() => {
+          window.location.reload();
+          console.log('success.');
+        }),
+        catchError((error) => throwError(error))
+      );
   }
 
   soumettereDossierADirecteur(dossierIds) {
-    return this.http.post(
-      `${this.apiUrl}/dossiers/sendmultipletoDirectreur`,
-      dossierIds
-    );
+    return this.http
+      .post(`${this.apiUrl}/dossiers/sendmultipletoDirectreur`, dossierIds, {
+        responseType: 'text',
+      })
+      .pipe(
+        tap(() => {
+          window.location.reload();
+          console.log('success.');
+        }),
+        catchError((error) => throwError(error))
+      );
   }
 
   downloadFile(dossierId: number, fileName) {

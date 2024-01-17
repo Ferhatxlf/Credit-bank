@@ -38,7 +38,10 @@ export class ClientServiceService {
     const url = `${this.apiUrl}/dossiers/${dossierId}/files/${name}`;
 
     return this.http.delete(url, { responseType: 'text' }).pipe(
-      tap(() => console.log('File deleted successfully.')),
+      tap(() => {
+        window.location.reload();
+        console.log('File deleted successfully.');
+      }),
       catchError((error) => throwError(error))
     );
   }

@@ -128,6 +128,7 @@ export class ListeDossierComponent implements OnInit {
       .addComment(this.comment, this.idDossier)
       .subscribe((rs) => {
         console.log(rs);
+        this.showModal = !this.showModal;
       });
   }
 }
