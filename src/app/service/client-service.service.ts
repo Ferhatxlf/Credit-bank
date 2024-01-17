@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { Observable, of, throwError } from 'rxjs';
+import { Observable, Subject, of, throwError } from 'rxjs';
 import { ApiConfigService } from './ApiConfig.service';
 @Injectable({
   providedIn: 'root',
@@ -16,6 +16,12 @@ export class ClientServiceService {
     public http: HttpClient,
     private apiConfigService: ApiConfigService
   ) {}
+  private loading = new Subject<boolean>();
+  loading$ = this.loading.asObservable();
+
+  annoncerLoading(loading: boolean) {
+    this.loading.next(loading);
+  }
 
   getDossier(client_id: number) {
     return this.http.get(`${this.apiUrl}/dossiers/client/${client_id}`);
@@ -39,7 +45,7 @@ export class ClientServiceService {
 
     return this.http.delete(url, { responseType: 'text' }).pipe(
       tap(() => {
-        window.location.reload();
+        // window.location.reload();
         console.log('File deleted successfully.');
       }),
       catchError((error) => throwError(error))

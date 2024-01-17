@@ -56,8 +56,15 @@
             />
           </div>
 
-          <div class="button-container">
-            <button class="btn mb-4">Connexion</button>
+          <div class="button-container mb-4">
+            <button *ngIf="!isLoading" class="btn mb-4">Connexion</button>
+            <img
+              *ngIf="isLoading"
+              class="isLoading"
+              src="../../../assets/loading.png"
+              style="width: 40px"
+              alt="loadingButton"
+            />
           </div>
           <hr class="mt-2 mb-1" style="margin: 0 auto; width: 40%" />
           <div class="forgot-password-container">
