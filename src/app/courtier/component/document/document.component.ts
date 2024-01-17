@@ -54,5 +54,6 @@ export class DocumentComponent {
     // Example usage
     const targetUrl = `${this.apiUrl}/dossiers/downloadFile${name}`;
     this.openUrlInNewTab(targetUrl);
+    
   }
 }
