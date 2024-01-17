@@ -184,12 +184,8 @@
                 aria-label="Statut"
                 formControlName="statut"
               >
-                <option selected value="NON_TRAITEE">Non traité</option>
-                <option value="TRAITEMENT_ENCOURS">Traitement en cours</option>
-                <option value="TRAITEE">Traité</option>
-                <option value="RETOURNER">
-                  Retour por plus d'informations
-                </option>
+                <option selected value="ACCEPTER">Accepté</option>
+                <option value="REFUSER">Rejeté</option>
               </select>
             </div>
 
@@ -222,7 +218,6 @@
         <table>
           <thead class="z-2">
             <tr>
-              <th></th>
               <th>Type du crédit</th>
               <th>Emprunteur</th>
               <th>Type du client</th>
@@ -231,19 +226,10 @@
 
               <th>Statut</th>
               <th>Détail</th>
-              <th>Commentaire</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let folder of Folders; let i = index">
-              <td>
-                <input
-                  type="checkbox"
-                  [(ngModel)]="folder.isSelected"
-                  (change)="updateSelectedFolders()"
-                />
-              </td>
-
               <td>{{ folder.typeCredit.nomCredit }}</td>
               <td>{{ folder.client.nom }} {{ folder.client.prenom }}</td>
               <td>Particulier</td>
@@ -257,132 +243,10 @@
                   >remove_red_eye</i
                 >
               </td>
-              <td style="display: flex; justify-content: center">
-                <i
-                  class="material-icons icon"
-                  (click)="toggleShowModale(folder?.id)"
-                  >add</i
-                >
-              </td>
-
-              <!-- <td>
-                <div class="btn-group z-1">
-                  <button
-                    type="button"
-                    class="btn btn-info dropdown-toggle"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    action
-                  </button>
-                  <ul class="dropdown-menu dropdown-menu-end">
-                    <li>
-                      <button
-                        class="dropdown-item"
-                        type="button"
-                        (click)="acceptFolder(folder)"
-                      >
-                        Accepter
-                      </button>
-                    </li>
-                    <li>
-                      <button
-                        class="dropdown-item"
-                        type="button"
-                        (click)="rejectFolder(folder)"
-                      >
-                        Rejeter
-                      </button>
-                    </li>
-                    <li>
-                      <button
-                        class="dropdown-item"
-                        type="button"
-                        (click)="renvoiFolder(folder)"
-                      >
-                        Renvoyer
-                      </button>
-                    </li>
-                  </ul>
-                </div>
-              </td> -->
             </tr>
           </tbody>
         </table>
       </section>
-    </div>
-    <div
-      class="button-container"
-      style="
-        display: flex;
-        flex-direction: row;
-        width: 40%;
-        justify-content: space-around;
-        margin: 0 auto;
-      "
-    >
-      <button
-        class="btn btn-success"
-        style="font-size: small"
-        [disabled]="selectedFolders.length === 0"
-        (click)="acceptFolder()"
-      >
-        Accepter
-      </button>
-      <button
-        class="btn btn-danger"
-        style="font-size: small"
-        [disabled]="selectedFolders.length === 0"
-        (click)="rejectFolder()"
-      >
-        Rejeter
-      </button>
-      <button
-        class="btn btn-secondary"
-        style="font-size: small"
-        [disabled]="selectedFolders.length === 0"
-        (click)="renvoiFolder()"
-      >
-        Retour pour information
-      </button>
-    </div>
-  </div>
-
-  <div class="modale-container" *ngIf="showModal">
-    <div class="modale-arriere-plan"></div>
-    <div class="modale">
-      <div class="header">
-        <h6>Ajouter un commentaire</h6>
-        <span class="material-icons" (click)="toggleShowModale('')">close</span>
-      </div>
-      <div class="body">
-        <div class="form-floating" style="width: 100%; height: 90%">
-          <textarea
-            [(ngModel)]="comment"
-            class="form-control"
-            placeholder="Leave a comment here"
-            id="floatingTextarea2"
-            style="height: 100px; box-shadow: none"
-          ></textarea>
-          <label for="floatingTextarea2">Commentaire</label>
-        </div>
-      </div>
-      <div class="footer">
-        <button
-          class="btn"
-          style="
-            width: 100px;
-            margin: 0 auto;
-            font-size: small;
-            background-color: var(--var1);
-            font-weight: 600;
-            color: white;
-          "
-          (click)="addComment()"
-        >
-          Soumettre
-        </button>
-      </div>
     </div>
   </div>
 </div>

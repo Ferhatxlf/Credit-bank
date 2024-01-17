@@ -51,7 +51,10 @@ export class ListeDossierComponent implements OnInit {
       .subscribe(
         (rs) => {
           this.Folders = rs;
-          this.F = rs;
+          this.Folders = this.Folders.filter(
+            (f) => f.status !== 'ACCEPTER' && f.status !== 'REFUSER'
+          );
+          this.F = this.Folders;
           console.log(this.Folders);
         },
         (err) => console.log(err)
@@ -91,7 +94,9 @@ export class ListeDossierComponent implements OnInit {
 
   async acceptFolder() {
     try {
-      const response = await this.directeurService.acceptFolder(this.selectedFolders);
+      const response = await this.directeurService.acceptFolder(
+        this.selectedFolders
+      );
       response.subscribe(
         (rs) => {
           console.log(rs); // Log the success response
@@ -104,26 +109,29 @@ export class ListeDossierComponent implements OnInit {
       console.error(error); // Handle any errors that occur while obtaining the promise
     }
   }
-  
+
   async rejectFolder() {
     try {
-      const response = await this.directeurService.rejectFolder(this.selectedFolders);
+      const response = await this.directeurService.rejectFolder(
+        this.selectedFolders
+      );
       console.log(response); // Log the success response if needed
     } catch (error) {
       console.log(error); // Log any errors that occur
     }
   }
-  
 
   async renvoiFolder() {
     try {
-      const response = await this.directeurService.renvoiyeFolder(this.selectedFolders);
+      const response = await this.directeurService.renvoiyeFolder(
+        this.selectedFolders
+      );
       console.log(response); // Log the success response if needed
     } catch (error) {
       console.log(error); // Log any errors that occur
     }
   }
-  
+
   status(value) {
     return this.globalFunctions.status(value);
   }
