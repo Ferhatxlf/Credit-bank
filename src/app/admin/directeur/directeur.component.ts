@@ -65,7 +65,7 @@ export class DirecteurComponent implements OnInit {
         codePostal: this.communeForm.value.codePostal,
       };
   
-      this.http.post('http://localhost:8000/agence-commune/addcommune', communeData)
+      this.http.post('https://thin-laugh-production.up.railway.app/agence-commune/addcommune', communeData)
         .subscribe(
           (response) => {
             console.log('Commune added:', response);
@@ -82,7 +82,7 @@ export class DirecteurComponent implements OnInit {
   
 
   getAllCommunes() {
-    this.http.get<Commune[]>('http://localhost:8000/agence-commune').subscribe(
+    this.http.get<Commune[]>('https://thin-laugh-production.up.railway.app/agence-commune').subscribe(
       (data: Commune[]) => {
         this.communes = data;
         console.log('Retrieved communes:', this.communes);
@@ -105,7 +105,7 @@ export class DirecteurComponent implements OnInit {
         // Add other properties if required
       };
 
-      this.http.post('http://localhost:8000/directionregionales', directionData).subscribe(
+      this.http.post('https://thin-laugh-production.up.railway.app/directionregionales', directionData).subscribe(
         (response) => {
           console.log('Regional direction added:', response);
           // Handle success - maybe refresh the direction list or show a success message
@@ -127,7 +127,7 @@ export class DirecteurComponent implements OnInit {
   // ... existing code
 
   getAllDirectionRegionales() {
-    this.http.get<DirectionRegionale[]>('http://localhost:8000/directionregionales').subscribe(
+    this.http.get<DirectionRegionale[]>('https://thin-laugh-production.up.railway.app/directionregionales').subscribe(
       (data: DirectionRegionale[]) => {
         this.directionRegionales = data;
         console.log('Retrieved direction regionales:', this.directionRegionales);

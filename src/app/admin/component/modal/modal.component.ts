@@ -70,7 +70,7 @@ export class ModalComponent {
       // Validate the form data
       if (this.validateForm()) {
         // Perform the POST request
-        this.http.post('http://localhost:8000/banque/comptes/create', this.formData).subscribe(
+        this.http.post('https://thin-laugh-production.up.railway.app/banque/comptes/create', this.formData).subscribe(
           (response) => {
             console.log('POST request successful:', response);
             // Optionally, emit an event to inform the parent component or perform other actions

@@ -43,7 +43,10 @@
         <span class="material-icons edit">cloud_upload</span>
         <p>Ajouter un fichier</p>
       </form>
-      <div class="document-selected" *ngIf="pieceIdentite && !hasIdentite">
+      <div
+        class="document-selected"
+        *ngIf="pieceIdentite && !hasIdentite && !isLoading"
+      >
         <div class="document-detail">
           <img src="../../../../assets/pdfLogo.png" alt="pdflogo" />
           <p>Pièce d'identité.pdf</p>
@@ -55,6 +58,14 @@
         >
           Confirmer
         </button>
+      </div>
+      <div *ngIf="isLoading && !hasIdentite && pieceIdentite">
+        <img
+          src="../../../../assets/loading.png"
+          class="isLoading"
+          alt="loading"
+          style="width: 20px"
+        />
       </div>
       <div class="document mt-3" *ngIf="hasIdentite">
         <div class="document-detail">
@@ -71,6 +82,14 @@
             >delete</span
           >
         </div>
+      </div>
+      <div *ngIf="isLoadingDeleteIdentite">
+        <img
+          src="../../../../assets/loading.png"
+          class="isLoading"
+          alt="loading"
+          style="width: 20px"
+        />
       </div>
     </div>
     <!-- pour la residance  -->
@@ -108,7 +127,10 @@
         <span class="material-icons edit">cloud_upload</span>
         <p>Ajouter un fichier</p>
       </form>
-      <div class="document-selected" *ngIf="residence && !hasResidence">
+      <div
+        class="document-selected"
+        *ngIf="residence && !hasResidence && !isLoading"
+      >
         <div class="document-detail">
           <img src="../../../../assets/pdfLogo.png" alt="pdflogo" />
           <p>Fichier de résidence.pdf</p>
@@ -120,6 +142,14 @@
         >
           Confirmer
         </button>
+      </div>
+      <div *ngIf="isLoading && !hasResidence && residence">
+        <img
+          src="../../../../assets/loading.png"
+          class="isLoading"
+          alt="loading"
+          style="width: 20px"
+        />
       </div>
       <div class="document mt-3" *ngIf="hasResidence">
         <div class="document-detail">
@@ -135,6 +165,14 @@
             >delete</span
           >
         </div>
+      </div>
+      <div *ngIf="isLoadingDeleteResidence">
+        <img
+          src="../../../../assets/loading.png"
+          class="isLoading"
+          alt="loading"
+          style="width: 20px"
+        />
       </div>
     </div>
     <!-- pour les fiches de paie -->
@@ -172,7 +210,7 @@
         <span class="material-icons edit">cloud_upload</span>
         <p>Ajouter un fichier</p>
       </form>
-      <div class="document-selected" *ngIf="paie && !hasPaie">
+      <div class="document-selected" *ngIf="paie && !hasPaie && !isLoading">
         <div class="document-detail">
           <img src="../../../../assets/pdfLogo.png" alt="pdflogo" />
           <p>Fiche de paie.pdf</p>
@@ -184,6 +222,14 @@
         >
           Confirmer
         </button>
+      </div>
+      <div *ngIf="isLoading && !hasPaie && paie">
+        <img
+          src="../../../../assets/loading.png"
+          class="isLoading"
+          alt="loading"
+          style="width: 20px"
+        />
       </div>
       <div class="document mt-3" *ngIf="hasPaie">
         <div class="document-detail">
@@ -199,6 +245,14 @@
             >delete</span
           >
         </div>
+      </div>
+      <div *ngIf="isLoadingDeletePaie && hasPaie && !paie">
+        <img
+          src="../../../../assets/loading.png"
+          class="isLoading"
+          alt="loading"
+          style="width: 20px"
+        />
       </div>
     </div>
     <!-- autre fichier -->
@@ -236,7 +290,7 @@
         <span class="material-icons edit">cloud_upload</span>
         <p>Ajouter un fichier</p>
       </form>
-      <div class="document-selected" *ngIf="autre && !hasAutre">
+      <div class="document-selected" *ngIf="autre && !hasAutre && !isLoading">
         <div class="document-detail">
           <img src="../../../../assets/pdfLogo.png" alt="pdflogo" />
           <p>Autre justificatif de revenu.pdf</p>
@@ -248,6 +302,14 @@
         >
           Confirmer
         </button>
+      </div>
+      <div *ngIf="isLoading && !hasAutre && autre">
+        <img
+          src="../../../../assets/loading.png"
+          class="isLoading"
+          alt="loading"
+          style="width: 20px"
+        />
       </div>
       <div class="document mt-3" *ngIf="hasAutre">
         <div class="document-detail">
@@ -263,6 +325,14 @@
             >delete</span
           >
         </div>
+      </div>
+      <div *ngIf="isLoadingDeleteAutre && hasAutre && !autre">
+        <img
+          src="../../../../assets/loading.png"
+          class="isLoading"
+          alt="loading"
+          style="width: 20px"
+        />
       </div>
     </div>
 

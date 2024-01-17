@@ -30,7 +30,7 @@ export class CourtierComponent implements OnInit {
   }
 
   fetchComptes() {
-    this.http.get<any[]>('http://localhost:8000/banque/comptes').subscribe(
+    this.http.get<any[]>('https://thin-laugh-production.up.railway.app/banque/comptes').subscribe(
       (data) => {
         this.comptes = data;
       },

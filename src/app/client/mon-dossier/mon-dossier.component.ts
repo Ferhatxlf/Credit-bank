@@ -37,6 +37,7 @@ export class MonDossierComponent implements OnInit {
     this.location.back();
   }
   ngOnInit(): void {
+    this.clientService.annoncerLoading(true);
     // Récupérer l'ID du dossier depuis l'URL
     this.idDossier = this.route.snapshot.paramMap.get('id');
     console.log('iddossier', this.idDossier);
@@ -47,6 +48,9 @@ export class MonDossierComponent implements OnInit {
     }
     this.clientService.getDossier(this.currentUser.id).subscribe(
       (rs) => {
+        setTimeout(() => {
+          this.clientService.annoncerLoading(false);
+        }, 1000);
         console.log(rs);
 
         this.Folders = rs;
@@ -68,6 +72,9 @@ export class MonDossierComponent implements OnInit {
       },
       (err) => {
         console.log(err);
+        setTimeout(() => {
+          this.clientService.annoncerLoading(false);
+        }, 1000);
       }
     );
   }
