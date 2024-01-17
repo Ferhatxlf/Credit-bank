@@ -39,6 +39,18 @@
 
       <div
         class="container-text"
+        [routerLink]="['/director/dossier-finalise']"
+        [ngClass]="{ 'special-class': url === '/director/dossier-finalise' }"
+      >
+        <div class="folder-container">
+          <span class="material-icons sidebar-icons"> folder_special </span>
+          <span class="sidebar-text">Dossiers finalisés</span>
+        </div>
+        <span class="badge rounded-pill text-bg-light">1</span>
+      </div>
+
+      <div
+        class="container-text"
         [routerLink]="['/director/profile']"
         [ngClass]="{ 'special-class': url === '/director/profile' }"
       >
@@ -88,6 +100,24 @@
           <div class="folder-container">
             <span class="material-icons sidebar-icons"> folder </span>
             <span class="sidebar-text">Liste des dossiers</span>
+          </div>
+          <span
+            class="badge rounded-pill text-bg-light"
+            style="font-size: small; margin-right: 1%"
+            >0</span
+          >
+        </div>
+        <div
+          class="sidebar-lateral-container-text"
+          [routerLink]="['/director/dossier']"
+          [ngClass]="{
+            'sidebar-lateral-special-class':
+              url === '/director/dossier-finalise'
+          }"
+        >
+          <div class="folder-container">
+            <span class="material-icons sidebar-icons"> folder_special </span>
+            <span class="sidebar-text">Dossiers finalisés</span>
           </div>
           <span
             class="badge rounded-pill text-bg-light"
