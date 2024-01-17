@@ -22,8 +22,7 @@ export class SimulationServiceService {
     const headers = this.getHeaders();
     return this.http.post(
       `${this.apiUrl}/dossiers/adddossier`,
-      dossier,
-      { headers }
+      dossier
     );
   }
   
