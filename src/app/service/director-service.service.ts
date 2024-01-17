@@ -61,20 +61,8 @@ export class DirectorServiceService {
   } */
 
   acceptFolder(Ids): Observable<any> {
-    /*  console.log('Attempting to accept folder...');
-    const receiverId = '1'; // Assuming '1' is the receiver's ID
-    const message = `dossier  N : ${f.id} accepter`;
-
-    console.log(f + 'folder');
-
-    // Notify the WebSocket server that the folder was accepted
-    console.log('Sending WebSocket message...');
-    this.webSocketService.sendMessage(
-      this.compteId.toString(),
-      f?.assignedCourtier?.id.toString(),
-      message
-    ); */
-
+   
+  
     return this.http
       .post(`${this.apiUrl}/dossiers/updateStatusToAccepter`, Ids, {
         responseType: 'text',
@@ -83,18 +71,39 @@ export class DirectorServiceService {
         tap(() => {
           window.location.reload();
           console.log('success.');
+          Ids.array.forEach(f=> {
+            console.log(f)
+            console.log('Attempting to accept folder...');
+            const receiverId = '1'; // Assuming '1' is the receiver's ID
+            const message = `dossier  N : ${f.id} accepter`;
+        
+            console.log(f + 'folder');
+        
+            // Notify the WebSocket server that the folder was accepted
+            console.log('Sending WebSocket message...');
+            this.webSocketService.sendMessage(
+              this.compteId.toString(),
+              f?.assignedCourtier?.id.toString(),
+              message
+            ); 
+        
+          });
         }),
         catchError((error) => throwError(error))
       );
+
+      
   }
   rejectFolder(Ids): Observable<any> {
-    /*  const message = `dossier  N : ${f?.id} refuser`;
+
+    Ids.array.forEach(f=> { const message = `dossier  N : ${f?.id} refuser`;
     console.log('Sending WebSocket message...');
     this.webSocketService.sendMessage(
       this.compteId.toString(),
       f?.assignedCourtier?.id.toString(),
       message
-    ); */
+    ); })
+    /* */
     return this.http
       .post(`${this.apiUrl}/dossiers/updateStatusToRefuser`, Ids, {
         responseType: 'text',
@@ -109,13 +118,14 @@ export class DirectorServiceService {
   }
 
   renvoiyeFolder(Ids): Observable<any> {
-    /* const message = `dossier  N : ${f.id} renvoyer`;
+    Ids.array.forEach(f=> {const message = `dossier  N : ${f.id} renvoyer`;
     console.log('Sending WebSocket message...');
     this.webSocketService.sendMessage(
       this.compteId.toString(),
       f.assignedCourtier.id.toString(),
       message
-    ); */
+    );})
+    /*  */
     return this.http
       .post(`${this.apiUrl}/dossiers/updateStatusToRenvoyer`, Ids, {
         responseType: 'text',
