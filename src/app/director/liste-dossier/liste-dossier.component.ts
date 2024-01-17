@@ -89,39 +89,41 @@ export class ListeDossierComponent implements OnInit {
     this.selectedFolders = this.Folders.filter((folder) => folder.isSelected);
   }
 
-  acceptFolder() {
-    this.directeurService.acceptFolder(this.selectedFolders).subscribe(
-      (rs) => {
-        console.log(rs);
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
+  async acceptFolder() {
+    try {
+      const response = await this.directeurService.acceptFolder(this.selectedFolders);
+      response.subscribe(
+        (rs) => {
+          console.log(rs); // Log the success response
+        },
+        (err) => {
+          console.log(err); // Log any errors that occur
+        }
+      );
+    } catch (error) {
+      console.error(error); // Handle any errors that occur while obtaining the promise
+    }
   }
-  rejectFolder() {
-    this.directeurService
-      .rejectFolder(this.selectedFolders)
-      .toPromise()
-      .then((rs) => {
-        console.log(rs);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  
+  async rejectFolder() {
+    try {
+      const response = await this.directeurService.rejectFolder(this.selectedFolders);
+      console.log(response); // Log the success response if needed
+    } catch (error) {
+      console.log(error); // Log any errors that occur
+    }
   }
+  
 
-  renvoiFolder() {
-    this.directeurService.renvoiyeFolder(this.selectedFolders).subscribe(
-      (rs) => {
-        console.log(rs);
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
+  async renvoiFolder() {
+    try {
+      const response = await this.directeurService.renvoiyeFolder(this.selectedFolders);
+      console.log(response); // Log the success response if needed
+    } catch (error) {
+      console.log(error); // Log any errors that occur
+    }
   }
-
+  
   status(value) {
     return this.globalFunctions.status(value);
   }

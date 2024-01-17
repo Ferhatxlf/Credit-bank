@@ -31,7 +31,7 @@ export class InformationComponent implements OnInit {
 
   fetchAgences(): void {
     // Assuming you fetch Agence data via HTTP request
-    this.http.get<Agence[]>('http://localhost:8000/agence-commune/getallagences').subscribe(
+    this.http.get<Agence[]>('https://thin-laugh-production.up.railway.app/agence-commune/getallagences').subscribe(
       (data: Agence[]) => {
         this.agences = data;
       },

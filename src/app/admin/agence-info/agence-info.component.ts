@@ -54,7 +54,7 @@ export class AgenceInfoComponent implements OnInit {
   }
 
   fetchDossiers(): void {
-    const apiUrl = `http://localhost:8000/dossiers/agence/${this.idAgence}`;
+    const apiUrl = `https://thin-laugh-production.up.railway.app/dossiers/agence/${this.idAgence}`;
 
     this.http.get<Dossier[]>(apiUrl).subscribe(
       (data: Dossier[]) => {
