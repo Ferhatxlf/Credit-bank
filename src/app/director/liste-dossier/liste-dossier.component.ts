@@ -80,12 +80,15 @@ export class ListeDossierComponent implements OnInit {
       this.Folders = this.Folders.filter((f) => f.status === statut);
     }
   }
-  updateSelectedFolders() {
+  /* updateSelectedFolders() {
     this.selectedFolders = this.Folders.filter(
       (folder) => folder.isSelected
     ).map((folder) => folder.id);
-    console.log('selecteur folderr', this.selectedFolders);
+  } */
+  updateSelectedFolders() {
+    this.selectedFolders = this.Folders.filter((folder) => folder.isSelected);
   }
+
   acceptFolder() {
     this.directeurService.acceptFolder(this.selectedFolders).subscribe(
       (rs) => {
