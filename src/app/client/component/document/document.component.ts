@@ -49,10 +49,10 @@ export class DocumentComponent implements OnInit {
 
         console.log(res);
         this.hasIdentite = this.folderValue.attachedFiles.some(
-          (f) => f.fileName === "Pièce d'identité.pdf"
+          (f) => f.fileName === 'Piece identite.pdf'
         );
         this.hasResidence = this.folderValue.attachedFiles.some(
-          (f) => f.fileName === 'Fichier de résidence.pdf'
+          (f) => f.fileName === 'Fichier de residence.pdf'
         );
         console.log(this.hasResidence);
         this.hasPaie = this.folderValue.attachedFiles.some(
@@ -139,10 +139,10 @@ export class DocumentComponent implements OnInit {
 
       this.files.push(modifiedFile);
 
-      if (customFileName === "Pièce d'identité") {
+      if (customFileName === 'Piece identite') {
         this.pieceIdentite = true;
       }
-      if (customFileName === 'Fichier de résidence') {
+      if (customFileName === 'Fichier de residence') {
         this.residence = true;
       }
       if (customFileName === 'Fiche de paie') {
@@ -186,10 +186,10 @@ export class DocumentComponent implements OnInit {
 
               console.log(res);
               this.hasIdentite = this.folderValue.attachedFiles.some(
-                (f) => f.fileName === "Pièce d'identité.pdf"
+                (f) => f.fileName === 'Piece identite.pdf'
               );
               this.hasResidence = this.folderValue.attachedFiles.some(
-                (f) => f.fileName === 'Fichier de résidence.pdf'
+                (f) => f.fileName === 'Fichier de residence.pdf'
               );
               console.log(this.hasResidence);
               this.hasPaie = this.folderValue.attachedFiles.some(
