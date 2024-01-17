@@ -50,7 +50,7 @@ export class DocumentComponent {
     // Open a URL in a new tab
 
     // Example usage
-    const targetUrl = `http://localhost:8000/dossiers/downloadFile/${this.id}/${name}`;
+    const targetUrl = `https://thin-laugh-production.up.railway.app/dossiers/downloadFile/${this.id}/${name}`;
     this.openUrlInNewTab(targetUrl);
   }
 }
