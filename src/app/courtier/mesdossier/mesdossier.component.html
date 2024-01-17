@@ -75,7 +75,7 @@
           <thead>
             <tr>
               <th></th>
-              <th>Type du crédit</th>
+              <th style="width: 30%">Type du crédit</th>
               <th>Emprunteur</th>
               <th>Type du client</th>
 
@@ -96,7 +96,7 @@
                   *ngIf="folder.status === 'TRAITEMENT_ENCOURS'"
                 />
               </td>
-              <td style="display: flex; align-items: end">
+              <td style="display: flex; align-items: start">
                 <span
                   class="material-icons"
                   style="color: orange; margin-right: 5px"
@@ -115,7 +115,13 @@
                   >remove_red_eye</i
                 >
               </td>
-              <td style="display: flex; justify-content: center">
+              <td
+                style="
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                "
+              >
                 <i
                   class="material-icons icon"
                   (click)="toggleShowModale(folder?.id)"
