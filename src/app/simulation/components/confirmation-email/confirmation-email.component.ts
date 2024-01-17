@@ -7,7 +7,8 @@ import {
   OnDestroy,
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription, interval } from 'rxjs';
+import { Subscription, interval, Observable, timer } from 'rxjs';
+import { map, takeWhile } from 'rxjs/operators';
 import { AuthServiceService } from '../../../service/auth-service.service';
 
 @Component({
@@ -20,11 +21,17 @@ export class ConfirmationEmailComponent implements OnInit, OnDestroy {
   inputValues = Array(6).fill(null);
   currentInput = 0;
   id_regestring_user: any;
+  isStartInterval: boolean;
+  countDown: Observable<string>;
 
-  constructor(
-    private router: Router,
-    private authService: AuthServiceService
-  ) {}
+  constructor(private router: Router, private authService: AuthServiceService) {
+    this.isStartInterval = true;
+    this.countDown = timer(0, 1000).pipe(
+      map((i) => 300 - i),
+      takeWhile((i) => i >= 0),
+      map((i) => `${Math.floor(i / 60)}:${i % 60 < 10 ? '0' : ''}${i % 60}`)
+    );
+  }
 
   @ViewChildren('input') inputElements!: QueryList<ElementRef>;
   startTime!: number;
@@ -50,6 +57,7 @@ export class ConfirmationEmailComponent implements OnInit, OnDestroy {
   private subscription!: Subscription;
 
   ngOnInit() {
+    this.isStartInterval = true;
     this.startInterval();
     this.startTime = Date.now();
   }
@@ -69,7 +77,7 @@ export class ConfirmationEmailComponent implements OnInit, OnDestroy {
         (rs) => {
           console.log('vcbls, n;zc, d:', rs);
           if (rs['activated']) {
-            this.stopInterval();
+            this.router.navigate(['/simulation/upload']);
           }
         },
         (err) => {
@@ -84,7 +92,7 @@ export class ConfirmationEmailComponent implements OnInit, OnDestroy {
   }
 
   private stopInterval() {
-    this.router.navigate(['/simulation/upload']);
+    this.isStartInterval = false;
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
