@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { WebSocketService } from '../../service/websocket.service';
 
 import { HttpErrorResponse } from '@angular/common/http';
-import { BanquierService,Banquier } from '../../service/BanquierService';
+import { BanquierService, Banquier } from '../../service/BanquierService';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   banquier: boolean = false;
   loginForm!: FormGroup;
   banquierForm!: FormGroup;
+  isLoading: boolean = false;
   constructor(
     private router: Router,
     private location: Location,
@@ -24,7 +25,6 @@ export class LoginComponent implements OnInit {
     private authService: AuthServiceService,
     private webSocketService: WebSocketService,
     private banquierService: BanquierService
-
   ) {}
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -43,8 +43,12 @@ export class LoginComponent implements OnInit {
   }
 
   clientLogin() {
+    this.isLoading = true;
     this.authService.login(this.loginForm.value).subscribe(
       (rs) => {
+        setTimeout(() => {
+          this.isLoading = false;
+        }, 2000);
         console.log(rs);
         const user = {
           token: rs.token,
@@ -58,19 +62,20 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/client']);
       },
       (error) => {
+        setTimeout(() => {
+          this.isLoading = false;
+        }, 1000);
         // Handle error from server
         console.error('Error from server:', error);
-    
+
         // You can also check the error details if needed
         if (error instanceof HttpErrorResponse && error.error) {
           console.error('Error Response Body:', error.error);
-          alert(error.error)
+          alert(error.error);
         }
       }
     );
   }
-
-  
 
   banquierLogin() {
     this.authService.banquierLogin(this.banquierForm.value).subscribe(
@@ -85,7 +90,7 @@ export class LoginComponent implements OnInit {
         };
         console.log(user);
         localStorage.setItem('currentUser', JSON.stringify(user));
-  
+
         const banquier: Banquier = {
           id: rs.compte.id,
           token: rs.token,
@@ -93,10 +98,10 @@ export class LoginComponent implements OnInit {
           nin: rs.compte.nin,
           role: rs.compte.role,
         };
-    
+
         // Set banquier in the service
         this.banquierService.setBanquier(banquier);
-  
+
         if (rs.compte.role === 'courtier') {
           this.webSocketService.courtierConnect(rs.compte.id);
           this.router.navigate(['/courtier']);
@@ -112,7 +117,6 @@ export class LoginComponent implements OnInit {
       }
     );
   }
-  
 
   onChangeConnexion() {
     if (this.client) {
