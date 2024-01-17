@@ -20,6 +20,7 @@ export class ConfirmationEmailComponent implements OnInit, OnDestroy {
   inputValues = Array(6).fill(null);
   currentInput = 0;
   id_regestring_user: any;
+  messageError: string = '';
 
   constructor(
     private router: Router,
@@ -67,9 +68,16 @@ export class ConfirmationEmailComponent implements OnInit, OnDestroy {
       }
       this.authService.getClient(this.id_regestring_user).subscribe(
         (rs) => {
-          console.log('vcbls, n;zc, d:', rs);
           if (rs['activated']) {
-            this.stopInterval();
+            const user = {
+              token: rs['token'],
+              id: rs['id'],
+
+              role: 'particulier',
+            };
+            console.log(user);
+            localStorage.setItem('currentUser', JSON.stringify(user));
+            this.stopIntervalWithNavigation();
           }
         },
         (err) => {
@@ -83,18 +91,28 @@ export class ConfirmationEmailComponent implements OnInit, OnDestroy {
     });
   }
 
-  private stopInterval() {
+  private stopIntervalWithNavigation() {
     this.router.navigate(['/simulation/upload']);
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
   }
-
+  private stopInterval() {
+    this.messageError =
+      "La durée de l'email d'activation a expiré. Veuillez cliquer sur \"Renvoyer l'email d'activation\" pour recevoir un nouveau email.";
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
   private isFiveMinutesElapsed(): boolean {
     const currentTime = Date.now(); // Obtenez le moment actuel
     const elapsedMinutes = (currentTime - this.startTime) / (1000 * 60); // Calculez le temps écoulé en minutes
 
     // Vérifiez si 5 minutes se sont écoulées
     return elapsedMinutes >= 5;
+  }
+
+  renvoiEmail() {
+    this.messageError = '';
   }
 }
