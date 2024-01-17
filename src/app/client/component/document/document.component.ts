@@ -32,6 +32,11 @@ export class DocumentComponent implements OnInit {
   openFicheDePaieTwo: boolean = false;
   openFicheDePaieThree: boolean = false;
   openAutre: boolean = false;
+  isLoading: boolean = false;
+  isLoadingDeleteIdentite: boolean = false;
+  isLoadingDeleteResidence: boolean = false;
+  isLoadingDeletePaie: boolean = false;
+  isLoadingDeleteAutre: boolean = false;
 
   constructor(
     private simulationService: SimulationServiceService,
@@ -158,6 +163,7 @@ export class DocumentComponent implements OnInit {
 
   sendFile(name) {
     // Filtrer les fichiers correspondant au nom fourni
+    this.isLoading = true;
     const filesToUpload = this.files.filter((f) => name === f?.name);
 
     if (filesToUpload.length === 0) {
@@ -182,6 +188,9 @@ export class DocumentComponent implements OnInit {
         (rs) => {
           this.simulationService.getDossier(this.id).subscribe(
             (res) => {
+              setTimeout(() => {
+                this.isLoading = false;
+              }, 1000);
               this.folderValue = res;
 
               console.log(res);
@@ -200,7 +209,12 @@ export class DocumentComponent implements OnInit {
               );
               console.log(this.hasAutre);
             },
-            (err) => console.log(err)
+            (err) => {
+              setTimeout(() => {
+                this.isLoading = false;
+              }, 1000);
+              console.log(err);
+            }
           );
           console.log('Fichiers téléchargés avec succès');
         },
@@ -213,17 +227,75 @@ export class DocumentComponent implements OnInit {
   }
 
   deleteFile(name) {
+    this.openAutre = false;
+    this.openFicheDePaieOne = false;
+    this.openIdentite = false;
+    this.openResidance = false;
+    this.pieceIdentite = false;
+    this.residence = false;
+    this.autre = false;
+    this.paie = false;
+
+    // Set the appropriate isLoadingDeleteType based on the file being deleted
+    if (name === 'Piece identite.pdf') {
+      this.isLoadingDeleteIdentite = true;
+    } else if (name === 'Fichier de residence.pdf') {
+      this.isLoadingDeleteResidence = true;
+    } else if (name === 'Fiche de paie.pdf') {
+      this.isLoadingDeletePaie = true;
+    } else if (name === 'Autre justificatif de revenu.pdf') {
+      this.isLoadingDeleteAutre = true;
+    }
+
     this.clientService.deleteFile(name, this.id).subscribe(
       (rs) => {
         this.simulationService.getDossier(this.id).subscribe(
           (res) => {
-            console.log('Fichiers téléchargés avec succès');
+            setTimeout(() => {
+              this.isLoadingDeleteIdentite = false;
+              this.isLoadingDeleteResidence = false;
+              this.isLoadingDeletePaie = false;
+              this.isLoadingDeleteAutre = false;
+            }, 1000);
+            this.folderValue = res;
+
+            console.log(res);
+            this.hasIdentite = this.folderValue.attachedFiles.some(
+              (f) => f.fileName === 'Piece identite.pdf'
+            );
+            this.hasResidence = this.folderValue.attachedFiles.some(
+              (f) => f.fileName === 'Fichier de residence.pdf'
+            );
+            console.log(this.hasResidence);
+            this.hasPaie = this.folderValue.attachedFiles.some(
+              (f) => f.fileName === 'Fiche de paie.pdf'
+            );
+            this.hasAutre = this.folderValue.attachedFiles.some(
+              (f) => f.fileName === 'Autre justificatif de revenu.pdf'
+            );
+            console.log(this.hasAutre);
           },
-          (error) => console.log('erreur lors du chargement des fichier', error)
+          (err) => {
+            setTimeout(() => {
+              this.isLoadingDeleteIdentite = false;
+              this.isLoadingDeleteResidence = false;
+              this.isLoadingDeletePaie = false;
+              this.isLoadingDeleteAutre = false;
+            }, 1000);
+            console.log(err);
+          }
         );
         console.log('Fichiers téléchargés avec succès');
       },
-      (err) => console.log('erreur lors de la supression', err)
+      (err) => {
+        console.log('erreur lors de la supression', err);
+        setTimeout(() => {
+          this.isLoadingDeleteIdentite = false;
+          this.isLoadingDeleteResidence = false;
+          this.isLoadingDeletePaie = false;
+          this.isLoadingDeleteAutre = false;
+        }, 1000);
+      }
     );
   }
 }

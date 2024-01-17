@@ -14,6 +14,7 @@ export class ClientlayoutComponent implements OnInit {
   public dselected: boolean = false;
   public pselected: boolean = false;
   isSidebarOpen: boolean = false;
+  isLoading: boolean = false;
   client: any;
   constructor(
     private location: Location,
@@ -25,6 +26,9 @@ export class ClientlayoutComponent implements OnInit {
     this.location.onUrlChange((url) => {
       this.url = url;
       console.log(this.url);
+    });
+    this.clientService.loading$.subscribe((loading) => {
+      this.isLoading = loading;
     });
   }
   private listTitles!: any[];
