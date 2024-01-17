@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { SimulationServiceService } from '../../../service/simulation-service.service';
 import { CourtierServiceService } from '../../../service/courtier-service.service';
 import { ActivatedRoute } from '@angular/router';
+import { ApiConfigService } from '../../../service/ApiConfig.service';
 
 @Component({
   selector: 'app-document',
@@ -11,11 +12,12 @@ import { ActivatedRoute } from '@angular/router';
 export class DocumentComponent {
   folderValue: any;
   id: any;
-
+  private  apiUrl = this.apiConfigService.getApiUrl();
   constructor(
     private simulationService: SimulationServiceService,
     private courtierService: CourtierServiceService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private apiConfigService: ApiConfigService
   ) {}
 
   ngOnInit() {
@@ -51,7 +53,7 @@ export class DocumentComponent {
     // Open a URL in a new tab
 
     // Example usage
-    const targetUrl = `http://localhost:8000/dossiers/downloadFile/${this.id}/${name}`;
+    const targetUrl = `${this.apiUrl}/dossiers/downloadFile/${this.id}/${name}`;
     this.openUrlInNewTab(targetUrl);
   }
 }
