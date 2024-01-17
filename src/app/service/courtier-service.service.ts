@@ -23,56 +23,83 @@ export class CourtierServiceService {
   }
 
   getAllDossier(agence_id: number) {
+    const headers = this.getHeaders();
     return this.http.get(
       `${this.apiUrl}/dossiers/${agence_id}/dossiersnotassigned`
     );
   }
-
+  
   getDossierEncours(id: number) {
+    const headers = this.getHeaders();
     return this.http.get(`${this.apiUrl}/dossiers/courtier/${id}/Encours`);
   }
+  
   getDossierTraite(id: number) {
+    const headers = this.getHeaders();
     return this.http.get(`${this.apiUrl}/dossiers/courtier/${id}/traitee`);
   }
-
+  
   affecterDossierACourtier(courtierId: number, dossierId: number) {
-    return this.http
-      .post(
-        `${this.apiUrl}/dossiers/assign-dossier/${dossierId}/to-courtier/${courtierId}`,
-        null
-      )
-      .pipe(
-        tap(() => {
-          window.location.reload();
-          console.log('success.');
-        }),
-        catchError((error) => throwError(error))
-      );
+    const headers = this.getHeaders();
+    return this.http.post(
+      `${this.apiUrl}/dossiers/assign-dossier/${dossierId}/to-courtier/${courtierId}`,
+      null
+    ).pipe(
+      tap(() => {
+        window.location.reload();
+        console.log('success.');
+      }),
+      catchError((error) => throwError(error))
+    );
   }
-
+  
   soumettereDossierADirecteur(dossierIds) {
-    return this.http
-      .post(`${this.apiUrl}/dossiers/sendmultipletoDirectreur`, dossierIds, {
+    const headers = this.getHeaders();
+    return this.http.post(
+      `${this.apiUrl}/dossiers/sendmultipletoDirectreur`,
+      dossierIds,
+      {
+      
         responseType: 'text',
-      })
-      .pipe(
-        tap(() => {
-          window.location.reload();
-          console.log('success.');
-        }),
-        catchError((error) => throwError(error))
-      );
+      }
+    ).pipe(
+      tap(() => {
+        window.location.reload();
+        console.log('success.');
+      }),
+      catchError((error) => throwError(error))
+    );
   }
-
+  
   downloadFile(dossierId: number, fileName) {
+    const headers = this.getHeaders();
     return this.http.get(
       `${this.apiUrl}/dossiers/downloadFile/${dossierId}/${fileName}`
     );
   }
-
+  
   getAllMyFolders(courtierId) {
+    const headers = this.getHeaders();
     return this.http.get(
       `${this.apiUrl}/dossiers/courtier/${courtierId}/alldossiers`
     );
   }
+
+  private getHeaders(): HttpHeaders {
+    // Retrieve the user object from local storage
+    const currentUserString = localStorage.getItem('currentUser');
+  
+    // Check if currentUserString is not null before parsing
+    const currentUser = currentUserString ? JSON.parse(currentUserString) : null;
+  
+    // Retrieve the token from the user object or set it to an empty string if not present
+    const token = currentUser && currentUser.token ? currentUser.token : '';
+  
+    // Set headers with the token
+    return new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+    });
+  }
+  
 }
