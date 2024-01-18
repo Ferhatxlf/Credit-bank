@@ -40,7 +40,10 @@ export class ListeDossierComponent implements OnInit {
       nom_projet: this.fb.control(''),
       statut: this.fb.control('NON_TRAITEE'),
     });
+    this.getAllFolders();
+  }
 
+  getAllFolders() {
     const a = localStorage.getItem('currentUser');
     if (a) {
       this.currentUser = JSON.parse(a);
@@ -97,6 +100,7 @@ export class ListeDossierComponent implements OnInit {
       const response = await this.directeurService.acceptFolder(
         this.selectedFolders
       );
+      this.getAllFolders();
       response.subscribe(
         (rs) => {
           console.log(rs); // Log the success response
@@ -115,6 +119,7 @@ export class ListeDossierComponent implements OnInit {
       const response = await this.directeurService.rejectFolder(
         this.selectedFolders
       );
+      this.getAllFolders();
       console.log(response); // Log the success response if needed
     } catch (error) {
       console.log(error); // Log any errors that occur
@@ -126,6 +131,7 @@ export class ListeDossierComponent implements OnInit {
       const response = await this.directeurService.renvoiyeFolder(
         this.selectedFolders
       );
+      this.getAllFolders();
       console.log(response); // Log the success response if needed
     } catch (error) {
       console.log(error); // Log any errors that occur
