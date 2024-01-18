@@ -1,7 +1,13 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { WebSocketService } from './websocket.service';
-import { Observable, forkJoin, throwError } from 'rxjs';
+import {
+  BehaviorSubject,
+  Observable,
+  Subject,
+  forkJoin,
+  throwError,
+} from 'rxjs';
 import { switchMap, catchError, tap } from 'rxjs/operators';
 import { ApiConfigService } from './ApiConfig.service';
 
@@ -165,5 +171,18 @@ export class DirectorServiceService {
         tap(() => console.log('success.')),
         catchError((error) => throwError(error))
       );
+  }
+  // pour updater les conteur de la sidebar:
+  private FolderList = new BehaviorSubject<string>(''); // Initialisez avec une chaîne vide
+  folderList$: Observable<string> = this.FolderList.asObservable();
+
+  updateFolderList(chaine: string) {
+    this.FolderList.next(chaine);
+  }
+  private loading = new Subject<boolean>();
+  loading$ = this.loading.asObservable();
+
+  annoncerLoading(loading: boolean) {
+    this.loading.next(loading);
   }
 }

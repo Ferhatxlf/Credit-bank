@@ -26,12 +26,16 @@ export class DossierFinalisesComponent {
     this.router = router;
   }
   ngOnInit(): void {
+    this.directeurService.annoncerLoading(true);
     this.searchForm = this.fb.group({
       numero_dossier: this.fb.control(''),
       nom_projet: this.fb.control(''),
       statut: this.fb.control('ACCEPTER'),
     });
 
+    this.getAllFolders();
+  }
+  getAllFolders() {
     const a = localStorage.getItem('currentUser');
     if (a) {
       this.currentUser = JSON.parse(a);
@@ -41,6 +45,7 @@ export class DossierFinalisesComponent {
       .getAllDossierForDirector(this.currentUser.agence_id)
       .subscribe(
         (rs) => {
+          this.directeurService.annoncerLoading(false);
           this.Folders = rs;
           this.Folders = this.Folders.filter(
             (f) => f.status === 'ACCEPTER' || f.status === 'REFUSER'
@@ -48,7 +53,10 @@ export class DossierFinalisesComponent {
           this.F = this.Folders;
           console.log(this.Folders);
         },
-        (err) => console.log(err)
+        (err) => {
+          console.log(err);
+          this.directeurService.annoncerLoading(false);
+        }
       );
   }
   folderClicked(folder) {

@@ -38,13 +38,12 @@ export class ListeDossierComponent implements OnInit {
       nom_projet: this.fb.control(''),
       statut: this.fb.control('NON_TRAITEE'),
     });
+    this.courtierService.annoncerLoading(true);
 
     this.getAllFolders();
   }
 
   getAllFolders() {
-    this.courtierService.annoncerLoading(true);
-
     const a = localStorage.getItem('currentUser');
     if (a) {
       this.currentUser = JSON.parse(a);
@@ -54,15 +53,13 @@ export class ListeDossierComponent implements OnInit {
           this.F = rs;
           console.log('la liste des dossiers', this.Folders);
           this.updateFolderList(this.Folders.length);
-          setTimeout(() => {
-            this.courtierService.annoncerLoading(false);
-          }, 1000);
+
+          this.courtierService.annoncerLoading(false);
         },
         (err) => {
           console.log(err);
-          setTimeout(() => {
-            this.courtierService.annoncerLoading(false);
-          }, 1000);
+
+          this.courtierService.annoncerLoading(false);
         }
       );
     }
@@ -115,6 +112,7 @@ export class ListeDossierComponent implements OnInit {
         this.F = rs;
         this.cdRef.detectChanges(); // Force la détection des changements
         this.updateFolderList(this.Folders.length);
+        this.ngOnInit();
       },
       (err) => console.log(err)
     );

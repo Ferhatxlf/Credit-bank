@@ -127,7 +127,7 @@ export class ConfirmationEmailComponent implements OnInit, OnDestroy {
     const elapsedMinutes = (currentTime - this.startTime) / (1000 * 60); // Calculez le temps écoulé en minutes
 
     // Vérifiez si 5 minutes se sont écoulées
-    return elapsedMinutes >= 1;
+    return elapsedMinutes >= 5;
   }
 
   renvoiEmail() {
