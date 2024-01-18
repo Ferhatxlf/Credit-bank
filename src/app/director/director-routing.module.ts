@@ -8,6 +8,7 @@ import { InformationComponent } from './component/information/information.compon
 import { DetailCreditComponent } from './component/detail-credit/detail-credit.component';
 import { DetailClientComponent } from './component/detail-client/detail-client.component';
 import { DocumentComponent } from './component/document/document.component';
+import { DossierFinalisesComponent } from './dossier-finalises/dossier-finalises.component';
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   {
@@ -16,6 +17,7 @@ const routes: Routes = [
     children: [
       { path: 'dashboard', component: DashbordComponent },
       { path: 'dossier', component: ListeDossierComponent },
+      { path: 'dossier-finalise', component: DossierFinalisesComponent },
       {
         path: 'detail-dossier/:id',
         component: MonDossierComponent,

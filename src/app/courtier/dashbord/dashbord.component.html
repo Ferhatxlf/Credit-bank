@@ -9,7 +9,7 @@
       <div class="col-sm-12 col-md-4 col-lg-4">
         <div class="card" [routerLink]="['/courtier/dossier']">
           <div class="material-icons position-relative">
-            folder_special<span
+            folder<span
               style="font-size: 12px"
               class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
             >
@@ -23,7 +23,7 @@
       <div class="col-sm-12 col-md-4 col-lg-4">
         <div class="card" [routerLink]="['/courtier/mes-dossier']">
           <div class="material-icons position-relative">
-            folder<span
+            folder_special<span
               style="font-size: 12px"
               class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
             >
@@ -42,10 +42,19 @@
       </div>
     </div>
     <div class="row class2-container">
-      <div class="col" (click)="logout()">
+      <div class="col-sm-12 col-md-6">
         <div class="card special-card">
           <div class="material-icons">exit_to_app</div>
           <span class="txt">Déconnexion</span>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-6">
+        <div
+          class="card special-card"
+          [routerLink]="['/courtier/dossier-finalise']"
+        >
+          <div class="material-icons">archive</div>
+          <span class="txt">Dossiers finalisés</span>
         </div>
       </div>
     </div>

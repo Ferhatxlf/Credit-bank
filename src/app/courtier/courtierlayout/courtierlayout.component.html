@@ -36,9 +36,7 @@
           <span class="material-icons sidebar-icons"> folder </span>
           <span class="sidebar-text">Liste des dossiers</span>
         </div>
-        <span class="badge rounded-pill text-bg-light">{{
-          Folders.length
-        }}</span>
+        <span class="badge rounded-pill text-bg-light">{{ folderList }}</span>
       </div>
 
       <div
@@ -49,12 +47,25 @@
         }"
       >
         <div class="folder-container">
-          <span class="material-icons sidebar-icons"> folder </span>
+          <span class="material-icons sidebar-icons"> folder_special </span>
           <span class="sidebar-text">Mes dossiers</span>
         </div>
         <span class="badge rounded-pill text-bg-light">{{
           myFolders.length
         }}</span>
+      </div>
+
+      <div
+        class="container-text"
+        [routerLink]="['/courtier/dossier-finalise']"
+        [ngClass]="{
+          'special-class': url === '/courtier/dossier-finalise'
+        }"
+      >
+        <div class="folder-container">
+          <span class="material-icons sidebar-icons"> archive </span>
+          <span class="sidebar-text">Dossiers finalisés</span>
+        </div>
       </div>
       <div
         class="container-text"
@@ -134,6 +145,19 @@
         </div>
         <div
           class="sidebar-lateral-container-text"
+          [routerLink]="['/courtier/dossier-finalise']"
+          [ngClass]="{
+            'sidebar-lateral-special-class':
+              url === '/courtier/dossier-finalise'
+          }"
+        >
+          <div class="folder-container">
+            <span class="material-icons sidebar-icons"> archive </span>
+            <span class="sidebar-text">Dossiers finalisés</span>
+          </div>
+        </div>
+        <div
+          class="sidebar-lateral-container-text"
           [routerLink]="['/courtier/profile']"
           [ngClass]="{
             'sidebar-lateral-special-class': url === '/courtier/profile'
@@ -162,5 +186,28 @@
 
   <div class="card-container scale-in">
     <router-outlet></router-outlet>
+    <!-- pour le loading -->
+    <div
+      style="
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(245, 245, 245, 0.63);
+        backdrop-filter: blur(5px);
+      "
+      *ngIf="isLoading"
+    >
+      <img
+        class="isLoading"
+        src="../../../assets/loading.png"
+        style="width: 60px"
+        alt="loading"
+      />
+    </div>
   </div>
 </div>

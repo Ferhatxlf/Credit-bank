@@ -46,9 +46,10 @@ export class MesdossierComponent {
     this.searchForm = this.fb.group({
       numero_dossier: this.fb.control(''),
       nom_projet: this.fb.control(''),
-      statut: this.fb.control('NON_TRAITEE'),
+      statut: this.fb.control('TRAITEMENT_ENCOURS'),
     });
 
+    this.courtierService.annoncerLoading(true);
     const a = localStorage.getItem('currentUser');
     if (a) {
       this.currentUser = JSON.parse(a);
@@ -57,10 +58,21 @@ export class MesdossierComponent {
     this.courtierService.getAllMyFolders(this.currentUser.id).subscribe(
       (rs) => {
         this.Folders = rs;
-        this.F = rs;
+        this.Folders = this.Folders.filter(
+          (f) => f.status !== 'ACCEPTER' && f.status !== 'REFUSER'
+        );
+        this.F = this.Folders;
         console.log(this.Folders);
+        setTimeout(() => {
+          this.courtierService.annoncerLoading(false);
+        }, 1000);
       },
-      (err) => console.log(err)
+      (err) => {
+        console.log(err);
+        setTimeout(() => {
+          this.courtierService.annoncerLoading(false);
+        }, 1000);
+      }
     );
   }
 
@@ -100,6 +112,7 @@ export class MesdossierComponent {
       .subscribe(
         (rs) => {
           console.log(rs);
+          this.ngOnInit();
         },
         (err) => {
           console.log(err);
