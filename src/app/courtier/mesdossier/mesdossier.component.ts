@@ -112,6 +112,7 @@ export class MesdossierComponent {
       .subscribe(
         (rs) => {
           console.log(rs);
+          this.ngOnInit();
         },
         (err) => {
           console.log(err);
