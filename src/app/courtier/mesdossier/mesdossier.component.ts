@@ -44,7 +44,7 @@ export class MesdossierComponent {
 
   ngOnInit(): void {
     this.searchForm = this.fb.group({
-      numero_dossier: this.fb.control(''),
+      emprunteur: this.fb.control(''),
       nom_projet: this.fb.control(''),
       statut: this.fb.control('TRAITEMENT_ENCOURS'),
     });
@@ -93,16 +93,18 @@ export class MesdossierComponent {
       this.Folders = this.F;
     } else {
       this.searchActivate = true;
-      const numeroDossier = this.searchForm.value.numero_dossier;
-      const nomProjet = this.searchForm.value.nom_projet;
+      const emprunteur = this.searchForm.value.emprunteur.toLowerCase();
+      const nomProjet = this.searchForm.value.nom_projet.toLowerCase();
       const statut = this.searchForm.value.statut;
-      if (numeroDossier != '') {
-        this.Folders = this.Folders.filter((f) => f.numero === numeroDossier);
-      } else if (nomProjet != '') {
-        this.Folders = this.Folders.filter((f) => f.name === nomProjet);
-      } else {
-        this.Folders = this.Folders.filter((f) => f.statut === statut);
-      }
+
+      //this.Folders = this.Folders.filter((f) => f.status === statut);
+      this.Folders = this.Folders.filter(
+        (dossier) =>
+          dossier?.typeCredit?.nomCredit.toLowerCase().includes(nomProjet) &&
+          (dossier?.client?.nom.toLowerCase().includes(emprunteur) ||
+            dossier?.client?.prenom.toLowerCase().includes(emprunteur)) &&
+          dossier.status === statut
+      );
     }
   }
 
