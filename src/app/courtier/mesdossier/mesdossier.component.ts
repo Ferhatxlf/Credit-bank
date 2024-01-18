@@ -49,6 +49,7 @@ export class MesdossierComponent {
       statut: this.fb.control('TRAITEMENT_ENCOURS'),
     });
 
+    this.courtierService.annoncerLoading(true);
     const a = localStorage.getItem('currentUser');
     if (a) {
       this.currentUser = JSON.parse(a);
@@ -62,8 +63,16 @@ export class MesdossierComponent {
         );
         this.F = this.Folders;
         console.log(this.Folders);
+        setTimeout(() => {
+          this.courtierService.annoncerLoading(false);
+        }, 1000);
       },
-      (err) => console.log(err)
+      (err) => {
+        console.log(err);
+        setTimeout(() => {
+          this.courtierService.annoncerLoading(false);
+        }, 1000);
+      }
     );
   }
 

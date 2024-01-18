@@ -7,6 +7,7 @@ import { SharedDataService } from '../shared-data.service';
 import { CourtierServiceService } from '../../service/courtier-service.service.js';
 import { AuthServiceService } from '../../service/auth-service.service.js';
 import { GlobalFunctionsService } from '../../service/global-functions.service.js';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-liste-dossier',
@@ -26,7 +27,8 @@ export class ListeDossierComponent implements OnInit {
     router: Router,
     private sharedDataService: SharedDataService,
     private courtierService: CourtierServiceService,
-    private globalFunctions: GlobalFunctionsService
+    private globalFunctions: GlobalFunctionsService,
+    private cdRef: ChangeDetectorRef
   ) {
     this.router = router;
   }
@@ -37,20 +39,37 @@ export class ListeDossierComponent implements OnInit {
       statut: this.fb.control('NON_TRAITEE'),
     });
 
+    this.getAllFolders();
+  }
+
+  getAllFolders() {
+    this.courtierService.annoncerLoading(true);
+
     const a = localStorage.getItem('currentUser');
     if (a) {
       this.currentUser = JSON.parse(a);
+      this.courtierService.getAllDossier(this.currentUser.agence_id).subscribe(
+        (rs) => {
+          this.Folders = rs;
+          this.F = rs;
+          console.log('la liste des dossiers', this.Folders);
+          this.updateFolderList(this.Folders.length);
+          setTimeout(() => {
+            this.courtierService.annoncerLoading(false);
+          }, 1000);
+        },
+        (err) => {
+          console.log(err);
+          setTimeout(() => {
+            this.courtierService.annoncerLoading(false);
+          }, 1000);
+        }
+      );
     }
-    console.log(this.currentUser);
-    this.courtierService.getAllDossier(this.currentUser.agence_id).subscribe(
-      (rs) => {
-        this.Folders = rs;
-        this.F = rs;
+  }
 
-        console.log(this.Folders);
-      },
-      (err) => console.log(err)
-    );
+  updateFolderList(length: string) {
+    this.courtierService.updateFolderList(length);
   }
 
   folderClicked(folder) {
@@ -76,8 +95,29 @@ export class ListeDossierComponent implements OnInit {
     }
   }
 
-  affectation(id_dossier) {
-    this.sharedDataService.affectation(id_dossier);
+  // affectation(id_dossier) {
+  //   this.sharedDataService.affectation(id_dossier);
+  //   this.getAllFolders();
+  // }
+  async affectation(id_dossier) {
+    try {
+      await this.sharedDataService.affectation(id_dossier);
+      this.getAllFolders();
+      this.updateFoldersList();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  updateFoldersList() {
+    this.courtierService.getAllDossier(this.currentUser.agence_id).subscribe(
+      (rs) => {
+        this.Folders = rs;
+        this.F = rs;
+        this.cdRef.detectChanges(); // Force la détection des changements
+        this.updateFolderList(this.Folders.length);
+      },
+      (err) => console.log(err)
+    );
   }
 
   status(value) {

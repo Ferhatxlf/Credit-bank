@@ -9,7 +9,6 @@ import { ApiConfigService } from './ApiConfig.service';
   providedIn: 'root',
 })
 export class DirectorServiceService {
-
   private apiUrl = this.apiConfigService.getApiUrl();
 
   // Declare a variable to store the user ID
@@ -49,23 +48,22 @@ export class DirectorServiceService {
     return this.http.get(`${this.apiUrl}/dossiers/courtier/${id}/Encours`);
   }
 
-
   async acceptFolder(folders): Promise<Observable<any>> {
-    const acceptStatus = "refuse"; // Consider renaming to something more appropriate
-  
+    const acceptStatus = 'refuse'; // Consider renaming to something more appropriate
+
     try {
       // Execute WebSocket message
       await this.sendWebSocketMessages(folders, acceptStatus);
-  
+
       const Ids = folders.map((f) => f.id);
-  
+
       return this.http
         .post(`${this.apiUrl}/dossiers/updateStatusToAccepter`, Ids, {
           responseType: 'text',
         })
         .pipe(
           tap(() => {
-            window.location.reload();
+            // window.location.reload();
             console.log('success.');
           }),
           catchError((error) => throwError(error))
@@ -75,58 +73,58 @@ export class DirectorServiceService {
       return throwError(error); // You can modify this as per your error handling strategy
     }
   }
-  
+
   async rejectFolder(folders): Promise<any> {
     try {
       const Ids = folders.map((f) => f.id);
-  
+
       // Execute HTTP request
-      await this.http.post(`${this.apiUrl}/dossiers/updateStatusToRefuser`, Ids, {
-        responseType: 'text',
-      }).toPromise();
-  
+      await this.http
+        .post(`${this.apiUrl}/dossiers/updateStatusToRefuser`, Ids, {
+          responseType: 'text',
+        })
+        .toPromise();
+
       console.log('HTTP request success.');
-      
+
       // Corrected placement of Status variable
-      const Status = "refuse";
-  
+      const Status = 'refuse';
+
       // Execute WebSocket message
       await this.sendWebSocketMessages(folders, Status);
-  
+
       // Wait for a moment (you can adjust the duration)
       await this.delay(100);
-  
+
       // Reload the page
-      window.location.reload();
-  
+      // window.location.reload();
+
       console.log('Page reloaded.');
-  
     } catch (error) {
       // Handle errors
       console.error('Error:', error);
       return throwError(error);
     }
   }
-  
 
   private delay(ms: number): Promise<void> {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise((resolve) => setTimeout(resolve, ms));
   }
-  
+
   async renvoiyeFolder(folders): Promise<Observable<any>> {
     try {
       const Ids = folders.map((f) => f.id);
-      const Status = "renvoyer";
+      const Status = 'renvoyer';
       // Execute WebSocket message
-      await this.sendWebSocketMessages(folders, Status); 
-  
+      await this.sendWebSocketMessages(folders, Status);
+
       return this.http
         .post(`${this.apiUrl}/dossiers/updateStatusToRenvoyer`, Ids, {
           responseType: 'text',
         })
         .pipe(
           tap(() => {
-            window.location.reload();
+            // window.location.reload();
             console.log('success.');
           }),
           catchError((error) => throwError(error))
@@ -137,12 +135,11 @@ export class DirectorServiceService {
     }
   }
 
-
   private async sendWebSocketMessages(folders, Status): Promise<void> {
     for (const folder of folders) {
       const id = folder.id;
       const assignedCourtierId = folder.assignedCourtier?.id;
-  
+
       if (id && assignedCourtierId && this.compteId) {
         const message = `Dossier N : ${id} ${Status}`;
         await this.webSocketService.sendMessage(
@@ -154,8 +151,7 @@ export class DirectorServiceService {
       }
     }
   }
-  
-  
+
   addComment(comment, id) {
     return this.http
       .post(

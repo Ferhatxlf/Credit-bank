@@ -1,6 +1,13 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, tap, throwError } from 'rxjs';
+import {
+  BehaviorSubject,
+  Observable,
+  Subject,
+  catchError,
+  tap,
+  throwError,
+} from 'rxjs';
 import { WebSocketService } from './websocket.service';
 import { ApiConfigService } from './ApiConfig.service';
 @Injectable({
@@ -43,7 +50,7 @@ export class CourtierServiceService {
       )
       .pipe(
         tap(() => {
-          window.location.reload();
+          // window.location.reload();
           console.log('success.');
         }),
         catchError((error) => throwError(error))
@@ -57,7 +64,7 @@ export class CourtierServiceService {
       })
       .pipe(
         tap(() => {
-          window.location.reload();
+          // window.location.reload();
           console.log('success.');
         }),
         catchError((error) => throwError(error))
@@ -74,5 +81,19 @@ export class CourtierServiceService {
     return this.http.get(
       `${this.apiUrl}/dossiers/courtier/${courtierId}/alldossiers`
     );
+  }
+
+  // pour updater les conteur de la sidebar:
+  private FolderList = new BehaviorSubject<string>(''); // Initialisez avec une chaîne vide
+  folderList$: Observable<string> = this.FolderList.asObservable();
+
+  updateFolderList(chaine: string) {
+    this.FolderList.next(chaine);
+  }
+  private loading = new Subject<boolean>();
+  loading$ = this.loading.asObservable();
+
+  annoncerLoading(loading: boolean) {
+    this.loading.next(loading);
   }
 }
