@@ -13,6 +13,9 @@ export class CourtierlayoutComponent {
   public Folders: any = [];
   public myFolders: any = [];
   public F: any = [];
+  folderList: string = '';
+  foldersMine: string = '';
+  isLoading: boolean = false;
 
   constructor(
     private location: Location,
@@ -25,11 +28,15 @@ export class CourtierlayoutComponent {
       this.url = url;
       console.log(this.url);
     });
+    this.courtierService.loading$.subscribe((loading) => {
+      this.isLoading = loading;
+    });
   }
   url: string = '';
 
   ngOnInit() {
     const a = localStorage.getItem('currentUser');
+    this.foldersMine = this.myFolders.length;
     if (a) {
       this.currentUser = JSON.parse(a);
     }
@@ -38,6 +45,7 @@ export class CourtierlayoutComponent {
       (rs) => {
         this.Folders = rs;
         console.log(this.Folders);
+        this.folderList = this.Folders.length;
       },
       (err) => console.log(err)
     );
@@ -52,6 +60,10 @@ export class CourtierlayoutComponent {
       },
       (err) => console.log(err)
     );
+    this.courtierService.folderList$.subscribe((length) => {
+      this.folderList = length;
+      this.getAllMyFolders();
+    });
   }
 
   goBack(): void {
@@ -66,5 +78,20 @@ export class CourtierlayoutComponent {
 
   logout() {
     this.authService.logout();
+  }
+  getAllMyFolders() {
+    const a = localStorage.getItem('currentUser');
+    if (a) {
+      this.currentUser = JSON.parse(a);
+    }
+    this.courtierService.getAllMyFolders(this.currentUser.id).subscribe(
+      (rs) => {
+        this.myFolders = rs;
+        this.myFolders = this.myFolders.filter(
+          (f) => f.status !== 'ACCEPTER' && f.status !== 'REFUSER'
+        );
+      },
+      (err) => console.log(err)
+    );
   }
 }

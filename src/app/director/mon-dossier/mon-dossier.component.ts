@@ -84,6 +84,8 @@ export class MonDossierComponent {
   }
 
   ngOnInit() {
+    this.directeurService.annoncerLoading(true);
+
     this.folderValue = this.sharedDataService.getFolderData();
     if (this.folderValue.courtier === '') {
       this.haveCourtier = false;
@@ -94,6 +96,7 @@ export class MonDossierComponent {
     this.id = this.route.snapshot.paramMap.get('id');
     this.simulationService.getDossier(this.id).subscribe((rs) => {
       this.folder = rs;
+      this.directeurService.annoncerLoading(false);
     });
   }
 

@@ -70,4 +70,5 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 .isLoading {
   animation: loading 1s linear infinite;
+  opacity: 0.4;
 }

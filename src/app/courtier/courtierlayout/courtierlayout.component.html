@@ -36,9 +36,7 @@
           <span class="material-icons sidebar-icons"> folder </span>
           <span class="sidebar-text">Liste des dossiers</span>
         </div>
-        <span class="badge rounded-pill text-bg-light">{{
-          Folders.length
-        }}</span>
+        <span class="badge rounded-pill text-bg-light">{{ folderList }}</span>
       </div>
 
       <div
@@ -188,5 +186,28 @@
 
   <div class="card-container scale-in">
     <router-outlet></router-outlet>
+    <!-- pour le loading -->
+    <div
+      style="
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(245, 245, 245, 0.63);
+        backdrop-filter: blur(5px);
+      "
+      *ngIf="isLoading"
+    >
+      <img
+        class="isLoading"
+        src="../../../assets/loading.png"
+        style="width: 60px"
+        alt="loading"
+      />
+    </div>
   </div>
 </div>
