@@ -34,7 +34,9 @@
           <span class="material-icons sidebar-icons"> folder </span>
           <span class="sidebar-text">Liste des dossiers</span>
         </div>
-        <span class="badge rounded-pill text-bg-light">1</span>
+        <span class="badge rounded-pill text-bg-light">{{
+          Folders.length
+        }}</span>
       </div>
 
       <div
@@ -46,7 +48,6 @@
           <span class="material-icons sidebar-icons"> archive </span>
           <span class="sidebar-text">Dossiers finalisés</span>
         </div>
-        <span class="badge rounded-pill text-bg-light">1</span>
       </div>
 
       <div
@@ -104,7 +105,7 @@
           <span
             class="badge rounded-pill text-bg-light"
             style="font-size: small; margin-right: 1%"
-            >0</span
+            >{{ Folders.length }}</span
           >
         </div>
         <div
@@ -119,11 +120,6 @@
             <span class="material-icons sidebar-icons"> archive </span>
             <span class="sidebar-text">Dossiers finalisés</span>
           </div>
-          <span
-            class="badge rounded-pill text-bg-light"
-            style="font-size: small; margin-right: 1%"
-            >0</span
-          >
         </div>
 
         <div
