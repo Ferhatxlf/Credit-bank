@@ -24,6 +24,7 @@ export class ConfirmationEmailComponent implements OnInit, OnDestroy {
   isStartInterval: boolean;
   countDown: Observable<string>;
   messageError: string = '';
+  data: any;
 
   constructor(private router: Router, private authService: AuthServiceService) {
     this.isStartInterval = true;
@@ -61,6 +62,13 @@ export class ConfirmationEmailComponent implements OnInit, OnDestroy {
     this.isStartInterval = true;
     this.startInterval();
     this.startTime = Date.now();
+    this.recupEamil();
+  }
+  recupEamil() {
+    const dataRegister = localStorage.getItem('formRegisterData');
+    if (dataRegister) {
+      this.data = JSON.parse(dataRegister);
+    }
   }
 
   ngOnDestroy() {
@@ -101,9 +109,8 @@ export class ConfirmationEmailComponent implements OnInit, OnDestroy {
     });
   }
 
-
   private stopIntervalWithNavigation() {
-     this.isStartInterval = false;
+    this.isStartInterval = false;
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
@@ -120,7 +127,7 @@ export class ConfirmationEmailComponent implements OnInit, OnDestroy {
     const elapsedMinutes = (currentTime - this.startTime) / (1000 * 60); // Calculez le temps écoulé en minutes
 
     // Vérifiez si 5 minutes se sont écoulées
-    return elapsedMinutes >= 5;
+    return elapsedMinutes >= 1;
   }
 
   renvoiEmail() {

@@ -23,16 +23,17 @@
     </div>
   </div>
 </div> -->
-<div class="subtitle translate mt-3" *ngIf="messageError === ''">
-  Rendez-vous dans votre boîte e-mail. Un lien de confirmation vous y attend. Un
-  simple clic sur ce lien et votre compte sera confirmé.
+<div class="subtitle translate mt-3">
+  Rendez-vous dans votre boîte e-mail <strong> "{{ data.email }}" </strong>. Un
+  lien de confirmation vous y attend. Un simple clic sur ce lien et votre compte
+  sera confirmé.
 </div>
-<div class="explication translate" *ngIf="messageError === ''">
+<div class="explication translate">
   Lorsque vous cliquerez sur le lien de confirmation dans votre boîte e-mail,
   vous serez automatiquement redirigé vers votre tableau de bord personnel.
 </div>
 
-<div class="explication translate">
+<div class="explication translate" *ngIf="messageError == ''">
   Vous avez 5 minutes pour confirmer votre e-mail.
   <div style="font-weight: 600">{{ countDown | async }}</div>
 </div>
@@ -40,7 +41,11 @@
   {{ messageError }}
 </div>
 <div class="button-container translate">
-  <button class="btn btn2" (click)="renvoiEmail()" [disabled]="isStartInterval">
+  <button
+    class="btn btn2"
+    (click)="renvoiEmail()"
+    [disabled]="messageError === ''"
+  >
     Renvoyez l'email de confirmation
   </button>
   <!-- <button
