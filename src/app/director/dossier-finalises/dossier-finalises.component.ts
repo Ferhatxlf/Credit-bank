@@ -26,12 +26,16 @@ export class DossierFinalisesComponent {
     this.router = router;
   }
   ngOnInit(): void {
+    this.directeurService.annoncerLoading(true);
     this.searchForm = this.fb.group({
-      numero_dossier: this.fb.control(''),
+      emprunteur: this.fb.control(''),
       nom_projet: this.fb.control(''),
       statut: this.fb.control('ACCEPTER'),
     });
 
+    this.getAllFolders();
+  }
+  getAllFolders() {
     const a = localStorage.getItem('currentUser');
     if (a) {
       this.currentUser = JSON.parse(a);
@@ -41,6 +45,7 @@ export class DossierFinalisesComponent {
       .getAllDossierForDirector(this.currentUser.agence_id)
       .subscribe(
         (rs) => {
+          this.directeurService.annoncerLoading(false);
           this.Folders = rs;
           this.Folders = this.Folders.filter(
             (f) => f.status === 'ACCEPTER' || f.status === 'REFUSER'
@@ -48,7 +53,10 @@ export class DossierFinalisesComponent {
           this.F = this.Folders;
           console.log(this.Folders);
         },
-        (err) => console.log(err)
+        (err) => {
+          console.log(err);
+          this.directeurService.annoncerLoading(false);
+        }
       );
   }
   folderClicked(folder) {
@@ -61,11 +69,18 @@ export class DossierFinalisesComponent {
       this.Folders = this.F;
     } else {
       this.searchActivate = true;
+      const emprunteur = this.searchForm.value.emprunteur.toLowerCase();
+      const nomProjet = this.searchForm.value.nom_projet.toLowerCase();
       const statut = this.searchForm.value.statut;
-      console.log(statut);
-      console.log(this.Folders);
-      console.log(this.F);
-      this.Folders = this.Folders.filter((f) => f.status === statut);
+
+      //this.Folders = this.Folders.filter((f) => f.status === statut);
+      this.Folders = this.Folders.filter(
+        (dossier) =>
+          dossier?.typeCredit?.nomCredit.toLowerCase().includes(nomProjet) &&
+          (dossier?.client?.nom.toLowerCase().includes(emprunteur) ||
+            dossier?.client?.prenom.toLowerCase().includes(emprunteur)) &&
+          dossier.status === statut
+      );
     }
   }
 

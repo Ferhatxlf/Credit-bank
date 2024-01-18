@@ -18,6 +18,8 @@ export class DirectorlayoutComponent {
   userRole: string | null = null;
   client: any;
   F: any;
+  isLoading: boolean = false;
+  folderList: any;
   constructor(
     private location: Location,
     private authService: AuthServiceService,
@@ -28,6 +30,9 @@ export class DirectorlayoutComponent {
     this.location.onUrlChange((url) => {
       this.url = url;
       console.log(this.url);
+    });
+    this.directeurService.loading$.subscribe((loading) => {
+      this.isLoading = loading;
     });
   }
   private listTitles!: any[];
@@ -121,6 +126,30 @@ export class DirectorlayoutComponent {
       this.userRole = this.currentUser.role;
     }
 
+    const a = localStorage.getItem('currentUser');
+    if (a) {
+      this.currentUser = JSON.parse(a);
+    }
+    console.log(this.currentUser);
+    this.directeurService
+      .getAllDossierForDirector(this.currentUser.agence_id)
+      .subscribe(
+        (rs) => {
+          this.Folders = rs;
+          this.Folders = this.Folders.filter(
+            (f) => f.status !== 'ACCEPTER' && f.status !== 'REFUSER'
+          );
+          this.F = this.Folders;
+          console.log(this.Folders);
+        },
+        (err) => console.log(err)
+      );
+    this.directeurService.folderList$.subscribe((length) => {
+      this.folderList = length;
+      this.getAllFolders();
+    });
+  }
+  getAllFolders() {
     const a = localStorage.getItem('currentUser');
     if (a) {
       this.currentUser = JSON.parse(a);

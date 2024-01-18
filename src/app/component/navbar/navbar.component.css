@@ -388,12 +388,18 @@
     margin-bottom: 0;
   }
   .navbar-card-container .right {
-    width: 40%;
+    width: 60%;
   }
 }
 @media screen and (max-width: 600px) {
-  .navbar-card-container .right {
-    width: 55%;
+  .information .name {
+    display: none;
+  }
+  .information .email {
+    display: none;
+  }
+  .notifications {
+    right: 50px !important;
   }
 }
 @media screen and (max-width: 450px) {
@@ -419,5 +425,10 @@
   }
   .navbar-card-container .right .information {
     display: none !important;
+  }
+}
+@media screen and (max-width: 360px) {
+  .left span {
+    display: none;
   }
 }

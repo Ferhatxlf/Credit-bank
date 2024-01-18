@@ -1,6 +1,13 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, tap, throwError } from 'rxjs';
+import {
+  BehaviorSubject,
+  Observable,
+  Subject,
+  catchError,
+  tap,
+  throwError,
+} from 'rxjs';
 import { WebSocketService } from './websocket.service';
 import { ApiConfigService } from './ApiConfig.service';
 @Injectable({
@@ -40,17 +47,18 @@ export class CourtierServiceService {
   }
   
   affecterDossierACourtier(courtierId: number, dossierId: number) {
-    const headers = this.getHeaders();
-    return this.http.post(
-      `${this.apiUrl}/dossiers/assign-dossier/${dossierId}/to-courtier/${courtierId}`,
-      null
-    ).pipe(
-      tap(() => {
-        window.location.reload();
-        console.log('success.');
-      }),
-      catchError((error) => throwError(error))
-    );
+    return this.http
+      .post(
+        `${this.apiUrl}/dossiers/assign-dossier/${dossierId}/to-courtier/${courtierId}`,
+        null
+      )
+      .pipe(
+        tap(() => {
+          // window.location.reload();
+          console.log('success.');
+        }),
+        catchError((error) => throwError(error))
+      );
   }
   
   soumettereDossierADirecteur(dossierIds) {
@@ -61,14 +69,14 @@ export class CourtierServiceService {
       {
       
         responseType: 'text',
-      }
-    ).pipe(
-      tap(() => {
-        window.location.reload();
-        console.log('success.');
-      }),
-      catchError((error) => throwError(error))
-    );
+      })
+      .pipe(
+        tap(() => {
+          // window.location.reload();
+          console.log('success.');
+        }),
+        catchError((error) => throwError(error))
+      );
   }
   
   downloadFile(dossierId: number, fileName) {

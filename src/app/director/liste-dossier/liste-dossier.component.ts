@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import '../../../../node_modules/bootstrap/dist/js/bootstrap.bundle.js';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-
+import { ChangeDetectorRef } from '@angular/core';
 import { SharedDataService } from '../shared-data.service';
 import { CourtierServiceService } from '../../service/courtier-service.service.js';
 import { DirectorServiceService } from '../../service/director-service.service.js';
@@ -25,22 +25,28 @@ export class ListeDossierComponent implements OnInit {
   comment: any;
   selectedFolders: any[] = [];
   idDossier: any;
+  folderList: any;
   constructor(
     private fb: FormBuilder,
     router: Router,
     private authService: AuthServiceService,
     private directeurService: DirectorServiceService,
-    private globalFunctions: GlobalFunctionsService
+    private globalFunctions: GlobalFunctionsService,
+    private cdRef: ChangeDetectorRef
   ) {
     this.router = router;
   }
   ngOnInit(): void {
     this.searchForm = this.fb.group({
-      numero_dossier: this.fb.control(''),
+      emprunteur: this.fb.control(''),
       nom_projet: this.fb.control(''),
       statut: this.fb.control('NON_TRAITEE'),
     });
+    this.getAllFolders();
+    this.directeurService.annoncerLoading(true);
+  }
 
+  getAllFolders() {
     const a = localStorage.getItem('currentUser');
     if (a) {
       this.currentUser = JSON.parse(a);
@@ -50,12 +56,39 @@ export class ListeDossierComponent implements OnInit {
       .getAllDossierForDirector(this.currentUser.agence_id)
       .subscribe(
         (rs) => {
+          this.directeurService.annoncerLoading(false);
           this.Folders = rs;
           this.Folders = this.Folders.filter(
             (f) => f.status !== 'ACCEPTER' && f.status !== 'REFUSER'
           );
           this.F = this.Folders;
           console.log(this.Folders);
+          this.updateFolderListToSideBar(this.Folders.length);
+        },
+        (err) => {
+          console.log(err);
+          this.directeurService.annoncerLoading(false);
+        }
+      );
+  }
+  updateFolderListToSideBar(length: string) {
+    this.directeurService.updateFolderList(length);
+  }
+  updateFoldersList() {
+    const a = localStorage.getItem('currentUser');
+    if (a) {
+      this.currentUser = JSON.parse(a);
+    }
+    console.log(this.currentUser);
+
+    this.directeurService
+      .getAllDossierForDirector(this.currentUser.agence_id)
+      .subscribe(
+        (rs) => {
+          this.Folders = rs;
+          this.F = rs;
+          this.cdRef.detectChanges(); // Force la détection des changements
+          this.ngOnInit();
         },
         (err) => console.log(err)
       );
@@ -76,11 +109,18 @@ export class ListeDossierComponent implements OnInit {
       this.Folders = this.F;
     } else {
       this.searchActivate = true;
+      const emprunteur = this.searchForm.value.emprunteur.toLowerCase();
+      const nomProjet = this.searchForm.value.nom_projet.toLowerCase();
       const statut = this.searchForm.value.statut;
-      console.log(statut);
-      console.log(this.Folders);
-      console.log(this.F);
-      this.Folders = this.Folders.filter((f) => f.status === statut);
+
+      //this.Folders = this.Folders.filter((f) => f.status === statut);
+      this.Folders = this.Folders.filter(
+        (dossier) =>
+          dossier?.typeCredit?.nomCredit.toLowerCase().includes(nomProjet) &&
+          (dossier?.client?.nom.toLowerCase().includes(emprunteur) ||
+            dossier?.client?.prenom.toLowerCase().includes(emprunteur)) &&
+          dossier.status === statut
+      );
     }
   }
   /* updateSelectedFolders() {
@@ -93,15 +133,20 @@ export class ListeDossierComponent implements OnInit {
   }
 
   async acceptFolder() {
+    this.directeurService.annoncerLoading(true);
     try {
       const response = await this.directeurService.acceptFolder(
         this.selectedFolders
       );
+
+      this.updateFoldersList();
       response.subscribe(
         (rs) => {
+          this.directeurService.annoncerLoading(false);
           console.log(rs); // Log the success response
         },
         (err) => {
+          this.directeurService.annoncerLoading(false);
           console.log(err); // Log any errors that occur
         }
       );
@@ -111,24 +156,34 @@ export class ListeDossierComponent implements OnInit {
   }
 
   async rejectFolder() {
+    this.directeurService.annoncerLoading(true);
     try {
       const response = await this.directeurService.rejectFolder(
         this.selectedFolders
       );
+
+      this.updateFoldersList();
       console.log(response); // Log the success response if needed
+      this.directeurService.annoncerLoading(false);
     } catch (error) {
       console.log(error); // Log any errors that occur
+      this.directeurService.annoncerLoading(false);
     }
   }
 
   async renvoiFolder() {
+    this.directeurService.annoncerLoading(true);
     try {
       const response = await this.directeurService.renvoiyeFolder(
         this.selectedFolders
       );
+
+      this.updateFoldersList();
       console.log(response); // Log the success response if needed
+      this.directeurService.annoncerLoading(false);
     } catch (error) {
       console.log(error); // Log any errors that occur
+      this.directeurService.annoncerLoading(false);
     }
   }
 

@@ -6,8 +6,7 @@ import { ApiConfigService } from './ApiConfig.service';
   providedIn: 'root',
 })
 export class SimulationServiceService {
-  // private apiUrl = 'https://unique-zinc-production.up.railway.app';
- // private apiUrl = 'http://localhost:8000';
+
   private  apiUrl = this.apiConfigService.getApiUrl();
   constructor(public http: HttpClient,  private apiConfigService: ApiConfigService) {}
 

@@ -7,6 +7,7 @@ import { SharedDataService } from '../shared-data.service';
 import { CourtierServiceService } from '../../service/courtier-service.service.js';
 import { AuthServiceService } from '../../service/auth-service.service.js';
 import { GlobalFunctionsService } from '../../service/global-functions.service.js';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-liste-dossier',
@@ -26,38 +27,53 @@ export class ListeDossierComponent implements OnInit {
     router: Router,
     private sharedDataService: SharedDataService,
     private courtierService: CourtierServiceService,
-    private globalFunctions: GlobalFunctionsService
+    private globalFunctions: GlobalFunctionsService,
+    private cdRef: ChangeDetectorRef
   ) {
     this.router = router;
   }
   ngOnInit(): void {
     this.searchForm = this.fb.group({
-      numero_dossier: this.fb.control(''),
+      emprunteur: this.fb.control(''),
       nom_projet: this.fb.control(''),
       statut: this.fb.control('NON_TRAITEE'),
     });
+    this.courtierService.annoncerLoading(true);
 
+    this.getAllFolders();
+  }
+
+  getAllFolders() {
     const a = localStorage.getItem('currentUser');
     if (a) {
       this.currentUser = JSON.parse(a);
-    }
-    console.log(this.currentUser);
-    this.courtierService.getAllDossier(this.currentUser.agence_id).subscribe(
-      (rs) => {
-        this.Folders = rs;
-        this.F = rs;
+      this.courtierService.getAllDossier(this.currentUser.agence_id).subscribe(
+        (rs) => {
+          this.Folders = rs;
+          this.F = rs;
+          console.log('la liste des dossiers', this.Folders);
+          this.updateFolderList(this.Folders.length);
 
-        console.log(this.Folders);
-      },
-      (err) => console.log(err)
-    );
+          this.courtierService.annoncerLoading(false);
+        },
+        (err) => {
+          console.log(err);
+
+          this.courtierService.annoncerLoading(false);
+        }
+      );
+    }
+  }
+
+  updateFolderList(length: string) {
+    this.courtierService.updateFolderList(length);
   }
 
   folderClicked(folder) {
     console.log(folder);
     this.router.navigate(['/courtier/detail-dossier', folder.id]);
   }
-  search() {
+  /* search() {
     if (this.searchActivate) {
       this.searchActivate = false;
       this.Folders = this.F;
@@ -74,10 +90,52 @@ export class ListeDossierComponent implements OnInit {
         this.Folders = this.Folders.filter((f) => f.statut === statut);
       }
     }
+  } */
+  search() {
+    if (this.searchActivate) {
+      this.searchActivate = false;
+      this.Folders = this.F;
+    } else {
+      this.searchActivate = true;
+      const emprunteur = this.searchForm.value.emprunteur.toLowerCase();
+      const nomProjet = this.searchForm.value.nom_projet.toLowerCase();
+      const statut = this.searchForm.value.statut;
+
+      //this.Folders = this.Folders.filter((f) => f.status === statut);
+      this.Folders = this.Folders.filter(
+        (dossier) =>
+          dossier?.typeCredit?.nomCredit.toLowerCase().includes(nomProjet) &&
+          (dossier?.client?.nom.toLowerCase().includes(emprunteur) ||
+            dossier?.client?.prenom.toLowerCase().includes(emprunteur)) &&
+          dossier.status === statut
+      );
+    }
   }
 
-  affectation(id_dossier) {
-    this.sharedDataService.affectation(id_dossier);
+  // affectation(id_dossier) {
+  //   this.sharedDataService.affectation(id_dossier);
+  //   this.getAllFolders();
+  // }
+  async affectation(id_dossier) {
+    try {
+      await this.sharedDataService.affectation(id_dossier);
+      this.getAllFolders();
+      this.updateFoldersList();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  updateFoldersList() {
+    this.courtierService.getAllDossier(this.currentUser.agence_id).subscribe(
+      (rs) => {
+        this.Folders = rs;
+        this.F = rs;
+        this.cdRef.detectChanges(); // Force la détection des changements
+        this.updateFolderList(this.Folders.length);
+        this.ngOnInit();
+      },
+      (err) => console.log(err)
+    );
   }
 
   status(value) {

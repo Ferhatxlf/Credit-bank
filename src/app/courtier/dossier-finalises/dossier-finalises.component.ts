@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DirectorServiceService } from '../../service/director-service.service.js';
 import { GlobalFunctionsService } from '../../service/global-functions.service.js';
+import { CourtierServiceService } from '../../service/courtier-service.service.js';
 
 @Component({
   selector: 'app-dossier-finalises',
@@ -21,13 +22,14 @@ export class DossierFinalisesComponent {
     private fb: FormBuilder,
     router: Router,
     private directeurService: DirectorServiceService,
-    private globalFunctions: GlobalFunctionsService
+    private globalFunctions: GlobalFunctionsService,
+    private courtierService: CourtierServiceService
   ) {
     this.router = router;
   }
   ngOnInit(): void {
     this.searchForm = this.fb.group({
-      numero_dossier: this.fb.control(''),
+      emprunteur: this.fb.control(''),
       nom_projet: this.fb.control(''),
       statut: this.fb.control('ACCEPTER'),
     });
@@ -36,6 +38,8 @@ export class DossierFinalisesComponent {
     if (a) {
       this.currentUser = JSON.parse(a);
     }
+    this.courtierService.annoncerLoading(true);
+
     console.log(this.currentUser);
     this.directeurService
       .getAllDossierForDirector(this.currentUser.agence_id)
@@ -47,8 +51,16 @@ export class DossierFinalisesComponent {
           );
           this.F = this.Folders;
           console.log(this.Folders);
+          setTimeout(() => {
+            this.courtierService.annoncerLoading(false);
+          }, 1000);
         },
-        (err) => console.log(err)
+        (err) => {
+          console.log(err);
+          setTimeout(() => {
+            this.courtierService.annoncerLoading(false);
+          }, 1000);
+        }
       );
   }
   folderClicked(folder) {
@@ -61,11 +73,18 @@ export class DossierFinalisesComponent {
       this.Folders = this.F;
     } else {
       this.searchActivate = true;
+      const emprunteur = this.searchForm.value.emprunteur.toLowerCase();
+      const nomProjet = this.searchForm.value.nom_projet.toLowerCase();
       const statut = this.searchForm.value.statut;
-      console.log(statut);
-      console.log(this.Folders);
-      console.log(this.F);
-      this.Folders = this.Folders.filter((f) => f.status === statut);
+
+      //this.Folders = this.Folders.filter((f) => f.status === statut);
+      this.Folders = this.Folders.filter(
+        (dossier) =>
+          dossier?.typeCredit?.nomCredit.toLowerCase().includes(nomProjet) &&
+          (dossier?.client?.nom.toLowerCase().includes(emprunteur) ||
+            dossier?.client?.prenom.toLowerCase().includes(emprunteur)) &&
+          dossier.status === statut
+      );
     }
   }
 
