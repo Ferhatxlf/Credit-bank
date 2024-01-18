@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthServiceService } from '../../service/auth-service.service';
+import { DirectorServiceService } from '../../service/director-service.service';
 
 @Component({
   selector: 'app-directorlayout',
@@ -16,9 +17,11 @@ export class DirectorlayoutComponent {
   userNin: string | null = null;
   userRole: string | null = null;
   client: any;
+  F: any;
   constructor(
     private location: Location,
-    private authService: AuthServiceService
+    private authService: AuthServiceService,
+    private directeurService: DirectorServiceService
   ) {
     this.url = this.location.path();
     // Écouter les changements d'URL
@@ -95,6 +98,12 @@ export class DirectorlayoutComponent {
       icon: 'person',
       class: '',
     },
+    {
+      path: '/director/dossier-finalise',
+      title: 'Dossiers finalisés',
+      icon: 'person',
+      class: '',
+    },
     { path: '/admin/profile', title: 'Mon Profile', icon: 'person', class: '' },
   ];
 
@@ -111,6 +120,25 @@ export class DirectorlayoutComponent {
       this.userNin = this.currentUser.nin;
       this.userRole = this.currentUser.role;
     }
+
+    const a = localStorage.getItem('currentUser');
+    if (a) {
+      this.currentUser = JSON.parse(a);
+    }
+    console.log(this.currentUser);
+    this.directeurService
+      .getAllDossierForDirector(this.currentUser.agence_id)
+      .subscribe(
+        (rs) => {
+          this.Folders = rs;
+          this.Folders = this.Folders.filter(
+            (f) => f.status !== 'ACCEPTER' && f.status !== 'REFUSER'
+          );
+          this.F = this.Folders;
+          console.log(this.Folders);
+        },
+        (err) => console.log(err)
+      );
   }
 
   // pour la navbar recuperation des titres ************
