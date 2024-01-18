@@ -7,6 +7,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthlayoutComponent } from './authlayout/authlayout.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginBanquierComponent } from './login-banquier/login-banquier.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LogoutComponent,
     RegisterComponent,
     AuthlayoutComponent,
+    LoginBanquierComponent,
   ],
   imports: [CommonModule, AuthRoutingModule, FormsModule, ReactiveFormsModule],
 })
