@@ -367,6 +367,7 @@ export class ResultComponent implements OnInit {
         }
       }
       console.log(this.data);
+      console.log(this.currentUser);
       const dossier = {
         client: {
           id: this.currentUser.id,
@@ -385,7 +386,7 @@ export class ResultComponent implements OnInit {
       };
 
       const d = JSON.stringify(dossier);
-
+      console.log(d);
       this.simulationService.addDossier(d).subscribe(
         (rs) => {
           console.log('dossier cree', rs);
