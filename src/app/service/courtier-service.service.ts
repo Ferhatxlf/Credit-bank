@@ -105,7 +105,7 @@ export class CourtierServiceService {
     // Set headers with the token
     return new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
+      /*  Authorization: `Bearer ${token}`, */
     });
   }
   // pour updater les conteur de la sidebar:

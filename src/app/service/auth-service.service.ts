@@ -7,13 +7,13 @@ import { Router } from '@angular/router';
 import { WebSocketService } from './websocket.service';
 import { BanquierService, Banquier } from './BanquierService';
 import { catchError } from 'rxjs/operators';
-import { ApiConfigService} from './ApiConfig.service';
+import { ApiConfigService } from './ApiConfig.service';
 @Injectable({
   providedIn: 'root',
 })
 export class AuthServiceService {
   // private apiUrl = 'https://unique-zinc-production.up.railway.app';
-  private  apiUrl = this.apiConfigService.getApiUrl();
+  private apiUrl = this.apiConfigService.getApiUrl();
   private userRole: string = ''; // Stockez le rôle de l'utilisateur ici
 
   constructor(
@@ -24,10 +24,7 @@ export class AuthServiceService {
     private apiConfigService: ApiConfigService
   ) {}
 
-
-
   register(client: any) {
-    
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -73,7 +70,7 @@ export class AuthServiceService {
     const headers = this.getHeaders();
     return this.http.get(`${this.apiUrl}/clients/${client_id}`);
   }
-  
+
   getBanquier(id) {
     const headers = this.getHeaders();
     return this.http.get(`${this.apiUrl}/clients/${id}`);
@@ -86,22 +83,22 @@ export class AuthServiceService {
     this.router.navigate(['/home']);
   }
 
-
-
   private getHeaders(): HttpHeaders {
     // Retrieve the user object from local storage
     const currentUserString = localStorage.getItem('currentUser');
-  
+
     // Check if currentUserString is not null before parsing
-    const currentUser = currentUserString ? JSON.parse(currentUserString) : null;
-  
+    const currentUser = currentUserString
+      ? JSON.parse(currentUserString)
+      : null;
+
     // Retrieve the token from the user object or set it to an empty string if not present
     const token = currentUser && currentUser.token ? currentUser.token : '';
-  
+
     // Set headers with the token
     return new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`,
+      /* 'Authorization': `Bearer ${token}`, */
     });
   }
 }
