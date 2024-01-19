@@ -306,25 +306,14 @@ export class RegisterComponent implements OnInit, AfterViewInit {
           );
         },
         (error) => {
-<<<<<<< HEAD
-<<<<<<< HEAD
-          this.simulationService.annoncerLoading(false);
-=======
-=======
-
           this.simulationService.annoncerLoading(false);
 
->>>>>>> c54d1771b65769f35c718e418a0a949c146e02a4
           if (error.error === 'Email already exists') {
             alert("L'email existe déja dans la base de données");
           } else {
             alert(error.error);
           }
-<<<<<<< HEAD
->>>>>>> cc5e0e9a2a30082757e1c32f0ba3d4ffe092b539
-=======
 
->>>>>>> c54d1771b65769f35c718e418a0a949c146e02a4
           console.error('Erreur de connexion:', error);
         }
       );

@@ -35,17 +35,17 @@ export class CourtierServiceService {
       `${this.apiUrl}/dossiers/${agence_id}/dossiersnotassigned`
     );
   }
-  
+
   getDossierEncours(id: number) {
     const headers = this.getHeaders();
     return this.http.get(`${this.apiUrl}/dossiers/courtier/${id}/Encours`);
   }
-  
+
   getDossierTraite(id: number) {
     const headers = this.getHeaders();
     return this.http.get(`${this.apiUrl}/dossiers/courtier/${id}/traitee`);
   }
-  
+
   affecterDossierACourtier(courtierId: number, dossierId: number) {
     return this.http
       .post(
@@ -60,14 +60,11 @@ export class CourtierServiceService {
         catchError((error) => throwError(error))
       );
   }
-  
+
   soumettereDossierADirecteur(dossierIds) {
     const headers = this.getHeaders();
-    return this.http.post(
-      `${this.apiUrl}/dossiers/sendmultipletoDirectreur`,
-      dossierIds,
-      {
-      
+    return this.http
+      .post(`${this.apiUrl}/dossiers/sendmultipletoDirectreur`, dossierIds, {
         responseType: 'text',
       })
       .pipe(
@@ -78,14 +75,14 @@ export class CourtierServiceService {
         catchError((error) => throwError(error))
       );
   }
-  
+
   downloadFile(dossierId: number, fileName) {
     const headers = this.getHeaders();
     return this.http.get(
       `${this.apiUrl}/dossiers/downloadFile/${dossierId}/${fileName}`
     );
   }
-  
+
   getAllMyFolders(courtierId) {
     const headers = this.getHeaders();
     return this.http.get(
@@ -96,18 +93,32 @@ export class CourtierServiceService {
   private getHeaders(): HttpHeaders {
     // Retrieve the user object from local storage
     const currentUserString = localStorage.getItem('currentUser');
-  
+
     // Check if currentUserString is not null before parsing
-    const currentUser = currentUserString ? JSON.parse(currentUserString) : null;
-  
+    const currentUser = currentUserString
+      ? JSON.parse(currentUserString)
+      : null;
+
     // Retrieve the token from the user object or set it to an empty string if not present
     const token = currentUser && currentUser.token ? currentUser.token : '';
-  
+
     // Set headers with the token
     return new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     });
   }
-  
+  // pour updater les conteur de la sidebar:
+  private FolderList = new BehaviorSubject<string>(''); // Initialisez avec une chaîne vide
+  folderList$: Observable<string> = this.FolderList.asObservable();
+
+  updateFolderList(chaine: string) {
+    this.FolderList.next(chaine);
+  }
+  private loading = new Subject<boolean>();
+  loading$ = this.loading.asObservable();
+
+  annoncerLoading(loading: boolean) {
+    this.loading.next(loading);
+  }
 }
