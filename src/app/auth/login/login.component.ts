@@ -69,9 +69,12 @@ export class LoginComponent implements OnInit {
         console.error('Error from server:', error);
 
         // You can also check the error details if needed
-        if (error instanceof HttpErrorResponse && error.error) {
-          console.error('Error Response Body:', error.error);
-          alert(error.error);
+        if (error.error === 'Invalid credentials') {
+          alert('Email ou mot de passe incorrect !');
+        } else if (error.error === 'Account is not activated') {
+          alert("Votre compte n'est pas activé !");
+        } else if (error.error === 'Email or password missing') {
+          alert('Veuillez remplire les champs !');
         }
       }
     );
