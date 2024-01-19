@@ -1,0 +1,57 @@
+<div class="container-fluid">
+  <div class="img-container">
+    <img class="img-bg-home" src="../../assets/backgroud.jpg" alt="" />
+    <div class="bg-fond-black"></div>
+  </div>
+  <div class="card-container">
+    <div
+      class="back-container"
+      style="width: 100%; height: 7%; display: flex; justify-content: start"
+    >
+      <span
+        class="material-icons mt-4"
+        style="font-size: 25px !important; margin-left: 2%; cursor: pointer"
+        (click)="goBack()"
+      >
+        arrow_back_ios
+      </span>
+    </div>
+    <div class="logo-container">
+      <img src="../../assets/bankLogo.png" />
+    </div>
+    <div class="connexion">
+      <div class="body-container">
+        <h3 class="title">Connexion</h3>
+        <div class="input-container"></div>
+
+        <form [formGroup]="banquierForm" (ngSubmit)="banquierLogin()">
+          <div class="mb-1 mt-4">
+            <input
+              type="email"
+              class="form-control mb-3"
+              formControlName="nin"
+              id="email"
+              placeholder="Nom d'utilisateur"
+            />
+          </div>
+          <div class="mb-3">
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              formControlName="password"
+              placeholder="Mot de passe"
+            />
+          </div>
+
+          <div class="button-container">
+            <button class="btn mb-4">Connexion</button>
+          </div>
+          <div class="forgot-password-container">
+            <span class="forgot-password"> Mot de passe oublié ?</span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

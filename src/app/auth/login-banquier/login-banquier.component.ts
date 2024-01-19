@@ -8,13 +8,11 @@ import { WebSocketService } from '../../service/websocket.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { BanquierService, Banquier } from '../../service/BanquierService';
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css',
+  selector: 'app-login-banquier',
+  templateUrl: './login-banquier.component.html',
+  styleUrl: './login-banquier.component.css',
 })
-export class LoginComponent implements OnInit {
-  client: boolean = true;
-  banquier: boolean = false;
+export class LoginBanquierComponent {
   loginForm!: FormGroup;
   banquierForm!: FormGroup;
   isLoading: boolean = false;
@@ -27,11 +25,6 @@ export class LoginComponent implements OnInit {
     private banquierService: BanquierService
   ) {}
   ngOnInit(): void {
-    this.loginForm = this.fb.group({
-      email: this.fb.control(''),
-      password: this.fb.control(''),
-    });
-
     this.banquierForm = this.fb.group({
       nin: this.fb.control(''),
       password: this.fb.control(''),
@@ -40,44 +33,6 @@ export class LoginComponent implements OnInit {
 
   goBack(): void {
     this.location.back();
-  }
-
-  clientLogin() {
-    this.isLoading = true;
-    this.authService.login(this.loginForm.value).subscribe(
-      (rs) => {
-        setTimeout(() => {
-          this.isLoading = false;
-        }, 2000);
-        console.log(rs);
-        const user = {
-          token: rs.token,
-          id: rs.client.id,
-
-          role: 'particulier',
-        };
-        console.log(user);
-        localStorage.setItem('currentUser', JSON.stringify(user));
-
-        this.router.navigate(['/client']);
-      },
-      (error) => {
-        setTimeout(() => {
-          this.isLoading = false;
-        }, 1000);
-        // Handle error from server
-        console.error('Error from server:', error);
-
-        // You can also check the error details if needed
-        if (error.error === 'Invalid credentials') {
-          alert('Email ou mot de passe incorrect !');
-        } else if (error.error === 'Account is not activated') {
-          alert("Votre compte n'est pas activé !");
-        } else if (error.error === 'Email or password missing') {
-          alert('Veuillez remplire les champs !');
-        }
-      }
-    );
   }
 
   banquierLogin() {
@@ -120,15 +75,4 @@ export class LoginComponent implements OnInit {
       }
     );
   }
-
-  onChangeConnexion() {
-    if (this.client) {
-      this.client = false;
-      this.banquier = true;
-    } else {
-      this.client = true;
-      this.banquier = false;
-    }
-  }
 }
-//2eba41bc

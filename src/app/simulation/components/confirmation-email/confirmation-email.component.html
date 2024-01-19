@@ -41,11 +41,7 @@
   {{ messageError }}
 </div>
 <div class="button-container translate">
-  <button
-    class="btn btn2"
-    (click)="renvoiEmail()"
-    [disabled]="messageError === ''"
-  >
+  <button class="btn btn2" (click)="sendAnOtherEmail()">
     Renvoyez l'email de confirmation
   </button>
   <!-- <button
