@@ -241,7 +241,7 @@
     height: 40%;
   }
   .logo-container {
-    width: 40%;
+    width: 60%;
   }
   .title-container {
     font-size: 22px;
@@ -259,21 +259,22 @@
 @media screen and (max-width: 480px) {
   .card-container {
     width: 100%;
-    min-height: 95%;
+    max-height: 700px !important;
   }
   .header {
     height: 35%;
+    margin-bottom: 4%;
   }
   .logo-container {
-    width: 50%;
+    width: 70%;
   }
   .title-container {
-    font-size: 22px;
+    font-size: 27px !important;
     width: 98%;
   }
 
   .sous-title {
-    font-size: 16px;
+    font-size: 20px !important;
   }
   .home {
     height: 40%;
@@ -284,7 +285,7 @@
     flex-direction: column;
     width: 100% !important;
     height: 100%;
-    justify-content: space-between !important;
+    justify-content: end !important;
     flex-wrap: nowrap;
   }
   .card {
@@ -293,7 +294,7 @@
     flex-direction: row;
     justify-content: space-around;
     min-width: 80%;
-    padding: 2% 5% !important;
+    padding: 3% 5% !important;
     height: auto !important;
   }
   .card p {
@@ -306,7 +307,7 @@
     padding-bottom: 5%;
   }
 }
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 400px) {
   .logo-container {
     width: 70%;
   }
