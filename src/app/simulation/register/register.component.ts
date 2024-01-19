@@ -300,15 +300,18 @@ export class RegisterComponent implements OnInit, AfterViewInit {
               }, 200);
             },
             (error) => {
+              this.simulationService.annoncerLoading(false);
               console.error('Erreur de connexion:', error);
             }
           );
         },
         (error) => {
+          this.simulationService.annoncerLoading(false);
           console.error('Erreur de connexion:', error);
         }
       );
     } else {
+      this.simulationService.annoncerLoading(false);
       this.submitted = true;
       console.log('Le formulaire est invalide. Veuillez corriger les erreurs.');
     }
