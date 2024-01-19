@@ -1,0 +1,220 @@
+/* Dans votre-composant.css */
+
+.container-fluid {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative; /* Ajout de position:relative pour gérer le positionnement absolu de l'image */
+}
+
+.img-bg-home {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  /* object-fit: cover; */
+  /* filter: blur(5px); */
+}
+.bg-fond-black {
+  /* background: linear-gradient(
+      335deg,
+      rgba(254, 182, 0, 1) 50%,
+      rgba(114, 33, 130, 1) 51%
+    ); */
+  background-color: rgba(0, 0, 0, 0.151);
+  /* opacity: 0.6; */
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+.card-container {
+  margin: auto;
+  width: 90%; /* Ajustement de la largeur pour une meilleure adaptation */
+  max-width: 800px; /* Ajout d'une largeur maximale pour éviter que le conteneur devienne trop large */
+  height: 80%;
+  max-height: 590px;
+  background-color: rgba(255, 255, 255, 0.596);
+  backdrop-filter: blur(5px);
+  box-shadow: 0 0 15px 1px rgba(43, 41, 41, 0.479);
+  overflow: hidden; /* Ajout de overflow: hidden pour gérer le débordement des enfants */
+  border-top-left-radius: 35px;
+  border-bottom-right-radius: 35px;
+}
+
+.logo-container {
+  width: 40%; /* Ajustement de la largeur à 100% pour une meilleure adaptation */
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 2%;
+  min-width: 200px;
+}
+
+.material-icons {
+  font-size: 50px !important;
+  margin: 1% 0 8% 0; /* Ajustement des marges */
+}
+
+.connexion {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.connexion:hover {
+  cursor: pointer;
+  color: #6d6c6c;
+}
+
+/* pour la connexion */
+.body-container {
+  width: 100%;
+  height: 67%;
+  margin: auto;
+  border-radius: 15px;
+}
+.title {
+  text-align: center;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+
+  font-weight: 600;
+  margin-bottom: 1%;
+  letter-spacing: 1px;
+}
+
+.body-container input {
+  border-radius: 5px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+.body-container form {
+  width: 90%;
+  margin: 0 auto;
+}
+.forgot-password-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+
+.forgot-password {
+  width: 70%;
+  text-align: center;
+  color: #742484;
+  font-weight: 400;
+  cursor: pointer;
+  font-size: small;
+}
+.button-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.button-container button {
+  width: 90%;
+  max-width: 200px;
+  background-color: #742484;
+  color: white;
+  border-radius: 15px;
+  box-shadow: 0px -12px 16px 8px rgba(0, 0, 0, 0.25) inset;
+}
+.button-container button:hover {
+  box-shadow: 0px -12px 16px 8px rgba(0, 0, 0, 0.158) inset;
+  background-color: #642072;
+}
+.input-container {
+  width: 90%;
+  margin: 0 auto;
+  max-width: 350px;
+}
+.suppositions-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.supposition {
+  border: 1px solid rgba(0, 0, 0, 0.226);
+  border-radius: 12px;
+  padding: 6px;
+  width: 48%;
+  color: #642072;
+  text-align: center;
+  background-color: white;
+}
+.selected {
+  border: 1px solid rgba(0, 0, 0, 0.226);
+  border-radius: 12px;
+  padding: 6px;
+  width: 48%;
+  color: white;
+  text-align: center;
+  background-color: #642072;
+}
+@keyframes translateIcons {
+  100% {
+    transform: translateX(50px);
+  }
+}
+
+/* pour la responsivité  */
+@media screen and (max-width: 800px) {
+  .title-container {
+    font-size: 25px;
+    width: 98%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .card-container {
+    width: 100%;
+    height: 80%;
+  }
+  .title-container {
+    font-size: 22px;
+    width: 98%;
+  }
+
+  .sous-title {
+    font-size: 16px;
+  }
+  .cards {
+    display: flex;
+    flex-direction: column;
+    width: 100% !important;
+    margin-top: 5%;
+  }
+  .card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    min-width: 80%;
+  }
+  .card p {
+    margin: auto;
+  }
+  .material-icons {
+    font-size: 50px !important;
+    margin: auto;
+  }
+  .connexion-icons {
+    margin-top: 1%;
+    font-size: 22px !important;
+  }
+}
