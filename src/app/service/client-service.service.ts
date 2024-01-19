@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { catchError, map, tap } from 'rxjs/operators';
@@ -50,5 +50,28 @@ export class ClientServiceService {
       }),
       catchError((error) => throwError(error))
     );
+  }
+
+  sendAnOtherEmail(recipientEmail: any): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    };
+    return this.http
+      .post(
+        `${this.apiUrl}/clients/send-confirmation-email`,
+        recipientEmail,
+        httpOptions
+      )
+      .pipe(
+        tap(() => {
+          console.log('Email sent successfully.');
+        }),
+        catchError((error) => {
+          console.error('Error sending email:', error);
+          return throwError(error);
+        })
+      );
   }
 }
