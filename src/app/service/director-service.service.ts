@@ -48,34 +48,39 @@ export class DirectorServiceService {
 
   getAllDossierForDirector(agence_id: number) {
     const headers = this.getHeaders();
-    return this.http.get(`${this.apiUrl}/dossiers/agence/${agence_id}`, { headers });
+    return this.http.get(`${this.apiUrl}/dossiers/agence/${agence_id}`, {
+      headers,
+    });
   }
-  
+
   getMyDossier(id: number) {
     const headers = this.getHeaders();
-    return this.http.get(`${this.apiUrl}/dossiers/courtier/${id}/Encours`, { headers });
+    return this.http.get(`${this.apiUrl}/dossiers/courtier/${id}/Encours`, {
+      headers,
+    });
   }
 
   async acceptFolder(folders): Promise<Observable<any>> {
-    const acceptStatus = "refuse"; // Consider renaming to something more appropriate
+    const acceptStatus = 'refuse'; // Consider renaming to something more appropriate
     const headers = this.getHeaders();
-  
+
     try {
       // Execute WebSocket message
       await this.sendWebSocketMessages(folders, acceptStatus);
 
       const Ids = folders.map((f) => f.id);
-  
-      return this.http.post(`${this.apiUrl}/dossiers/updateStatusToAccepter`, Ids, {
-       
-        responseType: 'text',
-      }).pipe(
-        tap(() => {
-          window.location.reload();
-          console.log('success.');
-        }),
-        catchError((error) => throwError(error))
-      );
+
+      return this.http
+        .post(`${this.apiUrl}/dossiers/updateStatusToAccepter`, Ids, {
+          responseType: 'text',
+        })
+        .pipe(
+          tap(() => {
+            window.location.reload();
+            console.log('success.');
+          }),
+          catchError((error) => throwError(error))
+        );
     } catch (error) {
       console.error('Error sending WebSocket message:', error);
       return throwError(error);
@@ -130,7 +135,6 @@ export class DirectorServiceService {
 
       return this.http
         .post(`${this.apiUrl}/dossiers/updateStatusToRenvoyer`, Ids, {
-   
           responseType: 'text',
         })
         .pipe(
@@ -165,33 +169,48 @@ export class DirectorServiceService {
 
   addComment(comment, id) {
     const headers = this.getHeaders();
-    return this.http.post(
-      `${this.apiUrl}/dossiers/${id}/addComment/${this.compteId}`,
-      comment,
-      { responseType: 'text' }
-    ).pipe(
-      tap(() => console.log('success.')),
-      catchError((error) => throwError(error))
-    );
+    return this.http
+      .post(
+        `${this.apiUrl}/dossiers/${id}/addComment/${this.compteId}`,
+        comment,
+        { responseType: 'text' }
+      )
+      .pipe(
+        tap(() => console.log('success.')),
+        catchError((error) => throwError(error))
+      );
   }
-
-
 
   private getHeaders(): HttpHeaders {
     // Retrieve the user object from local storage
     const currentUserString = localStorage.getItem('currentUser');
-  
+
     // Check if currentUserString is not null before parsing
-    const currentUser = currentUserString ? JSON.parse(currentUserString) : null;
-  
+    const currentUser = currentUserString
+      ? JSON.parse(currentUserString)
+      : null;
+
     // Retrieve the token from the user object or set it to an empty string if not present
     const token = currentUser && currentUser.token ? currentUser.token : '';
-  
+
     // Set headers with the token
     return new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     });
   }
-  
+
+  // pour updater les conteur de la sidebar:
+  private FolderList = new BehaviorSubject<string>(''); // Initialisez avec une chaîne vide
+  folderList$: Observable<string> = this.FolderList.asObservable();
+
+  updateFolderList(chaine: string) {
+    this.FolderList.next(chaine);
+  }
+  private loading = new Subject<boolean>();
+  loading$ = this.loading.asObservable();
+
+  annoncerLoading(loading: boolean) {
+    this.loading.next(loading);
+  }
 }
