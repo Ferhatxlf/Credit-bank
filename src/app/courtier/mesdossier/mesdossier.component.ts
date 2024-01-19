@@ -130,6 +130,7 @@ export class MesdossierComponent {
     this.directeurService
       .addComment(this.comment, this.idDossier)
       .subscribe((rs) => {
+        this.showModal = false;
         console.log(rs);
       });
   }

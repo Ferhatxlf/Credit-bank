@@ -22,7 +22,8 @@
           *ngIf="
             (f.status === 'TRAITEMENT_ENCOURS' && f.assignedagence != null) ||
             (f.status === 'TRAITEE' && f.assignedagence != null) ||
-            (f.status === 'NON_TRAITEE' && f.assignedagence != null)
+            (f.status === 'NON_TRAITEE' && f.assignedagence != null) ||
+            (f.status === 'RENVOYER' && f.assignedagence != null)
           "
         >
           <span class="material-icons">query_builder</span>
