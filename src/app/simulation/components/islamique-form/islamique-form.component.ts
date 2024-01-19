@@ -19,8 +19,10 @@ export class IslamiqueFormComponent implements OnInit {
   otherCarAndMoto: boolean = false;
   submitted: boolean = false;
 
-  dureeMax1: number = 30;
-  dureeMax2: number = 30;
+  dureeMax1: number = 5;
+  dureeMax2: number = 5;
+  dureeImmobilierMax1: number = 30;
+  dureeImmobilierMax2: number = 30;
   prixVehicule: number = 0;
   bien: string = '';
 
@@ -33,10 +35,10 @@ export class IslamiqueFormComponent implements OnInit {
     this.applyForm.get('age')?.valueChanges.subscribe((age: number) => {
       if (this.otherCarAndMoto) {
         if (isNaN(age) || age > 40) {
-          this.dureeMax1 = 70 - Number(age);
+          this.dureeImmobilierMax1 = 70 - Number(age);
         } else {
           if (isNaN(age) || age < 40) {
-            this.dureeMax1 = 30;
+            this.dureeImmobilierMax1 = 30;
           }
         }
         // Déclenchez manuellement la validation de la durée
@@ -56,10 +58,10 @@ export class IslamiqueFormComponent implements OnInit {
     this.applyForm.get('ageCo')?.valueChanges.subscribe((age: number) => {
       if (this.otherCarAndMoto) {
         if (isNaN(age) || age > 40) {
-          this.dureeMax2 = 70 - Number(age);
+          this.dureeImmobilierMax1 = 70 - Number(age);
         } else {
           if (isNaN(age) || age < 65) {
-            this.dureeMax2 = 30;
+            this.dureeImmobilierMax1 = 30;
           }
         }
         // Déclenchez manuellement la validation de la durée
@@ -79,15 +81,16 @@ export class IslamiqueFormComponent implements OnInit {
     if (prix) {
       this.prixVehicule = parseFloat(prix);
     }
-    if (
-      otherCarAndMoto === 'ijaraTamilikiya' ||
-      otherCarAndMoto === 'morabahaIstihlakiya'
-    ) {
+    if (otherCarAndMoto === 'ijaraTamilikiya') {
       this.otherCarAndMoto = true;
     }
   }
   get dureeMax(): number {
-    return Math.min(this.dureeMax1, this.dureeMax2);
+    if (this.otherCarAndMoto) {
+      return Math.min(this.dureeImmobilierMax1, this.dureeImmobilierMax2);
+    } else {
+      return Math.min(this.dureeMax1, this.dureeMax2);
+    }
   }
 
   constructor(
