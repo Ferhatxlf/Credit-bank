@@ -305,6 +305,11 @@ export class RegisterComponent implements OnInit, AfterViewInit {
           );
         },
         (error) => {
+          if (error.error === 'Email already exists') {
+            alert("L'email existe déja dans la base de données");
+          } else {
+            alert(error.error);
+          }
           console.error('Erreur de connexion:', error);
         }
       );
@@ -391,6 +396,13 @@ export class RegisterComponent implements OnInit, AfterViewInit {
           );
         },
         (error) => {
+          if (error.error === 'Invalid credentials') {
+            alert('Email ou mot de passe incorrect !');
+          } else if (error.error === 'Account is not activated') {
+            alert("Votre compte n'est pas activé !");
+          } else if (error.error === 'Email or password missing') {
+            alert('Veuillez remplire les champs !');
+          }
           console.error('Erreur de connexion:', error);
         }
       );

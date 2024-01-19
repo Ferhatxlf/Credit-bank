@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { Subscription, interval, Observable, timer } from 'rxjs';
 import { map, takeWhile } from 'rxjs/operators';
 import { AuthServiceService } from '../../../service/auth-service.service';
+import { ClientServiceService } from '../../../service/client-service.service';
 
 @Component({
   selector: 'app-confirmation-email',
@@ -25,8 +26,13 @@ export class ConfirmationEmailComponent implements OnInit, OnDestroy {
   countDown: Observable<string>;
   messageError: string = '';
   data: any;
+  email: any;
 
-  constructor(private router: Router, private authService: AuthServiceService) {
+  constructor(
+    private router: Router,
+    private authService: AuthServiceService,
+    private clientService: ClientServiceService
+  ) {
     this.isStartInterval = true;
     this.countDown = timer(0, 1000).pipe(
       map((i) => 300 - i),
@@ -130,7 +136,16 @@ export class ConfirmationEmailComponent implements OnInit, OnDestroy {
     return elapsedMinutes >= 5;
   }
 
-  renvoiEmail() {
+  sendAnOtherEmail() {
     this.messageError = '';
+    console.log(this.data);
+    const email = { email: this.data };
+    const data = JSON.stringify(email);
+    this.clientService.sendAnOtherEmail(data).subscribe(
+      (rs) => {
+        console.log(rs);
+      },
+      (err) => console.log(err)
+    );
   }
 }
