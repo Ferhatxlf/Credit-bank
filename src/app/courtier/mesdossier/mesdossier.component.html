@@ -95,7 +95,10 @@
                   type="checkbox"
                   [(ngModel)]="folder.isSelected"
                   (change)="updateSelectedFolders()"
-                  *ngIf="folder.status === 'TRAITEMENT_ENCOURS'"
+                  *ngIf="
+                    folder.status === 'TRAITEMENT_ENCOURS' ||
+                    folder.status === 'RENVOYER'
+                  "
                 />
               </td>
               <td style="display: flex; align-items: start">

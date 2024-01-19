@@ -76,7 +76,7 @@ export class DirectorServiceService {
         })
         .pipe(
           tap(() => {
-            window.location.reload();
+            // window.location.reload();
             console.log('success.');
           }),
           catchError((error) => throwError(error))

@@ -59,7 +59,10 @@ export class ListeDossierComponent implements OnInit {
           this.directeurService.annoncerLoading(false);
           this.Folders = rs;
           this.Folders = this.Folders.filter(
-            (f) => f.status !== 'ACCEPTER' && f.status !== 'REFUSER'
+            (f) =>
+              f.status !== 'ACCEPTER' &&
+              f.status !== 'REFUSER' &&
+              f.status !== 'RENVOYER'
           );
           this.F = this.Folders;
           console.log(this.Folders);
@@ -177,7 +180,9 @@ export class ListeDossierComponent implements OnInit {
       const response = await this.directeurService.renvoiyeFolder(
         this.selectedFolders
       );
-
+      response.subscribe((res) => {
+        console.log(res, 'res renvoi folder');
+      });
       this.updateFoldersList();
       console.log(response); // Log the success response if needed
       this.directeurService.annoncerLoading(false);
@@ -196,7 +201,7 @@ export class ListeDossierComponent implements OnInit {
       .addComment(this.comment, this.idDossier)
       .subscribe((rs) => {
         console.log(rs);
-        this.showModal = !this.showModal;
+        this.showModal = false;
       });
   }
 }
