@@ -121,6 +121,7 @@ export class ListeDossierComponent implements OnInit {
       await this.sharedDataService.affectation(id_dossier);
       this.getAllFolders();
       this.updateFoldersList();
+      this.ngOnInit();
     } catch (error) {
       console.error(error);
     }
@@ -132,7 +133,6 @@ export class ListeDossierComponent implements OnInit {
         this.F = rs;
         this.cdRef.detectChanges(); // Force la détection des changements
         this.updateFolderList(this.Folders.length);
-        this.ngOnInit();
       },
       (err) => console.log(err)
     );
