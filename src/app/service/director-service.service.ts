@@ -196,7 +196,7 @@ export class DirectorServiceService {
     // Set headers with the token
     return new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
+      /*  Authorization: `Bearer ${token}`, */
     });
   }
 
