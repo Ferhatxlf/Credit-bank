@@ -138,14 +138,22 @@ export class ConfirmationEmailComponent implements OnInit, OnDestroy {
 
   sendAnOtherEmail() {
     this.messageError = '';
-    console.log(this.data);
-    const email = { email: this.data };
-    const data = JSON.stringify(email);
-    this.clientService.sendAnOtherEmail(data).subscribe(
+    console.log("data=" + this.data);  // Change 'this.mydata' to 'this.data'
+  
+    const mydata = JSON.stringify(this.data);
+  
+    console.log("mydata:::::" + mydata);
+  
+    const email = this.data.email; // Change 'this.mydata' to 'this.data'
+  
+    console.log('Email:', email);
+  
+    this.clientService.sendAnOtherEmail(email).subscribe(
       (rs) => {
         console.log(rs);
       },
       (err) => console.log(err)
     );
   }
+  
 }

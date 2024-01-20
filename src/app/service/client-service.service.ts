@@ -53,25 +53,20 @@ export class ClientServiceService {
   }
 
   sendAnOtherEmail(recipientEmail: any): Observable<any> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      }),
-    };
-    return this.http
-      .post(
-        `${this.apiUrl}/clients/send-confirmation-email`,
-        recipientEmail,
-        httpOptions
-      )
-      .pipe(
-        tap(() => {
-          console.log('Email sent successfully.');
-        }),
-        catchError((error) => {
-          console.error('Error sending email:', error);
-          return throwError(error);
-        })
-      );
+    console.log("recipientEmail=" + recipientEmail);
+    const email = recipientEmail;
+  
+    const payload = { recipientEmail: email }; // Sending only the email address
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+  
+    return this.http.post(`${this.apiUrl}/clients/send-confirmation-email`, payload, { headers, responseType: 'text' }).pipe(
+      catchError((error) => {
+        console.error('Error sending confirmation email:', error);
+        return throwError(error);
+      })
+    );
   }
-}
+  
+  
+  }
+
