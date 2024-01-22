@@ -342,6 +342,10 @@ export class ResultComponent implements OnInit {
   }
 
   createFolder() {
+    // suppression des données du formulaires
+    sessionStorage.removeItem('formImmobilierData');
+    sessionStorage.removeItem('formConsomationData');
+    sessionStorage.removeItem('formislamiqueData');
     if (this.isLoged) {
       const t = localStorage.getItem('financementType');
       if (t === 'immobilier') {

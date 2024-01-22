@@ -31,6 +31,11 @@ export class IslamiqueFormComponent implements OnInit {
   ngOnInit(): void {
     const prix = localStorage.getItem('prix');
     const otherCarAndMoto = localStorage.getItem('islamiqueType');
+    const islamiqueForm = sessionStorage.getItem('formislamiqueData');
+    if (islamiqueForm) {
+      const islamiqueFormJson = JSON.parse(islamiqueForm);
+      this.applyForm.patchValue(islamiqueFormJson);
+    }
     this.setCoBorrower(false);
     this.applyForm.get('age')?.valueChanges.subscribe((age: number) => {
       if (this.otherCarAndMoto) {
@@ -206,6 +211,7 @@ export class IslamiqueFormComponent implements OnInit {
         margeCredit: this.otherCarAndMoto
           ? 0.5 * Number(credit) + Number(credit)
           : 0,
+        bien: montantDuBien,
         credit: credit,
         age: this.applyForm.value.age,
         ageCo: this.applyForm.value.ageCo,
@@ -219,6 +225,7 @@ export class IslamiqueFormComponent implements OnInit {
       const formDataJson = JSON.stringify(formislamiqueData);
 
       localStorage.setItem('formislamiqueData', formDataJson);
+      sessionStorage.setItem('formislamiqueData', formDataJson);
 
       console.log(
         'Formulaire soumis avec les valeurs suivantes:',

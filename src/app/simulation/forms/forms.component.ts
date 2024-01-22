@@ -33,8 +33,15 @@ export class FormsComponent implements OnInit {
     this.setRevenueImmobilier(false);
     this.setOtherRevenue(false);
     const immobilierType = localStorage.getItem('immobilierType');
+    const formImmobilierData = sessionStorage.getItem('formImmobilierData');
+
     if (immobilierType === "Construction d'un logement rural (Bonifié)") {
       this.rurale = true;
+    }
+    // recuperer les valeurs soumité
+    if (formImmobilierData) {
+      const formDataJson = JSON.parse(formImmobilierData);
+      this.applyForm.patchValue(formDataJson);
     }
     this.applyForm.get('age')?.valueChanges.subscribe((age: number) => {
       if (isNaN(age) || age > 45) {
@@ -244,6 +251,7 @@ export class FormsComponent implements OnInit {
       const formDataJson = JSON.stringify(formImmobilierData);
 
       localStorage.setItem('formImmobilierData', formDataJson);
+      sessionStorage.setItem('formImmobilierData', formDataJson);
 
       console.log(
         'Formulaire soumis avec les valeurs suivantes:',
