@@ -43,7 +43,6 @@ export class IslamiqueVehiculeComponent {
   carPrice(price): void {
     console.log(price);
     localStorage.setItem('prix', price);
-
     this.router.navigate(['/simulation/islamique-form/17']);
   }
 }

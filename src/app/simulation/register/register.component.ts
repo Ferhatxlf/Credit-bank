@@ -393,7 +393,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
             (rs) => {
               console.log('dossier cree', rs);
               localStorage.setItem('id_for_upload_docs', rs['id']);
-              localStorage.removeItem('formImmobilierData');
+
               this.router.navigate(['/client']);
             },
             (error) => {

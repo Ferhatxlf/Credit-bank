@@ -342,7 +342,10 @@ export class ResultComponent implements OnInit {
   }
 
   createFolder() {
-    localStorage.removeItem('formImmobilierData');
+    // suppression des données du formulaires
+    sessionStorage.removeItem('formImmobilierData');
+    sessionStorage.removeItem('formConsomationData');
+    sessionStorage.removeItem('formislamiqueData');
     if (this.isLoged) {
       const t = localStorage.getItem('financementType');
       if (t === 'immobilier') {
@@ -393,11 +396,9 @@ export class ResultComponent implements OnInit {
           console.log('dossier cree', rs);
 
           this.router.navigate(['/client/dossier']);
-          localStorage.removeItem('formImmobilierData');
         },
         (error) => {
           console.error('Erreur de connexion:', error);
-          localStorage.removeItem('formImmobilierData');
         }
       );
     } else {
