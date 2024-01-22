@@ -290,7 +290,6 @@ export class RegisterComponent implements OnInit, AfterViewInit {
           const d = JSON.stringify(dossier);
           console.log('-----------------d', d);
 
-          this.router.navigate(['/simulation/confirmation']);
           this.simulationService.addDossier(d).subscribe(
             (rs) => {
               console.log('dossier cree', rs);
@@ -298,6 +297,8 @@ export class RegisterComponent implements OnInit, AfterViewInit {
               setTimeout(() => {
                 this.simulationService.annoncerLoading(false);
               }, 200);
+              localStorage.removeItem('formImmobilierData');
+              this.router.navigate(['/simulation/confirmation']);
             },
             (error) => {
               this.simulationService.annoncerLoading(false);
@@ -392,7 +393,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
             (rs) => {
               console.log('dossier cree', rs);
               localStorage.setItem('id_for_upload_docs', rs['id']);
-
+              localStorage.removeItem('formImmobilierData');
               this.router.navigate(['/client']);
             },
             (error) => {
