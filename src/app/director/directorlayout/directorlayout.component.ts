@@ -137,7 +137,10 @@ export class DirectorlayoutComponent {
         (rs) => {
           this.Folders = rs;
           this.Folders = this.Folders.filter(
-            (f) => f.status !== 'ACCEPTER' && f.status !== 'REFUSER'
+            (f) =>
+              f.status !== 'ACCEPTER' &&
+              f.status !== 'REFUSER' &&
+              f.status !== 'RENVOYER'
           );
           this.F = this.Folders;
           console.log(this.Folders);
@@ -161,7 +164,10 @@ export class DirectorlayoutComponent {
         (rs) => {
           this.Folders = rs;
           this.Folders = this.Folders.filter(
-            (f) => f.status !== 'ACCEPTER' && f.status !== 'REFUSER'
+            (f) =>
+              f.status !== 'ACCEPTER' &&
+              f.status !== 'REFUSER' &&
+              f.status !== 'RENVOYER'
           );
           this.F = this.Folders;
           console.log(this.Folders);

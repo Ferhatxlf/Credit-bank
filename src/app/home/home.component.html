@@ -4,35 +4,20 @@
     <div class="bg-fond-black"></div>
   </div>
   <div class="card-container">
-    <div
-      class="back-container"
-      style="width: 100%; height: 7%; display: flex; justify-content: start"
-      *ngIf="!toggleHomeLogin"
-    >
-      <span
-        class="material-icons"
-        style="font-size: 25px !important; margin-left: 2%; cursor: pointer"
-        (click)="setToggleHomeLogin()"
-      >
-        arrow_back_ios
-      </span>
-    </div>
-    <div class="logo-container">
-      <img src="../../assets/bankLogo.png" />
-    </div>
-    <div class="home" *ngIf="toggleHomeLogin">
-      <div class="title-container">
-        Une demande de financement
-        <span class="sous-title">
-          Découvrez une expérience exceptionnelle. Connectez-vous pour profiter
-          de fonctionnalités exclusives.</span
-        >
+    <div class="header">
+      <div class="logo-container">
+        <img src="../../assets/bankLogo.png" />
       </div>
+      <div class="title-container">Une demande de financement</div>
+      <div class="sous-title">
+        Découvrez une expérience exceptionnelle. Connectez-vous pour profiter de
+        fonctionnalités exclusives.
+      </div>
+    </div>
+    <div class="home">
       <div class="cards">
-        <div class="card">
-          <span class="material-icons" [routerLink]="['/simulation']">
-            business
-          </span>
+        <div class="card" [routerLink]="['/simulation']">
+          <span class="material-icons"> business </span>
           <p>Je suis une entreprise</p>
         </div>
         <div class="card" [routerLink]="['/simulation']">
@@ -44,10 +29,10 @@
           <p>Je suis un professionnel</p>
         </div>
       </div>
-      <div class="connexion translateIcons" [routerLink]="['/auth/login']">
-        <p class="connexion-title">Connexion</p>
-        <span class="material-icons connexion-icons"> arrow_forward_ios </span>
-      </div>
+    </div>
+    <div class="connexion translateIcons">
+      <p class="connexion-title" [routerLink]="['/auth/login']">Connexion</p>
+      <span class="material-icons connexion-icons"> arrow_forward_ios </span>
     </div>
   </div>
 </div>
