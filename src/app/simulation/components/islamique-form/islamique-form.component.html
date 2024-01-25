@@ -103,7 +103,7 @@
           {{ otherCarAndMoto ? "75ans" : "70ans" }} .
         </p>
       </div>
-      <div class="form-group">
+      <div class="form-group" *ngIf="!otherCarAndMoto">
         <input
           [ngClass]="{
             errForm:

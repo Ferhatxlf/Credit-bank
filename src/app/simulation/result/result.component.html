@@ -27,7 +27,21 @@
           margin: 1% auto;
           font-weight: 600;
         "
-        *ngIf="islamique"
+        *ngIf="islamique && ijaraTalikiya"
+      >
+        Vous n’êtes pas éligible au financement demandé. Cependant, en tenant
+        compte de vos revenus, la banque est en mesure de vous accorder un
+        financement selon les caractéristiques suivantes :
+      </p>
+      <p
+        style="
+          color: rgb(212, 42, 20);
+          font-size: 16px;
+          width: 80%;
+          margin: 1% auto;
+          font-weight: 600;
+        "
+        *ngIf="islamique && !ijaraTalikiya"
       >
         Selon les informations saisies, vous n'êtes pas éligible au financement.
       </p>
@@ -126,7 +140,7 @@
       </p>
     </div>
     <!-- quand le client est eligible -->
-    <div class="button-container mb-5" *ngIf="eligible">
+    <div class="button-container mb-5" *ngIf="eligible || ijaraTalikiya">
       <button class="btn btn1" (click)="generatePDF()">
         Télécharger une copie de la simulation
       </button>
@@ -136,7 +150,7 @@
     </div>
 
     <!-- quand le client est non eligible  -->
-    <div class="button-container mb-5" *ngIf="!eligible">
+    <div class="button-container mb-5" *ngIf="!eligible && !ijaraTalikiya">
       <button class="btn btn2" [routerLink]="['/simulation/islamique-form']">
         Réessayer
       </button>

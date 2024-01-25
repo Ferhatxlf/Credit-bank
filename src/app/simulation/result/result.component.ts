@@ -18,7 +18,7 @@ export class ResultComponent implements OnInit {
   mensualite: string = '';
   revenue: string = '';
   otherFinancing: string = '';
-  montantDuBien: number = 0;
+  montantDuBien: string = '';
   consomation: boolean = false;
   eligible: boolean = false;
   islamique: boolean = false;
@@ -33,6 +33,7 @@ export class ResultComponent implements OnInit {
   s: any;
   type!: number;
   montant!: number;
+  ijaraTalikiya: boolean = false;
   constructor(
     private router: Router,
     private simulationService: SimulationServiceService
@@ -110,28 +111,42 @@ export class ResultComponent implements OnInit {
     } else if (type === 'islamique') {
       this.financementTypeChoice = immobilierType ? immobilierType : '';
       this.islamique = true;
-      if (
-        islamiqueType === 'ijaraTamilikiya' ||
-        islamiqueType === 'morabahaIstihlakiya'
-      ) {
+      if (islamiqueType === 'ijaraTamilikiya') {
         this.islamiqueotherCarAndVehicule = true;
-      }
-      if (formislamiqueData) {
-        // Convertissez la chaîne JSON en objet JavaScript
-        const formData = JSON.parse(formislamiqueData);
-        this.islamiqueMargeCredit = formData.margeCredit;
-        this.financement = formData.credit;
-        this.durer = formData.durer;
-        this.age = formData.age;
-        this.revenue = formData.revenueCumule;
-        this.habitation = formData.consommation;
-        this.apportInitial =
-          parseFloat(formData.montantDuBien) - parseFloat(formData.credit);
-        // Appelez la méthode pour calculer la mensualité
-        this.calculerMensualiteIslamique();
+        this.ijaraTalikiya = true;
+        if (formislamiqueData) {
+          // Convertissez la chaîne JSON en objet JavaScript
+          const formData = JSON.parse(formislamiqueData);
+          this.financement = formData.financementIjaraTamlikiya;
+          this.durer = formData.durer;
+          this.age = formData.age;
+          this.revenue = formData.revenueCumule;
+          this.apportInitial = formData.apportInitialIjaratamlikiya;
+          this.montantDuBien = formData.montantDuBien;
 
-        // Vérifiez l'éligibilité
-        this.verifierEligibiliteIslamique();
+          this.calculerMensualiteIslamiqueIjaraTamlikiya();
+
+          // Vérifiez l'éligibilité
+          this.verifierEligibiliteIslamique();
+        }
+      } else {
+        if (formislamiqueData) {
+          // Convertissez la chaîne JSON en objet JavaScript
+          const formData = JSON.parse(formislamiqueData);
+          this.islamiqueMargeCredit = formData.margeCredit;
+          this.financement = formData.credit;
+          this.durer = formData.durer;
+          this.age = formData.age;
+          this.revenue = formData.revenueCumule;
+          this.habitation = formData.consommation;
+          this.apportInitial =
+            parseFloat(formData.montantDuBien) - parseFloat(formData.credit);
+          // Appelez la méthode pour calculer la mensualité
+          this.calculerMensualiteIslamique();
+
+          // Vérifiez l'éligibilité
+          this.verifierEligibiliteIslamique();
+        }
       }
     }
   }
@@ -222,6 +237,30 @@ export class ResultComponent implements OnInit {
     }
   }
 
+  // calculer mensulaité islamique ijara tamlikiya
+  calculerMensualiteIslamiqueIjaraTamlikiya() {
+    // Convertissez les chaînes en nombres
+    const financement = parseFloat(this.financement);
+    const durer = parseFloat(this.durer);
+
+    // Vérifiez si les valeurs sont valides
+    if (!isNaN(financement) && !isNaN(durer)) {
+      // Calcul de n (nombre de paiements)
+      const n = durer * 12;
+
+      // Calcul de la mensualité selon la formule
+      const mensualite = (financement * 2.39479567) / n;
+
+      // Affectez le résultat à la propriété mensualite
+      this.mensualite = mensualite.toString();
+    } else {
+      // Gérez le cas où les valeurs ne sont pas valides
+      console.error(
+        "Les valeurs de financement, durée ou taux d'intérêt ne sont pas valides."
+      );
+    }
+  }
+
   verifierEligibilite() {
     // Convertissez les chaînes en nombres
     const revenue = parseFloat(this.revenue);
@@ -255,9 +294,11 @@ export class ResultComponent implements OnInit {
       }
       console.log('je suis ici', this.eligible);
       // Si le client n'est pas éligible, ajustez le montant du financement
-      // if (!this.eligible) {
-      //   this.ajusterMontantFinancementConsomation(revenue);
-      // }
+      if (this.ijaraTalikiya) {
+        if (!this.eligible) {
+          this.ajusterMontantFinancementIslamiqueTijaraTamlikiya(revenue);
+        }
+      }
     }
   }
   verifierEligibiliteConsomation() {
@@ -330,6 +371,30 @@ export class ResultComponent implements OnInit {
       parseFloat(this.habitation) - parseFloat(this.financement);
     // Recalculer la mensualité avec le nouveau montant
     this.calculerMensualiteConsomation();
+  }
+
+  // ajuster la mensualité tijara tamlikiya
+  ajusterMontantFinancementIslamiqueTijaraTamlikiya(revenue: number) {
+    const durer = parseFloat(this.durer);
+    const n = durer * 12; // Nombre de paiements
+
+    // Calculer la mensualité maximale admissible
+    let mensualiteMax;
+    if (revenue <= 80000) {
+      mensualiteMax = revenue * 0.4;
+    } else {
+      mensualiteMax = revenue * 0.5;
+    }
+
+    // Inverser la formule de la mensualité pour calculer le montant du financement
+    const nouveauMontant = (mensualiteMax * n) / 2.39479567;
+
+    // Mettez à jour la valeur du financement
+    this.financement = nouveauMontant.toString();
+    this.apportInitial =
+      parseFloat(this.montantDuBien) - parseFloat(this.financement);
+    // Recalculer la mensualité avec le nouveau montant
+    this.calculerMensualiteIslamiqueIjaraTamlikiya();
   }
 
   estDansPlageAcceptable(revenue: number): boolean {

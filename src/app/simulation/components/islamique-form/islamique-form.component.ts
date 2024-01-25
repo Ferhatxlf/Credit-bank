@@ -107,7 +107,7 @@ export class IslamiqueFormComponent implements OnInit {
       bien: [''],
       revenue: ['', Validators.required],
       age: ['', [Validators.required, this.ageValidator]],
-      credit: ['', [Validators.required, this.creditValidatorFactory()]],
+      // credit: ['', [Validators.required, this.creditValidatorFactory()]],
       durer: ['', [Validators.required, this.durerValidatorFactory()]],
       revenueCo: ['', Validators.required],
       ageCo: ['', [Validators.required, this.ageValidator]],
@@ -231,8 +231,10 @@ export class IslamiqueFormComponent implements OnInit {
         durer: this.applyForm.value.durer,
         revenueCumule: revenueCumule,
         montantDuBien: this.otherCarAndMoto ? montantDuBien : this.prixVehicule,
-
         idCredit: this.route.snapshot.paramMap.get('id'),
+        financementIjaraTamlikiya:
+          Number(montantDuBien) - Number(montantDuBien) * 0.1,
+        apportInitialIjaratamlikiya: Number(montantDuBien) * 0.1,
       };
 
       const formDataJson = JSON.stringify(formislamiqueData);

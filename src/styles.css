@@ -10,7 +10,7 @@ body {
 
 * {
   /* font-family: "Franklin Gothic small", "Arial Narrow", Arial, sans-serif; */
-  font-family: basier_circle_regular, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "basier_circle_regular", "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 *::-webkit-scrollbar {
