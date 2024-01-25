@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { CourtierGardService } from './guardiens/courtier-gard.service';
 import { DirecteurGardService } from './guardiens/directeur-gard.service';
@@ -9,6 +9,11 @@ import { ClientGardService } from './guardiens/client-gard.service';
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
+  {
+    path: 'simulation',
+    loadChildren: () =>
+      import('./simulation/simulation.module').then((m) => m.SimulationModule),
+  },
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
@@ -31,11 +36,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./courtier/courtier.module').then((m) => m.CourtierModule),
   },
-  {
-    path: 'simulation',
-    loadChildren: () =>
-      import('./simulation/simulation.module').then((m) => m.SimulationModule),
-  },
+
   {
     path: 'director',
     canActivate: [DirecteurGardService],
@@ -45,7 +46,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

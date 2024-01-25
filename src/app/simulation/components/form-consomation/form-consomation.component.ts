@@ -54,6 +54,12 @@ export class FormConsomationComponent implements OnInit {
       }
     });
     const Consomationtype = localStorage.getItem('consomationType');
+    const consommationForm = sessionStorage.getItem('formConsomationData');
+    if (consommationForm) {
+      const formDataJson = JSON.parse(consommationForm);
+      this.applyForm.patchValue(formDataJson);
+    }
+
     if (Consomationtype) {
       if (Consomationtype === 'véhicule a usage touristique') {
         this.vehicule = true;
@@ -220,6 +226,7 @@ export class FormConsomationComponent implements OnInit {
       const formDataJson = JSON.stringify(formConsomationData);
 
       localStorage.setItem('formConsomationData', formDataJson);
+      sessionStorage.setItem('formConsomationData', formDataJson);
 
       console.log(
         'Formulaire soumis avec les valeurs suivantes:',
