@@ -399,7 +399,7 @@
   class="container-connexion translate connexion"
   *ngIf="!toggleRegisterLogin"
 >
-  <div class="body-container">
+  <div class="body-container" *ngIf="!isResetPassword">
     <h2 class="title">Connexion</h2>
 
     <form [formGroup]="applyFormSignIn" (ngSubmit)="submitFormSignIn()">
@@ -439,11 +439,58 @@
           }"
         />
         <div class="forgot-password-container">
-          <span class="forgot-password"> Mot de passe oublié ?</span>
+          <span class="forgot-password" (click)="isResetPassword = true">
+            Mot de passe oublié ?</span
+          >
         </div>
       </div>
       <div class="connexion-button-container mt-1 mb-1">
         <button class="connexion-btn" type="submit">Connexion</button>
+      </div>
+    </form>
+
+    <div
+      class="inscription-container mt-5"
+      style="font-size: small; width: 100%"
+    >
+      <hr class="mb-3" style="width: 60%; margin: 0 auto" />
+      Vous êtes nouveau sur la plateform ?
+      <span class="inscription" (click)="setToggleRegisterLogin()"
+        >s'inscrire
+      </span>
+    </div>
+  </div>
+  <div class="body-container" *ngIf="isResetPassword">
+    <h2 class="title">Réinitialisation du mot de passe</h2>
+
+    <form [formGroup]="applyFormSignIn">
+      <div class="mb-1 mt-5">
+        <input
+          type="email"
+          class="form-control mb-3"
+          id="email"
+          placeholder="Adresse email"
+          formControlName="emailConnexion"
+          [ngClass]="{
+            errForm:
+              (applyFormSignIn.get('emailConnexion')?.touched &&
+                !applyFormSignIn.get('emailConnexion')?.dirty) ||
+              (applyFormSignIn.get('emailConnexion')?.invalid &&
+                applyFormSignIn.get('emailConnexion')?.dirty) ||
+              (submittedSignIn && applyFormSignIn.get('emailConnexion')?.invalid),
+          
+          }"
+        />
+      </div>
+      <div class="connexion-button-container mt-1 mb-1">
+        <button class="connexion-btn" type="submit">Confirmer</button>
+      </div>
+      <div class="connexion-button-container mt-1 mb-1">
+        <span
+          (click)="isResetPassword = false"
+          style="margin: 0 auto; font-size: small; cursor: pointer"
+          >Annuler</span
+        >
       </div>
     </form>
 

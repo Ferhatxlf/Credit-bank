@@ -44,6 +44,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   s: any;
   type!: number;
   montant!: number;
+  isResetPassword: boolean = true;
   @Output() loading = new EventEmitter<boolean>();
 
   ngAfterViewInit() {
@@ -147,6 +148,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
 
   setToggleRegisterLogin() {
     this.toggleRegisterLogin = !this.toggleRegisterLogin;
+    this.isResetPassword = false;
   }
   setNationnalite(value: boolean) {
     this.nationnalitee = value;
