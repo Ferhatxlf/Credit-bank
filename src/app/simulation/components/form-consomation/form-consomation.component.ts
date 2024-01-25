@@ -142,7 +142,7 @@ export class FormConsomationComponent implements OnInit {
       const consomation = control.value.replace(/\s+/g, '');
 
       // Vérifier si le crédit dépasse 90% du montant de l'habitation
-      if (consomation < 500000 || consomation > 3500000) {
+      if (consomation < 50000 || consomation > 3500000) {
         return { invalidConsomation: true };
       }
 

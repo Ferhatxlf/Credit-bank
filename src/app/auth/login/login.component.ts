@@ -18,6 +18,8 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   banquierForm!: FormGroup;
   isLoading: boolean = false;
+  resetPassword: boolean = false;
+  ifSubmitted: boolean = false;
   constructor(
     private router: Router,
     private location: Location,
@@ -48,7 +50,7 @@ export class LoginComponent implements OnInit {
       (rs) => {
         setTimeout(() => {
           this.isLoading = false;
-        }, 2000);
+        }, 1000);
         console.log(rs);
         const user = {
           token: rs.token,
@@ -129,6 +131,15 @@ export class LoginComponent implements OnInit {
       this.client = true;
       this.banquier = false;
     }
+  }
+
+  // reset password
+  resetPasswordFunction() {
+    this.isLoading = true;
+    setTimeout(() => {
+      this.isLoading = false;
+      this.ifSubmitted = true;
+    }, 1000);
   }
 }
 //2eba41bc
