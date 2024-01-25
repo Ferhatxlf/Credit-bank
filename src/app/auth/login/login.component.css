@@ -60,7 +60,7 @@
 
 .material-icons {
   font-size: 50px !important;
-  margin: 1% 0 8% 0; /* Ajustement des marges */
+  margin: 1% 0 3% 0;
 }
 
 .connexion {
@@ -70,9 +70,8 @@
   flex-direction: row;
   justify-content: center;
 }
-.connexion:hover {
+.goToConnexion {
   cursor: pointer;
-  color: #6d6c6c;
 }
 
 /* pour la connexion */

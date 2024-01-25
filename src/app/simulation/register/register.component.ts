@@ -68,6 +68,9 @@ export class RegisterComponent implements OnInit, AfterViewInit {
 
         // Mettez à jour le tableau des communes avec les valeurs uniques
         this.communes = uniqueCommunes;
+        this.communes.sort((a, b) =>
+          a.commune_name_ascii.localeCompare(b.commune_name_ascii)
+        );
       });
     this.applyForm
       .get('selectedCommune')
