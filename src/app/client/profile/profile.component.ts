@@ -1,7 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientServiceService } from '../../service/client-service.service';
 import { AuthServiceService } from '../../service/auth-service.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  AbstractControl,
+  FormControl,
+  ValidatorFn,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
@@ -10,7 +17,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class ProfileComponent implements OnInit {
   information: boolean = false;
-
+  submittedPassword: boolean = false;
   public dataForm!: FormGroup;
   currentUser: any;
   public Folders: any = [];
@@ -18,13 +25,17 @@ export class ProfileComponent implements OnInit {
     private clientService: ClientServiceService,
     private authService: AuthServiceService,
     private fb: FormBuilder
-  ) {}
-  ngOnInit(): void {
+  ) {
     this.dataForm = this.fb.group({
-      oldPassword: this.fb.control(''),
-      newPassword: this.fb.control(''),
-      passwordConfirmation: this.fb.control(''),
+      oldPassword: ['', [Validators.required]],
+      newPassword: ['', [Validators.required, this.passwordPolicyValidator]],
+      passwordConfirmation: [
+        '',
+        [Validators.required, this.passwordMatchValidator()],
+      ],
     });
+  }
+  ngOnInit(): void {
     this.information = true;
     const a = localStorage.getItem('currentUser');
     if (a) {
@@ -39,41 +50,51 @@ export class ProfileComponent implements OnInit {
         console.log(err);
       }
     );
+    this.dataForm.get('newPassword')?.valueChanges.subscribe((pass: any) => {
+      if (isNaN(pass) || pass > 40) {
+        // Déclenchez manuellement la validation de la durée
+        this.dataForm.get('passwordConfirmation')?.updateValueAndValidity();
+      }
+    });
+  }
+  passwordPolicyValidator(control: FormControl) {
+    const hasNumber = /\d/.test(control.value);
+    const hasUpper = /[A-Z]/.test(control.value);
+    const hasLower = /[a-z]/.test(control.value);
+    const hasSpecial = /[!@#$%^&*]/.test(control.value);
+    const length = control.value.length >= 8;
+    // return null if all conditions are true, otherwise an error object
+    return hasNumber && hasUpper && hasLower && hasSpecial && length
+      ? null
+      : { passwordWeak: true };
+  }
+
+  passwordMatchValidator(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: boolean } | null => {
+      const newPassword = this.dataForm?.get('newPassword')?.value;
+      const confirmPassword = this.dataForm?.get('passwordConfirmation')?.value;
+      if (newPassword !== confirmPassword) {
+        return { invalidDurer: true };
+      }
+
+      return null; // La validation a réussi
+    };
   }
 
   setPassword() {
-    // 442f534d
-
-    const oldPassword = this.dataForm.value.oldPassword;
-    const newPassword = this.dataForm.value.newPassword;
-    const confirmation = this.dataForm.value.passwordConfirmation;
-    console.log(oldPassword, newPassword, confirmation);
-
-    if (oldPassword === '' || newPassword === '' || confirmation === '') {
-      alert('Veuillez remplir tous les champs !');
-    } else if (newPassword !== confirmation) {
-      alert('Confirmation du mot de passe incorrect !');
-    } else if (newPassword.length < 8) {
-      alert('Le mot de passe doit contenir au moins 8 caractères !');
-    } else if (!/[a-z]/.test(newPassword)) {
-      alert('Le mot de passe doit contenir au moins une minuscule !');
-    } else if (!/[A-Z]/.test(newPassword)) {
-      alert('Le mot de passe doit contenir au moins une majuscule !');
-    } else if (!/\d/.test(newPassword)) {
-      alert('Le mot de passe doit contenir au moins un chiffre !');
-    } else if (/\d{3,}/.test(newPassword)) {
-      alert(
-        'Le mot de passe ne peut pas contenir une séquence numérique de 3 chiffres ou plus !'
-      );
-    } else if (!/[!@#$%^&*(),.?":{}|<>]/.test(newPassword)) {
-      alert('Le mot de passe doit contenir au moins un caractère spécial !');
-    } else {
+    if (this.dataForm.valid) {
+      let oldPassword = this.dataForm.value.oldPassword;
+      let newPassword = this.dataForm.value.newPassword;
       const data = {
         oldPassword: oldPassword,
         newPassword: newPassword,
       };
       this.clientService.setPassword(data, this.currentUser.id).subscribe(
         (rs) => {
+
+          this.information = true;
+          console.log(rs);
+  
           console.log(rs);
 
           alert('Mot de passe mis à jour avec succès');
@@ -87,6 +108,8 @@ export class ProfileComponent implements OnInit {
           }
         }
       );
+    } else {
+      this.submittedPassword = true;
     }
   }
 }
