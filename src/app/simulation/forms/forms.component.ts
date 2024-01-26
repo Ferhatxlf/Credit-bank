@@ -99,7 +99,7 @@ export class FormsComponent implements OnInit {
   ageValidator(control: AbstractControl): { [key: string]: boolean } | null {
     const age = Number(control.value);
 
-    if (isNaN(age) || age < 18 || age > 75) {
+    if (isNaN(age) || age < 19 || age > 75) {
       return { invalidAge: true };
     }
 

@@ -121,8 +121,8 @@ export class IslamiqueFormComponent implements OnInit {
 
     if (
       this.otherCarAndMoto
-        ? isNaN(age) || age < 18 || age > 75
-        : isNaN(age) || age < 18 || age > 70
+        ? isNaN(age) || age < 19 || age > 75
+        : isNaN(age) || age < 19 || age > 70
     ) {
       return { invalidAge: true };
     }
