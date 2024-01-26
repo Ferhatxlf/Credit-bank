@@ -95,10 +95,21 @@ export class ClientServiceService {
   }
 
   setPassword(data, id) {
-    console.log(data, id);
     const url = `${this.apiUrl}/clients/${id}/reset-password`;
 
     return this.http.put(url, data, { responseType: 'text' }).pipe(
+      tap(() => {
+        // window.location.reload();
+        console.log('password updated successfully.');
+      }),
+      catchError((error) => throwError(error))
+    );
+  }
+
+  forgetPassword(email) {
+    const url = `${this.apiUrl}/clients/reset-password`;
+
+    return this.http.put(url, email, { responseType: 'text' }).pipe(
       tap(() => {
         // window.location.reload();
         console.log('password updated successfully.');

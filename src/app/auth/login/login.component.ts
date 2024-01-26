@@ -7,6 +7,7 @@ import { WebSocketService } from '../../service/websocket.service';
 
 import { HttpErrorResponse } from '@angular/common/http';
 import { BanquierService, Banquier } from '../../service/BanquierService';
+import { ClientServiceService } from '../../service/client-service.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -17,6 +18,8 @@ export class LoginComponent implements OnInit {
   banquier: boolean = false;
   loginForm!: FormGroup;
   banquierForm!: FormGroup;
+  resetPasswordData!: FormGroup;
+
   isLoading: boolean = false;
   resetPassword: boolean = false;
   ifSubmitted: boolean = false;
@@ -26,7 +29,8 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private authService: AuthServiceService,
     private webSocketService: WebSocketService,
-    private banquierService: BanquierService
+    private banquierService: BanquierService,
+    private clientService: ClientServiceService
   ) {}
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -37,6 +41,9 @@ export class LoginComponent implements OnInit {
     this.banquierForm = this.fb.group({
       nin: this.fb.control(''),
       password: this.fb.control(''),
+    });
+    this.resetPasswordData = this.fb.group({
+      email: this.fb.control(''),
     });
   }
 
@@ -140,6 +147,11 @@ export class LoginComponent implements OnInit {
       this.isLoading = false;
       this.ifSubmitted = true;
     }, 1000);
+
+    const email = this.resetPasswordData.value.email;
+    this.clientService.forgetPassword(email).subscribe(
+      (rs) => console.log(rs),
+      (err) => console.log(err)
+    );
   }
 }
-//2eba41bc
