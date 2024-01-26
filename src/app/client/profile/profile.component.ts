@@ -73,8 +73,19 @@ export class ProfileComponent implements OnInit {
         newPassword: newPassword,
       };
       this.clientService.setPassword(data, this.currentUser.id).subscribe(
-        (rs) => console.log(rs),
-        (err) => console.log(err)
+        (rs) => {
+          console.log(rs);
+
+          alert('Mot de passe mis à jour avec succès');
+        },
+        (err) => {
+          console.log(err);
+          if (err.error === 'Ancien mot de passe incorrect') {
+            alert('mot de passe actuel incorrect');
+          } else if (err.error === "Client introuvable avec l'ID fourni") {
+            alert("Client introuvable avec l'ID fourni");
+          }
+        }
       );
     }
   }
