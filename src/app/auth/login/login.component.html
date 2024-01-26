@@ -113,7 +113,10 @@
       <div class="body-container">
         <h3 class="title">Réinitialisation du mot de passe</h3>
 
-        <form [formGroup]="loginForm" (ngSubmit)="resetPasswordFunction()">
+        <form
+          [formGroup]="resetPasswordData"
+          (ngSubmit)="resetPasswordFunction()"
+        >
           <div class="mb-1 mt-5">
             <input
               type="email"
