@@ -10,7 +10,7 @@ body {
 
 * {
   /* font-family: "Franklin Gothic small", "Arial Narrow", Arial, sans-serif; */
-  font-family: basier_circle_regular, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "basier_circle_regular", "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 *::-webkit-scrollbar {
@@ -71,4 +71,19 @@ input[type="number"]::-webkit-outer-spin-button {
 .isLoading {
   animation: loading 1s linear infinite;
   opacity: 0.4;
+}
+
+@keyframes translate {
+  from {
+    transform: translateX(200px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.translate {
+  animation: translate 0.5s ease;
 }

@@ -99,10 +99,11 @@
             (submitted && applyForm.get('age')?.invalid)
           "
         >
-          Champs obligatoire entre 18ans et 75ans
+          Champs obligatoire entre 18ans et
+          {{ otherCarAndMoto ? "75ans" : "70ans" }} .
         </p>
       </div>
-      <div class="form-group">
+      <div class="form-group" *ngIf="!otherCarAndMoto">
         <input
           [ngClass]="{
             errForm:
