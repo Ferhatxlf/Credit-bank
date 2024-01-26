@@ -96,7 +96,7 @@ export class ClientServiceService {
 
   setPassword(data, id) {
     console.log(data, id);
-    const url = `${this.apiUrl}/clients/${id}/rest-password`;
+    const url = `${this.apiUrl}/clients/${id}/reset-password`;
 
     return this.http.put(url, data, { responseType: 'text' }).pipe(
       tap(() => {

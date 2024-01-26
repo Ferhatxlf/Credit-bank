@@ -91,12 +91,21 @@ export class ProfileComponent implements OnInit {
       };
       this.clientService.setPassword(data, this.currentUser.id).subscribe(
         (rs) => {
+
           this.information = true;
           console.log(rs);
+  
+          console.log(rs);
+
+          alert('Mot de passe mis à jour avec succès');
         },
         (err) => {
           console.log(err);
-          alert(err.message);
+          if (err.error === 'Ancien mot de passe incorrect') {
+            alert('mot de passe actuel incorrect');
+          } else if (err.error === "Client introuvable avec l'ID fourni") {
+            alert("Client introuvable avec l'ID fourni");
+          }
         }
       );
     } else {
