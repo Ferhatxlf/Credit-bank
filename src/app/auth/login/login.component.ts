@@ -150,7 +150,12 @@ export class LoginComponent implements OnInit {
 
     const email = this.resetPasswordData.value.email;
     this.clientService.forgetPassword(email).subscribe(
-      (rs) => console.log(rs),
+      (rs) => {
+        console.log(rs);
+        alert(
+          `Un e-mail de réinitialisation de mot de passe a été envoyé à l'adresse : ${email}`
+        );
+      },
       (err) => console.log(err)
     );
   }
