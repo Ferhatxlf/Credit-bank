@@ -3,7 +3,7 @@
     <img class="img-bg-home" src="../../assets/backgroud.jpg" alt="" />
     <div class="bg-fond-black"></div>
   </div>
-  <div class="card-container">
+  <div class="card-container translate">
     <div
       class="back-container"
       style="width: 100%; height: 7%; display: flex; justify-content: start"
@@ -19,7 +19,7 @@
     <div class="logo-container">
       <img src="../../assets/bankLogo.png" />
     </div>
-    <div class="connexion">
+    <div class="connexion translate" *ngIf="!resetPassword">
       <div class="body-container">
         <h3 class="title">Connexion</h3>
         <div class="input-container">
@@ -68,7 +68,9 @@
           </div>
           <hr class="mt-2 mb-1" style="margin: 0 auto; width: 40%" />
           <div class="forgot-password-container">
-            <span class="forgot-password"> Mot de passe oublié ?</span>
+            <span class="forgot-password" (click)="resetPassword = true">
+              Mot de passe oublié ?</span
+            >
           </div>
         </form>
 
@@ -100,7 +102,57 @@
             <button class="btn mb-4">Connexion</button>
           </div>
           <div class="forgot-password-container">
-            <span class="forgot-password"> Mot de passe oublié ?</span>
+            <span class="forgot-password" (click)="resetPassword = true">
+              Mot de passe oublié ?</span
+            >
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="connexion resetPassword translate" *ngIf="resetPassword">
+      <div class="body-container">
+        <h3 class="title">Réinitialisation du mot de passe</h3>
+
+        <form
+          [formGroup]="resetPasswordData"
+          (ngSubmit)="resetPasswordFunction()"
+        >
+          <div class="mb-1 mt-5">
+            <input
+              type="email"
+              class="form-control mb-3"
+              formControlName="email"
+              id="email"
+              placeholder="Entrez votre adresse email"
+            />
+          </div>
+
+          <div class="button-container mt-4">
+            <button *ngIf="!isLoading" class="btn mb-4">Confirmer</button>
+            <img
+              *ngIf="isLoading"
+              class="isLoading"
+              src="../../../assets/loading.png"
+              style="width: 40px"
+              alt="loadingButton"
+            />
+          </div>
+          <div
+            *ngIf="ifSubmitted"
+            class="ifSubmitted translate"
+            style="
+              width: 100%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            "
+          >
+            <span class="material-icons" style="color: green"
+              >check_circle</span
+            >
+          </div>
+          <div class="button-container" (click)="resetPassword = false">
+            <span class="goToConnexion"> Annuler </span>
           </div>
         </form>
       </div>

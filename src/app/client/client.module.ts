@@ -13,6 +13,7 @@ import { DetailCreditComponent } from './component/detail-credit/detail-credit.c
 import { DetailClientComponent } from './component/detail-client/detail-client.component';
 import { DocumentComponent } from './component/document/document.component';
 import { MonDossierComponent } from './mon-dossier/mon-dossier.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,12 @@ import { MonDossierComponent } from './mon-dossier/mon-dossier.component';
     DocumentComponent,
     MonDossierComponent,
   ],
-  imports: [CommonModule, ClientRoutingModule, ComponentModule],
+  imports: [
+    CommonModule,
+    ClientRoutingModule,
+    ComponentModule,
+    ReactiveFormsModule,
+    FormsModule,
+  ],
 })
 export class ClientModule {}

@@ -93,7 +93,35 @@ export class ClientServiceService {
         })
       );
   }
+<<<<<<< HEAD
   
   
   }
 
+=======
+
+  setPassword(data, id) {
+    const url = `${this.apiUrl}/clients/${id}/reset-password`;
+
+    return this.http.put(url, data, { responseType: 'text' }).pipe(
+      tap(() => {
+        // window.location.reload();
+        console.log('password updated successfully.');
+      }),
+      catchError((error) => throwError(error))
+    );
+  }
+
+  forgetPassword(email) {
+    const url = `${this.apiUrl}/clients/reset-password`;
+
+    return this.http.put(url, email, { responseType: 'text' }).pipe(
+      tap(() => {
+        // window.location.reload();
+        console.log('password updated successfully.');
+      }),
+      catchError((error) => throwError(error))
+    );
+  }
+}
+>>>>>>> 6e97fe71c909da919464675d537bc77baf0942d1

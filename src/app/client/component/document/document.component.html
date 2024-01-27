@@ -1,7 +1,7 @@
 <div class="header d-flex justify-content-center w-100 translate"></div>
 <div class="container">
   <div class="add-document mb-3">
-    <h3>Pièces jointes</h3>
+    <h4>Pièces justificatives</h4>
     <span class="material-icons add-icon" style="font-size: 25px !important"
       >attach_file</span
     >
@@ -96,7 +96,7 @@
     <div class="document-add-container mt-3">
       <div class="document">
         <div class="subtitle">
-          <span>Fichier de résidence</span>
+          <span>Fiche de résidence</span>
           <span
             *ngIf="!hasResidence"
             style="font-size: small; opacity: 0.6; margin-left: 5px"
@@ -133,7 +133,7 @@
       >
         <div class="document-detail">
           <img src="../../../../assets/pdfLogo.png" alt="pdflogo" />
-          <p>Fichier de résidence.pdf</p>
+          <p>Fiche de résidence.pdf</p>
         </div>
         <button
           (click)="sendFile('Fichier de residence')"
@@ -154,7 +154,7 @@
       <div class="document mt-3" *ngIf="hasResidence">
         <div class="document-detail">
           <img src="../../../../assets/pdfLogo.png" alt="pdflogo" />
-          <p>Fichier de résidence.pdf</p>
+          <p>Fiche de résidence.pdf</p>
         </div>
 
         <div class="document-options">

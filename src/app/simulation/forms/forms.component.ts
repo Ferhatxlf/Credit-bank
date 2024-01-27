@@ -21,8 +21,8 @@ export class FormsComponent implements OnInit {
   rurale: boolean = false;
 
   depot: boolean = false;
-  dureeMax1: number = 30;
-  dureeMax2: number = 30;
+  dureeMax1: number = 35;
+  dureeMax2: number = 35;
 
   habitation: any;
   applyForm: FormGroup;
@@ -33,30 +33,37 @@ export class FormsComponent implements OnInit {
     this.setRevenueImmobilier(false);
     this.setOtherRevenue(false);
     const immobilierType = localStorage.getItem('immobilierType');
+    const formImmobilierData = sessionStorage.getItem('formImmobilierData');
+
     if (immobilierType === "Construction d'un logement rural (Bonifié)") {
       this.rurale = true;
     }
+    // recuperer les valeurs soumité
+    if (formImmobilierData) {
+      const formDataJson = JSON.parse(formImmobilierData);
+      this.applyForm.patchValue(formDataJson);
+    }
     this.applyForm.get('age')?.valueChanges.subscribe((age: number) => {
-      if (isNaN(age) || age > 45) {
+      if (isNaN(age) || age > 40) {
         this.dureeMax1 = 75 - Number(age);
 
         // Déclenchez manuellement la validation de la durée
         this.applyForm.get('durer')?.updateValueAndValidity();
-      } else if (isNaN(age) || age < 45) {
-        this.dureeMax1 = 30;
+      } else if (isNaN(age) || age < 40) {
+        this.dureeMax1 = 35;
 
         // Déclenchez manuellement la validation de la durée
         this.applyForm.get('durer')?.updateValueAndValidity();
       }
     });
     this.applyForm.get('ageCo')?.valueChanges.subscribe((age: number) => {
-      if (isNaN(age) || age > 45) {
+      if (isNaN(age) || age > 40) {
         this.dureeMax2 = 75 - Number(age);
 
         // Déclenchez manuellement la validation de la durée
         this.applyForm.get('durer')?.updateValueAndValidity();
-      } else if (isNaN(age) || age < 45) {
-        this.dureeMax2 = 30;
+      } else if (isNaN(age) || age < 40) {
+        this.dureeMax2 = 35;
 
         // Déclenchez manuellement la validation de la durée
         this.applyForm.get('durer')?.updateValueAndValidity();
@@ -92,7 +99,7 @@ export class FormsComponent implements OnInit {
   ageValidator(control: AbstractControl): { [key: string]: boolean } | null {
     const age = Number(control.value);
 
-    if (isNaN(age) || age < 18 || age > 75) {
+    if (isNaN(age) || age < 19 || age > 75) {
       return { invalidAge: true };
     }
 
@@ -105,7 +112,7 @@ export class FormsComponent implements OnInit {
       const age = Number(this.applyForm?.get('age')?.value);
       const ageCo = Number(this.applyForm?.get('ageCo')?.value);
 
-      if (isNaN(durer) || durer < 0 || durer > 30) {
+      if (isNaN(durer) || durer < 0 || durer > 35) {
         return { invalidDurer: true };
       }
 
@@ -244,6 +251,7 @@ export class FormsComponent implements OnInit {
       const formDataJson = JSON.stringify(formImmobilierData);
 
       localStorage.setItem('formImmobilierData', formDataJson);
+      sessionStorage.setItem('formImmobilierData', formDataJson);
 
       console.log(
         'Formulaire soumis avec les valeurs suivantes:',
