@@ -93,12 +93,6 @@ export class ClientServiceService {
         })
       );
   }
-<<<<<<< HEAD
-  
-  
-  }
-
-=======
 
   setPassword(data, id) {
     const url = `${this.apiUrl}/clients/${id}/reset-password`;
@@ -124,4 +118,3 @@ export class ClientServiceService {
     );
   }
 }
->>>>>>> 6e97fe71c909da919464675d537bc77baf0942d1

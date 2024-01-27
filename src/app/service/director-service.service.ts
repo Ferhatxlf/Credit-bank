@@ -169,6 +169,7 @@ export class DirectorServiceService {
 
   addComment(comment, id) {
     const headers = this.getHeaders();
+    console.log("iddirecterur of comment"+this.compteId)
     return this.http
       .post(
         `${this.apiUrl}/dossiers/${id}/addComment/${this.compteId}`,
