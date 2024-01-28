@@ -62,9 +62,16 @@
       *ngFor="let comment of folderValue?.commentaires"
     >
       <label
-        >Commentaire {{ comment?.compte?.role }}, le
-        {{ comment?.commentDate | date : "dd/MM/yyyy" }}</label
-      >
+        >Le
+        {{
+          comment?.compte?.role === "courtier"
+            ? "chargé de crédit"
+            : comment?.compte?.role
+        }}
+        ,
+        {{ comment?.commentDate | date : "dd/MM/yyyy" }}
+        à {{ comment?.commentDate | date : "HH:mm" }}
+      </label>
       <!-- <div>Dossier complet</div> -->
       <input
         type="text-area"
