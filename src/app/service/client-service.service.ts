@@ -24,7 +24,8 @@ export class ClientServiceService {
   }
 
   getDossier(client_id: number) {
-    return this.http.get(`${this.apiUrl}/dossiers/client/${client_id}`);
+    const url = `${this.apiUrl}/dossiers/client/${client_id}`;
+    return this.http.get(url);
   }
 
   sendFolder(dossierId: number) {
@@ -118,7 +119,7 @@ export class ClientServiceService {
     );
   }
 
-  private getHeaders(): HttpHeaders {
+  /*  private getHeaders(): HttpHeaders {
     // Retrieve the user object from local storage
     const currentUserString = localStorage.getItem('currentUser');
 
@@ -133,7 +134,7 @@ export class ClientServiceService {
     // Set headers with the token
     return new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
+      Authorization: 'Bearer ' + token,
     });
-  }
+  } */
 }
