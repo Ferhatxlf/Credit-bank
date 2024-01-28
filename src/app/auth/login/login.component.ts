@@ -156,7 +156,10 @@ export class LoginComponent implements OnInit {
           `Un e-mail de réinitialisation de mot de passe a été envoyé à l'adresse : ${email}`
         );
       },
-      (err) => console.log(err)
+      (err) => {
+        console.log(err);
+        alert(err.error);
+      }
     );
   }
 }
