@@ -47,22 +47,18 @@ export class DirectorServiceService {
   }
 
   getAllDossierForDirector(agence_id: number) {
-    const headers = this.getHeaders();
-    return this.http.get(`${this.apiUrl}/dossiers/agence/${agence_id}`, {
-      headers,
-    });
+    //const headers = this.getHeaders();
+    return this.http.get(`${this.apiUrl}/dossiers/agence/${agence_id}`);
   }
 
   getMyDossier(id: number) {
-    const headers = this.getHeaders();
-    return this.http.get(`${this.apiUrl}/dossiers/courtier/${id}/Encours`, {
-      headers,
-    });
+    //const headers = this.getHeaders();
+    return this.http.get(`${this.apiUrl}/dossiers/courtier/${id}/Encours`);
   }
 
   async acceptFolder(folders): Promise<Observable<any>> {
     const acceptStatus = 'refuse'; // Consider renaming to something more appropriate
-    const headers = this.getHeaders();
+    //const headers = this.getHeaders();
 
     try {
       // Execute WebSocket message
@@ -88,7 +84,7 @@ export class DirectorServiceService {
   }
 
   async rejectFolder(folders): Promise<any> {
-    const headers = this.getHeaders();
+    //const headers = this.getHeaders();
     try {
       const Ids = folders.map((f) => f.id);
 
@@ -126,7 +122,7 @@ export class DirectorServiceService {
   }
 
   async renvoiyeFolder(folders): Promise<Observable<any>> {
-    const headers = this.getHeaders();
+    //const headers = this.getHeaders();
     try {
       const Ids = folders.map((f) => f.id);
       const Status = 'renvoyer';
@@ -168,7 +164,7 @@ export class DirectorServiceService {
   }
 
   addComment(comment, id) {
-    const headers = this.getHeaders();
+    //const headers = this.getHeaders();
     return this.http
       .post(
         `${this.apiUrl}/dossiers/${id}/addComment/${this.compteId}`,
@@ -181,7 +177,7 @@ export class DirectorServiceService {
       );
   }
 
-  private getHeaders(): HttpHeaders {
+  /*  private getHeaders(): HttpHeaders {
     // Retrieve the user object from local storage
     const currentUserString = localStorage.getItem('currentUser');
 
@@ -196,9 +192,9 @@ export class DirectorServiceService {
     // Set headers with the token
     return new HttpHeaders({
       'Content-Type': 'application/json',
-      /*  Authorization: `Bearer ${token}`, */
+        Authorization: `Bearer ${token}`, 
     });
-  }
+  } */
 
   // pour updater les conteur de la sidebar:
   private FolderList = new BehaviorSubject<string>(''); // Initialisez avec une chaîne vide

@@ -67,12 +67,10 @@ export class AuthServiceService {
   }
 
   getClient(client_id) {
-    const headers = this.getHeaders();
     return this.http.get(`${this.apiUrl}/clients/${client_id}`);
   }
 
   getBanquier(id) {
-    const headers = this.getHeaders();
     return this.http.get(`${this.apiUrl}/clients/${id}`);
   }
   logout() {
@@ -83,7 +81,7 @@ export class AuthServiceService {
     this.router.navigate(['/home']);
   }
 
-  private getHeaders(): HttpHeaders {
+  /* private getHeaders(): HttpHeaders {
     // Retrieve the user object from local storage
     const currentUserString = localStorage.getItem('currentUser');
 
@@ -98,7 +96,7 @@ export class AuthServiceService {
     // Set headers with the token
     return new HttpHeaders({
       'Content-Type': 'application/json',
-      /* 'Authorization': `Bearer ${token}`, */
+       'Authorization': `Bearer ${token}`, 
     });
-  }
+  } */
 }

@@ -4,7 +4,6 @@ import { ClientlayoutComponent } from './clientlayout/clientlayout.component';
 import { DashbordComponent } from './dashbord/dashbord.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MesdossierComponent } from './mesdossier/mesdossier.component';
-import { NouveaucreditComponent } from './nouveaucredit/nouveaucredit.component';
 import { InformationComponent } from './component/information/information.component';
 import { DetailCreditComponent } from './component/detail-credit/detail-credit.component';
 import { DetailClientComponent } from './component/detail-client/detail-client.component';
@@ -26,7 +25,6 @@ const routes: Routes = [
         component: DashbordComponent,
       },
       { path: 'dossier', component: MesdossierComponent },
-      { path: 'nouveau-credit', component: NouveaucreditComponent },
       {
         path: 'detail-dossier/:id',
         component: MonDossierComponent,

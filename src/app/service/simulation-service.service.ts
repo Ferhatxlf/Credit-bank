@@ -20,23 +20,21 @@ export class SimulationServiceService {
   }
 
   addDossier(dossier: any): Observable<any> {
-    const headers = this.getHeaders();
-    return this.http.post(`${this.apiUrl}/dossiers/adddossier`, dossier, {
-      headers: headers,
-    });
+    //const headers = this.getHeaders();
+    return this.http.post(`${this.apiUrl}/dossiers/adddossier`, dossier);
   }
 
   addDocument(id: number, files: FormData): Observable<any> {
-    const headers = this.getHeaders();
+    //const headers = this.getHeaders();
     return this.http.post(`${this.apiUrl}/dossiers/${id}/files`, files);
   }
 
   getDossier(id: number): Observable<any> {
-    const headers = this.getHeaders();
+    //const headers = this.getHeaders();
     return this.http.get(`${this.apiUrl}/dossiers/${id}`);
   }
 
-  private getHeaders(): HttpHeaders {
+  /* private getHeaders(): HttpHeaders {
     // Retrieve the user object from local storage
     const currentUserString = localStorage.getItem('currentUser');
 
@@ -53,5 +51,5 @@ export class SimulationServiceService {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     });
-  }
+  } */
 }
