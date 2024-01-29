@@ -14,9 +14,7 @@ import { ApiConfigService } from './ApiConfig.service';
   providedIn: 'root',
 })
 export class CourtierServiceService {
-  // private apiUrl = 'https://unique-zinc-production.up.railway.app';
 
-  //private apiUrl = 'http://localhost:8000';
   private apiUrl = this.apiConfigService.getApiUrl();
 
   constructor(
@@ -32,18 +30,21 @@ export class CourtierServiceService {
   getAllDossier(agence_id: number) {
     const headers = this.getHeaders();
     return this.http.get(
-      `${this.apiUrl}/dossiers/${agence_id}/dossiersnotassigned`
+      `${this.apiUrl}/dossiers/${agence_id}/dossiersnotassigned`,
+      { headers: headers }
     );
   }
 
   getDossierEncours(id: number) {
     const headers = this.getHeaders();
-    return this.http.get(`${this.apiUrl}/dossiers/courtier/${id}/Encours`);
+    return this.http.get(`${this.apiUrl}/dossiers/courtier/${id}/Encours`,
+    { headers: headers });
   }
 
   getDossierTraite(id: number) {
     const headers = this.getHeaders();
-    return this.http.get(`${this.apiUrl}/dossiers/courtier/${id}/traitee`);
+    return this.http.get(`${this.apiUrl}/dossiers/courtier/${id}/traitee`,
+    { headers: headers });
   }
 
   affecterDossierACourtier(courtierId: number, dossierId: number) {
@@ -79,14 +80,18 @@ export class CourtierServiceService {
   downloadFile(dossierId: number, fileName) {
     const headers = this.getHeaders();
     return this.http.get(
-      `${this.apiUrl}/dossiers/downloadFile/${dossierId}/${fileName}`
+      `${this.apiUrl}/dossiers/downloadFile/${dossierId}/${fileName}`,
+      { headers: headers }
     );
   }
 
-  getAllMyFolders(courtierId) {
+  getAllMyFolders(courtierId): Observable<any> {
     const headers = this.getHeaders();
+   
+
     return this.http.get(
-      `${this.apiUrl}/dossiers/courtier/${courtierId}/alldossiers`
+      `${this.apiUrl}/dossiers/courtier/${courtierId}/alldossiers`,
+      { headers: headers }
     );
   }
 
@@ -105,9 +110,10 @@ export class CourtierServiceService {
     // Set headers with the token
     return new HttpHeaders({
       'Content-Type': 'application/json',
-      /*  Authorization: `Bearer ${token}`, */
+      'Authorization': `Bearer ${token}`,
     });
   }
+  
   // pour updater les conteur de la sidebar:
   private FolderList = new BehaviorSubject<string>(''); // Initialisez avec une chaîne vide
   folderList$: Observable<string> = this.FolderList.asObservable();
