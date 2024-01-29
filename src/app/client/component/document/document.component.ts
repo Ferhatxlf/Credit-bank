@@ -14,17 +14,23 @@ export class DocumentComponent implements OnInit {
   @ViewChild('fileInput1') fileInput1!: ElementRef<HTMLInputElement>;
   @ViewChild('fileInput2') fileInput2!: ElementRef<HTMLInputElement>;
   @ViewChild('fileInput3') fileInput3!: ElementRef<HTMLInputElement>;
+  @ViewChild('fileInput4') fileInput4!: ElementRef<HTMLInputElement>;
+  @ViewChild('fileInput5') fileInput5!: ElementRef<HTMLInputElement>;
   files: (File | null)[] = [];
   id: any;
   pieceIdentite: boolean = false;
   residence: boolean = false;
   paie: boolean = false;
   autre: boolean = false;
+  permis: boolean = false;
+  attestation: boolean = false;
 
   hasIdentite: boolean = false;
   hasResidence: boolean = false;
   hasPaie: boolean = false;
   hasAutre: boolean = false;
+  hasPermis: boolean = false;
+  hasAttestation: boolean = false;
 
   openIdentite: boolean = false;
   openResidance: boolean = false;
@@ -32,11 +38,16 @@ export class DocumentComponent implements OnInit {
   openFicheDePaieTwo: boolean = false;
   openFicheDePaieThree: boolean = false;
   openAutre: boolean = false;
+  openPermis: boolean = false;
+  openAttestation: boolean = false;
+
   isLoading: boolean = false;
   isLoadingDeleteIdentite: boolean = false;
   isLoadingDeleteResidence: boolean = false;
   isLoadingDeletePaie: boolean = false;
   isLoadingDeleteAutre: boolean = false;
+  isLoadingDeletePermis: boolean = false;
+  isLoadingDeleteAttestation: boolean = false;
 
   constructor(
     private simulationService: SimulationServiceService,
@@ -66,6 +77,12 @@ export class DocumentComponent implements OnInit {
         this.hasAutre = this.folderValue.attachedFiles.some(
           (f) => f.fileName === 'Autre justificatif de revenu.pdf'
         );
+        this.hasPermis = this.folderValue.attachedFiles.some(
+          (f) => f.fileName === 'Permis de construction.pdf'
+        );
+        this.hasAttestation = this.folderValue.attachedFiles.some(
+          (f) => f.fileName === 'Attestation de reservation.pdf'
+        );
         console.log(this.hasAutre);
       },
       (err) => console.log(err)
@@ -91,6 +108,12 @@ export class DocumentComponent implements OnInit {
       case 'openAutre':
         this.openAutre = !this.openAutre;
         break;
+      case 'openPermis':
+        this.openPermis = !this.openPermis;
+        break;
+      case 'openAttestation':
+        this.openAttestation = !this.openAttestation;
+        break;
       default:
         console.log('Variable non reconnue');
     }
@@ -111,6 +134,8 @@ export class DocumentComponent implements OnInit {
     if (i === 1) fileInput = this.fileInput1;
     if (i === 2) fileInput = this.fileInput2;
     if (i === 3) fileInput = this.fileInput3;
+    if (i === 4) fileInput = this.fileInput4;
+    if (i === 5) fileInput = this.fileInput5;
 
     if (fileInput) {
       fileInput.nativeElement.onchange = () => {
@@ -124,6 +149,8 @@ export class DocumentComponent implements OnInit {
           this.residence = false;
           this.paie = false;
           this.autre = false;
+          this.permis = false;
+          this.attestation = false;
         }
       };
 
@@ -155,6 +182,12 @@ export class DocumentComponent implements OnInit {
       }
       if (customFileName === 'Autre justificatif de revenu') {
         this.autre = true;
+      }
+      if (customFileName === 'Permis de construction') {
+        this.permis = true;
+      }
+      if (customFileName === 'Attestation de reservation') {
+        this.attestation = true;
       }
 
       console.log(this.files);
@@ -207,7 +240,13 @@ export class DocumentComponent implements OnInit {
               this.hasAutre = this.folderValue.attachedFiles.some(
                 (f) => f.fileName === 'Autre justificatif de revenu.pdf'
               );
-              console.log(this.hasAutre);
+              this.hasPermis = this.folderValue.attachedFiles.some(
+                (f) => f.fileName === 'Permis de construction.pdf'
+              );
+              this.hasAttestation = this.folderValue.attachedFiles.some(
+                (f) => f.fileName === 'Attestation de reservation.pdf'
+              );
+              console.log(this.hasAttestation);
             },
             (err) => {
               setTimeout(() => {
@@ -235,6 +274,10 @@ export class DocumentComponent implements OnInit {
     this.residence = false;
     this.autre = false;
     this.paie = false;
+    this.permis = false;
+    this.attestation = false;
+    this.openPermis = false;
+    this.openAttestation = false;
 
     // Set the appropriate isLoadingDeleteType based on the file being deleted
     if (name === 'Piece identite.pdf') {
@@ -245,6 +288,10 @@ export class DocumentComponent implements OnInit {
       this.isLoadingDeletePaie = true;
     } else if (name === 'Autre justificatif de revenu.pdf') {
       this.isLoadingDeleteAutre = true;
+    } else if (name === 'Permis de construction.pdf') {
+      this.isLoadingDeletePermis = true;
+    } else if (name === 'Attestation de reservation.pdf') {
+      this.isLoadingDeleteAttestation = true;
     }
 
     this.clientService.deleteFile(name, this.id).subscribe(
@@ -256,6 +303,8 @@ export class DocumentComponent implements OnInit {
               this.isLoadingDeleteResidence = false;
               this.isLoadingDeletePaie = false;
               this.isLoadingDeleteAutre = false;
+              this.isLoadingDeletePermis = false;
+              this.isLoadingDeleteAttestation = false;
             }, 1000);
             this.folderValue = res;
 
@@ -273,6 +322,12 @@ export class DocumentComponent implements OnInit {
             this.hasAutre = this.folderValue.attachedFiles.some(
               (f) => f.fileName === 'Autre justificatif de revenu.pdf'
             );
+            this.hasPermis = this.folderValue.attachedFiles.some(
+              (f) => f.fileName === 'Permis de construction.pdf'
+            );
+            this.hasAttestation = this.folderValue.attachedFiles.some(
+              (f) => f.fileName === 'Attestaion de reservation.pdf'
+            );
             console.log(this.hasAutre);
           },
           (err) => {
@@ -281,6 +336,8 @@ export class DocumentComponent implements OnInit {
               this.isLoadingDeleteResidence = false;
               this.isLoadingDeletePaie = false;
               this.isLoadingDeleteAutre = false;
+              this.isLoadingDeleteAttestation = false;
+              this.isLoadingDeletePermis = false;
             }, 1000);
             console.log(err);
           }
@@ -294,6 +351,8 @@ export class DocumentComponent implements OnInit {
           this.isLoadingDeleteResidence = false;
           this.isLoadingDeletePaie = false;
           this.isLoadingDeleteAutre = false;
+          this.isLoadingDeleteAttestation = false;
+          this.isLoadingDeletePermis = false;
         }, 1000);
       }
     );
