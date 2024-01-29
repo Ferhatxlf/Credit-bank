@@ -30,6 +30,17 @@ export class InformationComponent implements OnInit {
     this.simulationService.getDossier(this.id).subscribe(
       (res) => {
         this.folderValue = res;
+
+        // Tri des commentaires par la propriété 'commentDate'
+        if (this.folderValue && this.folderValue.commentaires) {
+          this.folderValue.commentaires.sort((a, b) => {
+            const dateA = new Date(a.commentDate).getTime();
+            const dateB = new Date(b.commentDate).getTime();
+
+            return dateB - dateA;
+          });
+        }
+
         console.log(this.folderValue);
       },
       (err) => console.log(err)

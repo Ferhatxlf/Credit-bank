@@ -3,6 +3,7 @@ import { Location } from '@angular/common';
 import { ROUTES } from '../../app.component';
 import { AuthServiceService } from '../../service/auth-service.service';
 import { WebSocketService } from '../../service/websocket.service';
+import { BanquierService } from '../../service/BanquierService';
 
 @Component({
   selector: 'app-navbar',
@@ -20,7 +21,8 @@ export class NavbarComponent implements OnInit {
   constructor(
     location: Location,
     private authService: AuthServiceService,
-    private webSocketService: WebSocketService
+    private webSocketService: WebSocketService,
+    private banquierService: BanquierService 
   ) {
     this.location = location;
   }
@@ -77,6 +79,29 @@ export class NavbarComponent implements OnInit {
         this.userRole = 'Chargé de crédit';
       }
     }
+
+    /////////////////////////////////////////////
+
+
+    this.banquierService.onMessagesReceived().subscribe((messages) => {
+      console.log('Received messages:', messages);
+
+      if (currentUserData) {
+        this.currentUser = JSON.parse(currentUserData);
+      }
+
+      messages.forEach((message: any) => {
+        // Check if the receiverId matches the current user's id
+        if (message.receiverId === this.currentUser.id) {
+          // Push the individual message into the notifications array
+          this.notifications.push(message.message);
+
+          // Set the flag to indicate there are new notifications
+          this.isNotified = true;
+        }
+      });
+    });
+  
   }
 
   getTitle() {
@@ -114,8 +139,11 @@ export class NavbarComponent implements OnInit {
 
     // Clear notifications in the component property
     this.notifications = [];
-
+    this.banquierService.clearMessages();
     // Set isNotified to false
     this.isNotified = false;
   }
+
+
+  
 }

@@ -28,23 +28,20 @@ export class CourtierServiceService {
   }
 
   getAllDossier(agence_id: number) {
-    const headers = this.getHeaders();
+    //const headers = this.getHeaders();
     return this.http.get(
-      `${this.apiUrl}/dossiers/${agence_id}/dossiersnotassigned`,
-      { headers: headers }
+      `${this.apiUrl}/dossiers/${agence_id}/dossiersnotassigned`
     );
   }
 
   getDossierEncours(id: number) {
-    const headers = this.getHeaders();
-    return this.http.get(`${this.apiUrl}/dossiers/courtier/${id}/Encours`,
-    { headers: headers });
+    //const headers = this.getHeaders();
+    return this.http.get(`${this.apiUrl}/dossiers/courtier/${id}/Encours`);
   }
 
   getDossierTraite(id: number) {
-    const headers = this.getHeaders();
-    return this.http.get(`${this.apiUrl}/dossiers/courtier/${id}/traitee`,
-    { headers: headers });
+    //const headers = this.getHeaders();
+    return this.http.get(`${this.apiUrl}/dossiers/courtier/${id}/traitee`);
   }
 
   affecterDossierACourtier(courtierId: number, dossierId: number) {
@@ -63,7 +60,7 @@ export class CourtierServiceService {
   }
 
   soumettereDossierADirecteur(dossierIds) {
-    const headers = this.getHeaders();
+    //const headers = this.getHeaders();
     return this.http
       .post(`${this.apiUrl}/dossiers/sendmultipletoDirectreur`, dossierIds, {
         responseType: 'text',
@@ -78,24 +75,22 @@ export class CourtierServiceService {
   }
 
   downloadFile(dossierId: number, fileName) {
-    const headers = this.getHeaders();
+    //const headers = this.getHeaders();
     return this.http.get(
       `${this.apiUrl}/dossiers/downloadFile/${dossierId}/${fileName}`,
-      { headers: headers }
+     
     );
   }
 
-  getAllMyFolders(courtierId): Observable<any> {
-    const headers = this.getHeaders();
-   
-
+  getAllMyFolders(courtierId) {
+    //const headers = this.getHeaders();
     return this.http.get(
       `${this.apiUrl}/dossiers/courtier/${courtierId}/alldossiers`,
-      { headers: headers }
+     
     );
   }
 
-  private getHeaders(): HttpHeaders {
+  /*  private getHeaders(): HttpHeaders {
     // Retrieve the user object from local storage
     const currentUserString = localStorage.getItem('currentUser');
 
@@ -110,10 +105,9 @@ export class CourtierServiceService {
     // Set headers with the token
     return new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`,
+        Authorization: `Bearer ${token}`, 
     });
-  }
-  
+  } */
   // pour updater les conteur de la sidebar:
   private FolderList = new BehaviorSubject<string>(''); // Initialisez avec une chaîne vide
   folderList$: Observable<string> = this.FolderList.asObservable();
