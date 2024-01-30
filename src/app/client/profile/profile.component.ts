@@ -9,6 +9,7 @@ import {
   FormControl,
   ValidatorFn,
 } from '@angular/forms';
+import * as dataJson from '../../algeria-postcodes.json';
 
 @Component({
   selector: 'app-profile',
@@ -16,6 +17,8 @@ import {
   styleUrl: './profile.component.css',
 })
 export class ProfileComponent implements OnInit {
+  dataJson: any = (dataJson as any).default;
+  uniqueData: any;
   information: boolean = false;
   updateInformation: boolean = false;
   submittedPassword: boolean = false;
@@ -68,6 +71,13 @@ export class ProfileComponent implements OnInit {
         // Déclenchez manuellement la validation de la durée
         this.dataForm.get('passwordConfirmation')?.updateValueAndValidity();
       }
+    });
+    this.uniqueData = Array.from(
+      new Set(this.dataJson.map((item) => item.wilaya_name_ascii))
+    ).map((wilaya_name_ascii) => {
+      return this.dataJson.find(
+        (item) => item.wilaya_name_ascii === wilaya_name_ascii
+      );
     });
   }
   passwordPolicyValidator(control: FormControl) {
