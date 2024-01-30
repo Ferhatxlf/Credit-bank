@@ -112,4 +112,15 @@ export class ProfileComponent implements OnInit {
       this.submittedPassword = true;
     }
   }
+
+
+  editMode = false;
+
+toggleEditMode() {
+  this.editMode = !this.editMode;
+}
+
+updateUserInfo() {
+  // Add your logic to handle the update when the "Confirmer" button is clicked
+}
 }

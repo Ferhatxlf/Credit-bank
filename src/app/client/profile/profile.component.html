@@ -42,94 +42,71 @@
           class="tab-content"
           style="overflow-y: auto; height: 100%; margin-right: 2%"
         >
-          <div id="account-info" *ngIf="information">
-            <hr class="border-light m-0" />
-            <div class="card-body pb-2">
-              <h4 class="font-weight-bold py-3 mb-1">
-                Informations personnelles
-              </h4>
-              <div class="row">
-                <div class="col-sm-12 col-md-6">
-                  <div class="form-group mt-2">
-                    <label class="form-label">Nom :</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      value="{{ Folders.nom }}"
-                      disabled
-                    />
-                  </div>
-                </div>
-                <div class="col-sm-12 col-md-6">
-                  <div class="form-group mt-2">
-                    <label class="form-label">Prénom :</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      value="{{ Folders.prenom }}"
-                      disabled
-                    />
-                  </div>
-                </div>
-              </div>
-              <div class="form-group mt-2">
-                <label class="form-label">Adresse email :</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  value="{{ Folders.email }}"
-                  disabled
-                />
-              </div>
-              <div class="form-group mt-2">
-                <label class="form-label">Numéro de téléphone :</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  value="{{ Folders.telephone }}"
-                  disabled
-                />
-              </div>
-              <div class="row">
-                <div class="col-sm-12 col-md-4">
-                  <div class="form-group mt-2">
-                    <label class="form-label">Addresse :</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      value="{{ Folders.adresse }}"
-                      disabled
-                    />
-                  </div>
-                </div>
-                <div class="col-sm-12 col-md-4">
-                  <div class="form-group mt-2">
-                    <label class="form-label">Wilaya :</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      value="{{ Folders.commune.wilaya.wilayaName }}"
-                      disabled
-                    />
-                  </div>
-                </div>
-                <div class="col-sm-12 col-md-4">
-                  <div class="form-group mt-2">
-                    <label class="form-label">Commune :</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      value="{{ Folders.commune.nom }}"
-                      disabled
-                    />
-                  </div>
-                </div>
-                <div class="button-container mt-3">
-                  <button class="btn btn2">Modifier mes information</button>
-                </div>
-              </div>
-            </div>
-          </div>
+        <!-- Inside the "Informations personnelles" tab -->
+<div id="account-info" *ngIf="information">
+  <hr class="border-light m-0" />
+  <div class="card-body pb-2">
+ 
+
+    <h4 class="font-weight-bold py-3 mb-1">
+      Informations personnelles
+   
+        <mat-icon class="btn " [ngClass]="{ 'clicked': editMode }" (click)="toggleEditMode()">   <span class="material-icons sidebar-icons cursor-pointer" >edit</span></mat-icon>
+  
+    </h4>
+    <div class="row">
+      <div class="col-sm-12 col-md-6">
+        <div class="form-group mt-2">
+          <label class="form-label">Nom :</label>
+          <input type="text" class="form-control" [(ngModel)]="Folders.nom" [disabled]="!editMode" />
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-6">
+        <div class="form-group mt-2">
+          <label class="form-label">Prénom :</label>
+          <input type="text" class="form-control" [(ngModel)]="Folders.prenom" [disabled]="!editMode" />
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group mt-2">
+      <label class="form-label">Adresse email :</label>
+      <input type="text" class="form-control" [(ngModel)]="Folders.email" [disabled]="!editMode" />
+    </div>
+
+    <div class="form-group mt-2">
+      <label class="form-label">Numéro de téléphone :</label>
+      <input type="text" class="form-control" [(ngModel)]="Folders.telephone" [disabled]="!editMode" />
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12 col-md-4">
+        <div class="form-group mt-2">
+          <label class="form-label">Addresse :</label>
+          <input type="text" class="form-control" [(ngModel)]="Folders.adresse" [disabled]="!editMode" />
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-4">
+        <div class="form-group mt-2">
+          <label class="form-label">Wilaya :</label>
+          <input type="text" class="form-control" [(ngModel)]="Folders.commune.wilaya.wilayaName" [disabled]="!editMode" />
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-4">
+        <div class="form-group mt-2">
+          <label class="form-label">Commune :</label>
+          <input type="text" class="form-control" [(ngModel)]="Folders.commune.nom" [disabled]="!editMode" />
+        </div>
+      </div>
+    </div>
+
+
+    <div class="button-container mt-3">
+      <button class="btn btn2" *ngIf="editMode" (click)="updateUserInfo()">Confirmer</button>
+    </div>
+  </div>
+</div>
+
           <div *ngIf="!information">
             <div class="card-body pb-2">
               <h4 class="font-weight-bold py-3 mb-1">Changer Mot de passe</h4>
