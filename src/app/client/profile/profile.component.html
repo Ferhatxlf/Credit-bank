@@ -44,7 +44,8 @@
         >
           <div id="account-info" *ngIf="information">
             <hr class="border-light m-0" />
-            <div class="card-body pb-2">
+
+            <div class="card-body pb-2" *ngIf="!updateInformation">
               <h4 class="font-weight-bold py-3 mb-1">
                 Informations personnelles
               </h4>
@@ -125,9 +126,104 @@
                   </div>
                 </div>
                 <div class="button-container mt-3">
-                  <button class="btn btn2">Modifier mes information</button>
+                  <button
+                    class="btn btn2"
+                    (click)="updateInformation = !updateInformation"
+                  >
+                    Modifier mes information
+                  </button>
                 </div>
               </div>
+            </div>
+
+            <div class="card-body pb-2" *ngIf="updateInformation">
+              <form
+                [formGroup]="informationForm"
+                (ngSubmit)="updateParticulier()"
+              >
+                <h4 class="font-weight-bold py-3 mb-1">
+                  Informations personnelles
+                </h4>
+                <div class="row">
+                  <div class="col-sm-12 col-md-6">
+                    <div class="form-group mt-2">
+                      <label class="form-label">Nom :</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="nom"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-sm-12 col-md-6">
+                    <div class="form-group mt-2">
+                      <label class="form-label">Prénom :</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="prenom"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group mt-2">
+                  <label class="form-label">Adresse email :</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="email"
+                  />
+                </div>
+                <div class="form-group mt-2">
+                  <label class="form-label">Numéro de téléphone :</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="tel"
+                  />
+                </div>
+                <div class="row">
+                  <div class="col-sm-12 col-md-4">
+                    <div class="form-group mt-2">
+                      <label class="form-label">Addresse :</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="adresse"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-sm-12 col-md-4">
+                    <div class="form-group mt-2">
+                      <label class="form-label">Wilaya :</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="wilaya"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-sm-12 col-md-4">
+                    <div class="form-group mt-2">
+                      <label class="form-label">Commune :</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="commune"
+                      />
+                    </div>
+                  </div>
+                  <div class="button-container mt-3">
+                    <button class="btn btn2" type="submit">Sauvgarder</button>
+                    <button
+                      class="btn btn3"
+                      (click)="updateInformation = !updateInformation"
+                    >
+                      Annuler
+                    </button>
+                  </div>
+                </div>
+              </form>
             </div>
           </div>
           <div *ngIf="!information">

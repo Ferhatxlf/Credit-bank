@@ -255,6 +255,169 @@
         />
       </div>
     </div>
+
+    <div class="document-add-container mt-3" *ngIf="achat">
+      <div class="document">
+        <div class="subtitle">
+          <span>Attestation de réservation</span>
+          <span
+            *ngIf="!hasAttestation"
+            style="font-size: small; opacity: 0.6; margin-left: 5px"
+            >(aucun fichier)</span
+          >
+          <span class="material-icons" *ngIf="hasAttestation">check</span>
+        </div>
+        <form (click)="toggleOpen('openAttestation')" *ngIf="!hasAttestation">
+          <span class="material-icons edit"
+            >{{ openAttestation ? "remove" : "add" }}
+          </span>
+        </form>
+      </div>
+
+      <form
+        *ngIf="openAttestation && !attestation"
+        (click)="openFileInput(5)"
+        class="add-document-input"
+      >
+        <input
+          #fileInput5
+          class="file-input"
+          type="file"
+          name="file5"
+          hidden
+          (change)="onFileSelected($event, 'Attestation de reservation')"
+        />
+        <span class="material-icons edit">cloud_upload</span>
+        <p>Ajouter un fichier</p>
+      </form>
+      <div
+        class="document-selected"
+        *ngIf="attestation && !hasAttestation && !isLoading"
+      >
+        <div class="document-detail">
+          <img src="../../../../assets/pdfLogo.png" alt="pdflogo" />
+          <p>Attestation de réservation.pdf</p>
+        </div>
+        <button
+          (click)="sendFile('Attestation de reservation')"
+          class="btn btn-secondary"
+          style="font-size: small"
+        >
+          Confirmer
+        </button>
+      </div>
+      <div *ngIf="isLoading && !hasAttestation && attestation">
+        <img
+          src="../../../../assets/loading.png"
+          class="isLoading"
+          alt="loading"
+          style="width: 20px"
+        />
+      </div>
+      <div class="document mt-3" *ngIf="hasAttestation">
+        <div class="document-detail">
+          <img src="../../../../assets/pdfLogo.png" alt="pdflogo" />
+          <p>Attestation de réservation.pdf</p>
+        </div>
+
+        <div class="document-options">
+          <span class="material-icons edit">edit</span>
+          <span
+            class="material-icons edit"
+            (click)="deleteFile('Attestation de reservation.pdf')"
+            >delete</span
+          >
+        </div>
+      </div>
+      <div *ngIf="isLoadingDeleteAttestation && hasAttestation && !attestation">
+        <img
+          src="../../../../assets/loading.png"
+          class="isLoading"
+          alt="loading"
+          style="width: 20px"
+        />
+      </div>
+    </div>
+
+    <div class="document-add-container mt-3" *ngIf="construction">
+      <div class="document">
+        <div class="subtitle">
+          <span>Permis de construction</span>
+          <span
+            *ngIf="!hasPermis"
+            style="font-size: small; opacity: 0.6; margin-left: 5px"
+            >(aucun fichier)</span
+          >
+          <span class="material-icons" *ngIf="hasPermis">check</span>
+        </div>
+        <form (click)="toggleOpen('openPermis')" *ngIf="!hasPermis">
+          <span class="material-icons edit"
+            >{{ openPermis ? "remove" : "add" }}
+          </span>
+        </form>
+      </div>
+
+      <form
+        *ngIf="openPermis && !permis"
+        (click)="openFileInput(4)"
+        class="add-document-input"
+      >
+        <input
+          #fileInput4
+          class="file-input"
+          type="file"
+          name="file4"
+          hidden
+          (change)="onFileSelected($event, 'Permis de construction')"
+        />
+        <span class="material-icons edit">cloud_upload</span>
+        <p>Ajouter un fichier</p>
+      </form>
+      <div class="document-selected" *ngIf="permis && !hasPermis && !isLoading">
+        <div class="document-detail">
+          <img src="../../../../assets/pdfLogo.png" alt="pdflogo" />
+          <p>Permis de construction.pdf</p>
+        </div>
+        <button
+          (click)="sendFile('Permis de construction')"
+          class="btn btn-secondary"
+          style="font-size: small"
+        >
+          Confirmer
+        </button>
+      </div>
+      <div *ngIf="isLoading && !hasPermis && permis">
+        <img
+          src="../../../../assets/loading.png"
+          class="isLoading"
+          alt="loading"
+          style="width: 20px"
+        />
+      </div>
+      <div class="document mt-3" *ngIf="hasPermis">
+        <div class="document-detail">
+          <img src="../../../../assets/pdfLogo.png" alt="pdflogo" />
+          <p>Permis de construction.pdf</p>
+        </div>
+
+        <div class="document-options">
+          <span class="material-icons edit">edit</span>
+          <span
+            class="material-icons edit"
+            (click)="deleteFile('Permis de construction.pdf')"
+            >delete</span
+          >
+        </div>
+      </div>
+      <div *ngIf="isLoadingDeletePermis && hasPermis && !permis">
+        <img
+          src="../../../../assets/loading.png"
+          class="isLoading"
+          alt="loading"
+          style="width: 20px"
+        />
+      </div>
+    </div>
     <!-- autre fichier -->
     <div class="document-add-container mt-3">
       <div class="document">
