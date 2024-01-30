@@ -17,8 +17,11 @@ import {
 })
 export class ProfileComponent implements OnInit {
   information: boolean = false;
+  updateInformation: boolean = false;
   submittedPassword: boolean = false;
+  nom: string = '';
   public dataForm!: FormGroup;
+  public informationForm!: FormGroup;
   currentUser: any;
   public Folders: any = [];
   constructor(
@@ -45,6 +48,16 @@ export class ProfileComponent implements OnInit {
       (rs) => {
         console.log(rs);
         this.Folders = rs;
+
+        this.informationForm = this.fb.group({
+          nom: this.fb.control(this.Folders.nom),
+          prenom: this.fb.control(this.Folders.prenom),
+          email: this.fb.control(this.Folders.email),
+          tel: this.fb.control(this.Folders.telephone),
+          adresse: this.fb.control(this.Folders.adresse),
+          wilaya: this.fb.control(this.Folders.commune.wilaya.wilayaName),
+          commune: this.fb.control(this.Folders.commune.nom),
+        });
       },
       (err) => {
         console.log(err);
@@ -91,10 +104,9 @@ export class ProfileComponent implements OnInit {
       };
       this.clientService.setPassword(data, this.currentUser.id).subscribe(
         (rs) => {
-
           this.information = true;
           console.log(rs);
-  
+
           console.log(rs);
 
           alert('Mot de passe mis à jour avec succès');
@@ -113,14 +125,24 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+  updateParticulier() {
+    console.log('lkdjfnzmfnalmnvk', this.informationForm.value);
 
-  editMode = false;
+    const Data = {
+      nom: this.informationForm.value.nom,
+      prenom: this.informationForm.value.prenom,
+      email: this.informationForm.value.email,
+      telephone: this.informationForm.value.tel,
 
-toggleEditMode() {
-  this.editMode = !this.editMode;
-}
+      adresse: this.informationForm.value.address,
+      selectedWilaya: this.informationForm.value.wilaya,
+      selectedCommune: this.informationForm.value.commune,
+    };
+    console.log(Data);
 
-updateUserInfo() {
-  // Add your logic to handle the update when the "Confirmer" button is clicked
-}
+    this.clientService.updateProfile(this.currentUser.id, Data).subscribe(
+      (rs) => alert('Informations modifiées avec succés'),
+      (err) => alert(err.error)
+    );
+  }
 }

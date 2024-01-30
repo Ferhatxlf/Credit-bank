@@ -119,6 +119,17 @@ export class ClientServiceService {
     );
   }
 
+  updateProfile(id, data) {
+    const url = `${this.apiUrl}/clients/updateparticulier/${id}`;
+
+    return this.http.put(url, data, { responseType: 'text' }).pipe(
+      tap(() => {
+        // window.location.reload();
+        console.log('client updated successfully.');
+      }),
+      catchError((error) => throwError(error))
+    );
+  }
   /*  private getHeaders(): HttpHeaders {
     // Retrieve the user object from local storage
     const currentUserString = localStorage.getItem('currentUser');

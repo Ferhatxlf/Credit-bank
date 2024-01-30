@@ -18,6 +18,9 @@ export class DocumentComponent implements OnInit {
   @ViewChild('fileInput5') fileInput5!: ElementRef<HTMLInputElement>;
   files: (File | null)[] = [];
   id: any;
+  achat: boolean = false;
+  construction: boolean = false;
+
   pieceIdentite: boolean = false;
   residence: boolean = false;
   paie: boolean = false;
@@ -83,7 +86,14 @@ export class DocumentComponent implements OnInit {
         this.hasAttestation = this.folderValue.attachedFiles.some(
           (f) => f.fileName === 'Attestation de reservation.pdf'
         );
-        console.log(this.hasAutre);
+
+        if (
+          [4, 6, 7, 8, 9, 10, 11, 12].includes(this.folderValue.typeCredit.id)
+        ) {
+          this.achat = true;
+        } else if ([5, 13, 14, 15].includes(this.folderValue.typeCredit.id)) {
+          this.construction = true;
+        }
       },
       (err) => console.log(err)
     );
