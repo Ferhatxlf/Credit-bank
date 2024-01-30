@@ -167,4 +167,5 @@ export class ConfirmationEmailComponent implements OnInit, OnDestroy {
       (err) => console.log(err)
     );
   }
+  
 }
