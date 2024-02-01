@@ -166,7 +166,9 @@ export class ProfileComponent implements OnInit {
       },
       (err) => {
         console.error('Update failed:', err);
-        alert('Erreur lors de la modification des informations: ' + err.error);
+        alert(
+          'Erreur lors de la modification des informations : veuillez renseigner votre commune.'
+        );
       }
     );
   }
