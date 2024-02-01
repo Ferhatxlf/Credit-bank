@@ -122,8 +122,7 @@ export class ClientServiceService {
   updateProfile(id, data) {
     const url = `${this.apiUrl}/clients/updateparticulier/${id}`;
 
-
-    console.log("data"+data)
+    console.log('data' + data);
 
     return this.http.put(url, data, { responseType: 'text' }).pipe(
       tap(() => {
@@ -151,4 +150,9 @@ export class ClientServiceService {
       Authorization: 'Bearer ' + token,
     });
   } */
+
+  getAllCommunes(): Observable<any> {
+    const endpoint = '/agence-commune'; // Replace with your actual API endpoint
+    return this.http.get<any>(`${this.apiUrl}${endpoint}`);
+  }
 }
