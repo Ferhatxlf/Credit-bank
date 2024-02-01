@@ -35,9 +35,6 @@ export class ProfileComponent implements OnInit {
 
   commune: any;
 
-
-
-
   constructor(
     private clientService: ClientServiceService,
     private authService: AuthServiceService,
@@ -72,9 +69,6 @@ export class ProfileComponent implements OnInit {
           wilaya: this.fb.control(this.Folders.commune.wilaya.wilayaName),
           commune: this.fb.control(this.Folders.commune.nom),
         });
-
-
-   
       },
       (err) => {
         console.log(err);
@@ -93,7 +87,6 @@ export class ProfileComponent implements OnInit {
         (item) => item.wilaya_name_ascii === wilaya_name_ascii
       );
     });
-
 
     this.fetchCommunes();
   }
@@ -154,20 +147,18 @@ export class ProfileComponent implements OnInit {
 
   updateParticulier() {
     console.log('lkdjfnzmfnalmnvk', this.informationForm.value);
-  
     const Data = {
       nom: this.informationForm.value.nom,
       prenom: this.informationForm.value.prenom,
       email: this.informationForm.value.email,
       telephone: this.informationForm.value.tel,
-      adresse: this.informationForm.value.adresse,  
+      adresse: this.informationForm.value.adresse,
       commune: this.informationForm.value.commune,
-      codePostal: this.informationForm.value.commune.codePostal
+      codePostal: this.informationForm.value.commune.codePostal,
     };
-    
-  
+
     console.log('Data:', Data);
-  
+
     this.clientService.updateProfile(this.currentUser.id, Data).subscribe(
       (rs) => {
         console.log('Update successful:', rs);
@@ -175,21 +166,19 @@ export class ProfileComponent implements OnInit {
       },
       (err) => {
         console.error('Update failed:', err);
-        alert('Erreur lors de la modification des informations: ' + err.error);
+        alert(
+          'Erreur lors de la modification des informations : veuillez renseigner votre commune.'
+        );
       }
     );
   }
- 
-
 
   fetchCommunes(): void {
     this.clientService.getAllCommunes().subscribe(
       (data) => {
         this.communes = data;
         this.extractUniqueWilayas();
-        console.log("Communes:", this.communes);
-
-      
+        console.log('Communes:', this.communes);
       },
       (error) => {
         console.error('Error fetching communes:', error);
