@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 import { AuthServiceService } from '../../service/auth-service.service';
 import { SimulationServiceService } from '../../service/simulation-service.service';
 import * as dataJson from '../../algeria-postcodes.json';
+import { ClientServiceService } from '../../service/client-service.service';
 
 @Component({
   selector: 'app-register',
@@ -32,6 +33,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   defaultPostCode: string = '';
   applyForm: FormGroup;
   applyFormSignIn: FormGroup;
+  applyFormResetPass: FormGroup;
   defaultCivility = 'default';
   defaultCity = 'default';
   defaultCommune = 'default';
@@ -122,7 +124,8 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     private fb: FormBuilder,
     private router: Router,
     private authService: AuthServiceService,
-    private simulationService: SimulationServiceService
+    private simulationService: SimulationServiceService,
+    private clientService: ClientServiceService
   ) {
     this.applyForm = this.fb.group({
       name: ['', [Validators.required, this.nameValidator]],
@@ -143,6 +146,10 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     this.applyFormSignIn = this.fb.group({
       emailConnexion: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
+    });
+
+    this.applyFormResetPass = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
     });
   }
 
@@ -423,5 +430,21 @@ export class RegisterComponent implements OnInit, AfterViewInit {
         'Le formulaire de connexion est invalide. Veuillez corriger les erreurs.'
       );
     }
+  }
+
+  resetPasswordFunction() {
+    const email = this.applyFormResetPass.value.email;
+    this.clientService.forgetPassword(email).subscribe(
+      (rs) => {
+        console.log(rs);
+        alert(
+          `Un e-mail de réinitialisation de mot de passe a été envoyé à l'adresse : ${email}`
+        );
+      },
+      (err) => {
+        console.log(err);
+        alert(err.error);
+      }
+    );
   }
 }
