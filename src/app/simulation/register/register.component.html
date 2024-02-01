@@ -463,23 +463,14 @@
   <div class="body-container" *ngIf="isResetPassword">
     <h2 class="title">Réinitialisation du mot de passe</h2>
 
-    <form [formGroup]="applyFormSignIn">
+    <form [formGroup]="applyFormResetPass" (ngSubmit)="resetPasswordFunction()">
       <div class="mb-1 mt-5">
         <input
           type="email"
           class="form-control mb-3"
           id="email"
           placeholder="Adresse email"
-          formControlName="emailConnexion"
-          [ngClass]="{
-            errForm:
-              (applyFormSignIn.get('emailConnexion')?.touched &&
-                !applyFormSignIn.get('emailConnexion')?.dirty) ||
-              (applyFormSignIn.get('emailConnexion')?.invalid &&
-                applyFormSignIn.get('emailConnexion')?.dirty) ||
-              (submittedSignIn && applyFormSignIn.get('emailConnexion')?.invalid),
-          
-          }"
+          formControlName="email"
         />
       </div>
       <div class="connexion-button-container mt-1 mb-1">

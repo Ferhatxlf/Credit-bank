@@ -27,6 +27,17 @@ export class ProfileComponent implements OnInit {
   public informationForm!: FormGroup;
   currentUser: any;
   public Folders: any = [];
+
+  communes: any[] = [];
+  uniqueWilayas: any[] = [];
+  selectedWilaya: any;
+  selectedCommune: any;
+
+  commune: any;
+
+
+
+
   constructor(
     private clientService: ClientServiceService,
     private authService: AuthServiceService,
@@ -61,6 +72,9 @@ export class ProfileComponent implements OnInit {
           wilaya: this.fb.control(this.Folders.commune.wilaya.wilayaName),
           commune: this.fb.control(this.Folders.commune.nom),
         });
+
+
+   
       },
       (err) => {
         console.log(err);
@@ -79,6 +93,9 @@ export class ProfileComponent implements OnInit {
         (item) => item.wilaya_name_ascii === wilaya_name_ascii
       );
     });
+
+
+    this.fetchCommunes();
   }
   passwordPolicyValidator(control: FormControl) {
     const hasNumber = /\d/.test(control.value);
@@ -144,9 +161,10 @@ export class ProfileComponent implements OnInit {
       email: this.informationForm.value.email,
       telephone: this.informationForm.value.tel,
       adresse: this.informationForm.value.adresse,  
-      wilaya: this.informationForm.value.wilaya,
-   nocommune: this.informationForm.value.commune,//ilaq id commune  code postal 
+      commune: this.informationForm.value.commune,
+      codePostal: this.informationForm.value.commune.codePostal
     };
+    
   
     console.log('Data:', Data);
   
@@ -161,6 +179,42 @@ export class ProfileComponent implements OnInit {
       }
     );
   }
-  
-  
+ 
+
+
+  fetchCommunes(): void {
+    this.clientService.getAllCommunes().subscribe(
+      (data) => {
+        this.communes = data;
+        this.extractUniqueWilayas();
+        console.log("Communes:", this.communes);
+
+      
+      },
+      (error) => {
+        console.error('Error fetching communes:', error);
+      }
+    );
+  }
+
+  extractUniqueWilayas(): void {
+    const wilayaSet = new Set<number>();
+    this.uniqueWilayas = [];
+
+    this.communes.forEach((commune) => {
+      if (!wilayaSet.has(commune.wilaya.id)) {
+        wilayaSet.add(commune.wilaya.id);
+        this.uniqueWilayas.push(commune.wilaya);
+      }
+    });
+  }
+
+  onWilayaChange(): void {
+    // Reset selected commune when wilaya changes
+    this.selectedCommune = null;
+  }
+
+  shouldShowCommune(commune: any): boolean {
+    return !this.selectedWilaya || commune.wilaya.id === this.selectedWilaya;
+  }
 }
