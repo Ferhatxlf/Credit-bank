@@ -196,7 +196,7 @@
                   <div class="col-sm-12 col-md-4">
                     <div class="form-group mt-2">
                       <label class="form-label">Wilaya :</label>
-                      <!--  <select class="form-select" formControlName="wilaya">
+                      <select class="form-select" formControlName="wilaya">
                         <option [value]="'default'" [disabled]="true">
                           Wilaya
                         </option>
@@ -206,22 +206,31 @@
                         >
                           {{ item.wilaya_name_ascii }}
                         </option>
-                      </select> -->
-                      <input
+                      </select>
+                      <!-- <input
                         type="text"
                         class="form-control"
                         formControlName="wilaya"
-                      />
+                      /> -->
                     </div>
                   </div>
                   <div class="col-sm-12 col-md-4">
                     <div class="form-group mt-2">
                       <label class="form-label">Commune :</label>
-                      <input
+
+                      <select class="form-select" formControlName="commune">
+                        <option
+                          *ngFor="let item of communes"
+                          [value]="item.commune_name_ascii"
+                        >
+                          {{ item.commune_name_ascii }}
+                        </option>
+                      </select>
+                      <!-- <input
                         type="text"
                         class="form-control"
                         formControlName="commune"
-                      />
+                      /> -->
                     </div>
                   </div>
                   <div class="button-container mt-3">

@@ -19,6 +19,10 @@ import * as dataJson from '../../algeria-postcodes.json';
 export class ProfileComponent implements OnInit {
   dataJson: any = (dataJson as any).default;
   uniqueData: any;
+  communes: any;
+
+  defaultCity = 'default';
+  defaultCommune = 'default';
   information: boolean = false;
   updateInformation: boolean = false;
   submittedPassword: boolean = false;
@@ -41,6 +45,51 @@ export class ProfileComponent implements OnInit {
       ],
     });
   }
+  ngAfterViewInit() {
+    this.informationForm
+      .get('wilaya')
+      ?.valueChanges.subscribe((selectedWilaya) => {
+        console.log(selectedWilaya, 'Valeur de selectedWilaya');
+        this.communes = this.dataJson.filter(
+          (item) => item.wilaya_name_ascii === selectedWilaya
+        );
+
+        // Créer un tableau distinct des noms de communes
+        const uniqueCommunes = this.removeDuplicates(
+          this.communes,
+          'commune_name_ascii'
+        );
+
+        // Mettez à jour le tableau des communes avec les valeurs uniques
+        this.communes = uniqueCommunes;
+        this.communes.sort((a, b) =>
+          a.commune_name_ascii.localeCompare(b.commune_name_ascii)
+        );
+      });
+    this.informationForm
+      .get('commune')
+      ?.valueChanges.subscribe((selectedCommune) => {
+        console.log(selectedCommune, 'Valeur de selectedCommune');
+        const selectedCommuneData = this.dataJson.find(
+          (item) => item.commune_name_ascii === selectedCommune
+        );
+      });
+    this.informationForm
+      .get('wilaya')
+      ?.valueChanges.subscribe((selectedWilaya: string) => {
+        if (selectedWilaya) {
+          this.informationForm.get('commune')?.enable();
+        }
+      });
+  }
+  // Supprimer les commune redondante
+  removeDuplicates(array, key) {
+    return array.filter(
+      (obj, index, self) =>
+        index === self.findIndex((el) => el[key] === obj[key])
+    );
+  }
+
   ngOnInit(): void {
     this.information = true;
     const a = localStorage.getItem('currentUser');
@@ -137,19 +186,19 @@ export class ProfileComponent implements OnInit {
 
   updateParticulier() {
     console.log('lkdjfnzmfnalmnvk', this.informationForm.value);
-  
+
     const Data = {
       nom: this.informationForm.value.nom,
       prenom: this.informationForm.value.prenom,
       email: this.informationForm.value.email,
       telephone: this.informationForm.value.tel,
-      adresse: this.informationForm.value.adresse,  
+      adresse: this.informationForm.value.adresse,
       wilaya: this.informationForm.value.wilaya,
-   nocommune: this.informationForm.value.commune,//ilaq id commune  code postal 
+      nocommune: this.informationForm.value.commune, //ilaq id commune  code postal
     };
-  
+
     console.log('Data:', Data);
-  
+
     this.clientService.updateProfile(this.currentUser.id, Data).subscribe(
       (rs) => {
         console.log('Update successful:', rs);
@@ -161,6 +210,4 @@ export class ProfileComponent implements OnInit {
       }
     );
   }
-  
-  
 }
