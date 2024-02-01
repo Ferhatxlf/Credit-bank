@@ -210,10 +210,10 @@
                     <div class="form-group mt-2">
                       <label for="communeSelect">Commune:</label>
                       <select id="communeSelect" class="form-control" formControlName="commune">
-                        <option value="" disabled selected>Selectionne une Commune</option>
+                        <option value="" disabled>Selectionne une Commune</option>
                         <ng-container *ngFor="let commune of communes">
-                          <ng-container *ngIf="!selectedWilaya || commune.wilaya.id === selectedWilaya">
-                            <option [ngValue]="commune" [selected]="commune.id === Folders.commune.id">
+                          <ng-container *ngIf="!selectedWilaya || commune.wilaya.id === selectedWilaya" >
+                            <option [ngValue]="commune" [selected]="commune.codePostal === Folders.commune.codePostal">
                               {{ commune.nom }} - {{ commune.codePostal }}
                             </option>
                           </ng-container>

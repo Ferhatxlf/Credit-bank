@@ -35,6 +35,9 @@ export class ProfileComponent implements OnInit {
 
   commune: any;
 
+
+
+
   constructor(
     private clientService: ClientServiceService,
     private authService: AuthServiceService,
@@ -69,6 +72,9 @@ export class ProfileComponent implements OnInit {
           wilaya: this.fb.control(this.Folders.commune.wilaya.wilayaName),
           commune: this.fb.control(this.Folders.commune.nom),
         });
+
+
+   
       },
       (err) => {
         console.log(err);
@@ -182,6 +188,8 @@ export class ProfileComponent implements OnInit {
         this.communes = data;
         this.extractUniqueWilayas();
         console.log("Communes:", this.communes);
+
+      
       },
       (error) => {
         console.error('Error fetching communes:', error);
