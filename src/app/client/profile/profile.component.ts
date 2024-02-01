@@ -137,22 +137,30 @@ export class ProfileComponent implements OnInit {
 
   updateParticulier() {
     console.log('lkdjfnzmfnalmnvk', this.informationForm.value);
-
+  
     const Data = {
       nom: this.informationForm.value.nom,
       prenom: this.informationForm.value.prenom,
       email: this.informationForm.value.email,
       telephone: this.informationForm.value.tel,
-
-      adresse: this.informationForm.value.address,
-      selectedWilaya: this.informationForm.value.wilaya,
-      selectedCommune: this.informationForm.value.commune,
+      adresse: this.informationForm.value.adresse,  
+      wilaya: this.informationForm.value.wilaya,
+   nocommune: this.informationForm.value.commune,//ilaq id commune  code postal 
     };
-    console.log(Data);
-
+  
+    console.log('Data:', Data);
+  
     this.clientService.updateProfile(this.currentUser.id, Data).subscribe(
-      (rs) => alert('Informations modifiées avec succés'),
-      (err) => alert(err.error)
+      (rs) => {
+        console.log('Update successful:', rs);
+        alert('Informations modifiées avec succès');
+      },
+      (err) => {
+        console.error('Update failed:', err);
+        alert('Erreur lors de la modification des informations: ' + err.error);
+      }
     );
   }
+  
+  
 }

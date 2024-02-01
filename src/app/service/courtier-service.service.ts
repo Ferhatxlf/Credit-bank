@@ -14,9 +14,7 @@ import { ApiConfigService } from './ApiConfig.service';
   providedIn: 'root',
 })
 export class CourtierServiceService {
-  // private apiUrl = 'https://unique-zinc-production.up.railway.app';
 
-  //private apiUrl = 'http://localhost:8000';
   private apiUrl = this.apiConfigService.getApiUrl();
 
   constructor(
@@ -79,14 +77,16 @@ export class CourtierServiceService {
   downloadFile(dossierId: number, fileName) {
     //const headers = this.getHeaders();
     return this.http.get(
-      `${this.apiUrl}/dossiers/downloadFile/${dossierId}/${fileName}`
+      `${this.apiUrl}/dossiers/downloadFile/${dossierId}/${fileName}`,
+     
     );
   }
 
   getAllMyFolders(courtierId) {
     //const headers = this.getHeaders();
     return this.http.get(
-      `${this.apiUrl}/dossiers/courtier/${courtierId}/alldossiers`
+      `${this.apiUrl}/dossiers/courtier/${courtierId}/alldossiers`,
+     
     );
   }
 

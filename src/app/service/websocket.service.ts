@@ -83,13 +83,13 @@ export class WebSocketService {
       this.socket.on('messageReceived', (data: any) => {
         console.log('Received message:', data);
   
-        // Check if the receiverId matches the current user's id
-     
-          // Push the received data into the receivedMessages array
           this.receivedMessages.push(data);
   
           // Save the updated receivedMessages array to local storage
           localStorage.setItem('receivedMessages', JSON.stringify(this.receivedMessages));
+
+
+          this.banquierService.notifyMessagesReceived(data);
   
           // Notify observers with the received data
           observer.next(data);

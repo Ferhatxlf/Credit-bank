@@ -122,6 +122,9 @@ export class ClientServiceService {
   updateProfile(id, data) {
     const url = `${this.apiUrl}/clients/updateparticulier/${id}`;
 
+
+    console.log("data"+data)
+
     return this.http.put(url, data, { responseType: 'text' }).pipe(
       tap(() => {
         // window.location.reload();

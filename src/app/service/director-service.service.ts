@@ -57,7 +57,7 @@ export class DirectorServiceService {
   }
 
   async acceptFolder(folders): Promise<Observable<any>> {
-    const acceptStatus = 'refuse'; // Consider renaming to something more appropriate
+    const acceptStatus = 'accepter'; // Consider renaming to something more appropriate
     //const headers = this.getHeaders();
 
     try {
@@ -150,6 +150,7 @@ export class DirectorServiceService {
     for (const folder of folders) {
       const id = folder.id;
       const assignedCourtierId = folder.assignedCourtier?.id;
+     const directeur=folder.directeurAgence?.id
 
       if (id && assignedCourtierId && this.compteId) {
         const message = `Dossier N : ${id} ${Status}`;
