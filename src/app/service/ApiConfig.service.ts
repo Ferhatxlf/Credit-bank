@@ -7,8 +7,8 @@ import { Injectable } from '@angular/core';
 })
 export class ApiConfigService {
 
- // apiUrl = 'http://localhost:8000'; 
-  apiUrl = 'https://observant-shock-production.up.railway.app';
+ apiUrl = 'http://localhost:8000'; 
+  //apiUrl = 'https://observant-shock-production.up.railway.app';
 
 
 

@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, catchError, map } from 'rxjs';
 import { ApiConfigService } from './ApiConfig.service';
 @Injectable({
   providedIn: 'root',
@@ -20,9 +20,17 @@ export class SimulationServiceService {
   }
 
   addDossier(dossier: any): Observable<any> {
-    //const headers = this.getHeaders();
-    return this.http.post(`${this.apiUrl}/dossiers/adddossier`, dossier);
+    console.log('dossier', dossier);
+
+    return this.http.post(`${this.apiUrl}/dossiers/adddossier`, dossier).pipe(
+      map(response => response),
+      catchError(error => {
+        console.error('Error:', error);
+        throw error; // Re-throw the error to propagate it to the component
+      })
+    );
   }
+
 
   addDocument(id: number, files: FormData): Observable<any> {
     //const headers = this.getHeaders();
