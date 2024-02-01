@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, catchError, map } from 'rxjs';
 import { ApiConfigService } from './ApiConfig.service';
 @Injectable({
   providedIn: 'root',
@@ -25,6 +25,7 @@ export class SimulationServiceService {
       headers,
     });
   }
+
 
   addDocument(id: number, files: FormData): Observable<any> {
     //const headers = this.getHeaders();
