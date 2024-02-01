@@ -19,10 +19,6 @@ import * as dataJson from '../../algeria-postcodes.json';
 export class ProfileComponent implements OnInit {
   dataJson: any = (dataJson as any).default;
   uniqueData: any;
-  communes: any;
-
-  defaultCity = 'default';
-  defaultCommune = 'default';
   information: boolean = false;
   updateInformation: boolean = false;
   submittedPassword: boolean = false;
@@ -31,6 +27,14 @@ export class ProfileComponent implements OnInit {
   public informationForm!: FormGroup;
   currentUser: any;
   public Folders: any = [];
+
+  communes: any[] = [];
+  uniqueWilayas: any[] = [];
+  selectedWilaya: any;
+  selectedCommune: any;
+
+  commune: any;
+
   constructor(
     private clientService: ClientServiceService,
     private authService: AuthServiceService,
@@ -45,51 +49,6 @@ export class ProfileComponent implements OnInit {
       ],
     });
   }
-  ngAfterViewInit() {
-    this.informationForm
-      .get('wilaya')
-      ?.valueChanges.subscribe((selectedWilaya) => {
-        console.log(selectedWilaya, 'Valeur de selectedWilaya');
-        this.communes = this.dataJson.filter(
-          (item) => item.wilaya_name_ascii === selectedWilaya
-        );
-
-        // Créer un tableau distinct des noms de communes
-        const uniqueCommunes = this.removeDuplicates(
-          this.communes,
-          'commune_name_ascii'
-        );
-
-        // Mettez à jour le tableau des communes avec les valeurs uniques
-        this.communes = uniqueCommunes;
-        this.communes.sort((a, b) =>
-          a.commune_name_ascii.localeCompare(b.commune_name_ascii)
-        );
-      });
-    this.informationForm
-      .get('commune')
-      ?.valueChanges.subscribe((selectedCommune) => {
-        console.log(selectedCommune, 'Valeur de selectedCommune');
-        const selectedCommuneData = this.dataJson.find(
-          (item) => item.commune_name_ascii === selectedCommune
-        );
-      });
-    this.informationForm
-      .get('wilaya')
-      ?.valueChanges.subscribe((selectedWilaya: string) => {
-        if (selectedWilaya) {
-          this.informationForm.get('commune')?.enable();
-        }
-      });
-  }
-  // Supprimer les commune redondante
-  removeDuplicates(array, key) {
-    return array.filter(
-      (obj, index, self) =>
-        index === self.findIndex((el) => el[key] === obj[key])
-    );
-  }
-
   ngOnInit(): void {
     this.information = true;
     const a = localStorage.getItem('currentUser');
@@ -128,6 +87,8 @@ export class ProfileComponent implements OnInit {
         (item) => item.wilaya_name_ascii === wilaya_name_ascii
       );
     });
+
+    this.fetchCommunes();
   }
   passwordPolicyValidator(control: FormControl) {
     const hasNumber = /\d/.test(control.value);
@@ -186,15 +147,14 @@ export class ProfileComponent implements OnInit {
 
   updateParticulier() {
     console.log('lkdjfnzmfnalmnvk', this.informationForm.value);
-
     const Data = {
       nom: this.informationForm.value.nom,
       prenom: this.informationForm.value.prenom,
       email: this.informationForm.value.email,
       telephone: this.informationForm.value.tel,
       adresse: this.informationForm.value.adresse,
-      wilaya: this.informationForm.value.wilaya,
-      nocommune: this.informationForm.value.commune, //ilaq id commune  code postal
+      commune: this.informationForm.value.commune,
+      codePostal: this.informationForm.value.commune.codePostal,
     };
 
     console.log('Data:', Data);
@@ -209,5 +169,39 @@ export class ProfileComponent implements OnInit {
         alert('Erreur lors de la modification des informations: ' + err.error);
       }
     );
+  }
+
+  fetchCommunes(): void {
+    this.clientService.getAllCommunes().subscribe(
+      (data) => {
+        this.communes = data;
+        this.extractUniqueWilayas();
+        console.log('Communes:', this.communes);
+      },
+      (error) => {
+        console.error('Error fetching communes:', error);
+      }
+    );
+  }
+
+  extractUniqueWilayas(): void {
+    const wilayaSet = new Set<number>();
+    this.uniqueWilayas = [];
+
+    this.communes.forEach((commune) => {
+      if (!wilayaSet.has(commune.wilaya.id)) {
+        wilayaSet.add(commune.wilaya.id);
+        this.uniqueWilayas.push(commune.wilaya);
+      }
+    });
+  }
+
+  onWilayaChange(): void {
+    // Reset selected commune when wilaya changes
+    this.selectedCommune = null;
+  }
+
+  shouldShowCommune(commune: any): boolean {
+    return !this.selectedWilaya || commune.wilaya.id === this.selectedWilaya;
   }
 }
