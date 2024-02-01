@@ -151,4 +151,11 @@ export class ClientServiceService {
       Authorization: 'Bearer ' + token,
     });
   } */
+
+
+
+  getAllCommunes(): Observable<any> {
+    const endpoint = '/agence-commune'; // Replace with your actual API endpoint
+    return this.http.get<any>(`${this.apiUrl}${endpoint}`);
+  }
 }

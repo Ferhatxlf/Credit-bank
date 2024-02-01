@@ -193,37 +193,38 @@
                       />
                     </div>
                   </div>
+                
                   <div class="col-sm-12 col-md-4">
                     <div class="form-group mt-2">
-                      <label class="form-label">Wilaya :</label>
-                      <!--  <select class="form-select" formControlName="wilaya">
-                        <option [value]="'default'" [disabled]="true">
-                          Wilaya
+                      <label for="wilayaSelect">Wilaya:</label>
+                      <select id="wilayaSelect" class="form-control" formControlName="wilaya" (change)="onWilayaChange()">
+                        <option value="" disabled selected>Selectionne une Wilaya</option>
+                        <option *ngFor="let wilaya of uniqueWilayas" [ngValue]="wilaya" [selected]="wilaya.wilayaName === Folders.commune.wilaya.wilayaName">
+                          {{ wilaya.wilayaName}}
                         </option>
-                        <option
-                          *ngFor="let item of uniqueData"
-                          [value]="item.wilaya_name_ascii"
-                        >
-                          {{ item.wilaya_name_ascii }}
-                        </option>
-                      </select> -->
-                      <input
-                        type="text"
-                        class="form-control"
-                        formControlName="wilaya"
-                      />
+                      </select>
                     </div>
                   </div>
+                  
                   <div class="col-sm-12 col-md-4">
                     <div class="form-group mt-2">
-                      <label class="form-label">Commune :</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        formControlName="commune"
-                      />
+                      <label for="communeSelect">Commune:</label>
+                      <select id="communeSelect" class="form-control" formControlName="commune">
+                        <option value="" disabled selected>Selectionne une Commune</option>
+                        <ng-container *ngFor="let commune of communes">
+                          <ng-container *ngIf="!selectedWilaya || commune.wilaya.id === selectedWilaya">
+                            <option [ngValue]="commune" [selected]="commune.id === Folders.commune.id">
+                              {{ commune.nom }} - {{ commune.codePostal }}
+                            </option>
+                          </ng-container>
+                        </ng-container>
+                      </select>
                     </div>
                   </div>
+                  
+
+         
+                  
                   <div class="button-container mt-3">
                     <button class="btn btn2" type="submit">Sauvgarder</button>
                     <button
@@ -236,7 +237,10 @@
                 </div>
               </form>
             </div>
+            
           </div>
+
+
           <div *ngIf="!information">
             <div class="card-body pb-2">
               <h4 class="font-weight-bold py-3 mb-1">Changer Mot de passe</h4>
