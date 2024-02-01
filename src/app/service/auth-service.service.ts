@@ -12,7 +12,7 @@ import { ApiConfigService } from './ApiConfig.service';
   providedIn: 'root',
 })
 export class AuthServiceService {
-  // private apiUrl = 'https://unique-zinc-production.up.railway.app';
+
   private apiUrl = this.apiConfigService.getApiUrl();
   private userRole: string = ''; // Stockez le rôle de l'utilisateur ici
 
