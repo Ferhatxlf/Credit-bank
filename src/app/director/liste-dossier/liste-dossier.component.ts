@@ -26,6 +26,7 @@ export class ListeDossierComponent implements OnInit {
   selectedFolders: any[] = [];
   idDossier: any;
   folderList: any;
+  selectedFolder: any;
   constructor(
     private fb: FormBuilder,
     router: Router,
@@ -97,9 +98,9 @@ export class ListeDossierComponent implements OnInit {
       );
   }
   // poour la modale
-  toggleShowModale(id) {
+  toggleShowModale(folder) {
     this.showModal = !this.showModal;
-    this.idDossier = id;
+    this.selectedFolder = folder; // store the entire folder object
   }
 
   folderClicked(folder) {
@@ -197,11 +198,9 @@ export class ListeDossierComponent implements OnInit {
   }
 
   addComment() {
-    this.directeurService
-      .addComment(this.comment, this.idDossier)
-      .subscribe((rs) => {
-        console.log(rs);
-        this.showModal = false;
-      });
+    this.directeurService.addComment(this.comment, this.selectedFolder).subscribe((rs) => {
+      console.log(rs);
+      this.showModal = false;
+    });
   }
 }

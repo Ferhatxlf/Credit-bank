@@ -20,6 +20,7 @@ export class SimulationServiceService {
   }
 
   addDossier(dossier: any): Observable<any> {
+    console.log("add dossiers")
     const headers = this.getHeaders();
     return this.http.post(`${this.apiUrl}/dossiers/adddossier`, dossier, {
       headers,
