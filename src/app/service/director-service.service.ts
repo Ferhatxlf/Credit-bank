@@ -164,11 +164,13 @@ export class DirectorServiceService {
     }
   }
 
-  addComment(comment, id) {
+  addComment(comment, selectedFolder) {
     //const headers = this.getHeaders();
+    console.log("selectedFolder",selectedFolder)
+    console.log("selectedFolder.directeurAgence.id",selectedFolder.directeurAgence.id)
     return this.http
       .post(
-        `${this.apiUrl}/dossiers/${id}/addComment/${this.compteId}`,
+        `${this.apiUrl}/dossiers/${selectedFolder.id}/addComment/${selectedFolder.directeurAgence.id}`,
         comment,
         { responseType: 'text' }
       )

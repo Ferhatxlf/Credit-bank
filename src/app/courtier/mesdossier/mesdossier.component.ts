@@ -25,6 +25,7 @@ export class MesdossierComponent {
   showModal: boolean = false;
   idDossier: any;
   comment: any;
+  selectedFolder:any;
 
   constructor(
     private fb: FormBuilder,
@@ -37,9 +38,9 @@ export class MesdossierComponent {
     this.router = router;
   }
   // poour la modale
-  toggleShowModale(id) {
+  toggleShowModale(folder) {
     this.showModal = !this.showModal;
-    this.idDossier = id;
+    this.selectedFolder = folder;
   }
 
   ngOnInit(): void {
@@ -127,8 +128,8 @@ export class MesdossierComponent {
   }
 
   addComment() {
-    this.directeurService
-      .addComment(this.comment, this.idDossier)
+    this.courtierService
+      .addComment(this.comment, this.selectedFolder)
       .subscribe((rs) => {
         this.showModal = false;
         console.log(rs);

@@ -121,4 +121,21 @@ export class CourtierServiceService {
   annoncerLoading(loading: boolean) {
     this.loading.next(loading);
   }
+
+
+  addComment(comment, selectedFolder) {
+    //const headers = this.getHeaders();
+    console.log("selectedFolder",selectedFolder)
+    console.log("selectedFolder.directeurAgence.id",selectedFolder.assignedCourtier.id)
+    return this.http
+      .post(
+        `${this.apiUrl}/dossiers/${selectedFolder.id}/addComment/${selectedFolder.assignedCourtier.id}`,
+        comment,
+        { responseType: 'text' }
+      )
+      .pipe(
+        tap(() => console.log('success.')),
+        catchError((error) => throwError(error))
+      );
+  }
 }
