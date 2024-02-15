@@ -169,6 +169,7 @@ export class ProfileComponent implements OnInit {
       (rs) => {
         console.log('Update successful:', rs);
         alert('Informations modifiées avec succès');
+        window.location.reload();
       },
       (err) => {
         console.error('Update failed:', err);
