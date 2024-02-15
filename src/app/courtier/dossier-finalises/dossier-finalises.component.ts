@@ -41,6 +41,7 @@ export class DossierFinalisesComponent {
     this.courtierService.annoncerLoading(true);
 
     console.log(this.currentUser);
+
     this.directeurService
       .getAllDossierForDirector(this.currentUser.agence_id)
       .subscribe(
