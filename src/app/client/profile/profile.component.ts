@@ -168,8 +168,9 @@ export class ProfileComponent implements OnInit {
     this.clientService.updateProfile(this.currentUser.id, Data).subscribe(
       (rs) => {
         console.log('Update successful:', rs);
-        alert('Informations modifiées avec succès');
+       
         window.location.reload();
+        alert('Informations modifiées avec succès');
       },
       (err) => {
         console.error('Update failed:', err);
