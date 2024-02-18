@@ -22,8 +22,6 @@ import { ClientServiceService } from '../../service/client-service.service';
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
 })
-
-
 export class RegisterComponent implements OnInit, AfterViewInit {
   data: any;
   dataJson: any = (dataJson as any).default;
@@ -50,16 +48,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   montant!: number;
   isResetPassword: boolean = true;
   @Output() loading = new EventEmitter<boolean>();
-
-
-
-
-
-
-
-
-
-  
+  responce: any;
 
   ngAfterViewInit() {
     // Mettez à jour defaultCivilite ici après la première vérification des changements
@@ -264,10 +253,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
       console.log(
         'Formulaire d inscription soumis avec les valeurs suivantes:',
         formRegisterData
-      ); 
-
-
-
+      );
 
       this.authService.register(formDataJson).subscribe(
         (rs) => {
@@ -295,14 +281,16 @@ export class RegisterComponent implements OnInit, AfterViewInit {
           }
           console.log(this.data);
           console.log(rs);
+          this.responce = rs;
 
-       console.log("rs.token")
-          console.log("rs.subscribedParticulier")
+          console.log(rs['token']);
+
+          console.log('rs.subscribedParticulier');
           localStorage.setItem('id_for_confirmation_email', rs['id']);
           const dossier = {
             nomDossier: 'achat dune habitation',
             client: {
-              id: rs['id'],
+              id: this?.responce?.subscribedParticulier?.id,
             },
             typeCredit: { id: this.data.idCredit },
             montantHabitation: this.montant,

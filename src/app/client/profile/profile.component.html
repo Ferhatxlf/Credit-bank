@@ -267,7 +267,7 @@
                     >Mot de passe actuel</label
                   >
                   <input
-                    type="password"
+                    type="{{ showPassword ? 'text' : 'password' }}"
                     class="form-control"
                     placeholder="Mot de passe actuel"
                     formControlName="oldPassword"
@@ -281,6 +281,14 @@
                           dataForm.get('oldPassword')?.invalid)
                     }"
                   />
+                  <i
+                    (click)="toggleShowPassword()"
+                    class="fas"
+                    [ngClass]="{
+                      'fa-eye': !showPassword,
+                      'fa-eye-slash': showPassword
+                    }"
+                  ></i>
                   <p
                     class="err-msg"
                     *ngIf="
