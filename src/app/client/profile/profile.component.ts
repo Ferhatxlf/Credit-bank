@@ -22,6 +22,7 @@ export class ProfileComponent implements OnInit {
   information: boolean = false;
   updateInformation: boolean = false;
   submittedPassword: boolean = false;
+  showPassword = false;
   nom: string = '';
   public dataForm!: FormGroup;
   public informationForm!: FormGroup;
@@ -205,5 +206,9 @@ export class ProfileComponent implements OnInit {
 
   shouldShowCommune(commune: any): boolean {
     return !this.selectedWilaya || commune.wilaya.id === this.selectedWilaya;
+  }
+
+  toggleShowPassword(): void {
+    this.showPassword = !this.showPassword;
   }
 }
