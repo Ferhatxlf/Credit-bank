@@ -109,7 +109,7 @@
                     <input
                       type="text"
                       class="form-control"
-                      value="{{ Folders.commune.wilaya.wilayaName }}"
+                      value="{{ Folders?.commune?.wilaya.wilayaName }}"
                       disabled
                     />
                   </div>
@@ -120,7 +120,7 @@
                     <input
                       type="text"
                       class="form-control"
-                      value="{{ Folders.commune.nom }}"
+                      value="{{ Folders?.commune?.nom }}"
                       disabled
                     />
                   </div>
@@ -194,58 +194,45 @@
                     </div>
                   </div>
 
+           
+               
                   <div class="col-sm-12 col-md-4">
                     <div class="form-group mt-2">
                       <label for="wilayaSelect">Wilaya:</label>
                       <select
-                        id="wilayaSelect"
-                        class="form-control"
+                        [(ngModel)]="selectedWilaya"
+                        class="form-control form-select form-select-lg mb-3"
+                        aria-label=".form-select-lg example"
                         formControlName="wilaya"
-                        (change)="onWilayaChange()"
                       >
                         <option
                           *ngFor="let wilaya of uniqueWilayas"
-                          [ngValue]="wilaya"
-                          [selected]="
-                            wilaya.wilayaName ===
-                            Folders.commune.wilaya.wilayaName
-                          "
+                          [value]="wilaya"
+                          [selected]="wilaya === Folders.commune.wilaya.wilayaName"
                         >
-                          {{ wilaya.wilayaName }}
+                          {{ wilaya }}
                         </option>
                       </select>
                     </div>
                   </div>
-
                   <div class="col-sm-12 col-md-4">
                     <div class="form-group mt-2">
                       <label for="communeSelect">Commune:</label>
                       <select
+                        class="form-control form-select form-select-lg mb-3"
                         id="communeSelect"
-                        class="form-control"
+                        aria-label=".form-select-lg example"
                         formControlName="commune"
                       >
-                        <ng-container *ngFor="let commune of communes">
-                          <ng-container
-                            *ngIf="
-                              !selectedWilaya ||
-                              commune.wilaya.id === selectedWilaya
-                            "
-                          >
-                            <option
-                              [ngValue]="commune"
-                              [selected]="
-                                commune.codePostal ===
-                                Folders.commune.codePostal
-                              "
-                            >
-                              {{ commune.nom }} - {{ commune.codePostal }}
-                            </option>
-                          </ng-container>
-                        </ng-container>
+                      
+                        <option *ngFor="let commune of communes" [ngValue]="commune">
+                          {{ commune.nom }}
+                        </option>
                       </select>
                     </div>
                   </div>
+                
+
                   <div class="button-container mt-3">
                     <button class="btn btn2" type="submit">Sauvgarder</button>
                     <button

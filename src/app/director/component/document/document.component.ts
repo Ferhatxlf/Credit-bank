@@ -52,8 +52,11 @@ export class DocumentComponent {
     console.log(name);
     // Open a URL in a new tab
 
+
+    
     // Example usage
-    const targetUrl = `${this.apiUrl}/dossiers/downloadFile/${this.id}/${name}`;
+    const targetUrl = `${this.apiUrl}/dossiers/downloadFile${name}`;
+    //const targetUrl = `${this.apiUrl}/dossiers/downloadFile/${this.id}/${name}`;
     this.openUrlInNewTab(targetUrl);
   }
 }
