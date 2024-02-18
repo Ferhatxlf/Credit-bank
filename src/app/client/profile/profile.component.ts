@@ -17,9 +17,6 @@ import * as dataJson from '../../algeria-postcodes.json';
   styleUrl: './profile.component.css',
 })
 export class ProfileComponent implements OnInit {
-
- 
-
   dataJson: any = (dataJson as any).default;
   uniqueData: any;
   information: boolean = false;
@@ -73,7 +70,6 @@ export class ProfileComponent implements OnInit {
           wilaya: this.fb.control(this.Folders.commune.wilaya.wilayaName),
           commune: this.fb.control(this.Folders.commune.nom),
         });
-       
       },
       (err) => {
         console.log(err);
@@ -152,7 +148,7 @@ export class ProfileComponent implements OnInit {
 
   updateParticulier() {
     console.log('lkdjfnzmfnalmnvk', this.informationForm.value);
- 
+
     const Data = {
       nom: this.informationForm.value.nom,
       prenom: this.informationForm.value.prenom,
@@ -162,14 +158,13 @@ export class ProfileComponent implements OnInit {
       commune: this.informationForm.value.commune,
       codePostal: this.informationForm.value.commune.codePostal,
     };
-    
 
-    console.log('Data:', Data,this.informationForm.value.commune);
+    console.log('Data:', Data, this.informationForm.value.commune);
 
     this.clientService.updateProfile(this.currentUser.id, Data).subscribe(
       (rs) => {
         console.log('Update successful:', rs);
-       
+
         window.location.reload();
         alert('Informations modifiées avec succès');
       },
@@ -190,11 +185,16 @@ export class ProfileComponent implements OnInit {
         console.log('Communes:', this.communes);
 
         // Set the user's default commune as the selected commune if it exists
-          // Set the user's default commune as the selected commune if it exists
-          if (this.Folders.commune && this.communes.some(commune => commune.id === this.Folders.commune.id)) {
-            this.defaultCommune = this.Folders.commune;
-            console.log(this.defaultCommune.nom,"0000000000000000000000000000")
-          }
+        // Set the user's default commune as the selected commune if it exists
+        if (
+          this.Folders.commune &&
+          this.communes.some(
+            (commune) => commune.id === this.Folders.commune.id
+          )
+        ) {
+          this.defaultCommune = this.Folders.commune;
+          console.log(this.defaultCommune.nom, '0000000000000000000000000000');
+        }
       },
       (error) => {
         console.error('Error fetching communes:', error);
@@ -203,14 +203,13 @@ export class ProfileComponent implements OnInit {
   }
   extractUniqueWilayas(): void {
     const uniqueWilayaSet = new Set<string>();
-  
+
     this.communes.forEach((commune) => {
       uniqueWilayaSet.add(commune.wilaya.wilayaName);
     });
-  
+
     this.uniqueWilayas = Array.from(uniqueWilayaSet);
   }
-<<<<<<< HEAD
 
   onWilayaChange(): void {
     // Reset selected commune when wilaya changes
@@ -224,8 +223,4 @@ export class ProfileComponent implements OnInit {
   toggleShowPassword(): void {
     this.showPassword = !this.showPassword;
   }
-=======
-  
-  
->>>>>>> db0a884c128c392f585b87fae0f181ac910dd6ca
 }
