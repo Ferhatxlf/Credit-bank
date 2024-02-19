@@ -90,6 +90,7 @@ export class ConfirmationEmailComponent implements OnInit, OnDestroy {
       }
       this.authService.getClient(this.id_regestring_user).subscribe(
         (rs) => {
+          console.log(rs);
           if (rs['activated']) {
             this.router.navigate(['/simulation/upload']);
 
@@ -167,5 +168,4 @@ export class ConfirmationEmailComponent implements OnInit, OnDestroy {
       (err) => console.log(err)
     );
   }
-  
 }
