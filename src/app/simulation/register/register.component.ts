@@ -286,7 +286,10 @@ export class RegisterComponent implements OnInit, AfterViewInit {
           console.log(rs['token']);
 
           console.log('rs.subscribedParticulier');
-          localStorage.setItem('id_for_confirmation_email', rs['id']);
+          localStorage.setItem(
+            'id_for_confirmation_email',
+            this?.responce?.subscribedParticulier?.id
+          );
           const dossier = {
             nomDossier: 'achat dune habitation',
             client: {
